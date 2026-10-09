@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext.jsx'
+import VimzLogo from '../components/VimzLogo.jsx'
 
 export default function Login() {
   const [email, setEmail] = useState('')
@@ -29,9 +30,12 @@ export default function Login() {
     <div className="auth-card-wrap">
       <div className="auth-card">
         <div className="auth-header">
-          <span className="auth-badge">Account Access</span>
-          <h2>Sign in to VimzTools</h2>
-          <p>Access your one-time tool purchases, saved computations, and favorites.</p>
+          <div style={{ marginBottom: '1.2rem', display: 'flex', justifyContent: 'center' }}>
+            <VimzLogo size="lg" />
+          </div>
+          <span className="auth-badge">Workspace Access</span>
+          <h2>Sign in to Vimz.ai</h2>
+          <p>Access your workspace, saved calculations, favorites, and unlocked export licenses.</p>
         </div>
 
         {error && <div className="alert-box error" role="alert">{error}</div>}
@@ -62,7 +66,7 @@ export default function Login() {
           </div>
 
           <button type="submit" className="btn primary" disabled={loading} style={{ width: '100%', marginTop: '0.5rem' }}>
-            {loading ? 'Signing in…' : 'Sign In'}
+            {loading ? 'Signing in…' : 'Sign In to Workspace'}
           </button>
         </form>
 
@@ -73,7 +77,7 @@ export default function Login() {
         </div>
 
         <div className="auth-footer">
-          Don't have an account? <Link to="/register">Create free account</Link>
+          Don't have a workspace account? <Link to="/register">Create free account</Link>
         </div>
       </div>
     </div>

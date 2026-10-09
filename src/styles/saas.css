@@ -341,3 +341,88 @@
   flex-wrap: wrap;
   gap: 1.2rem;
 }
+
+/* Button Variants */
+.btn.sub {
+  background: var(--bg-soft);
+  color: var(--fg);
+  border: 1px solid var(--line);
+  box-shadow: none;
+}
+.btn.sub:hover {
+  background: var(--card);
+  border-color: var(--line-strong);
+}
+
+.btn.primary {
+  background: linear-gradient(100deg, var(--brand), var(--brand-2));
+  color: #fff;
+  border-color: transparent;
+}
+
+.btn.accent {
+  background: linear-gradient(100deg, var(--c-purple), var(--brand-2));
+  color: #fff;
+  border-color: transparent;
+}
+
+.btn.danger {
+  background: var(--bad-soft);
+  color: var(--bad);
+  border: 1px solid rgba(220, 38, 38, 0.3);
+  box-shadow: none;
+}
+.btn.danger:hover {
+  background: var(--bad);
+  color: #fff;
+}
+
+.btn.sm {
+  padding: 0.35rem 0.75rem;
+  font-size: 0.84rem;
+  border-radius: var(--r-sm);
+}
+
+/* SaaS Tool Card in Dashboard */
+.tool-card-saas {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.tool-card-saas:hover {
+  transform: translateY(-2px);
+  border-color: rgba(var(--brand-rgb), 0.4);
+  box-shadow: var(--shadow);
+}
+.tool-card-saas .card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+.tool-card-saas .tool-ico {
+  font-size: 1.5rem;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+}
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.1rem;
+}
+
+.saas-box {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  padding: 1.4rem;
+  box-shadow: var(--shadow-sm);
+}
+

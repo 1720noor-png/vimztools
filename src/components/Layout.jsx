@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { Link, NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom'
 import { categories, tools } from '../data/registry.js'
 import { useAuth } from '../context/AuthContext.jsx'
+import VimzLogo from './VimzLogo.jsx'
 
 const SearchIcon = () => (
   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -11,12 +12,17 @@ const SearchIcon = () => (
 
 function useTheme() {
   const [theme, setTheme] = useState(() => {
-    try { return localStorage.getItem('toolhub-theme') || 'auto' } catch { return 'auto' }
+    try { return localStorage.getItem('vimz-theme') || localStorage.getItem('toolhub-theme') || 'auto' } catch { return 'auto' }
   })
   useEffect(() => {
     try {
-      if (theme === 'auto') { document.documentElement.removeAttribute('data-theme'); localStorage.removeItem('toolhub-theme') }
-      else { document.documentElement.setAttribute('data-theme', theme); localStorage.setItem('toolhub-theme', theme) }
+      if (theme === 'auto') { 
+        document.documentElement.removeAttribute('data-theme')
+        localStorage.removeItem('vimz-theme') 
+      } else { 
+        document.documentElement.setAttribute('data-theme', theme)
+        localStorage.setItem('vimz-theme', theme) 
+      }
     } catch { /* ignore */ }
   }, [theme])
   const effective = theme === 'auto'
@@ -62,9 +68,8 @@ export default function Layout() {
       <a className="skip" href="#main">Skip to content</a>
       <header className="top">
         <div className="wrap bar">
-          <Link to="/" className="brand" aria-label="Vimztools Homepage">
-            <span className="brand-mark" aria-hidden="true">V</span>
-            Vimztools
+          <Link to="/" className="brand" aria-label="Vimz.ai Homepage" style={{ textDecoration: 'none' }}>
+            <VimzLogo size="md" />
           </Link>
 
           <button className="burger" aria-expanded={open} aria-controls="menu" aria-label="Toggle navigation menu" onClick={() => setOpen(!open)}>
@@ -74,11 +79,12 @@ export default function Layout() {
           <nav id="menu" className={open ? 'open' : ''} aria-label="Main navigation">
             <form className="nav-search" role="search" onSubmit={submit}>
               <SearchIcon />
-              <input ref={searchRef} name="q" type="search" placeholder="Search 1,000 tools…" aria-label="Search all 1,000 tools" id="global-search" />
+              <input ref={searchRef} name="q" type="search" placeholder="Search 1,000+ tools…" aria-label="Search all tools" id="global-search" />
               <span className="kbd-hint" aria-hidden="true">Ctrl K</span>
             </form>
 
             <NavLink to="/" end>Home</NavLink>
+            <NavLink to="/tools">Tools</NavLink>
 
             <div className="mega-wrap" ref={megaRef}>
               <button type="button" className="mega-btn" aria-expanded={mega} aria-haspopup="true" onClick={() => setMega(!mega)}>
@@ -99,13 +105,12 @@ export default function Layout() {
               )}
             </div>
 
-            <NavLink to="/tools">All Tools</NavLink>
             <NavLink to="/tools?popular=1">Popular</NavLink>
 
             {isLoggedIn ? (
               <>
                 <NavLink to="/dashboard" className="nav-highlight">
-                  👤 Dashboard
+                  ✨ My Workspace
                 </NavLink>
                 {isAdmin && (
                   <NavLink to="/admin" className="nav-highlight admin">
@@ -116,21 +121,24 @@ export default function Layout() {
             ) : (
               <NavLink to="/login">Sign In</NavLink>
             )}
-
-            <NavLink to="/about">About</NavLink>
           </nav>
 
           <div className="navbar-actions">
             {isLoggedIn ? (
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <Link to="/dashboard" className="btn sub sm" style={{ padding: '0.4rem 0.8rem', fontSize: '0.85rem' }}>
-                  {user?.name?.split(' ')[0] || 'Account'}
+                <Link to="/dashboard" className="btn sub sm" style={{ padding: '0.45rem 0.85rem', fontSize: '0.85rem', display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
+                  <span>👤</span> {user?.name?.split(' ')[0] || 'Workspace'}
                 </Link>
               </div>
             ) : (
-              <Link to="/login" className="btn primary sm" style={{ padding: '0.4rem 0.9rem', fontSize: '0.85rem' }}>
-                Sign In
-              </Link>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <Link to="/login" className="btn sub sm" style={{ padding: '0.45rem 0.85rem', fontSize: '0.85rem' }}>
+                  Sign In
+                </Link>
+                <Link to="/register" className="btn primary sm" style={{ padding: '0.45rem 0.9rem', fontSize: '0.85rem' }}>
+                  Get Started
+                </Link>
+              </div>
             )}
 
             <button 
@@ -152,23 +160,25 @@ export default function Layout() {
         <div className="wrap">
           <div className="footer-grid">
             <div className="footer-brand">
-              <Link to="/" className="brand" style={{ marginBottom: '0.8rem', display: 'inline-flex' }}>
-                <span className="brand-mark" aria-hidden="true">V</span>
-                Vimztools
+              <Link to="/" style={{ textDecoration: 'none', marginBottom: '0.9rem', display: 'inline-block' }}>
+                <VimzLogo size="md" />
               </Link>
-              <p>A unified suite of 1,000+ free, privacy-first web utilities executing locally in your browser with zero data tracking.</p>
-              <div style={{ marginTop: '1rem', display: 'flex', gap: '8px' }}>
-                <span className="badge sub" style={{ background: 'rgba(16,185,129,.14)', color: 'var(--ok)' }}>● 100% Client-Side</span>
-                <span className="badge sub">v2.0 Full-Stack SaaS</span>
+              <p style={{ maxWidth: '340px', lineHeight: '1.55', color: 'var(--muted)', fontSize: '0.92rem' }}>
+                Your smarter workspace for everyday tasks. 1,000+ AI-powered & client-side utilities built for speed, privacy, and frictionless productivity.
+              </p>
+              <div style={{ marginTop: '1.1rem', display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+                <span className="badge sub" style={{ background: 'rgba(16,185,129,.14)', color: 'var(--ok)' }}>● 100% Client-Side Privacy</span>
+                <span className="badge sub" style={{ background: 'rgba(99,102,241,.12)', color: 'var(--c-indigo)' }}>⚡ Zero Subscriptions</span>
               </div>
             </div>
 
             <div className="footer-col">
               <h4>Platform</h4>
               <Link to="/">Home</Link>
-              <Link to="/tools">All 1,000 Tools</Link>
-              <Link to="/categories">All Categories</Link>
-              <Link to="/dashboard">User Dashboard</Link>
+              <Link to="/tools">1,000+ Tools</Link>
+              <Link to="/categories">72 Categories</Link>
+              <Link to="/tools?popular=1">Popular Utilities</Link>
+              <Link to="/dashboard">My Workspace</Link>
               {isAdmin && <Link to="/admin">Admin Console</Link>}
             </div>
 
@@ -178,35 +188,37 @@ export default function Layout() {
             </div>
 
             <div className="footer-col">
-              <h4>Account & Access</h4>
+              <h4>Workspace & Access</h4>
               {isLoggedIn ? (
                 <>
                   <Link to="/dashboard">My Unlocked Tools</Link>
-                  <Link to="/dashboard">Favorites & Saved</Link>
-                  <button onClick={logout} style={{ background: 'none', border: 'none', color: 'var(--muted)', padding: 0, textAlign: 'left', cursor: 'pointer', font: 'inherit' }}>
-                    Sign Out
+                  <Link to="/dashboard">Saved Favorites</Link>
+                  <Link to="/dashboard">Saved Results</Link>
+                  <button onClick={logout} style={{ background: 'none', border: 'none', color: 'var(--muted)', padding: 0, textAlign: 'left', cursor: 'pointer', font: 'inherit', fontSize: '0.9rem' }}>
+                    Sign Out ({user?.email})
                   </button>
                 </>
               ) : (
                 <>
                   <Link to="/login">Sign In</Link>
-                  <Link to="/register">Create Account</Link>
+                  <Link to="/register">Create Free Account</Link>
+                  <Link to="/login">Account Recovery</Link>
                 </>
               )}
             </div>
 
             <div className="footer-col">
-              <h4>Company & Legal</h4>
-              <Link to="/about">About Vimztools</Link>
+              <h4>About & Legal</h4>
+              <Link to="/about">About Vimz.ai</Link>
               <Link to="/privacy">Privacy Policy</Link>
-              <Link to="/terms">Terms of Use</Link>
+              <Link to="/terms">Terms of Service</Link>
               <Link to="/disclaimer">Disclaimer</Link>
-              <Link to="/contact">Contact Support</Link>
+              <Link to="/contact">Contact & Support</Link>
             </div>
           </div>
 
           <div className="footer-bottom">
-            <span>© {new Date().getFullYear()} Vimztools Platform. All computations and transformations run locally on your device.</span>
+            <span>© {new Date().getFullYear()} Vimz.ai — Smart tools for everyday work. Calculations execute directly on your device.</span>
             <div style={{ display: 'flex', gap: '1.2rem' }}>
               <Link to="/privacy" style={{ color: 'var(--muted)', textDecoration: 'none' }}>Privacy</Link>
               <Link to="/terms" style={{ color: 'var(--muted)', textDecoration: 'none' }}>Terms</Link>

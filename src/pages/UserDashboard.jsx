@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext.jsx'
 import { userApi } from '../api/client.js'
 import { tools } from '../data/registry.js'
+import { useRecentTools } from '../utils/userPrefs.js'
 
 export default function UserDashboard() {
   const { user, isLoggedIn, loading: authLoading, logout } = useAuth()
@@ -11,9 +12,11 @@ export default function UserDashboard() {
   const [savedResults, setSavedResults] = useState([])
   const [activeTab, setActiveTab] = useState('purchases')
   const [loading, setLoading] = useState(true)
+  const { recents } = useRecentTools()
   const nav = useNavigate()
 
   useEffect(() => {
+    document.title = 'My Workspace – Vimz.ai'
     if (!authLoading && !isLoggedIn) {
       nav('/login')
       return
@@ -50,41 +53,74 @@ export default function UserDashboard() {
   }
 
   const handleDeleteResult = async (id) => {
-    if (!confirm('Are you sure you want to delete this saved result?')) return
+    if (!confirm('Are you sure you want to delete this saved calculation?')) return
     try {
       await userApi.deleteResult(id)
       setSavedResults((prev) => prev.filter((r) => r.id !== id))
     } catch (err) {
-      alert(err.message || 'Failed to delete result')
+      alert(err.message || 'Failed to delete calculation')
     }
   }
 
   if (authLoading || (!isLoggedIn && loading)) {
-    return <div style={{ padding: '4rem 1rem', textAlign: 'center' }}>Loading your dashboard…</div>
+    return <div style={{ padding: '4rem 1rem', textAlign: 'center' }}>Loading your workspace…</div>
   }
 
   const favoriteTools = tools.filter((t) => favorites.includes(t.slug))
 
   return (
     <div className="dashboard-layout">
+      {/* Workspace Header */}
       <div className="dashboard-header">
         <div>
-          <span className="badge sub" style={{ textTransform: 'uppercase', marginBottom: '0.5rem', display: 'inline-block' }}>
-            {user?.role === 'admin' ? 'Administrator' : 'Verified Member'}
-          </span>
-          <h1>Welcome, {user?.name}</h1>
-          <p style={{ color: 'var(--muted)', margin: 0 }}>{user?.email}</p>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '0.4rem' }}>
+            <span className="badge" style={{ background: 'rgba(99,102,241,0.12)', color: 'var(--c-indigo)', border: '1px solid rgba(99,102,241,0.25)' }}>
+              {user?.role === 'admin' ? '⚡ Workspace Administrator' : '✨ Pro Workspace'}
+            </span>
+          </div>
+          <h1>My Workspace</h1>
+          <p style={{ color: 'var(--muted)', margin: 0 }}>
+            Welcome back, <strong>{user?.name}</strong> ({user?.email})
+          </p>
         </div>
         <div style={{ display: 'flex', gap: '0.8rem', alignItems: 'center' }}>
           {user?.role === 'admin' && (
-            <Link to="/admin" className="btn accent">
-              ⚡ Open Admin Panel
+            <Link to="/admin" className="btn accent" style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
+              ⚡ Admin Console
             </Link>
           )}
-          <button onClick={logout} className="btn sub">Sign Out</button>
+          <Link to="/tools" className="btn primary sm">
+            + New Tool Task
+          </Link>
+          <button onClick={logout} className="btn sub sm">Sign Out</button>
         </div>
       </div>
 
+      {/* Summary KPI Cards */}
+      <div className="kpi-grid">
+        <div className="kpi-card">
+          <span className="kpi-label">Unlocked Pro Tools</span>
+          <span className="kpi-value" style={{ color: 'var(--c-indigo)' }}>{purchases.length}</span>
+          <span className="kpi-sub">Lifetime export licenses</span>
+        </div>
+        <div className="kpi-card">
+          <span className="kpi-label">Favorited Tools</span>
+          <span className="kpi-value" style={{ color: 'var(--brand)' }}>{favoriteTools.length}</span>
+          <span className="kpi-sub">Pinned for quick launch</span>
+        </div>
+        <div className="kpi-card">
+          <span className="kpi-label">Saved Computations</span>
+          <span className="kpi-value" style={{ color: 'var(--ok)' }}>{savedResults.length}</span>
+          <span className="kpi-sub">Stored in cloud profile</span>
+        </div>
+        <div className="kpi-card">
+          <span className="kpi-label">Recent Activity</span>
+          <span className="kpi-value">{recents.length}</span>
+          <span className="kpi-sub">Tools accessed locally</span>
+        </div>
+      </div>
+
+      {/* Navigation Tabs */}
       <div className="dashboard-tabs">
         <button
           className={`dash-tab ${activeTab === 'purchases' ? 'active' : ''}`}
@@ -116,17 +152,19 @@ export default function UserDashboard() {
                 <div className="empty-state-card">
                   <div style={{ fontSize: '2.5rem', marginBottom: '0.5rem' }}>📦</div>
                   <h3>No Paid Tools Unlocked Yet</h3>
-                  <p>All basic tools are 100% free forever. If you purchase high-resolution export licenses for specialized tools, your downloads and tokens will appear here.</p>
-                  <Link to="/tools" className="btn primary" style={{ marginTop: '1rem' }}>Browse Available Tools</Link>
+                  <p>
+                    All 1,000+ base tools on Vimz.ai are 100% free forever. If you purchase high-resolution export licenses ($2.99 – $8.99 one-time), your download tokens and receipts will appear here.
+                  </p>
+                  <Link to="/tools" className="btn primary" style={{ marginTop: '1rem' }}>Browse All Tools</Link>
                 </div>
               ) : (
                 <div className="table-responsive">
                   <table className="saas-table">
                     <thead>
                       <tr>
-                        <th>Tool Name</th>
+                        <th>Tool & License</th>
                         <th>Transaction ID</th>
-                        <th>Amount</th>
+                        <th>Amount Paid</th>
                         <th>Downloads Used</th>
                         <th>Status</th>
                         <th>Actions</th>
@@ -165,11 +203,11 @@ export default function UserDashboard() {
                 <div className="empty-state-card">
                   <div style={{ fontSize: '2.5rem', marginBottom: '0.5rem' }}>⭐</div>
                   <h3>No Favorites Saved</h3>
-                  <p>Click the star icon on any tool card across the platform to add it to your quick-access dashboard.</p>
+                  <p>Click the star icon on any tool card across Vimz.ai to bookmark it in your personal workspace.</p>
                   <Link to="/tools" className="btn primary" style={{ marginTop: '1rem' }}>Explore 1,000+ Tools</Link>
                 </div>
               ) : (
-                <div className="grid-3">
+                <div className="grid">
                   {favoriteTools.map((t) => (
                     <div key={t.slug} className="tool-card-saas">
                       <div className="card-top">
@@ -194,7 +232,8 @@ export default function UserDashboard() {
                 <div className="empty-state-card">
                   <div style={{ fontSize: '2.5rem', marginBottom: '0.5rem' }}>💾</div>
                   <h3>No Saved Computations</h3>
-                  <p>When using calculators, generators, and data processors, you can save outputs directly to your cloud profile for future reference.</p>
+                  <p>When running calculators and data processors, you can save outputs directly to your cloud profile for future reference.</p>
+                  <Link to="/tools" className="btn sub" style={{ marginTop: '1rem' }}>Find a Calculator</Link>
                 </div>
               ) : (
                 <div className="saved-list">

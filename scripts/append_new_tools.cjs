@@ -1,0 +1,75 @@
+const fs = require('fs');
+
+const content = fs.readFileSync('src/data/registry.js', 'utf8');
+
+// The 21 new imports
+const newImports = `
+const YouTubeThumbnailExtractorTool = lazy(() => import('../tools/social/YouTubeThumbnailExtractor.jsx'))
+const ContentRepurposingMatrixTool = lazy(() => import('../tools/social/ContentRepurposingMatrix.jsx'))
+const LinkInBioBuilderTool = lazy(() => import('../tools/social/LinkInBioBuilder.jsx'))
+const ReelsHookScriptGeneratorTool = lazy(() => import('../tools/social/ReelsHookScriptGenerator.jsx'))
+const InstagramGridCarouselSplitterTool = lazy(() => import('../tools/social/InstagramGridCarouselSplitter.jsx'))
+const SeoKeywordClusteringTool = lazy(() => import('../tools/marketing/SeoKeywordClusteringTool.jsx'))
+const RobotsSitemapGeneratorTool = lazy(() => import('../tools/marketing/RobotsSitemapGenerator.jsx'))
+const SchemaJsonLdGeneratorTool = lazy(() => import('../tools/marketing/SchemaJsonLdGenerator.jsx'))
+const OpenGraphCardPreviewerTool = lazy(() => import('../tools/marketing/OpenGraphCardPreviewer.jsx'))
+const SeoRedirectMapBuilderTool = lazy(() => import('../tools/marketing/SeoRedirectMapBuilder.jsx'))
+const ContentEditorialCalendarTool = lazy(() => import('../tools/marketing/ContentEditorialCalendar.jsx'))
+const YouTubeSeoOptimizerTool = lazy(() => import('../tools/marketing/YouTubeSeoOptimizer.jsx'))
+const HeadlineAbPowerTesterTool = lazy(() => import('../tools/writing/HeadlineAbPowerTester.jsx'))
+const PodcastShowNotesGeneratorTool = lazy(() => import('../tools/writing/PodcastShowNotesGenerator.jsx'))
+const LeanCanvasBusinessBuilderTool = lazy(() => import('../tools/business/LeanCanvasBusinessBuilder.jsx'))
+const SalesFunnelVelocityCalculatorTool = lazy(() => import('../tools/business/SalesFunnelVelocityCalculator.jsx'))
+const SaasCacPaybackMatrixTool = lazy(() => import('../tools/business/SaasCacPaybackMatrix.jsx'))
+const SalesCommissionCalculatorTool = lazy(() => import('../tools/business/SalesCommissionCalculator.jsx'))
+const AgencyRetainerCalculatorTool = lazy(() => import('../tools/freelance/AgencyRetainerCalculator.jsx'))
+const MarketingAttributionRoiModelTool = lazy(() => import('../tools/freelance/MarketingAttributionRoiModel.jsx'))
+const AgencyPitchProposalGeneratorTool = lazy(() => import('../tools/freelance/AgencyPitchProposalGenerator.jsx'))
+`;
+
+// The 21 new tool entries
+const newEntries = `,
+  {"cat":"social-media-tools","subcat":"video-social-media","subcatName":"Video & Social Media","slug":"youtube-thumbnail-extractor","name":"YouTube HD Thumbnail Extractor & Downloader","icon":"🖼️","Component":YouTubeThumbnailExtractorTool,"desc":"Extract, preview, and download full-resolution MaxRes 1080p, HD, HQ, and SD YouTube video thumbnails instantly.","why":"Empowers creators, marketing agencies, and designers to grab pristine YouTube video thumbnails in 1-click.","keywords":"youtube thumbnail extractor downloader maxres hd 1080p hq youtube video image grabber"},
+  {"cat":"social-media-tools","subcat":"content-generation","subcatName":"Content Generation","slug":"content-repurposing-matrix","name":"Multi-Channel Content Repurposing Matrix","icon":"✨","Component":ContentRepurposingMatrixTool,"desc":"Transform single blog posts, video transcripts, or articles into 5 high-converting cross-platform formats instantly.","why":"Enables content marketers and solopreneurs to scale output 5x across X, LinkedIn, Reels, and Newsletters.","keywords":"content repurposing matrix repurpose blog to twitter thread linkedin post reels script newsletter"},
+  {"cat":"social-media-tools","subcat":"engagement-growth","subcatName":"Engagement & Growth","slug":"link-in-bio-builder","name":"Link-in-Bio Landing Page Builder","icon":"🔗","Component":LinkInBioBuilderTool,"desc":"Build, style, and export responsive mobile bio link hubs with instant standalone HTML/CSS code generation.","why":"Provides creators and founders with a zero-fee, customizable alternative to Linktree.","keywords":"link in bio builder landing page mobile profile links linktree alternative html css export"},
+  {"cat":"social-media-tools","subcat":"video-social-media","subcatName":"Video & Social Media","slug":"reels-hook-script-generator","name":"Reels & TikTok Hook Script Generator","icon":"🎬","Component":ReelsHookScriptGeneratorTool,"desc":"Engineer viral 3-second short-form hooks, visual pacing cues, B-roll guides, and 30-second video scripts.","why":"Helps creators and brand video editors maximize short-form retention and beat social algorithms.","keywords":"reels hook script generator tiktok viral hooks short form video b-roll cues pacing"},
+  {"cat":"social-media-tools","subcat":"visual-media","subcatName":"Visual Media","slug":"instagram-grid-carousel-splitter","name":"Instagram Grid & Seamless Carousel Splitter","icon":"📐","Component":InstagramGridCarouselSplitterTool,"desc":"Calculate seamless panoramic multi-slide canvas dimensions, slice coordinate guides, and grid layouts.","why":"Gives graphic designers and social managers exact pixel coordinates to create seamless swipeable carousels.","keywords":"instagram seamless carousel splitter panorama slice guide figma photoshop canvas dimensions"},
+  {"cat":"marketing-tools","subcat":"seo-tools","subcatName":"Search Engine Optimization (SEO)","slug":"seo-keyword-clustering-tool","name":"SEO Keyword Intent Clustering Tool","icon":"🔍","Component":SeoKeywordClusteringTool,"desc":"Group raw keyword lists into Informational, Commercial, and Transactional search intent clusters with CSV export.","why":"Enables SEO specialists to structure thematic pillar content architectures and prevent cannibalization.","keywords":"seo keyword clustering intent cluster informational commercial transactional cannibalization"},
+  {"cat":"marketing-tools","subcat":"seo-tools","subcatName":"Search Engine Optimization (SEO)","slug":"robots-sitemap-generator","name":"Visual Robots.txt & Sitemap Directives Builder","icon":"🤖","Component":RobotsSitemapGeneratorTool,"desc":"Construct search engine compliant crawler instructions for Googlebot, Bingbot, and AI bots with sitemap links.","why":"Gives webmasters a clean visual editor to prevent indexing of private staging routes.","keywords":"robots.txt generator sitemap xml crawler directives googlebot allow disallow crawl-delay"},
+  {"cat":"marketing-tools","subcat":"seo-tools","subcatName":"Search Engine Optimization (SEO)","slug":"schema-json-ld-generator","name":"Google Schema JSON-LD Rich Snippet Generator","icon":"🏷️","Component":SchemaJsonLdGeneratorTool,"desc":"Generate validated structured Schema.org JSON-LD markup for Articles, FAQs, and Products for higher search CTR.","why":"Helps webmasters and SEO pros get Google Rich Results and snippet enhancements easily.","keywords":"schema json-ld generator structured data google rich snippets article faq product schema.org"},
+  {"cat":"marketing-tools","subcat":"analytics-tracking","subcatName":"Analytics & Performance Tracking","slug":"opengraph-card-previewer","name":"Open Graph & Social Share Card Previewer","icon":"🌐","Component":OpenGraphCardPreviewerTool,"desc":"Preview link cards across Twitter/X, LinkedIn, Facebook, Discord, and Slack with ready-to-paste meta tags.","why":"Ensures social media links render beautiful high-converting preview cards on every major network.","keywords":"open graph previewer og tags social share card meta twitter card linkedin preview"},
+  {"cat":"marketing-tools","subcat":"seo-tools","subcatName":"Search Engine Optimization (SEO)","slug":"seo-redirect-map-builder","name":"SEO 301 / 302 Redirect Map Builder","icon":"🔀","Component":SeoRedirectMapBuilderTool,"desc":"Build URL migration maps and export Apache .htaccess, Nginx, and Netlify _redirects configuration rules.","why":"Prevents 404 broken link penalties and preserves organic search equity during website migrations.","keywords":"seo 301 redirect map builder 302 permanent rewrite nginx htaccess netlify migration"},
+  {"cat":"marketing-tools","subcat":"content-marketing","subcatName":"Content & Copywriting Tools","slug":"content-editorial-calendar","name":"Content Editorial Matrix & Publishing Calendar","icon":"📅","Component":ContentEditorialCalendarTool,"desc":"Plan and schedule multi-channel content pipelines across thematic pillars, channels, and production statuses.","why":"Streamlines editorial operations for marketing teams and content creators with CSV export.","keywords":"content editorial calendar matrix publishing schedule content pillars status workflow"},
+  {"cat":"marketing-tools","subcat":"video-marketing","subcatName":"Video & Social Video Marketing","slug":"youtube-seo-optimizer","name":"YouTube Video SEO & Metadata Optimizer","icon":"📺","Component":YouTubeSeoOptimizerTool,"desc":"Audit video title character limits, chapter timestamp formatting, keyword density, and 500-char tag budgets.","why":"Maximizes YouTube search ranking and mobile click-through rates with algorithmic validation.","keywords":"youtube seo optimizer video metadata tags chapter timestamps character counter"},
+  {"cat":"writing-tools","subcat":"copywriting-creative","subcatName":"Creative Copywriting & Ideation","slug":"headline-ab-power-tester","name":"Headline A/B Power Score & CTR Tester","icon":"📈","Component":HeadlineAbPowerTesterTool,"desc":"Compare two headlines side-by-side with psychological power words, emotional triggers, and CTR predictions.","why":"Helps copywriters and marketers pick high-converting headlines for blog articles, ads, and landing pages.","keywords":"headline ab power score tester ctr calculator copywriting emotional words power words"},
+  {"cat":"writing-tools","subcat":"content-editing","subcatName":"Content Editing & Structuring","slug":"podcast-show-notes-generator","name":"Podcast Show Notes & Chapter Formatter","icon":"🎙️","Component":PodcastShowNotesGeneratorTool,"desc":"Structure comprehensive podcast episode notes, key takeaways, guest credits, and timestamp chapters.","why":"Saves podcast hosts and producers hours formatting show notes for Apple Podcasts, Spotify, and YouTube.","keywords":"podcast show notes generator chapter timestamps audio episode summary guest bio"},
+  {"cat":"business-tools","subcat":"business-planning","subcatName":"Business Planning & Strategy","slug":"lean-canvas-business-builder","name":"Lean Canvas 1-Page Business Model Builder","icon":"📊","Component":LeanCanvasBusinessBuilderTool,"desc":"Deconstruct business ideas into Ash Maurya's 9-box Lean Startup framework with visual export.","why":"Enables startup founders and product managers to map and validate business models in minutes.","keywords":"lean canvas business model builder 9 box startup plan ash maurya value proposition"},
+  {"cat":"business-tools","subcat":"sales-crm","subcatName":"Sales & Pipeline Management","slug":"sales-funnel-velocity-calculator","name":"B2B Sales Funnel Velocity Calculator","icon":"⚡","Component":SalesFunnelVelocityCalculatorTool,"desc":"Calculate pipeline revenue velocity, sales cycle impact, and monthly run rates using standard B2B sales formulas.","why":"Provides sales leaders and CROs with exact daily and monthly revenue pipeline velocity metrics.","keywords":"sales funnel velocity calculator b2b pipeline conversion rate cycle length acv"},
+  {"cat":"business-tools","subcat":"financial-forecasting","subcatName":"Financial Forecasting & Budgeting","slug":"saas-cac-payback-matrix","name":"SaaS CAC Payback, LTV & Rule of 40 Matrix","icon":"💰","Component":SaasCacPaybackMatrixTool,"desc":"Analyze gross margin-adjusted CAC payback time, LTV-to-CAC multiples, and venture capital Rule of 40 scores.","why":"Essential for SaaS founders and CFOs preparing for investor due diligence and unit economics audits.","keywords":"saas cac payback matrix ltv cac ratio rule of 40 gross margin churn unit economics"},
+  {"cat":"business-tools","subcat":"sales-crm","subcatName":"Sales & Pipeline Management","slug":"sales-commission-calculator","name":"Tiered Sales Commission & Quota Accelerator Calculator","icon":"🏆","Component":SalesCommissionCalculatorTool,"desc":"Calculate sales commissions, tiered quota accelerators, base/variable splits, and total on-target earnings (OTE).","why":"Gives sales managers and account executives clear transparency over milestone commission payouts.","keywords":"sales commission calculator quota accelerator ote tiered commission attainment"},
+  {"cat":"freelance-tools","subcat":"client-pricing","subcatName":"Client Pricing & Invoicing","slug":"agency-retainer-calculator","name":"Agency Client Retainer & Margin Calculator","icon":"💼","Component":AgencyRetainerCalculatorTool,"desc":"Price profitable recurring client retainers with blended team hourly rates, scope buffers, and net profit margins.","why":"Helps creative and digital marketing agencies price retainers that protect against scope creep.","keywords":"agency retainer calculator monthly retainer pricing blended hourly rate scope buffer margin"},
+  {"cat":"freelance-tools","subcat":"marketing-business-growth","subcatName":"Marketing & Business Growth","slug":"marketing-attribution-roi-model","name":"Multi-Touch Marketing Attribution & ROI Modeler","icon":"📊","Component":MarketingAttributionRoiModelTool,"desc":"Compare First-Touch, Last-Touch, and Linear multi-channel revenue attribution to optimize marketing ad spend.","why":"Allows growth marketers and agencies to allocate budget to the highest-performing acquisition channels.","keywords":"marketing attribution roi model multi-touch first touch last touch linear roas ad spend"},
+  {"cat":"freelance-tools","subcat":"proposals-contracts","subcatName":"Proposals & Contracts","slug":"agency-pitch-proposal-generator","name":"Agency Client Pitch & Proposal Generator","icon":"📝","Component":AgencyPitchProposalGeneratorTool,"desc":"Generate structured statements of work (SOW), client project deliverables, milestone timelines, and fee agreements.","why":"Empowers agency founders and consultants to produce professional client proposals in seconds.","keywords":"agency pitch proposal generator sow statement of work deliverables client contract pricing"}
+`;
+
+// Place imports right before export const tools = [
+const targetMarker = 'export const tools = [';
+if (!content.includes(targetMarker)) {
+  console.error('Target marker not found!');
+  process.exit(1);
+}
+
+const parts = content.split(targetMarker);
+const newContentWithImports = parts[0] + newImports + '\n' + targetMarker + parts[1];
+
+// Find the closing array bracket before "export const related"
+const closingMarker = '\n]\n\nexport const related';
+if (!newContentWithImports.includes(closingMarker)) {
+  console.error('Closing marker not found!');
+  process.exit(1);
+}
+
+const finalContent = newContentWithImports.replace(closingMarker, newEntries + '\n]\n\nexport const related');
+
+fs.writeFileSync('src/data/registry.js', finalContent, 'utf8');
+console.log('SUCCESS: registry.js has been updated with all 21 new tools!');

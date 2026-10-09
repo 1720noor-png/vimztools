@@ -24,6 +24,7 @@ export default function App() {
         <Route index element={<Home />} />
         <Route path="categories" element={<AllCategories />} />
         <Route path="tools" element={<AllTools />} />
+        <Route path="tools/:tool" element={<ToolPage />} />
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
         <Route path="dashboard" element={<UserDashboard />} />

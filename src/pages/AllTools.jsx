@@ -11,10 +11,10 @@ export default function AllTools() {
   const [sortBy, setSortBy] = useState('popular')
 
   useEffect(() => { 
-    document.title = 'All 1,000 Free Online Tools – Vimztools' 
+    document.title = `All ${tools.length}+ Free Online Tools – Vimz.ai` 
     let m = document.querySelector('meta[name="description"]')
     if (!m) { m = document.createElement('meta'); m.name = 'description'; document.head.appendChild(m) }
-    m.content = 'Complete directory of 1,000 free, browser-based web tools across 103 categories. Filter, search, and run instant calculations with zero server tracking.'
+    m.content = `Complete directory of ${tools.length}+ free, browser-based web tools across ${categories.length} categories on Vimz.ai.`
   }, [])
 
   let list = search(q, cat || undefined)
@@ -45,7 +45,7 @@ export default function AllTools() {
       <section className="section-head">
         <div>
           <span className="eyebrow-sm">Master Directory</span>
-          <h1>{popularOnly && !q ? 'Popular Tools' : 'All 1,000 Tools'}</h1>
+          <h1>{popularOnly && !q ? 'Popular Tools' : `All ${tools.length}+ Tools`}</h1>
           <p>
             Showing {list.length} of {tools.length} total registered tools
             {cat ? ` in ${categories.find((c) => c.slug === cat)?.name || cat}` : ''}.
@@ -59,16 +59,16 @@ export default function AllTools() {
           <input 
             type="search" 
             value={q} 
-            placeholder="Type to filter 1,000 tools…" 
+            placeholder="Type to filter tools…" 
             onChange={(e) => update({ q: e.target.value })} 
-            aria-label="Search all 1,000 tools" 
+            aria-label="Search all tools" 
           />
         </label>
 
         <label className="field" style={{ flex: 1.5, minWidth: '180px', margin: 0 }}>
           <span>Category Filter</span>
           <select value={cat} onChange={(e) => update({ cat: e.target.value })} aria-label="Filter by category">
-            <option value="">All 103 Categories</option>
+            <option value="">All {categories.length} Categories</option>
             {categories.map((c) => (
               <option key={c.slug} value={c.slug}>
                 {c.name} ({tools.filter(t => t.cat === c.slug).length})
@@ -92,7 +92,7 @@ export default function AllTools() {
           className={'chip' + (!popularOnly && !cat ? ' active-chip' : '')} 
           onClick={() => setP({})}
         >
-          All (1,000)
+          All ({tools.length})
         </button>
         <button 
           type="button" 

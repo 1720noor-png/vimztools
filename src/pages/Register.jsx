@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext.jsx'
+import VimzLogo from '../components/VimzLogo.jsx'
 
 export default function Register() {
   const [name, setName] = useState('')
@@ -37,9 +38,12 @@ export default function Register() {
     <div className="auth-card-wrap">
       <div className="auth-card">
         <div className="auth-header">
+          <div style={{ marginBottom: '1.2rem', display: 'flex', justifyContent: 'center' }}>
+            <VimzLogo size="lg" />
+          </div>
           <span className="auth-badge">Get Started Free</span>
-          <h2>Create your Account</h2>
-          <p>Keep your favorites, sync workspaces, and manage your one-time unlocked exports.</p>
+          <h2>Create your Workspace</h2>
+          <p>Sync your favorites, cloud computations, and one-time pro tool export tokens across devices.</p>
         </div>
 
         {error && <div className="alert-box error" role="alert">{error}</div>}
@@ -95,7 +99,7 @@ export default function Register() {
           </div>
 
           <button type="submit" className="btn primary" disabled={loading} style={{ width: '100%', marginTop: '0.5rem' }}>
-            {loading ? 'Creating Account…' : 'Create Account'}
+            {loading ? 'Creating Workspace…' : 'Create Free Workspace'}
           </button>
         </form>
 

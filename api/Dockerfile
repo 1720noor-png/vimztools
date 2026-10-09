@@ -26,8 +26,7 @@ RUN mkdir -p bootstrap/cache storage/framework/sessions storage/framework/views 
 
 RUN touch database/database.sqlite && chmod 666 database/database.sqlite
 
-RUN chmod +x /var/www/html/entrypoint.sh
-
+ENV PORT=8080
 EXPOSE 8080
 
-ENTRYPOINT ["/var/www/html/entrypoint.sh"]
+CMD ["sh", "-c", "php artisan key:generate --force || true; php artisan migrate --force || true; php artisan db:seed --force || true; php -S 0.0.0.0:${PORT:-8080} -t public"]

@@ -80,7 +80,7 @@ export default function AdminDashboard() {
           <span className="badge" style={{ background: 'var(--brand)', color: '#fff', textTransform: 'uppercase', marginBottom: '0.5rem', display: 'inline-block' }}>
             ⚡ Superadmin Control Center
           </span>
-          <h1>VimzTools Platform Administration</h1>
+          <h1>Vimz.ai Platform Administration</h1>
           <p style={{ color: 'var(--muted)', margin: 0 }}>Manage 1,000+ tools, one-time sales, user access, and telemetry</p>
         </div>
         <div style={{ display: 'flex', gap: '0.8rem' }}>

@@ -6,10 +6,10 @@ export default function AllCategories() {
   const [filter, setFilter] = useState('')
 
   useEffect(() => { 
-    document.title = 'All 103 Tool Categories – Vimztools' 
+    document.title = `All ${categories.length} Categories – Vimz.ai` 
     let m = document.querySelector('meta[name="description"]')
     if (!m) { m = document.createElement('meta'); m.name = 'description'; document.head.appendChild(m) }
-    m.content = 'Explore all 103 categories in Vimztools spanning developer tools, business, finance, health, math, writing, and everyday life utilities.'
+    m.content = `Explore all ${categories.length} categories in Vimz.ai spanning developer tools, business, finance, health, math, writing, and everyday life utilities.`
   }, [])
 
   const totalSub = categories.reduce((n, c) => n + (c.subcategories?.length || 0), 0)
@@ -28,9 +28,9 @@ export default function AllCategories() {
       <section className="section-head">
         <div>
           <span className="eyebrow-sm">Directory</span>
-          <h1>All 103 Categories</h1>
+          <h1>All {categories.length} Categories</h1>
           <p>
-            {categories.length} organized categories, {totalSub} subcategories, and 1,000 tools — engineered for instant discovery.
+            {categories.length} organized categories, {totalSub} subcategories, and {tools.length}+ tools — engineered for instant discovery.
           </p>
         </div>
       </section>

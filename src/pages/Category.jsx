@@ -12,10 +12,10 @@ export default function Category() {
 
   useEffect(() => { 
     if (c) {
-      document.title = `${c.name} – Vimztools`
+      document.title = `${c.name} Utilities – Vimz.ai`
       let m = document.querySelector('meta[name="description"]')
       if (!m) { m = document.createElement('meta'); m.name = 'description'; document.head.appendChild(m) }
-      m.content = `Explore free online tools in ${c.name}: ${c.desc}. Free, private client-side utilities.`
+      m.content = `Explore free online tools in ${c.name}: ${c.desc}. Free, private client-side utilities on Vimz.ai.`
     }
     setQ('')
     setActiveSubcat('')
