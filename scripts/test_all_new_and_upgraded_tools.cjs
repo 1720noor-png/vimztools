@@ -126,7 +126,7 @@ async function run() {
     await send('Page.navigate', { url });
 
     let info = {};
-    for (let attempt = 0; attempt < 5; attempt++) {
+    for (let attempt = 0; attempt < 8; attempt++) {
       await new Promise(r => setTimeout(r, 400));
       const evalRes = await send('Runtime.evaluate', {
         expression: '({ title: document.title, heading: document.querySelector("h1")?.innerText, bodyLen: document.body.innerText.length })',

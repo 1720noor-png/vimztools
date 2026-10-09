@@ -3,6 +3,7 @@ import { Link, NavLink, Outlet, useLocation, useNavigate } from 'react-router-do
 import { categories, tools } from '../data/registry.js'
 import { useAuth } from '../context/AuthContext.jsx'
 import VimzLogo from './VimzLogo.jsx'
+import { getCategoryTheme } from '../utils/categoryColors.js'
 
 const SearchIcon = () => (
   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -92,12 +93,24 @@ export default function Layout() {
               </button>
               {mega && (
                 <div className="mega-panel" role="menu">
-                  {featuredCats.map((c) => (
-                    <Link key={c.slug} to={'/' + c.slug} className={'mega-item accent-' + c.accent} role="menuitem">
-                      <span className="mega-ico" aria-hidden="true">{c.icon}</span>
-                      <span><strong>{c.name}</strong><span>{popularCount(c.slug)} tools</span></span>
-                    </Link>
-                  ))}
+                  {featuredCats.map((c) => {
+                    const theme = getCategoryTheme(c.slug)
+                    return (
+                      <Link key={c.slug} to={'/' + c.slug} className="mega-item" role="menuitem">
+                        <span 
+                          className="mega-ico" 
+                          aria-hidden="true"
+                          style={{ background: theme.bg, color: theme.text, border: `1px solid ${theme.border}` }}
+                        >
+                          {c.icon}
+                        </span>
+                        <span>
+                          <strong>{c.name}</strong>
+                          <span>{popularCount(c.slug)} tools</span>
+                        </span>
+                      </Link>
+                    )
+                  })}
                   <div className="mega-footer">
                     <Link to="/categories">View all {categories.length} categories →</Link>
                   </div>

@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { categories } from '../data/registry.js'
 import { useFavorites } from '../utils/userPrefs.js'
+import { getCategoryTheme } from '../utils/categoryColors.js'
 
 export const PAID_TOOL_SLUGS = new Set([
   'invoice-generator',
@@ -26,10 +27,10 @@ export const PAID_TOOL_SLUGS = new Set([
   'college-savings-529-calculator',
 ])
 
-export default function ToolCard({ t, onFavoriteChange }) {
+export default function ToolCard({ t, variant = 'default', onFavoriteChange }) {
   if (!t) return null
-  const c = categories.find((x) => x.slug === t.cat) || { accent: 'blue' }
-  const accent = c?.accent || 'blue'
+  const c = categories.find((x) => x.slug === t.cat) || { accent: 'blue', name: t.cat }
+  const catTheme = getCategoryTheme(t.cat)
   const { isFavorite, toggleFavorite } = useFavorites()
   const favored = t.slug ? isFavorite(t.slug) : false
   const isPaidExport = t.isPaid || t.is_paid || (t.slug && PAID_TOOL_SLUGS.has(t.slug))
@@ -41,24 +42,41 @@ export default function ToolCard({ t, onFavoriteChange }) {
     if (onFavoriteChange && t.slug) onFavoriteChange(t.slug)
   }
 
+  const isLavender = variant === 'lavender'
+  const isFeatured = variant === 'featured'
+
   return (
-    <div className={'tool accent-' + accent}>
-      <div className="tool-top">
-        <span className="ico" aria-hidden="true">{t.icon || '🛠️'}</span>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+    <div 
+      className={`tool-card-premium ${isLavender ? 'tool-card-lavender' : ''} ${isFeatured ? 'tool-card-featured' : ''}`}
+      style={{
+        '--card-cat-accent': catTheme.accent,
+        '--card-cat-icon-bg': catTheme.iconBg,
+      }}
+    >
+      <div className="tool-card-header">
+        <span 
+          className="tool-card-icon-container" 
+          aria-hidden="true"
+          style={{ background: catTheme.bg, color: catTheme.text, border: `1px solid ${catTheme.border}` }}
+        >
+          {t.icon || '🛠️'}
+        </span>
+
+        <div className="tool-card-badges">
           {isPaidExport ? (
-            <span className="badge" style={{ background: 'rgba(99,102,241,0.14)', color: 'var(--c-indigo)', border: '1px solid rgba(99,102,241,0.25)' }}>
-              💎 Pro Export
+            <span className="tool-badge badge-pro">
+              💎 Pro
             </span>
           ) : (
-            <span className="badge" style={{ background: 'rgba(16,185,129,0.12)', color: 'var(--ok)', border: '1px solid rgba(16,185,129,0.22)' }}>
+            <span className="tool-badge badge-free">
               Free
             </span>
           )}
-          {t.popular && <span className="badge popular">Popular</span>}
+          {t.popular && <span className="tool-badge badge-popular">Popular</span>}
+          
           <button 
             type="button" 
-            className={'fav-btn' + (favored ? ' active' : '')} 
+            className={`fav-btn ${favored ? 'active' : ''}`} 
             onClick={handleFavoriteClick} 
             title={favored ? 'Remove from favorites' : 'Save to favorites'}
             aria-label={favored ? `Remove ${t.name} from favorites` : `Add ${t.name} to favorites`}
@@ -67,16 +85,32 @@ export default function ToolCard({ t, onFavoriteChange }) {
           </button>
         </div>
       </div>
-      <Link to={`/${t.cat}/${t.slug}`} style={{ textDecoration: 'none', color: 'inherit', display: 'flex', flexDirection: 'column', flex: 1 }}>
-        <h3>{t.name}</h3>
-        <p>{t.desc}</p>
+
+      <Link 
+        to={`/${t.cat}/${t.slug}`} 
+        className="tool-card-body"
+        aria-label={`Open ${t.name}`}
+      >
+        <h3 className="tool-card-title">{t.name}</h3>
+        <p className="tool-card-desc">{t.desc}</p>
+        
         {t.subcatName && (
-          <span className="badges" style={{ marginTop: '.5rem' }}>
-            <span className="badge sub">{t.subcatName}</span>
-          </span>
+          <div className="tool-card-subcat">
+            <span>{t.subcatName}</span>
+          </div>
         )}
-        <p className="why"><b>Why useful?</b> {t.why}</p>
-        <span className="open">Launch tool →</span>
+
+        {t.why && (
+          <p className="tool-card-why">
+            <b>Why useful:</b> {t.why}
+          </p>
+        )}
+
+        <div className="tool-card-footer">
+          <span className="tool-card-cta">
+            Launch tool <span className="arrow-icon">→</span>
+          </span>
+        </div>
       </Link>
     </div>
   )

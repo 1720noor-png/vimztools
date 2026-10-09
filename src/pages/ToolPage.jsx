@@ -5,6 +5,7 @@ import ToolCard from '../components/ToolCard.jsx'
 import { useFavorites, useRecentTools } from '../utils/userPrefs.js'
 import { useAuth } from '../context/AuthContext.jsx'
 import { toolsApi } from '../api/client.js'
+import { getCategoryTheme } from '../utils/categoryColors.js'
 
 export default function ToolPage() {
   const { cat, tool } = useParams()
@@ -23,6 +24,8 @@ export default function ToolPage() {
               accent: 'blue',
               icon: '🛠️',
             }
+
+  const catTheme = getCategoryTheme(c.slug)
 
   const { isFavorite, toggleFavorite } = useFavorites()
   const { addRecent } = useRecentTools()
@@ -140,9 +143,9 @@ export default function ToolPage() {
   const stepsList = t.steps && Array.isArray(t.steps) && t.steps.length > 0 
     ? t.steps 
     : [
-        `Input your parameters or values into the ${t.name} fields above.`,
-        "Review or adjust calculation settings as needed.",
-        "Copy, export, or apply the generated output directly in your workflow."
+        `Enter or adjust your input parameters in the ${t.name} fields below.`,
+        "Review instant calculations and generated results in real time.",
+        "Copy, export, print, or apply the verified output directly to your workflow."
       ]
 
   const relatedList = related(t)
@@ -150,11 +153,17 @@ export default function ToolPage() {
   return (
     <div className="tool-view-wrapper">
       <nav className="crumbs" aria-label="Breadcrumb">
-        <Link to="/">Home</Link> / <Link to={'/' + c.slug}>{c.name}</Link> / <span>{t.name}</span>
+        <Link to="/">Home</Link> <span>/</span> <Link to={'/' + c.slug}>{c.name}</Link> <span>/</span> <span>{t.name}</span>
       </nav>
 
-      <header className={'head accent-' + (c.accent || 'blue')}>
-        <span className="ico big" aria-hidden="true">{t.icon || '🛠️'}</span>
+      <header className="head">
+        <span 
+          className="ico big" 
+          aria-hidden="true"
+          style={{ background: catTheme.bg, color: catTheme.text, border: `1px solid ${catTheme.border}` }}
+        >
+          {t.icon || '🛠️'}
+        </span>
         <div style={{ flex: 1 }}>
           <div className="tool-headline-row">
             <h1>{t.name}</h1>
@@ -179,10 +188,10 @@ export default function ToolPage() {
           </div>
           <p>{t.desc}</p>
           <div className="head-meta">
-            <small>{c.name}</small>
+            <small style={{ color: catTheme.accent }}>{c.name}</small>
             {t.subcatName && <span className="badge sub">{t.subcatName}</span>}
             {t.popular && <span className="badge popular">Popular</span>}
-            <span className="badge sub" style={{ background: 'rgba(16,185,129,.12)', color: 'var(--ok)' }}>100% Client-Side Free Base</span>
+            <span className="badge sub" style={{ background: 'var(--ok-soft)', color: 'var(--ok)' }}>100% Client-Side Privacy</span>
             {toolMeta?.is_paid && (
               <span className="badge" style={{ background: 'rgba(239,68,68,.12)', color: '#ef4444' }}>
                 💎 Pro Export (${toolMeta.price})
@@ -224,7 +233,7 @@ export default function ToolPage() {
                     placeholder="Your email for receipt"
                     value={guestEmail}
                     onChange={(e) => setGuestEmail(e.target.value)}
-                    style={{ padding: '0.5rem 0.8rem', fontSize: '0.85rem', width: '180px' }}
+                    style={{ padding: '0.55rem 0.85rem', fontSize: '0.85rem', width: '190px' }}
                   />
                 )}
                 <button
@@ -243,18 +252,20 @@ export default function ToolPage() {
       )}
 
       {t.why && (
-        <section className="note">
+        <section className="note" style={{ borderLeftColor: catTheme.accent }}>
           <h2>Why is {t.name} useful?</h2>
           <p>{t.why}</p>
         </section>
       )}
 
+      {/* Main Interactive Tool Work Panel */}
       <section className="panel" aria-label={t.name}>
         <Tool key={t.slug} />
       </section>
 
+      {/* Structured How to Use Guide */}
       <section className="how-to-section">
-        <h2>How to use</h2>
+        <h2>How to use {t.name}</h2>
         <ol className="steps-list">
           {stepsList.map((s, idx) => (
             <li key={idx}>{s}</li>
@@ -262,13 +273,14 @@ export default function ToolPage() {
         </ol>
       </section>
 
+      {/* Related Complementary Tools */}
       {relatedList.length > 0 && (
         <section>
           <div className="section-head">
             <div>
               <span className="eyebrow-sm">Recommended</span>
-              <h2>Related tools</h2>
-              <p>Similar and complementary tools in {c.name}.</p>
+              <h2>Related tools in {c.name}</h2>
+              <p>Complementary utilities frequently used together in this workflow.</p>
             </div>
           </div>
           <div className="grid">
@@ -278,7 +290,7 @@ export default function ToolPage() {
       )}
 
       <p className="back">
-        <Link to={'/' + c.slug}>← Back to {c.name}</Link> · <Link to="/">Back to Home</Link>
+        <Link to={'/' + c.slug}>← Back to {c.name}</Link> · <Link to="/">Return to Home</Link> · <Link to="/tools">Browse All 1,000+ Tools</Link>
       </p>
     </div>
   )
