@@ -1,0 +1,1899 @@
+{
+  "social_media": [
+    {
+      "cat": "marketing-tools",
+      "subcat": "branding-social-marketing",
+      "subcatName": "Branding & Social Copy",
+      "slug": "hashtag-generator",
+      "name": "Hashtag Generator"
+    },
+    {
+      "cat": "marketing-tools",
+      "subcat": "branding-social-marketing",
+      "subcatName": "Branding & Social Copy",
+      "slug": "social-media-caption-generator",
+      "name": "Social Media Caption Generator"
+    },
+    {
+      "cat": "marketing-tools",
+      "subcat": "branding-social-marketing",
+      "subcatName": "Branding & Social Copy",
+      "slug": "content-calendar",
+      "name": "Content Calendar"
+    },
+    {
+      "cat": "marketing-tools",
+      "subcat": "branding-social-marketing",
+      "subcatName": "Branding & Social Copy",
+      "slug": "social-media-character-counter",
+      "name": "Social Media Character Counter"
+    },
+    {
+      "cat": "retirement-planning-tools",
+      "subcat": "social-security-pension-benefits",
+      "subcatName": "Social Security & Pensions",
+      "slug": "social-security-benefit-estimator",
+      "name": "Social Security Benefit Estimator"
+    },
+    {
+      "cat": "retirement-planning-tools",
+      "subcat": "social-security-pension-benefits",
+      "subcatName": "Social Security & Pensions",
+      "slug": "pension-lump-sum-vs-annuity",
+      "name": "Pension Lump Sum vs Annuity Comparison"
+    },
+    {
+      "cat": "retirement-planning-tools",
+      "subcat": "social-security-pension-benefits",
+      "subcatName": "Social Security & Pensions",
+      "slug": "social-security-claiming-age-comparison",
+      "name": "Social Security Claiming Age Comparison"
+    },
+    {
+      "cat": "social-media-tools",
+      "subcat": "engagement-metrics-analytics",
+      "subcatName": "Engagement & Metrics Analytics",
+      "slug": "engagement-rate-calculator",
+      "name": "Engagement Rate Calculator"
+    },
+    {
+      "cat": "social-media-tools",
+      "subcat": "bio-profile-optimization",
+      "subcatName": "Bio & Profile Optimization",
+      "slug": "bio-generator",
+      "name": "Social Media Bio Generator"
+    },
+    {
+      "cat": "social-media-tools",
+      "subcat": "content-scheduling-planners",
+      "subcatName": "Content Strategy & Calendars",
+      "slug": "post-length-optimizer",
+      "name": "Post Length Optimizer"
+    },
+    {
+      "cat": "social-media-tools",
+      "subcat": "captions-hashtag-generation",
+      "subcatName": "Captions & Hashtags",
+      "slug": "content-idea-generator",
+      "name": "Content Idea Generator"
+    },
+    {
+      "cat": "social-media-tools",
+      "subcat": "engagement-metrics-analytics",
+      "subcatName": "Engagement & Metrics Analytics",
+      "slug": "follower-growth-calculator",
+      "name": "Follower Growth Calculator"
+    },
+    {
+      "cat": "social-media-tools",
+      "subcat": "captions-hashtag-generation",
+      "subcatName": "Captions & Hashtags",
+      "slug": "social-media-roi-calculator",
+      "name": "Social Media ROI Calculator"
+    },
+    {
+      "cat": "social-media-tools",
+      "subcat": "content-scheduling-planners",
+      "subcatName": "Content Strategy & Calendars",
+      "slug": "content-calendar-planner",
+      "name": "Content Calendar Planner"
+    },
+    {
+      "cat": "social-media-tools",
+      "subcat": "captions-hashtag-generation",
+      "subcatName": "Captions & Hashtags",
+      "slug": "cta-generator",
+      "name": "Call-to-Action Generator"
+    },
+    {
+      "cat": "social-media-tools",
+      "subcat": "captions-hashtag-generation",
+      "subcatName": "Captions & Hashtags",
+      "slug": "ab-test-calculator",
+      "name": "A/B Test Significance Calculator"
+    },
+    {
+      "cat": "social-media-tools",
+      "subcat": "engagement-metrics-analytics",
+      "subcatName": "Engagement & Metrics Analytics",
+      "slug": "influencer-rate-calculator",
+      "name": "Influencer Rate Calculator"
+    },
+    {
+      "cat": "social-media-tools",
+      "subcat": "captions-hashtag-generation",
+      "subcatName": "Captions & Hashtags",
+      "slug": "video-script-timer",
+      "name": "Video Script Timer"
+    },
+    {
+      "cat": "social-media-tools",
+      "subcat": "captions-hashtag-generation",
+      "subcatName": "Captions & Hashtags",
+      "slug": "username-checker",
+      "name": "Username Format Checker"
+    },
+    {
+      "cat": "social-media-tools",
+      "subcat": "captions-hashtag-generation",
+      "subcatName": "Captions & Hashtags",
+      "slug": "hashtag-analyzer",
+      "name": "Hashtag Performance Analyzer"
+    },
+    {
+      "cat": "social-media-tools",
+      "subcat": "captions-hashtag-generation",
+      "subcatName": "Captions & Hashtags",
+      "slug": "social-proof-formatter",
+      "name": "Social Proof Formatter"
+    },
+    {
+      "cat": "social-media-tools",
+      "subcat": "content-scheduling-planners",
+      "subcatName": "Content Strategy & Calendars",
+      "slug": "posting-time-finder",
+      "name": "Best Posting Time Finder"
+    },
+    {
+      "cat": "marketing-tools",
+      "subcat": "branding-social-marketing",
+      "subcatName": "Branding & Social Copy",
+      "slug": "email-subject-scorer",
+      "name": "Email Subject Scorer"
+    },
+    {
+      "cat": "marketing-tools",
+      "subcat": "branding-social-marketing",
+      "subcatName": "Branding & Social Copy",
+      "slug": "landing-page-checklist",
+      "name": "Landing Page Checklist"
+    },
+    {
+      "cat": "marketing-tools",
+      "subcat": "branding-social-marketing",
+      "subcatName": "Branding & Social Copy",
+      "slug": "persona-builder",
+      "name": "Customer Persona Builder"
+    },
+    {
+      "cat": "marketing-tools",
+      "subcat": "branding-social-marketing",
+      "subcatName": "Branding & Social Copy",
+      "slug": "press-release-template",
+      "name": "Press Release Template"
+    },
+    {
+      "cat": "marketing-tools",
+      "subcat": "branding-social-marketing",
+      "subcatName": "Branding & Social Copy",
+      "slug": "brand-name-scorer",
+      "name": "Brand Name Scorer"
+    },
+    {
+      "cat": "marketing-tools",
+      "subcat": "branding-social-marketing",
+      "subcatName": "Branding & Social Copy",
+      "slug": "cost-per-lead-calc",
+      "name": "Cost Per Lead Calculator"
+    },
+    {
+      "cat": "marketing-tools",
+      "subcat": "branding-social-marketing",
+      "subcatName": "Branding & Social Copy",
+      "slug": "competitive-analysis",
+      "name": "Competitive Analysis Tool"
+    },
+    {
+      "cat": "retirement-planning-tools",
+      "subcat": "social-security-pension-benefits",
+      "subcatName": "Social Security & Pensions",
+      "slug": "retirement-income",
+      "name": "Retirement Income Planner"
+    },
+    {
+      "cat": "career-tools",
+      "subcat": "job-applications",
+      "subcatName": "Job Search & Applications",
+      "slug": "linkedin-headline-gen",
+      "name": "LinkedIn Headline Generator"
+    },
+    {
+      "cat": "social-media-tools",
+      "subcat": "content-scheduling-planners",
+      "subcatName": "Content Strategy & Calendars",
+      "slug": "social-post-scheduler",
+      "name": "Post Scheduling Planner"
+    },
+    {
+      "cat": "social-media-tools",
+      "subcat": "captions-hashtag-generation",
+      "subcatName": "Captions & Hashtags",
+      "slug": "viral-potential-scorer",
+      "name": "Viral Potential Scorer"
+    },
+    {
+      "cat": "social-media-tools",
+      "subcat": "video-social-media",
+      "subcatName": "Video & Social Media",
+      "slug": "youtube-thumbnail-extractor",
+      "name": "YouTube HD Thumbnail Extractor & Downloader"
+    },
+    {
+      "cat": "social-media-tools",
+      "subcat": "content-generation",
+      "subcatName": "Content Generation",
+      "slug": "content-repurposing-matrix",
+      "name": "Multi-Channel Content Repurposing Matrix"
+    },
+    {
+      "cat": "social-media-tools",
+      "subcat": "engagement-growth",
+      "subcatName": "Engagement & Growth",
+      "slug": "link-in-bio-builder",
+      "name": "Link-in-Bio Landing Page Builder"
+    },
+    {
+      "cat": "social-media-tools",
+      "subcat": "video-social-media",
+      "subcatName": "Video & Social Media",
+      "slug": "reels-hook-script-generator",
+      "name": "Reels & TikTok Hook Script Generator"
+    },
+    {
+      "cat": "social-media-tools",
+      "subcat": "visual-media",
+      "subcatName": "Visual Media",
+      "slug": "instagram-grid-carousel-splitter",
+      "name": "Instagram Grid & Seamless Carousel Splitter"
+    },
+    {
+      "cat": "marketing-tools",
+      "subcat": "analytics-tracking",
+      "subcatName": "Analytics & Performance Tracking",
+      "slug": "opengraph-card-previewer",
+      "name": "Open Graph & Social Share Card Previewer"
+    },
+    {
+      "cat": "marketing-tools",
+      "subcat": "video-marketing",
+      "subcatName": "Video & Social Video Marketing",
+      "slug": "youtube-seo-optimizer",
+      "name": "YouTube Video SEO & Metadata Optimizer"
+    }
+  ],
+  "video_image_download": [
+    {
+      "cat": "developer-tools",
+      "subcat": "web-frontend-styling",
+      "subcatName": "Web & CSS Styling",
+      "slug": "color-converter",
+      "name": "Color Converter"
+    },
+    {
+      "cat": "developer-tools",
+      "subcat": "network-api-data-inspection",
+      "subcatName": "API, Network & Data Inspection",
+      "slug": "timestamp-converter",
+      "name": "Timestamp Converter"
+    },
+    {
+      "cat": "marketing-tools",
+      "subcat": "branding-social-marketing",
+      "subcatName": "Branding & Social Copy",
+      "slug": "social-media-caption-generator",
+      "name": "Social Media Caption Generator"
+    },
+    {
+      "cat": "productivity-tools",
+      "subcat": "time-focus-management",
+      "subcatName": "Time & Focus Management",
+      "slug": "time-zone-converter",
+      "name": "Time Zone Converter"
+    },
+    {
+      "cat": "math-unit-tools",
+      "subcat": "unit-converters",
+      "subcatName": "Physical & Data Unit Converters",
+      "slug": "universal-unit-converter",
+      "name": "Universal Unit Converter"
+    },
+    {
+      "cat": "math-unit-tools",
+      "subcat": "unit-converters",
+      "subcatName": "Physical & Data Unit Converters",
+      "slug": "data-storage-converter",
+      "name": "Data Storage & Speed Converter"
+    },
+    {
+      "cat": "audio-sound-tools",
+      "subcat": "audio-utilities",
+      "subcatName": "Audio Utilities",
+      "slug": "audio-duration-calculator",
+      "name": "Audio Duration Calculator"
+    },
+    {
+      "cat": "audio-sound-tools",
+      "subcat": "audio-utilities",
+      "subcatName": "Audio Utilities",
+      "slug": "audio-file-size-estimator",
+      "name": "Audio File Size Estimator"
+    },
+    {
+      "cat": "audio-sound-tools",
+      "subcat": "sound-analysis",
+      "subcatName": "Sound Analysis",
+      "slug": "decibel-reference-tool",
+      "name": "Decibel Level Reference Tool"
+    },
+    {
+      "cat": "audio-sound-tools",
+      "subcat": "sound-analysis",
+      "subcatName": "Sound Analysis",
+      "slug": "frequency-converter",
+      "name": "Frequency Converter"
+    },
+    {
+      "cat": "music-tools",
+      "subcat": "music-theory",
+      "subcatName": "Music Theory",
+      "slug": "bpm-converter",
+      "name": "BPM Converter"
+    },
+    {
+      "cat": "pet-care-tools",
+      "subcat": "pet-information",
+      "subcatName": "Pet Information",
+      "slug": "pet-age-converter",
+      "name": "Pet Age Converter"
+    },
+    {
+      "cat": "science-measurement-tools",
+      "subcat": "scientific-measurement",
+      "subcatName": "Scientific Measurement",
+      "slug": "scientific-notation-converter",
+      "name": "Scientific Notation Converter"
+    },
+    {
+      "cat": "astronomy-space-tools",
+      "subcat": "space-calculators",
+      "subcatName": "Space Calculators",
+      "slug": "light-year-converter",
+      "name": "Light-Year Distance Converter"
+    },
+    {
+      "cat": "geography-maps-tools",
+      "subcat": "geographic-calculations",
+      "subcatName": "Geographic Calculations",
+      "slug": "latitude-longitude-converter",
+      "name": "Latitude Longitude Converter"
+    },
+    {
+      "cat": "developer-tools",
+      "subcat": "web-frontend-styling",
+      "subcatName": "Web & CSS Styling",
+      "slug": "css-unit-converter",
+      "name": "CSS Unit Converter"
+    },
+    {
+      "cat": "marketing-tools",
+      "subcat": "branding-social-marketing",
+      "subcatName": "Branding & Social Copy",
+      "slug": "social-media-character-counter",
+      "name": "Social Media Character Counter"
+    },
+    {
+      "cat": "math-unit-tools",
+      "subcat": "unit-converters",
+      "subcatName": "Physical & Data Unit Converters",
+      "slug": "cooking-measurement-converter",
+      "name": "Cooking Measurement Converter"
+    },
+    {
+      "cat": "food-nutrition-tools",
+      "subcat": "cooking-recipes",
+      "subcatName": "Cooking & Recipes",
+      "slug": "kitchen-crockery-guide",
+      "name": "Kitchen Cookware & Crockery Converter"
+    },
+    {
+      "cat": "image-tools",
+      "subcat": "image-editing-effects",
+      "subcatName": "Image Editing & Effects",
+      "slug": "image-background-remover",
+      "name": "Image Background Remover"
+    },
+    {
+      "cat": "image-tools",
+      "subcat": "image-conversion-format",
+      "subcatName": "Image Conversion & Format",
+      "slug": "image-format-converter",
+      "name": "Image Format Converter (PNG/JPG/WebP)"
+    },
+    {
+      "cat": "image-tools",
+      "subcat": "image-analysis-ocr",
+      "subcatName": "Image Analysis & OCR",
+      "slug": "image-to-text-ocr",
+      "name": "Image to Text (OCR) Extractor"
+    },
+    {
+      "cat": "image-tools",
+      "subcat": "image-editing-effects",
+      "subcatName": "Image Editing & Effects",
+      "slug": "image-resolution-upscaler",
+      "name": "Image Resolution & Dimension Upscaler"
+    },
+    {
+      "cat": "media-tools",
+      "subcat": "voice-transcription-media",
+      "subcatName": "Voice & Transcription",
+      "slug": "speech-to-text-transcriber",
+      "name": "Voice & Speech to Text Transcriber"
+    },
+    {
+      "cat": "media-tools",
+      "subcat": "audio-media-speech",
+      "subcatName": "Audio & Speech Utilities",
+      "slug": "text-to-speech-reader",
+      "name": "Text to Speech Audio Reader"
+    },
+    {
+      "cat": "pdf-tools",
+      "subcat": "pdf-conversion-export",
+      "subcatName": "PDF Conversion & Export",
+      "slug": "pdf-to-text-extractor",
+      "name": "PDF to Plain Text Extractor"
+    },
+    {
+      "cat": "pdf-tools",
+      "subcat": "pdf-conversion-export",
+      "subcatName": "PDF Conversion & Export",
+      "slug": "pdf-to-word-converter",
+      "name": "PDF to Word (.docx) Converter"
+    },
+    {
+      "cat": "pdf-tools",
+      "subcat": "pdf-conversion-export",
+      "subcatName": "PDF Conversion & Export",
+      "slug": "word-text-to-pdf-converter",
+      "name": "Text / Word to PDF Converter"
+    },
+    {
+      "cat": "developer-tools",
+      "subcat": "web-frontend-styling",
+      "subcatName": "Web & CSS Styling",
+      "slug": "px-rem-em-converter",
+      "name": "Px to Rem & Em Unit Converter"
+    },
+    {
+      "cat": "developer-tools",
+      "subcat": "web-frontend-styling",
+      "subcatName": "Web & CSS Styling",
+      "slug": "hex-to-rgb-hsl-converter",
+      "name": "Hex to RGB & HSL Color Converter"
+    },
+    {
+      "cat": "writing-tools",
+      "subcat": "text-formatting-utilities",
+      "subcatName": "Text & Formatting Utilities",
+      "slug": "text-case-converter-tool",
+      "name": "Text Case Converter & Formatting Tool"
+    },
+    {
+      "cat": "developer-tools",
+      "subcat": "code-formatting-transform",
+      "subcatName": "Code Formatting & Conversion",
+      "slug": "csv-to-json-data-converter",
+      "name": "CSV to JSON Data Table Converter"
+    },
+    {
+      "cat": "developer-tools",
+      "subcat": "code-formatting-transform",
+      "subcatName": "Code Formatting & Conversion",
+      "slug": "json-to-csv-export-converter",
+      "name": "JSON Array to CSV Export Converter"
+    },
+    {
+      "cat": "office-tools",
+      "subcat": "workplace-compensation-payroll",
+      "subcatName": "Compensation & Payroll",
+      "slug": "salary-to-hourly-wage-converter",
+      "name": "Salary to Hourly Wage Converter"
+    },
+    {
+      "cat": "social-media-tools",
+      "subcat": "engagement-metrics-analytics",
+      "subcatName": "Engagement & Metrics Analytics",
+      "slug": "engagement-rate-calculator",
+      "name": "Engagement Rate Calculator"
+    },
+    {
+      "cat": "social-media-tools",
+      "subcat": "bio-profile-optimization",
+      "subcatName": "Bio & Profile Optimization",
+      "slug": "bio-generator",
+      "name": "Social Media Bio Generator"
+    },
+    {
+      "cat": "social-media-tools",
+      "subcat": "content-scheduling-planners",
+      "subcatName": "Content Strategy & Calendars",
+      "slug": "post-length-optimizer",
+      "name": "Post Length Optimizer"
+    },
+    {
+      "cat": "social-media-tools",
+      "subcat": "captions-hashtag-generation",
+      "subcatName": "Captions & Hashtags",
+      "slug": "content-idea-generator",
+      "name": "Content Idea Generator"
+    },
+    {
+      "cat": "social-media-tools",
+      "subcat": "engagement-metrics-analytics",
+      "subcatName": "Engagement & Metrics Analytics",
+      "slug": "follower-growth-calculator",
+      "name": "Follower Growth Calculator"
+    },
+    {
+      "cat": "social-media-tools",
+      "subcat": "captions-hashtag-generation",
+      "subcatName": "Captions & Hashtags",
+      "slug": "social-media-roi-calculator",
+      "name": "Social Media ROI Calculator"
+    },
+    {
+      "cat": "social-media-tools",
+      "subcat": "content-scheduling-planners",
+      "subcatName": "Content Strategy & Calendars",
+      "slug": "content-calendar-planner",
+      "name": "Content Calendar Planner"
+    },
+    {
+      "cat": "social-media-tools",
+      "subcat": "captions-hashtag-generation",
+      "subcatName": "Captions & Hashtags",
+      "slug": "cta-generator",
+      "name": "Call-to-Action Generator"
+    },
+    {
+      "cat": "social-media-tools",
+      "subcat": "captions-hashtag-generation",
+      "subcatName": "Captions & Hashtags",
+      "slug": "ab-test-calculator",
+      "name": "A/B Test Significance Calculator"
+    },
+    {
+      "cat": "social-media-tools",
+      "subcat": "engagement-metrics-analytics",
+      "subcatName": "Engagement & Metrics Analytics",
+      "slug": "influencer-rate-calculator",
+      "name": "Influencer Rate Calculator"
+    },
+    {
+      "cat": "social-media-tools",
+      "subcat": "captions-hashtag-generation",
+      "subcatName": "Captions & Hashtags",
+      "slug": "video-script-timer",
+      "name": "Video Script Timer"
+    },
+    {
+      "cat": "social-media-tools",
+      "subcat": "captions-hashtag-generation",
+      "subcatName": "Captions & Hashtags",
+      "slug": "username-checker",
+      "name": "Username Format Checker"
+    },
+    {
+      "cat": "social-media-tools",
+      "subcat": "captions-hashtag-generation",
+      "subcatName": "Captions & Hashtags",
+      "slug": "hashtag-analyzer",
+      "name": "Hashtag Performance Analyzer"
+    },
+    {
+      "cat": "social-media-tools",
+      "subcat": "captions-hashtag-generation",
+      "subcatName": "Captions & Hashtags",
+      "slug": "social-proof-formatter",
+      "name": "Social Proof Formatter"
+    },
+    {
+      "cat": "social-media-tools",
+      "subcat": "content-scheduling-planners",
+      "subcatName": "Content Strategy & Calendars",
+      "slug": "posting-time-finder",
+      "name": "Best Posting Time Finder"
+    },
+    {
+      "cat": "networking-tools",
+      "subcat": "ip-subnetting-addressing",
+      "subcatName": "IP Subnetting & Addressing",
+      "slug": "ip-converter",
+      "name": "IP Address Converter"
+    },
+    {
+      "cat": "networking-tools",
+      "subcat": "ip-subnetting-addressing",
+      "subcatName": "IP Subnetting & Addressing",
+      "slug": "binary-hex-converter",
+      "name": "Binary/Hex/Decimal Converter"
+    },
+    {
+      "cat": "typography-tools",
+      "subcat": "font-pairing-selection",
+      "subcatName": "Font Pairing & Character Inspection",
+      "slug": "font-size-converter",
+      "name": "Font Size Unit Converter"
+    },
+    {
+      "cat": "baking-tools",
+      "subcat": "pan-size-oven-conversions",
+      "subcatName": "Pan Size & Oven Temperature",
+      "slug": "oven-temp-converter",
+      "name": "Oven Temperature Converter"
+    },
+    {
+      "cat": "baking-tools",
+      "subcat": "pan-size-oven-conversions",
+      "subcatName": "Pan Size & Oven Temperature",
+      "slug": "pan-size-converter",
+      "name": "Baking Pan Size Converter"
+    },
+    {
+      "cat": "baking-tools",
+      "subcat": "ingredient-weight-substitutions",
+      "subcatName": "Ingredient Weights & Yeast Proofing",
+      "slug": "yeast-converter",
+      "name": "Yeast Conversion Calculator"
+    },
+    {
+      "cat": "baking-tools",
+      "subcat": "ingredient-weight-substitutions",
+      "subcatName": "Ingredient Weights & Yeast Proofing",
+      "slug": "butter-oil-converter",
+      "name": "Butter to Oil Converter"
+    },
+    {
+      "cat": "travel-planning-tools",
+      "subcat": "timezone-currency-flight-planning",
+      "subcatName": "Timezones, Currency & Flight Prep",
+      "slug": "currency-converter",
+      "name": "Currency Converter"
+    },
+    {
+      "cat": "crypto-blockchain-tools",
+      "subcat": "staking-yield-mining-returns",
+      "subcatName": "Staking, Yield & Mining Profit",
+      "slug": "hash-rate-converter",
+      "name": "Hash Rate Converter"
+    },
+    {
+      "cat": "crypto-blockchain-tools",
+      "subcat": "gas-fees-transaction-costs",
+      "subcatName": "Gas Fees & Transaction Costs",
+      "slug": "token-converter",
+      "name": "Token Unit Converter"
+    },
+    {
+      "cat": "agriculture-tools",
+      "subcat": "irrigation-livestock-feed",
+      "subcatName": "Irrigation & Livestock Feed",
+      "slug": "rainfall-irrigation-converter",
+      "name": "Rainfall-Irrigation Converter"
+    },
+    {
+      "cat": "printing-tools",
+      "subcat": "paper-weight-ink-coverage",
+      "subcatName": "Paper Weight, Reams & Ink Coverage",
+      "slug": "paper-size-converter",
+      "name": "Paper Size Converter"
+    },
+    {
+      "cat": "developer-tools",
+      "subcat": "code-formatting-transform",
+      "subcatName": "Code Formatting & Conversion",
+      "slug": "yaml-json-conv",
+      "name": "YAML/JSON Converter"
+    },
+    {
+      "cat": "developer-tools",
+      "subcat": "code-formatting-transform",
+      "subcatName": "Code Formatting & Conversion",
+      "slug": "base-converter",
+      "name": "Number Base Converter"
+    },
+    {
+      "cat": "developer-tools",
+      "subcat": "encoding-hashing-security",
+      "subcatName": "Encoding, Hashing & Cryptography",
+      "slug": "image-base64",
+      "name": "Image Base64 Converter"
+    },
+    {
+      "cat": "writing-tools",
+      "subcat": "text-formatting-utilities",
+      "subcatName": "Text & Formatting Utilities",
+      "slug": "title-case-conv",
+      "name": "Title Case Converter"
+    },
+    {
+      "cat": "image-tools",
+      "subcat": "image-editing-effects",
+      "subcatName": "Image Editing & Effects",
+      "slug": "image-resize-calc",
+      "name": "Image Resize Calculator"
+    },
+    {
+      "cat": "image-tools",
+      "subcat": "image-analysis-ocr",
+      "subcatName": "Image Analysis & OCR",
+      "slug": "pixel-density-calc",
+      "name": "Pixel Density Calculator"
+    },
+    {
+      "cat": "image-tools",
+      "subcat": "image-analysis-ocr",
+      "subcatName": "Image Analysis & OCR",
+      "slug": "photo-file-size-est",
+      "name": "Photo File Size Estimator"
+    },
+    {
+      "cat": "image-tools",
+      "subcat": "image-editing-effects",
+      "subcatName": "Image Editing & Effects",
+      "slug": "crop-ratio-tool",
+      "name": "Crop Ratio Tool"
+    },
+    {
+      "cat": "image-tools",
+      "subcat": "image-editing-effects",
+      "subcatName": "Image Editing & Effects",
+      "slug": "image-grid-calc",
+      "name": "Image Grid Calculator"
+    },
+    {
+      "cat": "baking-tools",
+      "subcat": "ingredient-weight-substitutions",
+      "subcatName": "Ingredient Weights & Yeast Proofing",
+      "slug": "recipe-unit-converter",
+      "name": "Recipe Unit Converter"
+    },
+    {
+      "cat": "social-media-tools",
+      "subcat": "content-scheduling-planners",
+      "subcatName": "Content Strategy & Calendars",
+      "slug": "social-post-scheduler",
+      "name": "Post Scheduling Planner"
+    },
+    {
+      "cat": "social-media-tools",
+      "subcat": "captions-hashtag-generation",
+      "subcatName": "Captions & Hashtags",
+      "slug": "viral-potential-scorer",
+      "name": "Viral Potential Scorer"
+    },
+    {
+      "cat": "developer-tools",
+      "subcat": "web-frontend-styling",
+      "subcatName": "Web & CSS Styling",
+      "slug": "hex-to-rgb-converter",
+      "name": "HEX to RGB Converter"
+    },
+    {
+      "cat": "developer-tools",
+      "subcat": "web-frontend-styling",
+      "subcatName": "Web & CSS Styling",
+      "slug": "rgb-to-hex-converter",
+      "name": "RGB to HEX Converter"
+    },
+    {
+      "cat": "developer-tools",
+      "subcat": "web-frontend-styling",
+      "subcatName": "Web & CSS Styling",
+      "slug": "px-to-rem-converter",
+      "name": "Pixels to REM Converter"
+    },
+    {
+      "cat": "social-media-tools",
+      "subcat": "video-social-media",
+      "subcatName": "Video & Social Media",
+      "slug": "youtube-thumbnail-extractor",
+      "name": "YouTube HD Thumbnail Extractor & Downloader"
+    },
+    {
+      "cat": "social-media-tools",
+      "subcat": "content-generation",
+      "subcatName": "Content Generation",
+      "slug": "content-repurposing-matrix",
+      "name": "Multi-Channel Content Repurposing Matrix"
+    },
+    {
+      "cat": "social-media-tools",
+      "subcat": "engagement-growth",
+      "subcatName": "Engagement & Growth",
+      "slug": "link-in-bio-builder",
+      "name": "Link-in-Bio Landing Page Builder"
+    },
+    {
+      "cat": "social-media-tools",
+      "subcat": "video-social-media",
+      "subcatName": "Video & Social Media",
+      "slug": "reels-hook-script-generator",
+      "name": "Reels & TikTok Hook Script Generator"
+    },
+    {
+      "cat": "social-media-tools",
+      "subcat": "visual-media",
+      "subcatName": "Visual Media",
+      "slug": "instagram-grid-carousel-splitter",
+      "name": "Instagram Grid & Seamless Carousel Splitter"
+    },
+    {
+      "cat": "marketing-tools",
+      "subcat": "video-marketing",
+      "subcatName": "Video & Social Video Marketing",
+      "slug": "youtube-seo-optimizer",
+      "name": "YouTube Video SEO & Metadata Optimizer"
+    }
+  ],
+  "seo": [
+    {
+      "cat": "student-tools",
+      "subcat": "classroom-attendance-planning",
+      "subcatName": "Attendance & Classroom Planning",
+      "slug": "timetable-generator",
+      "name": "Timetable Generator"
+    },
+    {
+      "cat": "marketing-tools",
+      "subcat": "seo-content-optimization",
+      "subcatName": "SEO & Content Optimization",
+      "slug": "keyword-generator",
+      "name": "Keyword Generator"
+    },
+    {
+      "cat": "marketing-tools",
+      "subcat": "seo-content-optimization",
+      "subcatName": "SEO & Content Optimization",
+      "slug": "meta-tag-generator",
+      "name": "Meta Tag Generator"
+    },
+    {
+      "cat": "marketing-tools",
+      "subcat": "seo-content-optimization",
+      "subcatName": "SEO & Content Optimization",
+      "slug": "seo-title-generator",
+      "name": "SEO Title Generator"
+    },
+    {
+      "cat": "marketing-tools",
+      "subcat": "seo-content-optimization",
+      "subcatName": "SEO & Content Optimization",
+      "slug": "seo-description-generator",
+      "name": "SEO Description Generator"
+    },
+    {
+      "cat": "marketing-tools",
+      "subcat": "seo-content-optimization",
+      "subcatName": "SEO & Content Optimization",
+      "slug": "serp-preview",
+      "name": "SERP Preview"
+    },
+    {
+      "cat": "health-wellness-tools",
+      "subcat": "body-metrics-health",
+      "subcatName": "Body & Metabolic Metrics",
+      "slug": "bmi-body-health-calculator",
+      "name": "BMI & Body Composition Calculator"
+    },
+    {
+      "cat": "writing-tools",
+      "subcat": "style-readability",
+      "subcatName": "Style & Readability",
+      "slug": "word-frequency-density-analyzer",
+      "name": "Word Frequency & Keyword Density Analyzer"
+    },
+    {
+      "cat": "health-wellness-tools",
+      "subcat": "body-metrics-health",
+      "subcatName": "Body & Metabolic Metrics",
+      "slug": "ideal-body-weight-calculator",
+      "name": "Ideal Body Weight (IBW) Calculator"
+    },
+    {
+      "cat": "health-wellness-tools",
+      "subcat": "body-metrics-health",
+      "subcatName": "Body & Metabolic Metrics",
+      "slug": "navy-body-fat-percentage-calculator",
+      "name": "US Navy Body Fat Percentage Calculator"
+    },
+    {
+      "cat": "developer-tools",
+      "subcat": "web-frontend-styling",
+      "subcatName": "Web & CSS Styling",
+      "slug": "robots-txt-gen",
+      "name": "Robots.txt Generator"
+    },
+    {
+      "cat": "developer-tools",
+      "subcat": "code-formatting-transform",
+      "subcatName": "Code Formatting & Conversion",
+      "slug": "meta-og-preview",
+      "name": "Open Graph Preview"
+    },
+    {
+      "cat": "developer-tools",
+      "subcat": "network-api-data-inspection",
+      "subcatName": "API, Network & Data Inspection",
+      "slug": "redirect-gen",
+      "name": "Redirect Rule Generator"
+    },
+    {
+      "cat": "health-wellness-tools",
+      "subcat": "body-metrics-health",
+      "subcatName": "Body & Metabolic Metrics",
+      "slug": "bmi-percentile",
+      "name": "BMI Percentile Calculator"
+    },
+    {
+      "cat": "career-tools",
+      "subcat": "resume-cv",
+      "subcatName": "Resume & CV",
+      "slug": "resume-keyword-checker",
+      "name": "Resume Keyword Checker"
+    },
+    {
+      "cat": "health-wellness-tools",
+      "subcat": "body-metrics-health",
+      "subcatName": "Body & Metabolic Metrics",
+      "slug": "egfr-creatinine-calc",
+      "name": "eGFR & Creatinine Clearance Calculator"
+    },
+    {
+      "cat": "health-wellness-tools",
+      "subcat": "body-metrics-health",
+      "subcatName": "Body & Metabolic Metrics",
+      "slug": "local-anesthetic-calc",
+      "name": "Local Anesthetic Safe Cartridge Calculator"
+    },
+    {
+      "cat": "marketing-tools",
+      "subcat": "seo-tools",
+      "subcatName": "Search Engine Optimization (SEO)",
+      "slug": "seo-keyword-clustering-tool",
+      "name": "SEO Keyword Intent Clustering Tool"
+    },
+    {
+      "cat": "marketing-tools",
+      "subcat": "seo-tools",
+      "subcatName": "Search Engine Optimization (SEO)",
+      "slug": "robots-sitemap-generator",
+      "name": "Visual Robots.txt & Sitemap Directives Builder"
+    },
+    {
+      "cat": "marketing-tools",
+      "subcat": "seo-tools",
+      "subcatName": "Search Engine Optimization (SEO)",
+      "slug": "schema-json-ld-generator",
+      "name": "Google Schema JSON-LD Rich Snippet Generator"
+    },
+    {
+      "cat": "marketing-tools",
+      "subcat": "analytics-tracking",
+      "subcatName": "Analytics & Performance Tracking",
+      "slug": "opengraph-card-previewer",
+      "name": "Open Graph & Social Share Card Previewer"
+    },
+    {
+      "cat": "marketing-tools",
+      "subcat": "seo-tools",
+      "subcatName": "Search Engine Optimization (SEO)",
+      "slug": "seo-redirect-map-builder",
+      "name": "SEO 301 / 302 Redirect Map Builder"
+    },
+    {
+      "cat": "marketing-tools",
+      "subcat": "video-marketing",
+      "subcatName": "Video & Social Video Marketing",
+      "slug": "youtube-seo-optimizer",
+      "name": "YouTube Video SEO & Metadata Optimizer"
+    }
+  ],
+  "content_strategy": [
+    {
+      "cat": "student-tools",
+      "subcat": "assignments-writing-prep",
+      "subcatName": "Assignments & Writing Prep",
+      "slug": "citation-generator",
+      "name": "Citation Generator"
+    },
+    {
+      "cat": "marketing-tools",
+      "subcat": "seo-content-optimization",
+      "subcatName": "SEO & Content Optimization",
+      "slug": "keyword-generator",
+      "name": "Keyword Generator"
+    },
+    {
+      "cat": "marketing-tools",
+      "subcat": "seo-content-optimization",
+      "subcatName": "SEO & Content Optimization",
+      "slug": "meta-tag-generator",
+      "name": "Meta Tag Generator"
+    },
+    {
+      "cat": "marketing-tools",
+      "subcat": "branding-social-marketing",
+      "subcatName": "Branding & Social Copy",
+      "slug": "hashtag-generator",
+      "name": "Hashtag Generator"
+    },
+    {
+      "cat": "marketing-tools",
+      "subcat": "branding-social-marketing",
+      "subcatName": "Branding & Social Copy",
+      "slug": "social-media-caption-generator",
+      "name": "Social Media Caption Generator"
+    },
+    {
+      "cat": "marketing-tools",
+      "subcat": "seo-content-optimization",
+      "subcatName": "SEO & Content Optimization",
+      "slug": "seo-title-generator",
+      "name": "SEO Title Generator"
+    },
+    {
+      "cat": "marketing-tools",
+      "subcat": "seo-content-optimization",
+      "subcatName": "SEO & Content Optimization",
+      "slug": "seo-description-generator",
+      "name": "SEO Description Generator"
+    },
+    {
+      "cat": "marketing-tools",
+      "subcat": "branding-social-marketing",
+      "subcatName": "Branding & Social Copy",
+      "slug": "content-calendar",
+      "name": "Content Calendar"
+    },
+    {
+      "cat": "marketing-tools",
+      "subcat": "seo-content-optimization",
+      "subcatName": "SEO & Content Optimization",
+      "slug": "serp-preview",
+      "name": "SERP Preview"
+    },
+    {
+      "cat": "student-tools",
+      "subcat": "assignments-writing-prep",
+      "subcatName": "Assignments & Writing Prep",
+      "slug": "word-counter-text-stats",
+      "name": "Word Counter & Text Statistics"
+    },
+    {
+      "cat": "student-tools",
+      "subcat": "assignments-writing-prep",
+      "subcatName": "Assignments & Writing Prep",
+      "slug": "essay-outline-generator",
+      "name": "Essay Outline Generator"
+    },
+    {
+      "cat": "marketing-tools",
+      "subcat": "branding-social-marketing",
+      "subcatName": "Branding & Social Copy",
+      "slug": "social-media-character-counter",
+      "name": "Social Media Character Counter"
+    },
+    {
+      "cat": "productivity-tools",
+      "subcat": "workflow-randomizers-utilities",
+      "subcatName": "Workflow Utilities & Randomizers",
+      "slug": "quick-scratchpad-notes",
+      "name": "Quick Scratchpad & Local Notes"
+    },
+    {
+      "cat": "student-tools",
+      "subcat": "study-learning-management",
+      "subcatName": "Study & Learning Management",
+      "slug": "study-notes-outline-generator",
+      "name": "Study Notes & Outline Generator"
+    },
+    {
+      "cat": "writing-tools",
+      "subcat": "content-creation",
+      "subcatName": "Content Creation",
+      "slug": "blog-post-article-writer",
+      "name": "Blog Post & Article Writer"
+    },
+    {
+      "cat": "writing-tools",
+      "subcat": "writing-editing",
+      "subcatName": "Writing & Editing",
+      "slug": "professional-email-writer",
+      "name": "Professional Email Writer"
+    },
+    {
+      "cat": "writing-tools",
+      "subcat": "writing-editing",
+      "subcatName": "Writing & Editing",
+      "slug": "english-grammar-spelling-checker",
+      "name": "English Grammar & Spelling Checker"
+    },
+    {
+      "cat": "writing-tools",
+      "subcat": "writing-editing",
+      "subcatName": "Writing & Editing",
+      "slug": "sentence-text-paraphraser",
+      "name": "Sentence & Paragraph Paraphraser"
+    },
+    {
+      "cat": "writing-tools",
+      "subcat": "content-creation",
+      "subcatName": "Content Creation",
+      "slug": "text-paragraph-summarizer",
+      "name": "Text & Paragraph Summarizer"
+    },
+    {
+      "cat": "writing-tools",
+      "subcat": "text-formatting-utilities",
+      "subcatName": "Text & Formatting Utilities",
+      "slug": "text-language-translator",
+      "name": "Text & Phrase Language Translator"
+    },
+    {
+      "cat": "writing-tools",
+      "subcat": "text-formatting-utilities",
+      "subcatName": "Text & Formatting Utilities",
+      "slug": "text-case-converter-tool",
+      "name": "Text Case Converter & Formatting Tool"
+    },
+    {
+      "cat": "writing-tools",
+      "subcat": "style-readability",
+      "subcatName": "Style & Readability",
+      "slug": "word-frequency-density-analyzer",
+      "name": "Word Frequency & Keyword Density Analyzer"
+    },
+    {
+      "cat": "social-media-tools",
+      "subcat": "content-scheduling-planners",
+      "subcatName": "Content Strategy & Calendars",
+      "slug": "post-length-optimizer",
+      "name": "Post Length Optimizer"
+    },
+    {
+      "cat": "social-media-tools",
+      "subcat": "captions-hashtag-generation",
+      "subcatName": "Captions & Hashtags",
+      "slug": "content-idea-generator",
+      "name": "Content Idea Generator"
+    },
+    {
+      "cat": "social-media-tools",
+      "subcat": "content-scheduling-planners",
+      "subcatName": "Content Strategy & Calendars",
+      "slug": "content-calendar-planner",
+      "name": "Content Calendar Planner"
+    },
+    {
+      "cat": "social-media-tools",
+      "subcat": "content-scheduling-planners",
+      "subcatName": "Content Strategy & Calendars",
+      "slug": "posting-time-finder",
+      "name": "Best Posting Time Finder"
+    },
+    {
+      "cat": "presentation-tools",
+      "subcat": "slide-structure-planning",
+      "subcatName": "Slide & Content Structure",
+      "slug": "slide-count-estimator",
+      "name": "Slide Count Estimator"
+    },
+    {
+      "cat": "presentation-tools",
+      "subcat": "slide-structure-planning",
+      "subcatName": "Slide & Content Structure",
+      "slug": "presentation-outline",
+      "name": "Presentation Outline Generator"
+    },
+    {
+      "cat": "writing-tools",
+      "subcat": "content-creation",
+      "subcatName": "Content Creation",
+      "slug": "headline-analyzer",
+      "name": "Headline Analyzer"
+    },
+    {
+      "cat": "writing-tools",
+      "subcat": "style-readability",
+      "subcatName": "Style & Readability",
+      "slug": "passive-voice-detector",
+      "name": "Passive Voice Detector"
+    },
+    {
+      "cat": "writing-tools",
+      "subcat": "text-formatting-utilities",
+      "subcatName": "Text & Formatting Utilities",
+      "slug": "acronym-generator",
+      "name": "Acronym Generator"
+    },
+    {
+      "cat": "writing-tools",
+      "subcat": "text-formatting-utilities",
+      "subcatName": "Text & Formatting Utilities",
+      "slug": "word-replacer",
+      "name": "Find & Replace in Text"
+    },
+    {
+      "cat": "writing-tools",
+      "subcat": "style-readability",
+      "subcatName": "Style & Readability",
+      "slug": "sentence-analyzer",
+      "name": "Sentence Length Analyzer"
+    },
+    {
+      "cat": "writing-tools",
+      "subcat": "style-readability",
+      "subcatName": "Style & Readability",
+      "slug": "cliche-detector",
+      "name": "Cliché Detector"
+    },
+    {
+      "cat": "writing-tools",
+      "subcat": "content-creation",
+      "subcatName": "Content Creation",
+      "slug": "writing-prompt-gen",
+      "name": "Writing Prompt Generator"
+    },
+    {
+      "cat": "writing-tools",
+      "subcat": "content-creation",
+      "subcatName": "Content Creation",
+      "slug": "reading-time-calc",
+      "name": "Reading Time Calculator"
+    },
+    {
+      "cat": "writing-tools",
+      "subcat": "text-formatting-utilities",
+      "subcatName": "Text & Formatting Utilities",
+      "slug": "title-case-conv",
+      "name": "Title Case Converter"
+    },
+    {
+      "cat": "writing-tools",
+      "subcat": "text-formatting-utilities",
+      "subcatName": "Text & Formatting Utilities",
+      "slug": "adverb-counter",
+      "name": "Adverb Usage Counter"
+    },
+    {
+      "cat": "writing-tools",
+      "subcat": "text-formatting-utilities",
+      "subcatName": "Text & Formatting Utilities",
+      "slug": "transition-suggester",
+      "name": "Transition Word Suggester"
+    },
+    {
+      "cat": "marketing-tools",
+      "subcat": "branding-social-marketing",
+      "subcatName": "Branding & Social Copy",
+      "slug": "email-subject-scorer",
+      "name": "Email Subject Scorer"
+    },
+    {
+      "cat": "marketing-tools",
+      "subcat": "branding-social-marketing",
+      "subcatName": "Branding & Social Copy",
+      "slug": "landing-page-checklist",
+      "name": "Landing Page Checklist"
+    },
+    {
+      "cat": "marketing-tools",
+      "subcat": "branding-social-marketing",
+      "subcatName": "Branding & Social Copy",
+      "slug": "persona-builder",
+      "name": "Customer Persona Builder"
+    },
+    {
+      "cat": "marketing-tools",
+      "subcat": "branding-social-marketing",
+      "subcatName": "Branding & Social Copy",
+      "slug": "press-release-template",
+      "name": "Press Release Template"
+    },
+    {
+      "cat": "marketing-tools",
+      "subcat": "branding-social-marketing",
+      "subcatName": "Branding & Social Copy",
+      "slug": "brand-name-scorer",
+      "name": "Brand Name Scorer"
+    },
+    {
+      "cat": "marketing-tools",
+      "subcat": "branding-social-marketing",
+      "subcatName": "Branding & Social Copy",
+      "slug": "cost-per-lead-calc",
+      "name": "Cost Per Lead Calculator"
+    },
+    {
+      "cat": "marketing-tools",
+      "subcat": "branding-social-marketing",
+      "subcatName": "Branding & Social Copy",
+      "slug": "competitive-analysis",
+      "name": "Competitive Analysis Tool"
+    },
+    {
+      "cat": "productivity-tools",
+      "subcat": "workflow-randomizers-utilities",
+      "subcatName": "Workflow Utilities & Randomizers",
+      "slug": "meeting-notes-tmpl",
+      "name": "Meeting Notes Template"
+    },
+    {
+      "cat": "student-tools",
+      "subcat": "assignments-writing-prep",
+      "subcatName": "Assignments & Writing Prep",
+      "slug": "bibliography-fmt",
+      "name": "Bibliography Formatter"
+    },
+    {
+      "cat": "student-tools",
+      "subcat": "assignments-writing-prep",
+      "subcatName": "Assignments & Writing Prep",
+      "slug": "thesis-helper",
+      "name": "Thesis Statement Helper"
+    },
+    {
+      "cat": "student-tools",
+      "subcat": "study-learning-management",
+      "subcatName": "Study & Learning Management",
+      "slug": "cornell-notes",
+      "name": "Cornell Notes Template"
+    },
+    {
+      "cat": "writing-tools",
+      "subcat": "text-formatting-utilities",
+      "subcatName": "Text & Formatting Utilities",
+      "slug": "alliteration-finder",
+      "name": "Alliteration Finder"
+    },
+    {
+      "cat": "writing-tools",
+      "subcat": "text-formatting-utilities",
+      "subcatName": "Text & Formatting Utilities",
+      "slug": "paragraph-counter",
+      "name": "Paragraph Counter"
+    },
+    {
+      "cat": "writing-tools",
+      "subcat": "text-formatting-utilities",
+      "subcatName": "Text & Formatting Utilities",
+      "slug": "dialogue-formatter",
+      "name": "Dialogue Formatter"
+    },
+    {
+      "cat": "writing-tools",
+      "subcat": "text-formatting-utilities",
+      "subcatName": "Text & Formatting Utilities",
+      "slug": "repetition-finder",
+      "name": "Word Repetition Finder"
+    },
+    {
+      "cat": "writing-tools",
+      "subcat": "text-formatting-utilities",
+      "subcatName": "Text & Formatting Utilities",
+      "slug": "text-reverser",
+      "name": "Text Reverser"
+    },
+    {
+      "cat": "office-tools",
+      "subcat": "meeting-productivity-tools",
+      "subcatName": "Meeting & Productivity Utilities",
+      "slug": "whiteboard-notes",
+      "name": "Whiteboard Notes"
+    },
+    {
+      "cat": "writing-tools",
+      "subcat": "text-formatting-utilities",
+      "subcatName": "Text & Formatting Utilities",
+      "slug": "character-counter",
+      "name": "Character Counter"
+    },
+    {
+      "cat": "career-tools",
+      "subcat": "job-applications",
+      "subcatName": "Job Search & Applications",
+      "slug": "linkedin-headline-gen",
+      "name": "LinkedIn Headline Generator"
+    },
+    {
+      "cat": "student-tools",
+      "subcat": "assignments-writing-prep",
+      "subcatName": "Assignments & Writing Prep",
+      "slug": "essay-outline-gen",
+      "name": "Essay Outline Generator"
+    },
+    {
+      "cat": "student-tools",
+      "subcat": "assignments-writing-prep",
+      "subcatName": "Assignments & Writing Prep",
+      "slug": "citation-counter",
+      "name": "Citation Counter"
+    },
+    {
+      "cat": "social-media-tools",
+      "subcat": "content-scheduling-planners",
+      "subcatName": "Content Strategy & Calendars",
+      "slug": "social-post-scheduler",
+      "name": "Post Scheduling Planner"
+    },
+    {
+      "cat": "social-media-tools",
+      "subcat": "content-generation",
+      "subcatName": "Content Generation",
+      "slug": "content-repurposing-matrix",
+      "name": "Multi-Channel Content Repurposing Matrix"
+    },
+    {
+      "cat": "marketing-tools",
+      "subcat": "content-marketing",
+      "subcatName": "Content & Copywriting Tools",
+      "slug": "content-editorial-calendar",
+      "name": "Content Editorial Matrix & Publishing Calendar"
+    },
+    {
+      "cat": "writing-tools",
+      "subcat": "copywriting-creative",
+      "subcatName": "Creative Copywriting & Ideation",
+      "slug": "headline-ab-power-tester",
+      "name": "Headline A/B Power Score & CTR Tester"
+    },
+    {
+      "cat": "writing-tools",
+      "subcat": "content-editing",
+      "subcatName": "Content Editing & Structuring",
+      "slug": "podcast-show-notes-generator",
+      "name": "Podcast Show Notes & Chapter Formatter"
+    }
+  ],
+  "business_modeling": [
+    {
+      "cat": "office-tools",
+      "subcat": "business-communications-forms",
+      "subcatName": "Business Communications & Forms",
+      "slug": "invoice-generator",
+      "name": "Invoice Generator"
+    },
+    {
+      "cat": "office-tools",
+      "subcat": "business-communications-forms",
+      "subcatName": "Business Communications & Forms",
+      "slug": "task-manager",
+      "name": "Task Manager"
+    },
+    {
+      "cat": "office-tools",
+      "subcat": "business-communications-forms",
+      "subcatName": "Business Communications & Forms",
+      "slug": "business-letter-generator",
+      "name": "Business Letter Generator"
+    },
+    {
+      "cat": "office-tools",
+      "subcat": "business-communications-forms",
+      "subcatName": "Business Communications & Forms",
+      "slug": "email-signature-generator",
+      "name": "Email Signature Generator"
+    },
+    {
+      "cat": "office-tools",
+      "subcat": "business-communications-forms",
+      "subcatName": "Business Communications & Forms",
+      "slug": "out-of-office-message-generator",
+      "name": "Out-of-Office Message Generator"
+    },
+    {
+      "cat": "business-tools",
+      "subcat": "pricing-costing",
+      "subcatName": "Pricing & Costing",
+      "slug": "break-even-point-calculator",
+      "name": "Break-Even Point Calculator"
+    },
+    {
+      "cat": "business-tools",
+      "subcat": "pricing-costing",
+      "subcatName": "Pricing & Costing",
+      "slug": "profit-margin-calculator",
+      "name": "Profit Margin Calculator"
+    },
+    {
+      "cat": "business-tools",
+      "subcat": "operations-planning",
+      "subcatName": "Operations Planning",
+      "slug": "inventory-reorder-point-calculator",
+      "name": "Inventory Reorder Point Calculator"
+    },
+    {
+      "cat": "business-tools",
+      "subcat": "operations-planning",
+      "subcatName": "Operations Planning",
+      "slug": "staff-scheduling-coverage-calculator",
+      "name": "Staff Scheduling Coverage Calculator"
+    },
+    {
+      "cat": "real-estate-tools",
+      "subcat": "property-valuation-roi",
+      "subcatName": "Property Valuation & ROI",
+      "slug": "property-appreciation-estimator",
+      "name": "Property Appreciation Estimator"
+    },
+    {
+      "cat": "ecommerce-tools",
+      "subcat": "order-shipping-fulfillment",
+      "subcatName": "Shipping, Fees & Break-Even",
+      "slug": "shipping-cost-estimator",
+      "name": "Shipping Cost Estimator"
+    },
+    {
+      "cat": "ecommerce-tools",
+      "subcat": "order-shipping-fulfillment",
+      "subcatName": "Shipping, Fees & Break-Even",
+      "slug": "fba-fee-calculator",
+      "name": "FBA Fee Estimator"
+    },
+    {
+      "cat": "ecommerce-tools",
+      "subcat": "order-shipping-fulfillment",
+      "subcatName": "Shipping, Fees & Break-Even",
+      "slug": "landed-cost-calculator",
+      "name": "Landed Cost Calculator"
+    },
+    {
+      "cat": "office-tools",
+      "subcat": "business-communications-forms",
+      "subcatName": "Business Communications & Forms",
+      "slug": "status-report-gen",
+      "name": "Status Report Generator"
+    },
+    {
+      "cat": "office-tools",
+      "subcat": "business-communications-forms",
+      "subcatName": "Business Communications & Forms",
+      "slug": "appreciation-gen",
+      "name": "Appreciation Message Generator"
+    },
+    {
+      "cat": "real-estate-tools",
+      "subcat": "property-valuation-roi",
+      "subcatName": "Property Valuation & ROI",
+      "slug": "sqft-calculator",
+      "name": "Square Footage Calculator"
+    },
+    {
+      "cat": "productivity-tools",
+      "subcat": "planning-goal-tracking",
+      "subcatName": "Planning & Goal Tracking",
+      "slug": "swot-analyzer",
+      "name": "SWOT Analyzer"
+    },
+    {
+      "cat": "business-tools",
+      "subcat": "operations-planning",
+      "subcatName": "Operations & Capacity Planning",
+      "slug": "rice-prioritization-calc",
+      "name": "RICE Feature Prioritization Calculator"
+    },
+    {
+      "cat": "lifestyle-travel-tools",
+      "subcat": "trip-travel",
+      "subcatName": "Trip & Travel Planning",
+      "slug": "crosswind-headwind-calc",
+      "name": "Crosswind & Headwind Runway Calculator"
+    },
+    {
+      "cat": "finance-tools",
+      "subcat": "investment-savings",
+      "subcatName": "Investment & Savings Tools",
+      "slug": "dcf-valuation-calc",
+      "name": "DCF Enterprise Valuation Modeler"
+    },
+    {
+      "cat": "business-tools",
+      "subcat": "business-planning",
+      "subcatName": "Business Planning & Strategy",
+      "slug": "lean-canvas-business-builder",
+      "name": "Lean Canvas 1-Page Business Model Builder"
+    },
+    {
+      "cat": "business-tools",
+      "subcat": "sales-crm",
+      "subcatName": "Sales & Pipeline Management",
+      "slug": "sales-funnel-velocity-calculator",
+      "name": "B2B Sales Funnel Velocity Calculator"
+    },
+    {
+      "cat": "business-tools",
+      "subcat": "financial-forecasting",
+      "subcatName": "Financial Forecasting & Budgeting",
+      "slug": "saas-cac-payback-matrix",
+      "name": "SaaS CAC Payback, LTV & Rule of 40 Matrix"
+    },
+    {
+      "cat": "business-tools",
+      "subcat": "sales-crm",
+      "subcatName": "Sales & Pipeline Management",
+      "slug": "sales-commission-calculator",
+      "name": "Tiered Sales Commission & Quota Accelerator Calculator"
+    },
+    {
+      "cat": "freelance-tools",
+      "subcat": "marketing-business-growth",
+      "subcatName": "Marketing & Business Growth",
+      "slug": "marketing-attribution-roi-model",
+      "name": "Multi-Touch Marketing Attribution & ROI Modeler"
+    }
+  ],
+  "sales_funnels": [
+    {
+      "cat": "shopping-tools",
+      "subcat": "discounts-savings-calculators",
+      "subcatName": "Discounts & Savings Calculators",
+      "slug": "sales-tax-calculator",
+      "name": "Sales Tax Calculator"
+    },
+    {
+      "cat": "shopping-tools",
+      "subcat": "discounts-savings-calculators",
+      "subcatName": "Discounts & Savings Calculators",
+      "slug": "reverse-sales-tax-calculator",
+      "name": "Reverse Sales Tax Calculator"
+    },
+    {
+      "cat": "health-wellness-tools",
+      "subcat": "body-metrics-health",
+      "subcatName": "Body & Metabolic Metrics",
+      "slug": "ideal-body-weight-calculator",
+      "name": "Ideal Body Weight (IBW) Calculator"
+    },
+    {
+      "cat": "ecommerce-tools",
+      "subcat": "inventory-store-operations",
+      "subcatName": "Inventory & Store Operations",
+      "slug": "sales-forecast-calculator",
+      "name": "Sales Forecast Calculator"
+    },
+    {
+      "cat": "chemistry-tools",
+      "subcat": "gas-laws-thermodynamics",
+      "subcatName": "Gas Laws & Thermodynamics",
+      "slug": "ideal-gas-calculator",
+      "name": "Ideal Gas Law Calculator"
+    },
+    {
+      "cat": "marketing-tools",
+      "subcat": "campaign-tracking-advertising",
+      "subcatName": "Campaigns & Advertising",
+      "slug": "funnel-calculator",
+      "name": "Marketing Funnel Calculator"
+    },
+    {
+      "cat": "marketing-tools",
+      "subcat": "branding-social-marketing",
+      "subcatName": "Branding & Social Copy",
+      "slug": "cost-per-lead-calc",
+      "name": "Cost Per Lead Calculator"
+    },
+    {
+      "cat": "business-tools",
+      "subcat": "sales-crm",
+      "subcatName": "Sales & Pipeline Management",
+      "slug": "sales-funnel-velocity-calculator",
+      "name": "B2B Sales Funnel Velocity Calculator"
+    },
+    {
+      "cat": "business-tools",
+      "subcat": "sales-crm",
+      "subcatName": "Sales & Pipeline Management",
+      "slug": "sales-commission-calculator",
+      "name": "Tiered Sales Commission & Quota Accelerator Calculator"
+    }
+  ],
+  "agency_operations": [
+    {
+      "cat": "office-tools",
+      "subcat": "workplace-compensation-payroll",
+      "subcatName": "Compensation & Payroll",
+      "slug": "salary-to-hourly-wage-converter",
+      "name": "Salary to Hourly Wage Converter"
+    },
+    {
+      "cat": "legal-tools",
+      "subcat": "contract-document-templates",
+      "subcatName": "Agreements & Document Templates",
+      "slug": "contract-checklist",
+      "name": "Contract Review Checklist"
+    },
+    {
+      "cat": "legal-tools",
+      "subcat": "legal-fee-settlement-calculators",
+      "subcatName": "Fees, Billing & Settlement",
+      "slug": "hourly-billing-calculator",
+      "name": "Legal Hourly Billing Calculator"
+    },
+    {
+      "cat": "legal-tools",
+      "subcat": "contract-document-templates",
+      "subcatName": "Agreements & Document Templates",
+      "slug": "billable-hours-tracker",
+      "name": "Billable Hours Tracker"
+    },
+    {
+      "cat": "freelance-tools",
+      "subcat": "pricing-hourly-rates",
+      "subcatName": "Pricing & Rate Calculation",
+      "slug": "project-pricing-calculator",
+      "name": "Project Pricing Calculator"
+    },
+    {
+      "cat": "freelance-tools",
+      "subcat": "pricing-hourly-rates",
+      "subcatName": "Pricing & Rate Calculation",
+      "slug": "scope-of-work-generator",
+      "name": "Scope of Work Generator"
+    },
+    {
+      "cat": "freelance-tools",
+      "subcat": "invoicing-payment-contracts",
+      "subcatName": "Invoicing & Client Contracts",
+      "slug": "client-proposal-builder",
+      "name": "Client Proposal Builder"
+    },
+    {
+      "cat": "freelance-tools",
+      "subcat": "freelance-tax-finances",
+      "subcatName": "Taxes & Financial Management",
+      "slug": "freelance-tax-estimator",
+      "name": "Freelance Tax Estimator"
+    },
+    {
+      "cat": "freelance-tools",
+      "subcat": "invoicing-payment-contracts",
+      "subcatName": "Invoicing & Client Contracts",
+      "slug": "project-timeline-estimator",
+      "name": "Project Timeline Estimator"
+    },
+    {
+      "cat": "freelance-tools",
+      "subcat": "invoicing-payment-contracts",
+      "subcatName": "Invoicing & Client Contracts",
+      "slug": "client-invoice-tracker",
+      "name": "Client Invoice Tracker"
+    },
+    {
+      "cat": "freelance-tools",
+      "subcat": "pricing-hourly-rates",
+      "subcatName": "Pricing & Rate Calculation",
+      "slug": "rate-increase-calculator",
+      "name": "Rate Increase Calculator"
+    },
+    {
+      "cat": "freelance-tools",
+      "subcat": "invoicing-payment-contracts",
+      "subcatName": "Invoicing & Client Contracts",
+      "slug": "time-tracking-summary",
+      "name": "Time Tracking Summary"
+    },
+    {
+      "cat": "freelance-tools",
+      "subcat": "freelance-tax-finances",
+      "subcatName": "Taxes & Financial Management",
+      "slug": "expense-deduction-tracker",
+      "name": "Expense Deduction Tracker"
+    },
+    {
+      "cat": "freelance-tools",
+      "subcat": "invoicing-payment-contracts",
+      "subcatName": "Invoicing & Client Contracts",
+      "slug": "client-onboarding-checklist",
+      "name": "Client Onboarding Checklist"
+    },
+    {
+      "cat": "freelance-tools",
+      "subcat": "invoicing-payment-contracts",
+      "subcatName": "Invoicing & Client Contracts",
+      "slug": "late-payment-fee-calculator",
+      "name": "Late Payment Fee Calculator"
+    },
+    {
+      "cat": "freelance-tools",
+      "subcat": "invoicing-payment-contracts",
+      "subcatName": "Invoicing & Client Contracts",
+      "slug": "profit-loss-dashboard",
+      "name": "Monthly Profit & Loss"
+    },
+    {
+      "cat": "freelance-tools",
+      "subcat": "invoicing-payment-contracts",
+      "subcatName": "Invoicing & Client Contracts",
+      "slug": "portfolio-tracker",
+      "name": "Portfolio Project Tracker"
+    },
+    {
+      "cat": "freelance-tools",
+      "subcat": "pricing-hourly-rates",
+      "subcatName": "Pricing & Rate Calculation",
+      "slug": "contract-value-calculator",
+      "name": "Annual Contract Value Calculator"
+    },
+    {
+      "cat": "freelance-tools",
+      "subcat": "invoicing-payment-contracts",
+      "subcatName": "Invoicing & Client Contracts",
+      "slug": "meeting-scheduler-template",
+      "name": "Meeting Scheduler Template"
+    },
+    {
+      "cat": "presentation-tools",
+      "subcat": "speech-timing-pacing",
+      "subcatName": "Speech Timing & Pacing",
+      "slug": "elevator-pitch-timer",
+      "name": "Elevator Pitch Timer"
+    },
+    {
+      "cat": "freelance-tools",
+      "subcat": "invoicing-payment-contracts",
+      "subcatName": "Invoicing & Client Contracts",
+      "slug": "invoice-number-gen",
+      "name": "Invoice Number Generator"
+    },
+    {
+      "cat": "freelance-tools",
+      "subcat": "freelance-tax-finances",
+      "subcatName": "Taxes & Financial Management",
+      "slug": "freelance-income-tax",
+      "name": "Freelance Income Tax Estimator"
+    },
+    {
+      "cat": "freelance-tools",
+      "subcat": "client-pricing",
+      "subcatName": "Client Pricing & Invoicing",
+      "slug": "agency-retainer-calculator",
+      "name": "Agency Client Retainer & Margin Calculator"
+    },
+    {
+      "cat": "freelance-tools",
+      "subcat": "marketing-business-growth",
+      "subcatName": "Marketing & Business Growth",
+      "slug": "marketing-attribution-roi-model",
+      "name": "Multi-Touch Marketing Attribution & ROI Modeler"
+    },
+    {
+      "cat": "freelance-tools",
+      "subcat": "proposals-contracts",
+      "subcatName": "Proposals & Contracts",
+      "slug": "agency-pitch-proposal-generator",
+      "name": "Agency Client Pitch & Proposal Generator"
+    }
+  ]
+}

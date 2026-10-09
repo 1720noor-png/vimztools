@@ -1,0 +1,619 @@
+[
+  {
+    "category": "Social Media Media Downloads",
+    "req": "YouTube Video & Audio Download",
+    "desc": "Download raw YouTube MP4 video and MP3 audio directly from URL.",
+    "expected": "Direct video/audio binary file streaming from YouTube",
+    "matchedTools": [
+      "YouTube HD Thumbnail Extractor & Downloader (`youtube-thumbnail-extractor`)",
+      "YouTube Video SEO & Metadata Optimizer (`youtube-seo-optimizer`)"
+    ]
+  },
+  {
+    "category": "Social Media Media Downloads",
+    "req": "YouTube HD Thumbnail Download",
+    "desc": "Extract and download 1080p MaxRes, HD, HQ, SD video thumbnails.",
+    "expected": "Full resolution thumbnail image download",
+    "matchedTools": [
+      "YouTube HD Thumbnail Extractor & Downloader (`youtube-thumbnail-extractor`)"
+    ]
+  },
+  {
+    "category": "Social Media Media Downloads",
+    "req": "Instagram Video / Reels Download",
+    "desc": "Download Instagram video MP4 files directly from URL.",
+    "expected": "Direct MP4 stream extraction from Instagram post",
+    "matchedTools": [
+      "YouTube HD Thumbnail Extractor & Downloader (`youtube-thumbnail-extractor`)",
+      "Reels & TikTok Hook Script Generator (`reels-hook-script-generator`)"
+    ]
+  },
+  {
+    "category": "Social Media Media Downloads",
+    "req": "Instagram Photo / Carousel Download",
+    "desc": "Download multi-slide carousel images and single post photos.",
+    "expected": "Direct JPG/PNG download from Instagram post",
+    "matchedTools": [
+      "Instagram Grid & Seamless Carousel Splitter (`instagram-grid-carousel-splitter`)"
+    ]
+  },
+  {
+    "category": "Social Media Media Downloads",
+    "req": "TikTok Video Download (No Watermark)",
+    "desc": "Download raw TikTok video without watermark.",
+    "expected": "Direct MP4 stream extraction from TikTok link",
+    "matchedTools": [
+      "YouTube HD Thumbnail Extractor & Downloader (`youtube-thumbnail-extractor`)",
+      "Reels & TikTok Hook Script Generator (`reels-hook-script-generator`)"
+    ]
+  },
+  {
+    "category": "Social Media Media Downloads",
+    "req": "X / Twitter Video & GIF Download",
+    "desc": "Extract and download MP4 video and GIF clips from tweets.",
+    "expected": "Direct video file download from tweet URL",
+    "matchedTools": [
+      "YouTube HD Thumbnail Extractor & Downloader (`youtube-thumbnail-extractor`)"
+    ]
+  },
+  {
+    "category": "Social Media Media Downloads",
+    "req": "Pinterest Image & Pin Extractor",
+    "desc": "Download high-resolution image pins from Pinterest URL.",
+    "expected": "Direct image extraction from pin",
+    "matchedTools": [
+      "Image to Text (OCR) Extractor (`image-to-text-ocr`)"
+    ]
+  },
+  {
+    "category": "Digital Marketing",
+    "req": "UTM Campaign URL Builder",
+    "desc": "Build tracked URLs with utm_source, utm_medium, utm_campaign, etc.",
+    "expected": "URL generation with query parameters",
+    "matchedTools": [
+      "UTM Builder (`utm-builder`)",
+      "SEO 301 / 302 Redirect Map Builder (`seo-redirect-map-builder`)"
+    ]
+  },
+  {
+    "category": "Digital Marketing",
+    "req": "Multi-Touch Attribution & ROAS Modeler",
+    "desc": "Model First-Touch, Last-Touch, and Linear revenue attribution.",
+    "expected": "Attribution calculations across channels",
+    "matchedTools": [
+      "DCF Enterprise Valuation Modeler (`dcf-valuation-calc`)",
+      "Multi-Touch Marketing Attribution & ROI Modeler (`marketing-attribution-roi-model`)"
+    ]
+  },
+  {
+    "category": "Digital Marketing",
+    "req": "Ad Spend ROI / ROAS & Break-Even Calculator",
+    "desc": "Calculate target ROAS, CPA, break-even ad spend, and profit margins.",
+    "expected": "Formulaic advertising unit economics",
+    "matchedTools": [
+      "Timesheet Calculator (`timesheet-calculator`)",
+      "Marketing ROI Calculator (`marketing-roi-calculator`)",
+      "Mortgage & EMI Calculator (`mortgage-emi-calculator`)",
+      "Salary Breakdown Calculator (`salary-breakdown-calculator`)",
+      "Catering Quantity Calculator (`catering-quantity-calculator`)",
+      "Break-Even Point Calculator (`break-even-point-calculator`)",
+      "Insurance Deductible vs Premium Tradeoff Calculator (`deductible-premium-tradeoff-calculator`)",
+      "4% Rule Withdrawal Calculator (`withdrawal-rate-calculator`)",
+      "Monthly Personal Budget Planner (`monthly-budget-planner`)",
+      "Loan Amortization Schedule Calculator (`loan-amortization-schedule-calculator`)",
+      "Customer Acquisition Cost (CAC) Calculator (`customer-acquisition-cost-cac-calculator`)",
+      "Travel Budget Daily Expense Planner (`travel-budget-daily-planner`)",
+      "Social Media ROI Calculator (`social-media-roi-calculator`)",
+      "Average Order Value Calculator (`aov-calculator`)",
+      "Wedding Budget Calculator (`wedding-budget-calculator`)",
+      "ROI Calculator (`roi-calculator`)",
+      "Playlist Duration Calculator (`playlist-calc`)",
+      "Decoration Budget Calculator (`decoration-calc`)",
+      "Property ROI Calculator (`property-roi`)",
+      "Break-Even Analyzer (`break-even-analyzer`)",
+      "B2B Sales Funnel Velocity Calculator (`sales-funnel-velocity-calculator`)",
+      "Multi-Touch Marketing Attribution & ROI Modeler (`marketing-attribution-roi-model`)"
+    ]
+  },
+  {
+    "category": "Digital Marketing",
+    "req": "A/B Test Statistical Significance Calculator",
+    "desc": "Determine conversion rate confidence and statistical significance.",
+    "expected": "P-value, sample size, and significance calculation",
+    "matchedTools": [
+      "GCD & LCM Calculator Tool (`gcd-lcm-calculator-tool`)",
+      "A/B Test Significance Calculator (`ab-test-calculator`)",
+      "Chi-Square Test Calculator (`chi-square-calculator`)",
+      "T-Test Calculator (`t-test-calculator`)",
+      "Fertilizer Calculator (`fertilizer-calculator`)",
+      "A/B Test Sample Size Calculator (`ab-test-sample-calc`)"
+    ]
+  },
+  {
+    "category": "Digital Marketing",
+    "req": "Email Campaign CTR & Open Rate Benchmarker",
+    "desc": "Analyze email delivery, open rate, CTR, and list decay.",
+    "expected": "Email performance metrics calculations",
+    "matchedTools": [
+      "Meta Tag Generator (`meta-tag-generator`)",
+      "Out-of-Office Message Generator (`out-of-office-message-generator`)",
+      "Salary Negotiation Script Generator (`salary-negotiation-coach`)",
+      "Appliance Electricity Cost Calculator (`appliance-electricity-cost-calculator`)",
+      "Google Schema JSON-LD Rich Snippet Generator (`schema-json-ld-generator`)"
+    ]
+  },
+  {
+    "category": "SEO",
+    "req": "Robots.txt & Crawler Directives Builder",
+    "desc": "Visual editor for user-agent allow/disallow and sitemap indexing.",
+    "expected": "Direct text file generation",
+    "matchedTools": [
+      "Visual Robots.txt & Sitemap Directives Builder (`robots-sitemap-generator`)"
+    ]
+  },
+  {
+    "category": "SEO",
+    "req": "XML Sitemap Generator / Validator",
+    "desc": "Generate compliant XML sitemap protocol structures.",
+    "expected": "XML output formatting",
+    "matchedTools": [
+      "Visual Robots.txt & Sitemap Directives Builder (`robots-sitemap-generator`)"
+    ]
+  },
+  {
+    "category": "SEO",
+    "req": "Google Schema JSON-LD Generator",
+    "desc": "Generate rich snippet JSON-LD for Articles, FAQs, and Products.",
+    "expected": "Valid Schema.org script output",
+    "matchedTools": [
+      "Visual Robots.txt & Sitemap Directives Builder (`robots-sitemap-generator`)",
+      "Google Schema JSON-LD Rich Snippet Generator (`schema-json-ld-generator`)"
+    ]
+  },
+  {
+    "category": "SEO",
+    "req": "Open Graph & Social Card Previewer",
+    "desc": "Simulate Twitter, Facebook, and LinkedIn feed preview cards.",
+    "expected": "Visual card preview + meta tag generation",
+    "matchedTools": [
+      "Meta Tag Generator (`meta-tag-generator`)",
+      "Open Graph Preview (`meta-og-preview`)",
+      "Open Graph & Social Share Card Previewer (`opengraph-card-previewer`)"
+    ]
+  },
+  {
+    "category": "SEO",
+    "req": "SEO 301 / 302 Redirect Map Builder",
+    "desc": "Generate Apache .htaccess, Nginx, and Netlify migration rules.",
+    "expected": "Server config generation",
+    "matchedTools": [
+      "Visual Robots.txt & Sitemap Directives Builder (`robots-sitemap-generator`)",
+      "SEO 301 / 302 Redirect Map Builder (`seo-redirect-map-builder`)"
+    ]
+  },
+  {
+    "category": "SEO",
+    "req": "Keyword Intent Clustering Tool",
+    "desc": "Cluster raw keyword lists into Informational, Commercial, Transactional.",
+    "expected": "Semantic categorization + CSV export",
+    "matchedTools": [
+      "SEO Keyword Intent Clustering Tool (`seo-keyword-clustering-tool`)"
+    ]
+  },
+  {
+    "category": "SEO",
+    "req": "SERP Title & Meta Description Pixel Truncation Previewer",
+    "desc": "Test Google desktop (600px) and mobile pixel width truncation.",
+    "expected": "Accurate pixel width measurement & snippet preview",
+    "matchedTools": [
+      "Meta Tag Generator (`meta-tag-generator`)",
+      "SEO Title Generator (`seo-title-generator`)",
+      "SEO Description Generator (`seo-description-generator`)",
+      "SERP Preview (`serp-preview`)",
+      "Open Graph & Social Share Card Previewer (`opengraph-card-previewer`)",
+      "YouTube Video SEO & Metadata Optimizer (`youtube-seo-optimizer`)"
+    ]
+  },
+  {
+    "category": "SEO",
+    "req": "Canonical Tag & Hreflang Language Header Generator",
+    "desc": "Generate multilingual hreflang and self-referencing canonical tags.",
+    "expected": "HTML and HTTP header tag markup",
+    "matchedTools": [
+      "Meta Tag Generator (`meta-tag-generator`)",
+      "Hashtag Generator (`hashtag-generator`)",
+      "Social Media Caption Generator (`social-media-caption-generator`)",
+      "Pet Feeding Schedule Generator (`pet-feeding-schedule`)",
+      "Wedding Hashtag Generator (`wedding-hashtag`)"
+    ]
+  },
+  {
+    "category": "Content Strategy",
+    "req": "Multi-Channel Content Repurposing Matrix",
+    "desc": "Transform long-form text into 5 cross-platform content formats.",
+    "expected": "Cross-channel text transformation",
+    "matchedTools": [
+      "Multi-Channel Content Repurposing Matrix (`content-repurposing-matrix`)",
+      "Content Editorial Matrix & Publishing Calendar (`content-editorial-calendar`)",
+      "SaaS CAC Payback, LTV & Rule of 40 Matrix (`saas-cac-payback-matrix`)",
+      "Multi-Touch Marketing Attribution & ROI Modeler (`marketing-attribution-roi-model`)"
+    ]
+  },
+  {
+    "category": "Content Strategy",
+    "req": "Editorial Publishing Calendar",
+    "desc": "Plan, schedule, and filter content across thematic pillars.",
+    "expected": "Publishing schedule with CSV export",
+    "matchedTools": [
+      "Content Editorial Matrix & Publishing Calendar (`content-editorial-calendar`)"
+    ]
+  },
+  {
+    "category": "Content Strategy",
+    "req": "Headline A/B Power & CTR Tester",
+    "desc": "Compare headlines for emotional triggers and power words.",
+    "expected": "Emotional scoring and split test analysis",
+    "matchedTools": [
+      "Ohm's Law Calculator (`ohms-law-calculator`)",
+      "Headline A/B Power Score & CTR Tester (`headline-ab-power-tester`)"
+    ]
+  },
+  {
+    "category": "Content Strategy",
+    "req": "Podcast Show Notes & Chapter Timestamp Formatter",
+    "desc": "Generate structured show notes, timestamps, and guest summaries.",
+    "expected": "Formatted show notes output",
+    "matchedTools": [
+      "YouTube Video SEO & Metadata Optimizer (`youtube-seo-optimizer`)",
+      "Podcast Show Notes & Chapter Formatter (`podcast-show-notes-generator`)"
+    ]
+  },
+  {
+    "category": "Content Strategy",
+    "req": "Short-Form Video Hook & Pacing Script Generator",
+    "desc": "Viral 3-second hooks, pacing cues, and timed video scripts.",
+    "expected": "Script generation",
+    "matchedTools": [
+      "Citation Generator (`citation-generator`)",
+      "Meeting Minutes Generator (`meeting-minutes-generator`)",
+      "Meta Tag Generator (`meta-tag-generator`)",
+      "Hashtag Generator (`hashtag-generator`)",
+      "SEO Description Generator (`seo-description-generator`)",
+      "UUID Generator (`uuid-generator`)",
+      "Out-of-Office Message Generator (`out-of-office-message-generator`)",
+      "File Naming Convention Generator (`file-naming-convention-generator`)",
+      "Salary Negotiation Script Generator (`salary-negotiation-coach`)",
+      "Grading Rubric Generator (`rubric-generator`)",
+      "Video Script Timer (`video-script-timer`)",
+      "Markdown Table Generator (`markdown-table-gen`)",
+      "Spacing Scale Generator (`spacing-scale-gen`)",
+      "Multi-Channel Content Repurposing Matrix (`content-repurposing-matrix`)",
+      "Reels & TikTok Hook Script Generator (`reels-hook-script-generator`)",
+      "YouTube Video SEO & Metadata Optimizer (`youtube-seo-optimizer`)",
+      "Podcast Show Notes & Chapter Formatter (`podcast-show-notes-generator`)"
+    ]
+  },
+  {
+    "category": "Content Strategy",
+    "req": "Readability & Flesch-Kincaid Grade Level Analyzer",
+    "desc": "Score text reading ease and grade level for audience clarity.",
+    "expected": "Syllable / sentence complexity formulas",
+    "matchedTools": [
+      "Readability Score Checker (`readability-score-checker`)",
+      "Reading Level Analyzer (`reading-level-analyzer`)"
+    ]
+  },
+  {
+    "category": "Business Modeling",
+    "req": "Lean Canvas 1-Page Business Model Builder",
+    "desc": "9-box Lean Startup business model planning board.",
+    "expected": "Interactive 9-box canvas",
+    "matchedTools": [
+      "UTM Builder (`utm-builder`)",
+      "Resume Builder (`resume-builder`)",
+      "Business Model Canvas (`bmc-generator`)",
+      "Link-in-Bio Landing Page Builder (`link-in-bio-builder`)",
+      "Lean Canvas 1-Page Business Model Builder (`lean-canvas-business-builder`)"
+    ]
+  },
+  {
+    "category": "Business Modeling",
+    "req": "SaaS CAC Payback, LTV & Rule of 40 Matrix",
+    "desc": "Gross margin-adjusted payback, LTV:CAC multiple, Rule of 40 score.",
+    "expected": "Unit economics and valuation metrics",
+    "matchedTools": [
+      "SaaS CAC Payback, LTV & Rule of 40 Matrix (`saas-cac-payback-matrix`)"
+    ]
+  },
+  {
+    "category": "Business Modeling",
+    "req": "Startup Runway & Cash Burn Rate Calculator",
+    "desc": "Calculate net cash burn, runway months, and zero-cash date.",
+    "expected": "Runway forecasting formulas",
+    "matchedTools": [
+      "BMR & TDEE Calculator (`bmr-tdee-calculator`)",
+      "Macro Nutrient Calculator (`macro-calculator`)",
+      "One-Rep Max (1RM) Calculator (`one-rep-max-calculator`)",
+      "Aspect Ratio Calculator (`aspect-ratio-calculator`)",
+      "Target Heart Rate Zone Calculator (`heart-rate-zone-calculator`)",
+      "Cap Rate Calculator (`cap-rate-calculator`)",
+      "Cash-on-Cash Return Calculator (`cash-on-cash-return-calculator`)",
+      "Rental Property Cash Flow Calculator (`rental-property-cash-flow-calculator`)",
+      "Vacancy Rate Calculator (`vacancy-rate-calculator`)",
+      "4% Rule Withdrawal Calculator (`withdrawal-rate-calculator`)",
+      "Required Savings Rate Calculator (`required-savings-rate-calculator`)",
+      "Freelance Hourly Rate Calculator (`freelance-hourly-rate-calculator`)",
+      "Multi-Loan Side-by-Side Comparator (`loan-comparison-calculator`)",
+      "Appliance Electricity Cost Calculator (`appliance-electricity-cost-calculator`)",
+      "Loan Amortization Schedule Calculator (`loan-amortization-schedule-calculator`)",
+      "SaaS Churn Rate & Retention Calculator (`saas-churn-retention-calculator`)",
+      "Capital Investment Payback Period Calculator (`payback-period-calculator`)",
+      "Net Present Value (NPV) Calculator (`net-present-value-npv-calculator`)",
+      "Rule of 72 Doubling Time Calculator (`rule-of-72-doubling-time-calculator`)",
+      "Karvonen Target Heart Rate Zone Calculator (`karvonen-heart-rate-zone-calculator`)",
+      "BPM to Delay Time & LFO Frequency Calculator (`bpm-delay-time-lfo-calculator`)",
+      "Legal Hourly Billing Calculator (`hourly-billing-calculator`)",
+      "Project Pricing Calculator (`project-pricing-calculator`)",
+      "Rate Increase Calculator (`rate-increase-calculator`)",
+      "Engagement Rate Calculator (`engagement-rate-calculator`)",
+      "Influencer Rate Calculator (`influencer-rate-calculator`)",
+      "Return Rate Calculator (`return-rate-calculator`)",
+      "Sales Forecast Calculator (`sales-forecast-calculator`)",
+      "Modular Scale Calculator (`modular-scale-calculator`)",
+      "Turnover Rate Calculator (`turnover-calculator`)",
+      "Absenteeism Rate Calculator (`absenteeism-calculator`)",
+      "Seed Rate Calculator (`seed-rate-calculator`)",
+      "Marketing Funnel Calculator (`funnel-calculator`)",
+      "Cashback Calculator (`cashback-calc`)",
+      "Burn Rate Calculator (`burn-rate-calc`)",
+      "Pricing Strategy Calculator (`pricing-strategy`)",
+      "Audio Bitrate Calculator (`audio-bitrate-calc`)",
+      "Noise Reduction Calculator (`noise-reduction-calc`)",
+      "Startup Runway Calculator (`runway-calculator`)",
+      "Calorie Burn Calculator (`calorie-burn-calc`)",
+      "RICE Feature Prioritization Calculator (`rice-prioritization-calc`)",
+      "Crosswind & Headwind Runway Calculator (`crosswind-headwind-calc`)",
+      "DCF Enterprise Valuation Modeler (`dcf-valuation-calc`)",
+      "B2B Sales Funnel Velocity Calculator (`sales-funnel-velocity-calculator`)",
+      "Agency Client Retainer & Margin Calculator (`agency-retainer-calculator`)"
+    ]
+  },
+  {
+    "category": "Business Modeling",
+    "req": "Break-Even & Contribution Margin Calculator",
+    "desc": "Determine break-even sales volume and revenue threshold.",
+    "expected": "Break-even formulas",
+    "matchedTools": [
+      "Timesheet Calculator (`timesheet-calculator`)",
+      "Marketing ROI Calculator (`marketing-roi-calculator`)",
+      "Mortgage & EMI Calculator (`mortgage-emi-calculator`)",
+      "Compound Interest Calculator (`compound-interest-calculator`)",
+      "Salary Breakdown Calculator (`salary-breakdown-calculator`)",
+      "Retirement Savings Goal Calculator (`retirement-savings-calculator`)",
+      "Catering Quantity Calculator (`catering-quantity-calculator`)",
+      "Break-Even Point Calculator (`break-even-point-calculator`)",
+      "Profit Margin Calculator (`profit-margin-calculator`)",
+      "Insurance Deductible vs Premium Tradeoff Calculator (`deductible-premium-tradeoff-calculator`)",
+      "HSA Contribution Calculator (`hsa-contribution-calculator`)",
+      "401(k) Employer Match Calculator (`employer-match-calculator`)",
+      "Catch-Up Contribution Calculator (`catch-up-contribution-calculator`)",
+      "Profit Margin vs Markup Converter (`margin-vs-markup-calculator`)",
+      "Target Savings Goal Calculator (`target-savings-goal-calculator`)",
+      "Loan Amortization Schedule Calculator (`loan-amortization-schedule-calculator`)",
+      "Average Order Value Calculator (`aov-calculator`)",
+      "Wedding Budget Calculator (`wedding-budget-calculator`)",
+      "Playlist Duration Calculator (`playlist-calc`)",
+      "Decoration Budget Calculator (`decoration-calc`)",
+      "IRA Contribution Calculator (`ira-contrib-calc`)",
+      "Break-Even Analyzer (`break-even-analyzer`)",
+      "Product Margin Calculator (`product-margin-calc`)",
+      "B2B Sales Funnel Velocity Calculator (`sales-funnel-velocity-calculator`)",
+      "Agency Client Retainer & Margin Calculator (`agency-retainer-calculator`)"
+    ]
+  },
+  {
+    "category": "Sales Funnels & CRM",
+    "req": "B2B Sales Funnel Velocity Calculator",
+    "desc": "Calculate pipeline revenue velocity and 30-day run rate.",
+    "expected": "Sales velocity formulas",
+    "matchedTools": [
+      "Sales Tax Calculator (`sales-tax-calculator`)",
+      "Reverse Sales Tax Calculator (`reverse-sales-tax-calculator`)",
+      "Customer Acquisition Cost (CAC) Calculator (`customer-acquisition-cost-cac-calculator`)",
+      "Sales Forecast Calculator (`sales-forecast-calculator`)",
+      "Marketing Funnel Calculator (`funnel-calculator`)",
+      "Kinetic Energy Calculator (`kinetic-energy-calc`)",
+      "B2B Sales Funnel Velocity Calculator (`sales-funnel-velocity-calculator`)",
+      "Tiered Sales Commission & Quota Accelerator Calculator (`sales-commission-calculator`)"
+    ]
+  },
+  {
+    "category": "Sales Funnels & CRM",
+    "req": "Tiered Sales Commission & Quota Accelerator Calculator",
+    "desc": "Calculate tiered quota accelerators and total OTE earnings.",
+    "expected": "Commission tier breakdown",
+    "matchedTools": [
+      "Sales Tax Calculator (`sales-tax-calculator`)",
+      "Reverse Sales Tax Calculator (`reverse-sales-tax-calculator`)",
+      "Customer Acquisition Cost (CAC) Calculator (`customer-acquisition-cost-cac-calculator`)",
+      "Sales Forecast Calculator (`sales-forecast-calculator`)",
+      "B2B Sales Funnel Velocity Calculator (`sales-funnel-velocity-calculator`)",
+      "Tiered Sales Commission & Quota Accelerator Calculator (`sales-commission-calculator`)"
+    ]
+  },
+  {
+    "category": "Sales Funnels & CRM",
+    "req": "Lead Scoring & Qualification Matrix (BANT / MEDDIC)",
+    "desc": "Score inbound leads based on Budget, Authority, Need, Timeline.",
+    "expected": "Weighted scoring framework",
+    "matchedTools": []
+  },
+  {
+    "category": "Agency Operations",
+    "req": "Agency Client Retainer & Margin Calculator",
+    "desc": "Price retainers with blended rates, scope buffers, and profit margins.",
+    "expected": "Retainer pricing formulas",
+    "matchedTools": [
+      "Profit Margin Calculator (`profit-margin-calculator`)",
+      "Freelance Hourly Rate Calculator (`freelance-hourly-rate-calculator`)",
+      "Profit Margin vs Markup Converter (`margin-vs-markup-calculator`)",
+      "Annual Contract Value Calculator (`contract-value-calculator`)",
+      "Product Margin Calculator (`product-margin-calc`)",
+      "Agency Client Retainer & Margin Calculator (`agency-retainer-calculator`)",
+      "Agency Client Pitch & Proposal Generator (`agency-pitch-proposal-generator`)"
+    ]
+  },
+  {
+    "category": "Agency Operations",
+    "req": "Agency Commercial Pitch Proposal & SOW Generator",
+    "desc": "Generate statements of work, deliverable phases, and pricing terms.",
+    "expected": "Formatted contract/SOW generation",
+    "matchedTools": [
+      "Agency Client Pitch & Proposal Generator (`agency-pitch-proposal-generator`)"
+    ]
+  },
+  {
+    "category": "Agency Operations",
+    "req": "Agency Blended Billing Rate & Utilization Calculator",
+    "desc": "Calculate billable capacity, overhead markup, and target rate.",
+    "expected": "Utilization & rate formulas",
+    "matchedTools": [
+      "BMR & TDEE Calculator (`bmr-tdee-calculator`)",
+      "Macro Nutrient Calculator (`macro-calculator`)",
+      "One-Rep Max (1RM) Calculator (`one-rep-max-calculator`)",
+      "Aspect Ratio Calculator (`aspect-ratio-calculator`)",
+      "Target Heart Rate Zone Calculator (`heart-rate-zone-calculator`)",
+      "Cap Rate Calculator (`cap-rate-calculator`)",
+      "Vacancy Rate Calculator (`vacancy-rate-calculator`)",
+      "4% Rule Withdrawal Calculator (`withdrawal-rate-calculator`)",
+      "Required Savings Rate Calculator (`required-savings-rate-calculator`)",
+      "Freelance Hourly Rate Calculator (`freelance-hourly-rate-calculator`)",
+      "Multi-Loan Side-by-Side Comparator (`loan-comparison-calculator`)",
+      "Appliance Electricity Cost Calculator (`appliance-electricity-cost-calculator`)",
+      "Loan Amortization Schedule Calculator (`loan-amortization-schedule-calculator`)",
+      "SaaS Churn Rate & Retention Calculator (`saas-churn-retention-calculator`)",
+      "Capital Investment Payback Period Calculator (`payback-period-calculator`)",
+      "Net Present Value (NPV) Calculator (`net-present-value-npv-calculator`)",
+      "Rule of 72 Doubling Time Calculator (`rule-of-72-doubling-time-calculator`)",
+      "Karvonen Target Heart Rate Zone Calculator (`karvonen-heart-rate-zone-calculator`)",
+      "BPM to Delay Time & LFO Frequency Calculator (`bpm-delay-time-lfo-calculator`)",
+      "Legal Hourly Billing Calculator (`hourly-billing-calculator`)",
+      "Project Pricing Calculator (`project-pricing-calculator`)",
+      "Rate Increase Calculator (`rate-increase-calculator`)",
+      "Engagement Rate Calculator (`engagement-rate-calculator`)",
+      "Influencer Rate Calculator (`influencer-rate-calculator`)",
+      "Return Rate Calculator (`return-rate-calculator`)",
+      "Sales Forecast Calculator (`sales-forecast-calculator`)",
+      "Modular Scale Calculator (`modular-scale-calculator`)",
+      "Turnover Rate Calculator (`turnover-calculator`)",
+      "Absenteeism Rate Calculator (`absenteeism-calculator`)",
+      "Seed Rate Calculator (`seed-rate-calculator`)",
+      "Marketing Funnel Calculator (`funnel-calculator`)",
+      "Burn Rate Calculator (`burn-rate-calc`)",
+      "Pricing Strategy Calculator (`pricing-strategy`)",
+      "Audio Bitrate Calculator (`audio-bitrate-calc`)",
+      "Noise Reduction Calculator (`noise-reduction-calc`)",
+      "RICE Feature Prioritization Calculator (`rice-prioritization-calc`)",
+      "B2B Sales Funnel Velocity Calculator (`sales-funnel-velocity-calculator`)",
+      "Agency Client Retainer & Margin Calculator (`agency-retainer-calculator`)",
+      "Agency Client Pitch & Proposal Generator (`agency-pitch-proposal-generator`)"
+    ]
+  },
+  {
+    "category": "Business Productivity",
+    "req": "Link-in-Bio Landing Page Builder",
+    "desc": "Create mobile link hubs with live phone mockup and HTML/CSS export.",
+    "expected": "Custom bio page generator",
+    "matchedTools": [
+      "Landing Page Checklist (`landing-page-checklist`)",
+      "Link-in-Bio Landing Page Builder (`link-in-bio-builder`)",
+      "Visual Robots.txt & Sitemap Directives Builder (`robots-sitemap-generator`)",
+      "Lean Canvas 1-Page Business Model Builder (`lean-canvas-business-builder`)"
+    ]
+  },
+  {
+    "category": "Business Productivity",
+    "req": "Instagram Grid & Seamless Carousel Splitter",
+    "desc": "Calculate canvas pixels and slice coordinate guides.",
+    "expected": "Figma/Photoshop slicing guides",
+    "matchedTools": [
+      "Instagram Grid & Seamless Carousel Splitter (`instagram-grid-carousel-splitter`)"
+    ]
+  },
+  {
+    "category": "Business Productivity",
+    "req": "Meeting Cost & Time Waste Calculator",
+    "desc": "Calculate dollar cost per minute of team meetings based on salaries.",
+    "expected": "Meeting cost formulas",
+    "matchedTools": [
+      "Discount Calculator (`discount-calculator`)",
+      "Meeting Agenda Maker (`meeting-agenda-maker`)",
+      "Timesheet Calculator (`timesheet-calculator`)",
+      "Marketing ROI Calculator (`marketing-roi-calculator`)",
+      "Price Comparison Calculator (`price-comparison-calculator`)",
+      "Compound Interest Calculator (`compound-interest-calculator`)",
+      "Pace & Race Time Calculator (`pace-calculator`)",
+      "Fuel & Road Trip Calculator (`fuel-cost-calculator`)",
+      "Speech & Reading Time Calculator (`speech-reading-time-calculator`)",
+      "Car Ownership Cost Calculator (`car-ownership-cost-calculator`)",
+      "Daylight Hours & Solar Time Calculator (`daylight-solar-calculator`)",
+      "Meeting Cost Calculator (`meeting-cost-calculator`)",
+      "Cost-Per-Use Calculator (`cost-per-use-calculator`)",
+      "Sleep Cycle Calculator (`sleep-cycle-calculator`)",
+      "Golden Hour Calculator (`golden-hour-calculator`)",
+      "Craft Project Cost Calculator (`craft-project-cost-calculator`)",
+      "Lumber Board Feet Calculator (`lumber-board-feet-calculator`)",
+      "Break-Even Point Calculator (`break-even-point-calculator`)",
+      "Profit Margin Calculator (`profit-margin-calculator`)",
+      "Insurance Premium Payment Frequency Calculator (`premium-payment-frequency-calculator`)",
+      "Required Minimum Distribution (RMD) Calculator (`rmd-calculator`)",
+      "Retirement Healthcare Cost Estimator (`retirement-healthcare-cost-estimator`)",
+      "Overtime Pay & Wage Calculator (`overtime-pay-calculator`)",
+      "Profit Margin vs Markup Converter (`margin-vs-markup-calculator`)",
+      "Multi-Loan Side-by-Side Comparator (`loan-comparison-calculator`)",
+      "Simple Interest & Return Calculator (`simple-interest-return-calculator`)",
+      "Appliance Electricity Cost Calculator (`appliance-electricity-cost-calculator`)",
+      "Gas Mileage & Fuel Economy Calculator (`gas-mileage-fuel-economy-calculator`)",
+      "EV Charging vs Gas Cost Calculator (`ev-charging-vs-gas-cost-calculator`)",
+      "Commercial Lease Rent Calculator (`commercial-lease-rent-calculator`)",
+      "Customer Lifetime Value (LTV) Calculator (`customer-lifetime-value-ltv-calculator`)",
+      "Customer Acquisition Cost (CAC) Calculator (`customer-acquisition-cost-cac-calculator`)",
+      "Capital Investment Payback Period Calculator (`payback-period-calculator`)",
+      "Rule of 72 Doubling Time Calculator (`rule-of-72-doubling-time-calculator`)",
+      "Hardwood & Board Feet Volume Calculator (`hardwood-board-feet-calculator`)",
+      "BPM to Delay Time & LFO Frequency Calculator (`bpm-delay-time-lfo-calculator`)",
+      "Astrophotography 500 Rule Calculator (`astrophotography-500-rule-calculator`)",
+      "Swimming Pace per 100m Calculator (`swimming-pace-per-100m-calculator`)",
+      "Hiking Trail Speed (Naismith Rule) Calculator (`hiking-trail-speed-naismith-calculator`)",
+      "Real-Time Meeting Cost per Minute Calculator (`meeting-cost-per-minute-calculator`)",
+      "Legal Hourly Billing Calculator (`hourly-billing-calculator`)",
+      "Product Markup Calculator (`product-markup-calculator`)",
+      "Return Rate Calculator (`return-rate-calculator`)",
+      "Landed Cost Calculator (`landed-cost-calculator`)",
+      "Bandwidth Calculator (`bandwidth-calculator`)",
+      "Uptime Percentage Calculator (`uptime-calculator`)",
+      "API Response Time Calculator (`api-response-calculator`)",
+      "Time Zone Meeting Planner (`timezone-planner`)",
+      "Employee Cost Calculator (`employee-cost-calculator`)",
+      "Time to Hire Calculator (`time-to-hire-calculator`)",
+      "DCA Calculator (`dca-calculator`)",
+      "Print Cost Calculator (`print-cost-calculator`)",
+      "Reading Time Calculator (`reading-time-calc`)",
+      "Cost Per Lead Calculator (`cost-per-lead-calc`)",
+      "Screen Time Calculator (`screen-time-calc`)",
+      "Time Until Calculator (`time-until-calc`)",
+      "555 Timer Calculator (`timer-555-calc`)",
+      "Tile Layout Calculator (`tile-calc`)",
+      "Diaper Budget Calculator (`diaper-calc`)",
+      "Decoration Budget Calculator (`decoration-calc`)",
+      "Fuel Trip Calculator (`fuel-trip-calc`)",
+      "Car vs Ride Share Calculator (`car-vs-rideshare`)",
+      "Sunrise/Sunset Calculator (`sunrise-calc`)",
+      "Speed Distance Time Calculator (`speed-distance-time`)",
+      "Split Time Calculator (`split-time-calc`)",
+      "Meeting Agenda Timer (`meeting-agenda-timer`)",
+      "SLA Uptime & Downtime Calculator (`sla-uptime-calc`)",
+      "Density Altitude & Pressure Altitude Calculator (`density-altitude-calc`)"
+    ]
+  }
+]
