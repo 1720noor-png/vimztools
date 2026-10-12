@@ -119,6 +119,7 @@ export default function Layout() {
             </div>
 
             <NavLink to="/tools?popular=1">Popular</NavLink>
+            <NavLink to="/pricing">Pricing</NavLink>
 
             {isLoggedIn ? (
               <>
@@ -181,7 +182,7 @@ export default function Layout() {
               </p>
               <div style={{ marginTop: '1.1rem', display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
                 <span className="badge sub" style={{ background: 'rgba(16,185,129,.14)', color: 'var(--ok)' }}>● 100% Client-Side Privacy</span>
-                <span className="badge sub" style={{ background: 'rgba(99,102,241,.12)', color: 'var(--c-indigo)' }}>⚡ Zero Subscriptions</span>
+                <span className="badge sub" style={{ background: 'rgba(99,102,241,.12)', color: 'var(--c-indigo)' }}>💎 Pro Available</span>
               </div>
             </div>
 
@@ -189,6 +190,7 @@ export default function Layout() {
               <h4>Platform</h4>
               <Link to="/">Home</Link>
               <Link to="/tools">1,000+ Tools</Link>
+              <Link to="/pricing">Pricing & Pro</Link>
               <Link to="/categories">72 Categories</Link>
               <Link to="/tools?popular=1">Popular Utilities</Link>
               <Link to="/dashboard">My Workspace</Link>

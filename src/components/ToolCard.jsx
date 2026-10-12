@@ -2,30 +2,9 @@ import { Link } from 'react-router-dom'
 import { categories } from '../data/registry.js'
 import { useFavorites } from '../utils/userPrefs.js'
 import { getCategoryTheme } from '../utils/categoryColors.js'
+import { isAdvancedTool, getToolMonetization } from '../data/monetizationCatalog.js'
 
-export const PAID_TOOL_SLUGS = new Set([
-  'invoice-generator',
-  'meeting-minutes-generator',
-  'business-letter-generator',
-  'expense-report-generator',
-  'client-onboarding-checklist-generator',
-  'nda-generator',
-  'resignation-letter-generator',
-  'project-brief-generator',
-  'employee-timesheet-generator',
-  'business-proposal-generator',
-  'job-offer-letter-generator',
-  'discounted-cash-flow-dcf-valuation-tool',
-  'saas-churn-retention-calculator',
-  'customer-lifetime-value-ltv-calculator',
-  'customer-acquisition-cost-cac-calculator',
-  'property-tax-escrow-estimator',
-  'gross-net-rental-yield-calculator',
-  'commercial-lease-rent-calculator',
-  'personal-net-worth-calculator',
-  'debt-to-income-dti-ratio-calculator',
-  'college-savings-529-calculator',
-])
+export const PAID_TOOL_SLUGS = new Set([])
 
 export default function ToolCard({ t, variant = 'default', onFavoriteChange }) {
   if (!t) return null
@@ -33,7 +12,7 @@ export default function ToolCard({ t, variant = 'default', onFavoriteChange }) {
   const catTheme = getCategoryTheme(t.cat)
   const { isFavorite, toggleFavorite } = useFavorites()
   const favored = t.slug ? isFavorite(t.slug) : false
-  const isPaidExport = t.isPaid || t.is_paid || (t.slug && PAID_TOOL_SLUGS.has(t.slug))
+  const isPaidExport = t.isPaid || t.is_paid || (t.slug && isAdvancedTool(t.slug))
 
   const handleFavoriteClick = (e) => {
     e.preventDefault()

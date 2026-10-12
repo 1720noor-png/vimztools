@@ -16,6 +16,8 @@ import Login from './pages/Login.jsx'
 import Register from './pages/Register.jsx'
 import UserDashboard from './pages/UserDashboard.jsx'
 import AdminDashboard from './pages/AdminDashboard.jsx'
+import PricingPage from './pages/PricingPage.jsx'
+import CheckoutPage from './pages/CheckoutPage.jsx'
 
 export default function App() {
   return (
@@ -25,6 +27,8 @@ export default function App() {
         <Route path="categories" element={<AllCategories />} />
         <Route path="tools" element={<AllTools />} />
         <Route path="tools/:tool" element={<ToolPage />} />
+        <Route path="pricing" element={<PricingPage />} />
+        <Route path="checkout" element={<CheckoutPage />} />
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
         <Route path="dashboard" element={<UserDashboard />} />

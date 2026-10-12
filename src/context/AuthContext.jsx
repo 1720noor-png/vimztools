@@ -8,13 +8,22 @@ export function AuthProvider({ children }) {
   const [loading, setLoading] = useState(true)
   const [favorites, setFavorites] = useState([])
 
+  const enrichUser = (rawUser, payload) => {
+    if (!rawUser) return null
+    return {
+      ...rawUser,
+      is_pro: payload?.is_pro !== undefined ? Boolean(payload.is_pro) : Boolean(rawUser.is_pro),
+      subscription_tier: payload?.subscription_tier || rawUser.subscription_tier || 'free',
+    }
+  }
+
   useEffect(() => {
     const token = getToken()
     if (token) {
       authApi.getUser()
         .then((res) => {
           if (res?.user) {
-            setUser(res.user)
+            setUser(enrichUser(res.user, res))
             loadFavorites()
           } else {
             setToken(null)
@@ -43,7 +52,7 @@ export function AuthProvider({ children }) {
     const res = await authApi.login(email, password)
     if (res?.token) {
       setToken(res.token)
-      setUser(res.user)
+      setUser(enrichUser(res.user, res))
       loadFavorites()
     }
     return res
@@ -53,7 +62,7 @@ export function AuthProvider({ children }) {
     const res = await authApi.register(name, email, password, password_confirmation)
     if (res?.token) {
       setToken(res.token)
-      setUser(res.user)
+      setUser(enrichUser(res.user, res))
       loadFavorites()
     }
     return res
@@ -91,13 +100,14 @@ export function AuthProvider({ children }) {
     favorites,
     isLoggedIn: !!user,
     isAdmin: user?.role === 'admin',
+    isPro: Boolean(user?.is_pro || user?.subscription_tier === 'pro' || user?.role === 'admin'),
     login,
     register,
     logout,
     toggleFavorite,
     reloadUser: async () => {
       const res = await authApi.getUser()
-      if (res?.user) setUser(res.user)
+      if (res?.user) setUser(enrichUser(res.user, res))
     }
   }
 

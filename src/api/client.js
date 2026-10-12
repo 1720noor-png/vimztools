@@ -73,9 +73,21 @@ export const toolsApi = {
   recordDownload: (token) => apiRequest(`/download/record/${token}`, { method: 'POST' }),
 }
 
-// User Dashboard API
+// Checkout & Subscriptions API
+export const checkoutApi = {
+  createSession: (data) => apiRequest('/checkout/session', { method: 'POST', body: JSON.stringify(data) }),
+  purchaseOneTime: (tool_slug, payment_method = 'sandbox', guest_email = null) =>
+    apiRequest('/checkout/purchase', {
+      method: 'POST',
+      body: JSON.stringify({ tool_slug, payment_method, guest_email }),
+    }),
+}
+
+// User Dashboard & Entitlements API
 export const userApi = {
   getPurchases: () => apiRequest('/user/purchases'),
+  getEntitlements: () => apiRequest('/user/entitlements'),
+  checkEntitlement: (slug) => apiRequest(`/user/entitlements/${slug}`),
   getFavorites: () => apiRequest('/user/favorites'),
   toggleFavorite: (tool_slug) => apiRequest('/user/favorites/toggle', { method: 'POST', body: JSON.stringify({ tool_slug }) }),
   getSavedResults: () => apiRequest('/user/saved-results'),
