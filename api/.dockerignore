@@ -1,0 +1,17 @@
+.git
+.env
+.env.*
+!.env.example
+vendor/
+node_modules/
+storage/logs/*.log
+storage/framework/cache/data/*
+storage/framework/sessions/*
+storage/framework/views/*.php
+database/*.sqlite
+database/*.sqlite-*
+database/backups_json/
+database/*.sql
+database/export_and_backup_sqlite.php
+database/migrate_and_seed_staging_postgres.php
+database/test_*.php
