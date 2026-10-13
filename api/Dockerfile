@@ -29,4 +29,4 @@ RUN touch database/database.sqlite && chmod 666 database/database.sqlite
 ENV PORT=8080
 EXPOSE 8080
 
-CMD ["sh", "-c", "php artisan key:generate --force || true; php artisan migrate --force || true; php artisan db:seed --force || true; php -S 0.0.0.0:${PORT:-8080} -t public"]
+CMD ["sh", "-c", "cp -n .env.example .env || true; php artisan key:generate --force || true; php artisan migrate --force || true; php artisan db:seed --force || true; php -S 0.0.0.0:${PORT:-8080} -t public"]

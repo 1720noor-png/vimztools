@@ -1,13 +1,24 @@
 import { useState } from 'react'
 import { Field, CopyBtn, Msg } from '../../components/ui.jsx'
 
+const escHtml = (s) =>
+  s
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;')
+
 export default function MarkdownPreview() {
   const [md, setMd] = useState('')
   const [html, setHtml] = useState('')
 
   const convert = () => {
-    if (!md.trim()) return
-    let h = md
+    if (!md.trim()) {
+      setHtml('')
+      return
+    }
+    let h = escHtml(md)
       .replace(/^### (.+)$/gm, '<h3>$1</h3>')
       .replace(/^## (.+)$/gm, '<h2>$1</h2>')
       .replace(/^# (.+)$/gm, '<h1>$1</h1>')
@@ -16,7 +27,13 @@ export default function MarkdownPreview() {
       .replace(/`(.+?)`/g, '<code>$1</code>')
       .replace(/^\- (.+)$/gm, '<li>$1</li>')
       .replace(/^\d+\. (.+)$/gm, '<li>$1</li>')
-      .replace(/\[(.+?)\]\((.+?)\)/g, '<a href="$2">$1</a>')
+      .replace(/\[(.+?)\]\((.+?)\)/g, (_, label, rawUrl) => {
+        const cleanUrl = rawUrl.trim()
+        const isSafe = /^(https?:\/\/|mailto:|\/|#)/i.test(cleanUrl)
+        return isSafe
+          ? `<a href="${cleanUrl}" target="_blank" rel="noopener noreferrer">${label}</a>`
+          : `<a href="#" rel="noopener noreferrer">${label}</a>`
+      })
       .replace(/^---$/gm, '<hr/>')
       .replace(/\n\n/g, '</p><p>')
     setHtml('<p>' + h + '</p>')

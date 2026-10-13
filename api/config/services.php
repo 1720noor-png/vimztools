@@ -35,4 +35,13 @@ return [
         ],
     ],
 
+    'lemonsqueezy' => [
+        'api_key' => env('LEMONSQUEEZY_API_KEY'),
+        'store_id' => env('LEMONSQUEEZY_STORE_ID'),
+        'webhook_secret' => env('LEMONSQUEEZY_WEBHOOK_SECRET'),
+        'pro_monthly_variant_id' => env('LEMONSQUEEZY_PRO_MONTHLY_VARIANT_ID'),
+        'pro_annual_variant_id' => env('LEMONSQUEEZY_PRO_ANNUAL_VARIANT_ID'),
+        'single_tool_variant_id' => env('LEMONSQUEEZY_SINGLE_TOOL_VARIANT_ID'),
+    ],
+
 ];

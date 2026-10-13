@@ -3,6 +3,7 @@
 echo "==> Starting VimzTools Laravel API..."
 
 # Generate app key if needed
+cp -n .env.example .env || true
 php artisan key:generate --force || true
 
 # Run database migration and seeding

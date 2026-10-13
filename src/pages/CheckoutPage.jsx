@@ -93,6 +93,7 @@ export default function CheckoutPage() {
       const res = await checkoutApi.createSession({
         tier: tierParam,
         tool_slug: slugParam || null,
+        guest_email: emailToUse,
         redirect_url: returnUrl,
       })
 
@@ -102,7 +103,7 @@ export default function CheckoutPage() {
       }
 
       // Payments are deferred
-      setError('Online payments are currently deferred while payment infrastructure is prepared. No charges were made. All 1,059 tools remain available for free calculations!')
+      setError('Online payments (Google Pay & Card) are currently deferred while merchant verification is completed. No charges were made. All 1,059 tools remain available for free calculations!')
     } catch (err) {
       setError(err.message || 'Online payments are currently deferred. All 1,059 tools remain free for calculations.')
     } finally {

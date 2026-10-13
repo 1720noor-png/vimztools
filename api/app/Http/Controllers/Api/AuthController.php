@@ -66,6 +66,9 @@ class AuthController extends Controller
                 'name' => $user->name,
                 'email' => $user->email,
                 'role' => $user->role,
+                'is_pro' => $user->hasProSubscription(),
+                'subscription_tier' => $user->subscription_tier ?: 'free',
+                'subscription_status' => $user->subscription_status ?: 'none',
             ],
             'token' => $token,
         ]);
@@ -81,6 +84,9 @@ class AuthController extends Controller
                 'name' => $user->name,
                 'email' => $user->email,
                 'role' => $user->role,
+                'is_pro' => $user->hasProSubscription(),
+                'subscription_tier' => $user->subscription_tier ?: 'free',
+                'subscription_status' => $user->subscription_status ?: 'none',
             ],
         ]);
     }
