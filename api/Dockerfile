@@ -21,12 +21,14 @@ COPY . /var/www/html
 
 RUN composer install --no-dev --optimize-autoloader --no-interaction
 
-RUN mkdir -p bootstrap/cache storage/framework/sessions storage/framework/views storage/framework/cache storage/logs database \
-    && chmod -R 777 bootstrap/cache storage database
+RUN mkdir -p bootstrap/cache storage/framework/sessions storage/framework/views storage/framework/cache storage/logs database /data \
+    && sed -i 's/\r$//' /var/www/html/entrypoint.sh \
+    && chmod -R 777 bootstrap/cache storage database /data \
+    && chmod +x /var/www/html/entrypoint.sh
 
 RUN touch database/database.sqlite && chmod 666 database/database.sqlite
 
 ENV PORT=8080
 EXPOSE 8080
 
-CMD ["sh", "-c", "cp -n .env.example .env || true; php artisan key:generate --force || true; php artisan migrate --force || true; php artisan db:seed --force || true; php -S 0.0.0.0:${PORT:-8080} -t public"]
+CMD ["/bin/sh", "/var/www/html/entrypoint.sh"]

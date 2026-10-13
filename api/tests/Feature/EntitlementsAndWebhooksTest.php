@@ -555,6 +555,12 @@ class EntitlementsAndWebhooksTest extends TestCase
         $root->assertStatus(200);
         $root->assertJson(['status' => 'ok', 'service' => 'Vimz.ai Laravel API']);
 
+        $spaRoot = $this->get('/', ['Accept' => 'text/html']);
+        $spaRoot->assertStatus(200);
+
+        $spaRoute = $this->get('/developer-tools/markdown-preview', ['Accept' => 'text/html']);
+        $spaRoute->assertStatus(200);
+
         $health = $this->getJson('/api/health');
         $health->assertStatus(200);
         $health->assertJson([

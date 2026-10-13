@@ -1,0 +1,16 @@
+{
+  "name": "Vimztools – 1,000 Free In-Browser Tools",
+  "short_name": "Vimztools",
+  "description": "1,000 free, fast, private online tools for developers, students, finance, design, office, and daily life.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0e16",
+  "theme_color": "#0B5FFF",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    }
+  ]
+}
