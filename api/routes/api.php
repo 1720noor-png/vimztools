@@ -9,6 +9,8 @@ use App\Http\Controllers\Api\UserDashboardController;
 use App\Http\Controllers\Api\AdminController;
 use App\Http\Controllers\Api\WebhookController;
 use App\Http\Controllers\Api\EntitlementController;
+use App\Http\Controllers\Api\AiChatController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -56,6 +58,14 @@ Route::post('/webhooks/lemonsqueezy', [WebhookController::class, 'handleLemonSqu
 // Token verification & download tracking
 Route::get('/download/verify/{token}', [DownloadController::class, 'verifyToken']);
 Route::post('/download/record/{token}', [DownloadController::class, 'recordDownload']);
+
+// AI Assistant Chat & History Persistence (Rate-limited, Guest or Authenticated)
+Route::prefix('ai')->middleware('throttle:60,1')->group(function () {
+    Route::post('/chat', [AiChatController::class, 'chat']);
+    Route::get('/history', [AiChatController::class, 'history']);
+    Route::delete('/history', [AiChatController::class, 'clearHistory']);
+});
+
 
 /*
 |--------------------------------------------------------------------------

@@ -1,20 +1,36 @@
 import { useState, useRef, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { sendMessageToAssistant } from '@services/ai/aiAssistantService.js'
+import { aiChatApi } from '@/api/client.js'
 
 const DEFAULT_SUGGESTIONS = [
   'Mera 8% return hai, kitne saal me paisa double hoga?',
   'I attended 36 out of 45 classes, can I miss next class and stay at 75%?',
   'What is an annual salary of $100,000 as an hourly wage?',
-  'Split a $140 bill with 18% tip between 4 friends'
+  'Convert 100 C to Fahrenheit'
 ]
 
 export default function AiChatAssistant() {
   const [isOpen, setIsOpen] = useState(false)
+  const [sessionId] = useState(() => {
+    try {
+      let id = localStorage.getItem('vimz_ai_session_id')
+      if (!id) {
+        id = typeof crypto !== 'undefined' && crypto.randomUUID
+          ? crypto.randomUUID()
+          : 'sess_' + Math.random().toString(36).substring(2, 15)
+        localStorage.setItem('vimz_ai_session_id', id)
+      }
+      return id
+    } catch {
+      return 'sess_' + Math.random().toString(36).substring(2, 15)
+    }
+  })
+
   const [messages, setMessages] = useState([
     {
       role: 'assistant',
-      text: 'Salam! I am the Vimz.ai Intelligent Assistant. Ask me any calculation or tool question in English or Roman Urdu! (e.g. *"Mera paisa kab double hoga"*, *"attendance short check karo"*)'
+      text: 'Salam! I am the Vimz.ai Intelligent Assistant. Ask me any calculation or tool question in English or Roman Urdu! (e.g. *"Mera paisa kab double hoga"*, *"convert 10 km to miles"*, *"convert 100 C to Fahrenheit"*)'
     }
   ])
   const [input, setInput] = useState('')
@@ -30,6 +46,28 @@ export default function AiChatAssistant() {
 
   const messagesEndRef = useRef(null)
   const inputRef = useRef(null)
+
+  // Fetch persisted history on mount if available
+  useEffect(() => {
+    aiChatApi.getHistory(sessionId)
+      .then((res) => {
+        if (res?.messages && res.messages.length > 0) {
+          const loaded = res.messages.map((m) => ({
+            role: m.role,
+            text: m.content,
+            toolCall: m.tool_name ? { name: m.tool_name, args: m.tool_args } : null,
+            toolSlug: m.tool_slug,
+            link: m.link,
+            data: m.tool_result,
+            level: m.level
+          }))
+          setMessages(loaded)
+        }
+      })
+      .catch(() => {
+        // Fallback gracefully without blocking
+      })
+  }, [sessionId])
 
   useEffect(() => {
     if (isOpen) {
@@ -50,6 +88,20 @@ export default function AiChatAssistant() {
       /* ignore */
     }
     setShowSettings(false)
+  }
+
+  const handleClearChat = async () => {
+    try {
+      await aiChatApi.clearHistory(sessionId)
+    } catch {
+      /* ignore */
+    }
+    setMessages([
+      {
+        role: 'assistant',
+        text: 'Chat history cleared. Salam! Ask me any calculation or tool question in English or Roman Urdu!'
+      }
+    ])
   }
 
   const handleSend = async (textToSend) => {
@@ -73,6 +125,21 @@ export default function AiChatAssistant() {
         data: res.data
       }
       setMessages((prev) => [...prev, botMsg])
+
+      // Persist turn to backend database (non-blocking)
+      aiChatApi.recordChat({
+        session_id: sessionId,
+        message: text,
+        reply: res.reply,
+        tool_name: res.toolCall?.name || res.tool,
+        tool_slug: res.toolSlug,
+        tool_args: res.toolCall?.args || res.args,
+        tool_result: res.data,
+        link: res.link,
+        level: res.level || 'L2'
+      }).catch(() => {
+        // Fallback smoothly if offline
+      })
     } catch (err) {
       setMessages((prev) => [
         ...prev,
@@ -163,6 +230,15 @@ export default function AiChatAssistant() {
               <button
                 type="button"
                 className="btn ghost"
+                onClick={handleClearChat}
+                title="Clear chat history"
+                style={{ padding: '6px 10px', fontSize: '0.85rem' }}
+              >
+                🗑️
+              </button>
+              <button
+                type="button"
+                className="btn ghost"
                 onClick={() => setShowSettings(!showSettings)}
                 title="API Settings"
                 style={{ padding: '6px 10px', fontSize: '0.85rem' }}
@@ -199,28 +275,23 @@ export default function AiChatAssistant() {
                   type="password"
                   placeholder="AIzaSy... (leave blank for free mode)"
                   defaultValue={apiKey}
-                  id="gemini-key-input"
-                  style={{ flex: 1, padding: '6px 10px', fontSize: '0.82rem', borderRadius: '6px' }}
-                />
-                <button
-                  type="button"
-                  className="btn primary"
-                  style={{ padding: '6px 12px', fontSize: '0.8rem' }}
-                  onClick={() => {
-                    const val = document.getElementById('gemini-key-input')?.value || ''
-                    handleSaveApiKey(val.trim())
+                  onBlur={(e) => handleSaveApiKey(e.target.value.trim())}
+                  style={{
+                    flex: 1,
+                    padding: '6px 10px',
+                    borderRadius: '6px',
+                    border: '1px solid var(--border-color, #cbd5e1)',
+                    fontSize: '0.82rem'
                   }}
-                >
-                  Save
-                </button>
+                />
               </div>
               <p style={{ margin: '6px 0 0', color: 'var(--text-muted, #64748b)', fontSize: '0.75rem' }}>
-                Without an API key, the assistant runs in 100% free deterministic mode using our pure engines!
+                Keys remain in your local browser only. Zero server transmission.
               </p>
             </div>
           )}
 
-          {/* Message List */}
+          {/* Messages Container */}
           <div
             style={{
               flex: 1,
@@ -231,138 +302,108 @@ export default function AiChatAssistant() {
               gap: '12px'
             }}
           >
-            {messages.map((m, i) => {
+            {messages.map((m, idx) => {
               const isUser = m.role === 'user'
               return (
                 <div
-                  key={i}
+                  key={idx}
                   style={{
-                    alignSelf: isUser ? 'flex-end' : 'flex-start',
-                    maxWidth: '88%',
-                    background: isUser ? 'var(--accent, #6366f1)' : 'var(--bg-card, #f8fafc)',
-                    color: isUser ? '#ffffff' : 'inherit',
-                    padding: '10px 14px',
-                    borderRadius: isUser ? '14px 14px 2px 14px' : '14px 14px 14px 2px',
-                    border: isUser ? 'none' : '1px solid var(--border-color, #e2e8f0)',
-                    fontSize: '0.88rem',
-                    lineHeight: 1.45,
-                    wordBreak: 'break-word'
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: isUser ? 'flex-end' : 'flex-start'
                   }}
                 >
-                  <div>{m.text}</div>
+                  <div
+                    style={{
+                      maxWidth: '85%',
+                      padding: '10px 14px',
+                      borderRadius: isUser ? '14px 14px 2px 14px' : '14px 14px 14px 2px',
+                      background: isUser ? 'var(--color-primary, #4f46e5)' : 'var(--bg-card, #f8fafc)',
+                      color: isUser ? '#ffffff' : 'inherit',
+                      border: isUser ? 'none' : '1px solid var(--border-color, #e2e8f0)',
+                      fontSize: '0.88rem',
+                      lineHeight: 1.45,
+                      whiteSpace: 'pre-wrap',
+                      wordBreak: 'break-word'
+                    }}
+                  >
+                    {m.text}
 
-                  {/* Golden Rule Execution Badge */}
-                  {m.toolCall && (
-                    <div
-                      style={{
-                        marginTop: '8px',
-                        paddingTop: '6px',
-                        borderTop: isUser ? '1px solid rgba(255,255,255,0.2)' : '1px solid var(--border-color, #e2e8f0)',
-                        fontSize: '0.75rem',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'space-between',
-                        gap: '6px'
-                      }}
-                    >
-                      <span style={{ opacity: 0.85 }}>⚡ Executed: {m.toolCall}</span>
-                      {m.link ? (
+                    {/* Level 1 Deep-Link to Interactive Tool */}
+                    {m.link && (
+                      <div style={{ marginTop: '10px', paddingTop: '8px', borderTop: '1px dashed rgba(100, 116, 139, 0.3)' }}>
                         <Link
                           to={m.link}
                           onClick={() => setIsOpen(false)}
                           style={{
-                            color: isUser ? '#ffffff' : 'var(--accent, #6366f1)',
+                            display: 'inline-flex',
+                            alignItems: 'center',
+                            gap: '4px',
+                            color: isUser ? '#e0e7ff' : '#4f46e5',
                             fontWeight: 600,
-                            textDecoration: 'underline'
+                            textDecoration: 'underline',
+                            fontSize: '0.82rem'
                           }}
                         >
-                          Open Pre-filled Tool →
+                          👉 Open tool with pre-filled inputs
                         </Link>
-                      ) : (
-                        m.toolSlug && (
-                          <Link
-                            to={`/tools/${m.toolSlug}`}
-                            onClick={() => setIsOpen(false)}
-                            style={{
-                              color: isUser ? '#ffffff' : 'var(--accent, #6366f1)',
-                              fontWeight: 600,
-                              textDecoration: 'underline'
-                            }}
-                          >
-                            Open Full Tool →
-                          </Link>
-                        )
-                      )}
-                    </div>
-                  )}
+                      </div>
+                    )}
+                  </div>
                 </div>
               )
             })}
             {loading && (
-              <div
-                style={{
-                  alignSelf: 'flex-start',
-                  padding: '10px 14px',
-                  borderRadius: '14px',
-                  background: 'var(--bg-card, #f8fafc)',
-                  border: '1px solid var(--border-color, #e2e8f0)',
-                  fontSize: '0.85rem',
-                  color: 'var(--text-muted, #64748b)'
-                }}
-              >
-                Thinking & extracting parameters...
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--text-muted, #64748b)', fontSize: '0.82rem' }}>
+                <span className="spinner-dots">● ● ●</span>
+                <span>Calculating pure formula...</span>
               </div>
             )}
             <div ref={messagesEndRef} />
           </div>
 
-          {/* Quick Suggestions (if only greeting message) */}
-          {messages.length === 1 && (
-            <div style={{ padding: '0 16px 8px', display: 'flex', flexDirection: 'column', gap: '6px' }}>
-              <span style={{ fontSize: '0.75rem', color: 'var(--text-muted, #64748b)', fontWeight: 600 }}>
-                Try asking:
-              </span>
+          {/* Quick Suggestions (Shown when only welcome message exists) */}
+          {messages.length <= 1 && (
+            <div style={{ padding: '0 16px 12px', display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
               {DEFAULT_SUGGESTIONS.map((s, idx) => (
                 <button
                   key={idx}
                   type="button"
                   onClick={() => handleSend(s)}
                   style={{
-                    textAlign: 'left',
+                    fontSize: '0.74rem',
                     padding: '6px 10px',
-                    fontSize: '0.78rem',
-                    background: 'var(--bg-sub, #f1f5f9)',
-                    border: '1px solid var(--border-color, #e2e8f0)',
                     borderRadius: '8px',
-                    cursor: 'pointer',
+                    border: '1px solid var(--border-color, #e2e8f0)',
+                    background: 'var(--bg-sub, #f8fafc)',
                     color: 'var(--text-main, #334155)',
-                    transition: 'background 0.15s ease'
+                    cursor: 'pointer',
+                    textAlign: 'left'
                   }}
                 >
-                  💡 {s}
+                  {s}
                 </button>
               ))}
             </div>
           )}
 
-          {/* Input Area */}
+          {/* Chat Input Bar */}
           <div
             style={{
               padding: '12px 16px',
               borderTop: '1px solid var(--border-color, #e2e8f0)',
               background: 'var(--bg-panel, #ffffff)',
               display: 'flex',
-              gap: '8px',
-              alignItems: 'center'
+              gap: '8px'
             }}
           >
             <input
               ref={inputRef}
               type="text"
-              placeholder="Type your question or numbers..."
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={handleKeyDown}
+              placeholder="Ask anything (e.g. 10 km to miles)..."
               disabled={loading}
               style={{
                 flex: 1,
@@ -374,10 +415,10 @@ export default function AiChatAssistant() {
             />
             <button
               type="button"
-              className="btn primary"
               onClick={() => handleSend()}
               disabled={!input.trim() || loading}
-              style={{ padding: '10px 16px', borderRadius: '8px', fontWeight: 600 }}
+              className="btn primary"
+              style={{ padding: '10px 16px', fontSize: '0.88rem' }}
             >
               Send
             </button>
