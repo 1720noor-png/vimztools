@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Field, Msg, CopyBtn } from '../../components/ui.jsx'
+import { calculateCreditCardPayoff } from '@tool-core/finance/creditCardPayoff.js'
 
 export default function CreditCardMinimumPayoffCalculator() {
   const [balance, setBalance] = useState('5000')
@@ -10,19 +11,13 @@ export default function CreditCardMinimumPayoffCalculator() {
 
   const calc = () => {
     try {
-      
-      const b = parseFloat(balance), r = parseFloat(apr) / 100 / 12, p = parseFloat(fixedPayment)
-      if (isNaN(b) || isNaN(r) || isNaN(p) || b <= 0 || r <= 0 || p <= 0) return setErr('Enter valid card balance and payment.')
-      const minPaymentNeeded = b * r
-      if (p <= minPaymentNeeded) return setErr(`Monthly payment must be greater than monthly interest ($${minPaymentNeeded.toFixed(2)}).`)
       setErr('')
-      
-      const months = Math.ceil(-Math.log(1 - (b * r) / p) / Math.log(1 + r))
-      const totalPaid = months * p
-      const interest = totalPaid - b
-      const years = (months / 12).toFixed(1)
-      setRes({ val: `Paid off in ${months} months (${years} yrs) | Total Interest Paid: $${interest.toFixed(2)}`, copyText: `Balance: $${b}, Payment: $${p}/mo. Paid in ${months} mos. Interest: $${interest.toFixed(2)}` })
-    
+      const outcome = calculateCreditCardPayoff({
+        balance,
+        apr,
+        fixedPayment
+      })
+      setRes({ val: outcome.summary, copyText: outcome.copyText })
     } catch (e) {
       setErr(e.message || 'Calculation error.')
     }
@@ -33,16 +28,14 @@ export default function CreditCardMinimumPayoffCalculator() {
   return (
     <div>
       <div className="row">
-        
-        
         <Field label="Credit Card Balance ($)">
-          <input type="number"  value={balance} onChange={(e) => setBalance(e.target.value)} placeholder="" />
+          <input type="number" value={balance} onChange={(e) => setBalance(e.target.value)} placeholder="" />
         </Field>
         <Field label="Card APR (%)">
           <input type="number" step="0.1" value={apr} onChange={(e) => setApr(e.target.value)} placeholder="" />
         </Field>
         <Field label="Fixed Monthly Payment ($)">
-          <input type="number"  value={fixedPayment} onChange={(e) => setFixedPayment(e.target.value)} placeholder="" />
+          <input type="number" value={fixedPayment} onChange={(e) => setFixedPayment(e.target.value)} placeholder="" />
         </Field>
       </div>
       <div className="actions" style={{ marginTop: '1rem' }}>

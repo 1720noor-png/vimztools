@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Field, Msg, CopyBtn } from '../../components/ui.jsx'
+import { calculatePersonalNetWorth } from '@tool-core/finance/personalNetWorth.js'
 
 export default function PersonalNetWorthCalculator() {
   const [cash, setCash] = useState('15000')
@@ -11,13 +12,14 @@ export default function PersonalNetWorthCalculator() {
 
   const calc = () => {
     try {
-      
-      const c = parseFloat(cash)||0, inv = parseFloat(investments)||0, pr = parseFloat(property)||0, d = parseFloat(debts)||0
       setErr('')
-      const totalAssets = c + inv + pr
-      const netWorth = totalAssets - d
-      setRes({ val: `Net Worth: $${netWorth.toLocaleString()} (Assets: $${totalAssets.toLocaleString()} - Debts: $${d.toLocaleString()})`, copyText: `Net Worth: $${netWorth} (Assets: $${totalAssets}, Debts: ${d})` })
-    
+      const outcome = calculatePersonalNetWorth({
+        cash,
+        investments,
+        property,
+        debts
+      })
+      setRes({ val: outcome.summary, copyText: outcome.copyText })
     } catch (e) {
       setErr(e.message || 'Calculation error.')
     }
@@ -28,19 +30,17 @@ export default function PersonalNetWorthCalculator() {
   return (
     <div>
       <div className="row">
-        
-        
         <Field label="Cash & Bank Accounts ($)">
-          <input type="number"  value={cash} onChange={(e) => setCash(e.target.value)} placeholder="" />
+          <input type="number" value={cash} onChange={(e) => setCash(e.target.value)} placeholder="" />
         </Field>
         <Field label="Investments & Retirement ($)">
-          <input type="number"  value={investments} onChange={(e) => setInvestments(e.target.value)} placeholder="" />
+          <input type="number" value={investments} onChange={(e) => setInvestments(e.target.value)} placeholder="" />
         </Field>
         <Field label="Real Estate & Car Value ($)">
-          <input type="number"  value={property} onChange={(e) => setProperty(e.target.value)} placeholder="" />
+          <input type="number" value={property} onChange={(e) => setProperty(e.target.value)} placeholder="" />
         </Field>
         <Field label="Mortgage, Loans & Credit Debt ($)">
-          <input type="number"  value={debts} onChange={(e) => setDebts(e.target.value)} placeholder="" />
+          <input type="number" value={debts} onChange={(e) => setDebts(e.target.value)} placeholder="" />
         </Field>
       </div>
       <div className="actions" style={{ marginTop: '1rem' }}>
