@@ -106,3 +106,15 @@ export const adminApi = {
   updateTool: (id, data) => apiRequest(`/admin/tools/${id}`, { method: 'PUT', body: JSON.stringify(data) }),
   getPurchases: (page = 1) => apiRequest(`/admin/purchases?page=${page}`),
 }
+
+// AI Assistant Chat & History API
+export const aiChatApi = {
+  recordChat: (data) => apiRequest('/ai/chat', { method: 'POST', body: JSON.stringify(data) }),
+  getHistory: (sessionId = null) => {
+    const query = sessionId ? `?session_id=${encodeURIComponent(sessionId)}` : ''
+    return apiRequest(`/ai/history${query}`)
+  },
+  clearHistory: (sessionId = null) =>
+    apiRequest('/ai/history', { method: 'DELETE', body: JSON.stringify({ session_id: sessionId }) }),
+}
+
