@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Field, Msg, CopyBtn } from '../../components/ui.jsx'
+import { calculateEmergencySavingsFund } from '@tool-core/finance/emergencySavingsFund.js'
 
 export default function EmergencySavingsFundCalculator() {
   const [housing, setHousing] = useState('1600')
@@ -12,13 +13,15 @@ export default function EmergencySavingsFundCalculator() {
 
   const calc = () => {
     try {
-      
-      const h = parseFloat(housing)||0, u = parseFloat(utilities)||0, f = parseFloat(food)||0, o = parseFloat(other)||0, m = parseFloat(months)||3
       setErr('')
-      const monthlyEssential = h + u + f + o
-      const totalTarget = monthlyEssential * m
-      setRes({ val: `Target Emergency Fund: $${totalTarget.toLocaleString()} (${m} months of $${monthlyEssential.toLocaleString()}/mo essential living cost)`, copyText: `Emergency Fund Target: $${totalTarget} (${m} months @ $${monthlyEssential}/mo)` })
-    
+      const outcome = calculateEmergencySavingsFund({
+        housing,
+        utilities,
+        food,
+        other,
+        months
+      })
+      setRes({ val: outcome.summary, copyText: outcome.copyText })
     } catch (e) {
       setErr(e.message || 'Calculation error.')
     }
@@ -29,22 +32,20 @@ export default function EmergencySavingsFundCalculator() {
   return (
     <div>
       <div className="row">
-        
-        
         <Field label="Monthly Rent / Mortgage ($)">
-          <input type="number"  value={housing} onChange={(e) => setHousing(e.target.value)} placeholder="" />
+          <input type="number" value={housing} onChange={(e) => setHousing(e.target.value)} placeholder="" />
         </Field>
         <Field label="Monthly Utilities & Bills ($)">
-          <input type="number"  value={utilities} onChange={(e) => setUtilities(e.target.value)} placeholder="" />
+          <input type="number" value={utilities} onChange={(e) => setUtilities(e.target.value)} placeholder="" />
         </Field>
         <Field label="Monthly Food & Groceries ($)">
-          <input type="number"  value={food} onChange={(e) => setFood(e.target.value)} placeholder="" />
+          <input type="number" value={food} onChange={(e) => setFood(e.target.value)} placeholder="" />
         </Field>
         <Field label="Other Essential Expenses ($)">
-          <input type="number"  value={other} onChange={(e) => setOther(e.target.value)} placeholder="" />
+          <input type="number" value={other} onChange={(e) => setOther(e.target.value)} placeholder="" />
         </Field>
         <Field label="Desired Safety Buffer (Months)">
-          <input type="number"  value={months} onChange={(e) => setMonths(e.target.value)} placeholder="" />
+          <input type="number" value={months} onChange={(e) => setMonths(e.target.value)} placeholder="" />
         </Field>
       </div>
       <div className="actions" style={{ marginTop: '1rem' }}>
