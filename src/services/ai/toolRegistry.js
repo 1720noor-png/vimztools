@@ -30,6 +30,10 @@ import { formatJson, minifyJson, validateJson } from '@tool-core/developer/jsonF
 import { encodeBase64, decodeBase64 } from '@tool-core/developer/base64Converter.js'
 import { encodeUrlText, encodeFullUrl, decodeUrl } from '@tool-core/developer/urlEncoderDecoder.js'
 import { generateHash, normalizeAlgorithm } from '@tool-core/developer/hashGenerator.js'
+import { calculateTextStats } from '@tool-core/writing/wordCounter.js'
+import { convertTextCase } from '@tool-core/writing/textCaseConverter.js'
+import { analyzeWordFrequency } from '@tool-core/writing/wordFrequencyDensity.js'
+import { deduplicateLines } from '@tool-core/writing/lineDeduplicator.js'
 
 /**
  * Tool Registry for AI Assistant
@@ -548,6 +552,61 @@ export const AI_TOOL_DEFINITIONS = [
         summary: `${alg} Hash: ${hash}`
       }
     }
+  },
+  {
+    name: 'calculateTextStats',
+    slug: 'word-counter-text-stats',
+    description: 'Count words, characters (with and without spaces), sentences, paragraphs, and estimate reading and speaking time.',
+    parameters: {
+      type: 'OBJECT',
+      properties: {
+        text: { type: 'STRING', description: 'Text content to count and analyze' }
+      },
+      required: ['text']
+    },
+    execute: (args) => calculateTextStats(args.text)
+  },
+  {
+    name: 'convertTextCase',
+    slug: 'text-case-converter-tool',
+    description: 'Convert text between UPPERCASE, lowercase, Title Case, Sentence case, camelCase, PascalCase, snake_case, and kebab-case.',
+    parameters: {
+      type: 'OBJECT',
+      properties: {
+        text: { type: 'STRING', description: 'Input text to transform' },
+        mode: { type: 'STRING', description: 'Target case: upper, lower, title, sentence, camel, pascal, snake, or kebab' }
+      },
+      required: ['text']
+    },
+    execute: (args) => convertTextCase(args.text, args.mode)
+  },
+  {
+    name: 'analyzeWordFrequency',
+    slug: 'word-frequency-density-analyzer',
+    description: 'Analyze text for total word count, unique keywords, and top recurring keyword density percentages.',
+    parameters: {
+      type: 'OBJECT',
+      properties: {
+        text: { type: 'STRING', description: 'Text to analyze' },
+        topN: { type: 'INTEGER', description: 'Number of top keywords to return (default 5)' }
+      },
+      required: ['text']
+    },
+    execute: (args) => analyzeWordFrequency(args.text, { topN: args.topN })
+  },
+  {
+    name: 'deduplicateLines',
+    slug: 'duplicate-line-deduplicator',
+    description: 'Remove duplicate lines from text lists, sort lines alphabetically, and strip empty lines.',
+    parameters: {
+      type: 'OBJECT',
+      properties: {
+        text: { type: 'STRING', description: 'Multiline text or list of items' },
+        sortMode: { type: 'STRING', description: "Sort mode: 'none', 'asc', or 'desc'" }
+      },
+      required: ['text']
+    },
+    execute: (args) => deduplicateLines(args.text, { sortMode: args.sortMode })
   }
 ]
 

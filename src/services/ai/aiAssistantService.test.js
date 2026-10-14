@@ -187,6 +187,41 @@ describe('AI Assistant Service & Golden Rule Engine', () => {
       expect(out.link).toContain('/tools/hash-generator?txt=hello&alg=SHA-256')
     })
 
+    it('extracts text to count words and statistics', () => {
+      const out = extractAndExecuteLocal('word count for: "The quick brown fox jumps over the lazy dog"')
+      expect(out).toBeDefined()
+      expect(out.tool).toBe('calculateTextStats')
+      expect(out.result.data.words).toBe(9)
+      expect(out.link).toContain('/tools/word-counter-text-stats?text=')
+      expect(out.text).toContain('Words: **9**')
+    })
+
+    it('extracts text and mode to convert text case', () => {
+      const out = extractAndExecuteLocal('convert to camelcase: "make this camel case"')
+      expect(out).toBeDefined()
+      expect(out.tool).toBe('convertTextCase')
+      expect(out.result.data.val).toBe('makeThisCamelCase')
+      expect(out.link).toContain('/tools/text-case-converter-tool?text=')
+      expect(out.text).toContain('`makeThisCamelCase`')
+    })
+
+    it('extracts text to analyze word frequency and keyword density', () => {
+      const out = extractAndExecuteLocal('word frequency for: "apple banana apple orange apple"')
+      expect(out).toBeDefined()
+      expect(out.tool).toBe('analyzeWordFrequency')
+      expect(out.result.data.totalWords).toBe(5)
+      expect(out.link).toContain('/tools/word-frequency-density-analyzer?text=')
+      expect(out.text).toContain('apple')
+    })
+
+    it('extracts multiline list to remove duplicate lines', () => {
+      const out = extractAndExecuteLocal('remove duplicates from: apple\nbanana\napple')
+      expect(out).toBeDefined()
+      expect(out.tool).toBe('deduplicateLines')
+      expect(out.result.data.uniqueCount).toBe(2)
+      expect(out.link).toContain('/tools/duplicate-line-deduplicator?text=')
+    })
+
     it('prompts for missing parameters when intent is detected without numbers', () => {
       const out = extractAndExecuteLocal('How many years to double money?')
       expect(out).toBeDefined()
