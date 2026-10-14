@@ -70,8 +70,8 @@ export default function SpeechToText() {
       <h2>Speech to Text</h2>
       <p className="hint">Transcribe spoken words from your microphone into real-time text.</p>
 
-      <p className="hint" style={{ fontSize: '0.82rem', marginBottom: '1rem' }}>
-        🔒 Privacy Note: Standard Web Speech API in browsers such as Chrome or Edge processes speech audio using cloud speech recognition services.
+      <p className="hint" style={{ fontSize: '0.82rem', marginBottom: '1rem', background: '#f8fafc', padding: '0.5rem 0.75rem', borderRadius: '0.375rem', border: '1px solid #e2e8f0' }}>
+        🔒 <strong>Browser & Microphone Notice:</strong> Web Speech API runs client-side in modern Chromium browsers (Google Chrome, Microsoft Edge, Brave) and Safari. Microphone permission over a secure origin (HTTPS or localhost) is required.
       </p>
 
       {error && <div className="msg error">{error}</div>}

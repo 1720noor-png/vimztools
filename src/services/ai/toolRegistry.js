@@ -42,6 +42,8 @@ import { calculateAge } from '@tool-core/date/ageCalculator.js'
 import { convertTimeZone } from '@tool-core/date/timezoneConverter.js'
 import { generatePassword } from '@tool-core/security/passwordGenerator.js'
 import { calculateSubnet } from '@tool-core/networking/subnetCalculator.js'
+import { computeColumnStats } from '@tool-core/data/csvColumnStats.js'
+import { generateBatesSequence } from '@tool-core/pdf/batesStamper.js'
 
 
 
@@ -743,6 +745,36 @@ export const AI_TOOL_DEFINITIONS = [
       required: ['ip']
     },
     execute: (args) => calculateSubnet(args)
+  },
+  {
+    name: 'computeCsvStats',
+    slug: 'csv-column-stats',
+    description: 'Profile and compute column-wise descriptive statistics (mean, median, min, max, count, missing values, unique values) from CSV data.',
+    parameters: {
+      type: 'OBJECT',
+      properties: {
+        csvText: { type: 'STRING', description: 'Raw CSV text to analyze' },
+        hasHeader: { type: 'BOOLEAN', description: 'Whether the first row contains column headers (default true)' }
+      },
+      required: ['csvText']
+    },
+    execute: (args) => computeColumnStats(args.csvText, { hasHeader: args.hasHeader ?? true })
+  },
+  {
+    name: 'generateBatesSequence',
+    slug: 'pdf-bates-stamper',
+    description: 'Generate sequential Bates numbering series with custom prefix, starting number, digit padding, and suffix for legal discovery and audit exhibits.',
+    parameters: {
+      type: 'OBJECT',
+      properties: {
+        prefix: { type: 'STRING', description: 'Bates exhibit prefix (e.g. CONF-EXHIBIT, PLAINTIFF)' },
+        startNum: { type: 'INTEGER', description: 'Starting number (default 1)' },
+        digits: { type: 'INTEGER', description: 'Number of zero-padding digits (default 6)' },
+        suffix: { type: 'STRING', description: 'Optional suffix (e.g. CONFIDENTIAL)' },
+        totalPages: { type: 'INTEGER', description: 'Total document page count (default 10)' }
+      }
+    },
+    execute: (args) => generateBatesSequence(args)
   }
 ]
 

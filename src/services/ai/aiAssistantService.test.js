@@ -299,6 +299,27 @@ describe('AI Assistant Service & Golden Rule Engine', () => {
       expect(out.text).toContain('254')
     })
 
+    it('extracts CSV data and profiles column statistics', () => {
+      const out = extractAndExecuteLocal('analyze csv: id,score\n1,80\n2,90')
+      expect(out).toBeDefined()
+      expect(out.tool).toBe('computeCsvStats')
+      expect(out.result.data.rowCount).toBe(2)
+      expect(out.result.data.columnCount).toBe(2)
+      expect(out.link).toContain('/tools/csv-column-stats?text=')
+      expect(out.text).toContain('Mean 85')
+    })
+
+    it('extracts Bates prefix and page count to generate legal discovery series', () => {
+      const out = extractAndExecuteLocal('generate bates for 15 pages with prefix PLAINTIFF')
+      expect(out).toBeDefined()
+      expect(out.tool).toBe('generateBatesSequence')
+      expect(out.result.data.totalPages).toBe(15)
+      expect(out.result.data.prefix).toBe('PLAINTIFF')
+      expect(out.result.data.firstStamp).toBe('PLAINTIFF-000001')
+      expect(out.result.data.lastStamp).toBe('PLAINTIFF-000015')
+      expect(out.link).toContain('/tools/pdf-bates-stamper?prefix=PLAINTIFF&totalPages=15&startNum=1')
+    })
+
     it('prompts for missing parameters when intent is detected without numbers', () => {
       const out = extractAndExecuteLocal('How many years to double money?')
       expect(out).toBeDefined()

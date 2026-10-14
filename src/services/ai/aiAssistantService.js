@@ -657,7 +657,7 @@ export function extractAndExecuteLocal(prompt) {
   }
 
   // 25. Age & Date of Birth Calculator
-  if (/(?:age|umar|date\s*of\s*birth|dob|birthday)/i.test(p)) {
+  if (/(?:\bage\b|\bumar\b|date\s*of\s*birth|\bdob\b|\bbirthday\b)/i.test(p)) {
     const dateMatch = p.match(/\b(\d{4}[-/]\d{1,2}[-/]\d{1,2}|\d{1,2}[-/]\d{1,2}[-/]\d{4})\b/)
     if (dateMatch) {
       const birthDate = dateMatch[1]
@@ -754,7 +754,60 @@ export function extractAndExecuteLocal(prompt) {
     }
   }
 
-  // 29. Fallback: Search top matching tool from 1,059 tools index
+  // 29. CSV Column Statistics & Data Profiler
+  if (/(?:csv\s*column\s*stats|csv\s*stats|csv\s*profil|profile\s*csv|analyze\s*csv)/i.test(p) || (p.toLowerCase().includes('csv:') && p.includes(','))) {
+    const csvMatch = p.match(/csv:\s*([\s\S]+)/i)
+    if (csvMatch) {
+      const csvText = csvMatch[1].trim()
+      const res = executeTool('computeCsvStats', { csvText })
+      if (res.success) {
+        const colList = res.data.columns.map(c => `• **${c.column}** (${c.type}): ${c.type === 'numeric' ? `Mean ${c.mean}, Min ${c.min}, Max ${c.max}` : `${c.distinctCount} unique values`}`).join('\n')
+        return {
+          tool: 'computeCsvStats',
+          slug: 'csv-column-stats',
+          result: res,
+          link: `/tools/csv-column-stats?text=${encodeURIComponent(csvText)}`,
+          text: `**CSV Data Profile (${res.data.rowCount} rows, ${res.data.columnCount} columns):**\n${colList}`
+        }
+      }
+    }
+    return {
+      tool: 'computeCsvStats',
+      slug: 'csv-column-stats',
+      link: '/tools/csv-column-stats',
+      text: 'Please paste your CSV data (e.g., `analyze csv: name,age\nAlice,30\nBob,25`) or open the CSV Column Statistics tool below.'
+    }
+  }
+
+  // 30. PDF Bates Numbering & Exhibit Stamper
+  if (/(?:bates\s*number|bates\s*stamp|bates\s*sequence|exhibit\s*stamp|bates)/i.test(p)) {
+    const prefixMatch = p.match(/(?:prefix|tag)[:\s]+([a-zA-Z0-9_-]+)/i)
+    const pagesMatch = p.match(/(?:pages|count|total)[:\s]+(\d+)/i) || p.match(/(\d+)\s*pages/i)
+    const startMatch = p.match(/(?:start|from)[:\s]+(\d+)/i)
+
+    const prefix = prefixMatch ? prefixMatch[1] : 'CONF-EXHIBIT'
+    const totalPages = pagesMatch ? parseInt(pagesMatch[1], 10) : 10
+    const startNum = startMatch ? parseInt(startMatch[1], 10) : 1
+
+    const res = executeTool('generateBatesSequence', { prefix, totalPages, startNum })
+    if (res.success) {
+      return {
+        tool: 'generateBatesSequence',
+        slug: 'pdf-bates-stamper',
+        result: res,
+        link: `/tools/pdf-bates-stamper?prefix=${encodeURIComponent(prefix)}&totalPages=${totalPages}&startNum=${startNum}`,
+        text: `**Bates Series Generated:**\n• Range: **${res.data.sampleRange}**\n• Total Exhibits: **${res.data.totalPages}**\n• Format: \`${res.data.firstStamp}\` through \`${res.data.lastStamp}\``
+      }
+    }
+    return {
+      tool: 'generateBatesSequence',
+      slug: 'pdf-bates-stamper',
+      link: '/tools/pdf-bates-stamper',
+      text: 'Configure your Bates sequence (e.g., `generate bates for 20 pages with prefix PLAINTIFF`).'
+    }
+  }
+
+  // 31. Fallback: Search top matching tool from 1,059 tools index
   const matches = searchTools(p, { limit: 3 })
 
 

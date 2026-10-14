@@ -97,6 +97,10 @@ export default function PdfToWord() {
         <input type="file" accept="application/pdf" onChange={handleFileChange} />
       </div>
 
+      <p className="hint" style={{ fontSize: '0.82rem', marginBottom: '0.8rem', background: '#f8fafc', padding: '0.5rem 0.75rem', borderRadius: '0.375rem', border: '1px solid #e2e8f0' }}>
+        ℹ️ <strong>Client-Side Processing:</strong> Directly extracts document text streams and packages them into a clean, editable Microsoft Word (.docx) package inside your browser without uploading files to third-party servers.
+      </p>
+
       {error && <div className="msg error">{error}</div>}
 
       <div className="actions">
