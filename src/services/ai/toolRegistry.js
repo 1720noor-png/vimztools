@@ -38,6 +38,11 @@ import { convertUnit } from '@tool-core/conversion/unitConverter.js'
 import { convertTemperature } from '@tool-core/conversion/temperatureConverter.js'
 import { convertPxToUnits } from '@tool-core/conversion/pxRemConverter.js'
 import { calculateGeometry } from '@tool-core/math/geometryCalculator.js'
+import { calculateAge } from '@tool-core/date/ageCalculator.js'
+import { convertTimeZone } from '@tool-core/date/timezoneConverter.js'
+import { generatePassword } from '@tool-core/security/passwordGenerator.js'
+import { calculateSubnet } from '@tool-core/networking/subnetCalculator.js'
+
 
 
 /**
@@ -677,8 +682,70 @@ export const AI_TOOL_DEFINITIONS = [
       required: ['px']
     },
     execute: (args) => convertPxToUnits({ px: args.px, basePx: args.basePx })
+  },
+  {
+    name: 'calculateAge',
+    slug: 'age-calculator',
+    description: 'Calculate exact age in years, months, and days from birth date, total days lived, and countdown to next birthday. Use when user asks "meri umar kitni hai" or asks for their age.',
+    parameters: {
+      type: 'OBJECT',
+      properties: {
+        birthDate: { type: 'STRING', description: 'Date of birth (YYYY-MM-DD)' },
+        targetDate: { type: 'STRING', description: 'Optional target calculation date (defaults to today)' }
+      },
+      required: ['birthDate']
+    },
+    execute: (args) => calculateAge({ birthDate: args.birthDate || args.dob, targetDate: args.targetDate })
+  },
+  {
+    name: 'convertTimeZone',
+    slug: 'time-zone-converter',
+    description: 'Convert date and time between global time zones (e.g. UTC, GMT, PKT, EST, PST, JST). Use when user asks for world time conversion or meeting scheduling across countries.',
+    parameters: {
+      type: 'OBJECT',
+      properties: {
+        time: { type: 'STRING', description: 'Time in HH:MM format (default 12:00)' },
+        date: { type: 'STRING', description: 'Date in YYYY-MM-DD format (optional)' },
+        fromZone: { type: 'STRING', description: 'Source time zone (e.g. UTC, PKT, EST)' },
+        toZone: { type: 'STRING', description: 'Target time zone (e.g. America/New_York, Asia/Karachi, UTC)' }
+      },
+      required: ['fromZone', 'toZone']
+    },
+    execute: (args) => convertTimeZone(args)
+  },
+  {
+    name: 'generatePassword',
+    slug: 'password-generator',
+    description: 'Generate a cryptographically secure random password and compute its entropy strength in bits. Use when user asks for a strong password or password generate karne ko kahe.',
+    parameters: {
+      type: 'OBJECT',
+      properties: {
+        length: { type: 'INTEGER', description: 'Password length between 8 and 128 (default 16)' },
+        lower: { type: 'BOOLEAN', description: 'Include lowercase letters (default true)' },
+        upper: { type: 'BOOLEAN', description: 'Include uppercase letters (default true)' },
+        digits: { type: 'BOOLEAN', description: 'Include numbers (default true)' },
+        symbols: { type: 'BOOLEAN', description: 'Include symbols (default true)' },
+        avoidAmbiguous: { type: 'BOOLEAN', description: 'Avoid lookalikes (default false)' }
+      }
+    },
+    execute: (args) => generatePassword(args)
+  },
+  {
+    name: 'calculateSubnet',
+    slug: 'subnet-calculator',
+    description: 'Calculate IPv4 subnet mask, network address, broadcast address, usable host IP range, and total usable hosts from IP and CIDR prefix (e.g. 192.168.1.0/24).',
+    parameters: {
+      type: 'OBJECT',
+      properties: {
+        ip: { type: 'STRING', description: 'IPv4 address (e.g. 192.168.1.1 or 10.0.0.1/16)' },
+        cidr: { type: 'INTEGER', description: 'CIDR prefix length from 0 to 32 (optional if included in IP string)' }
+      },
+      required: ['ip']
+    },
+    execute: (args) => calculateSubnet(args)
   }
 ]
+
 
 
 export const AI_TOOL_MAP = new Map(AI_TOOL_DEFINITIONS.map((t) => [t.name, t]))

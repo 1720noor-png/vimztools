@@ -260,6 +260,45 @@ describe('AI Assistant Service & Golden Rule Engine', () => {
       expect(out.text).toContain('314.1593')
     })
 
+    it('extracts date of birth and calculates age and birthday metrics', () => {
+      const out = extractAndExecuteLocal('calculate age for 1995-04-10')
+      expect(out).toBeDefined()
+      expect(out.tool).toBe('calculateAge')
+      expect(out.result.data.years).toBeGreaterThanOrEqual(30)
+      expect(out.link).toContain('/tools/age-calculator?dob=1995-04-10')
+      expect(out.text).toContain('Years')
+      expect(out.text).toContain('Zodiac: **Aries**')
+    })
+
+    it('extracts time and timezones and performs timezone conversion', () => {
+      const out = extractAndExecuteLocal('convert 14:00 UTC to PKT')
+      expect(out).toBeDefined()
+      expect(out.tool).toBe('convertTimeZone')
+      expect(out.result.data.convertedTime).toBe('19:00')
+      expect(out.link).toContain('/tools/time-zone-converter?time=14:00&from=UTC&to=PKT')
+      expect(out.text).toContain('19:00 PKT')
+    })
+
+    it('extracts length and generates strong password with entropy metrics', () => {
+      const out = extractAndExecuteLocal('generate password 24 characters')
+      expect(out).toBeDefined()
+      expect(out.tool).toBe('generatePassword')
+      expect(out.result.data.length).toBe(24)
+      expect(out.result.data.password.length).toBe(24)
+      expect(out.link).toContain('/tools/password-generator?len=24')
+      expect(out.text).toContain('bits')
+    })
+
+    it('extracts IP and CIDR and calculates subnet details', () => {
+      const out = extractAndExecuteLocal('calculate subnet for 192.168.1.0/24')
+      expect(out).toBeDefined()
+      expect(out.tool).toBe('calculateSubnet')
+      expect(out.result.data.usableHosts).toBe(254)
+      expect(out.result.data.netmask).toBe('255.255.255.0')
+      expect(out.link).toContain('/tools/subnet-calculator?ip=192.168.1.0&cidr=24')
+      expect(out.text).toContain('254')
+    })
+
     it('prompts for missing parameters when intent is detected without numbers', () => {
       const out = extractAndExecuteLocal('How many years to double money?')
       expect(out).toBeDefined()
