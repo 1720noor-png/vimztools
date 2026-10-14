@@ -44,6 +44,9 @@ import { generatePassword } from '@tool-core/security/passwordGenerator.js'
 import { calculateSubnet } from '@tool-core/networking/subnetCalculator.js'
 import { computeColumnStats } from '@tool-core/data/csvColumnStats.js'
 import { generateBatesSequence } from '@tool-core/pdf/batesStamper.js'
+import { convertCurrency } from '@tool-core/finance/currencyConverter.js'
+import { calculateCryptoPnl } from '@tool-core/crypto/cryptoPnl.js'
+import { calculatePakistanTax } from '@tool-core/finance/pakistanTax.js'
 
 
 
@@ -775,6 +778,51 @@ export const AI_TOOL_DEFINITIONS = [
       }
     },
     execute: (args) => generateBatesSequence(args)
+  },
+  {
+    name: 'convertCurrency',
+    slug: 'currency-converter',
+    description: 'Convert amounts between world currencies (USD, PKR, EUR, GBP, AED, SAR, etc.) using baseline and live exchange rates.',
+    parameters: {
+      type: 'OBJECT',
+      properties: {
+        amount: { type: 'NUMBER', description: 'Amount to convert' },
+        from: { type: 'STRING', description: 'Source currency 3-letter code (e.g. USD, EUR, PKR)' },
+        to: { type: 'STRING', description: 'Target currency 3-letter code (e.g. PKR, USD, AED)' }
+      },
+      required: ['amount', 'from', 'to']
+    },
+    execute: (args) => convertCurrency(args)
+  },
+  {
+    name: 'calculateCryptoPnl',
+    slug: 'crypto-pnl-calculator',
+    description: 'Calculate cryptocurrency trade profit/loss, ROI percentage, maker/taker exchange fees, and break-even sell price.',
+    parameters: {
+      type: 'OBJECT',
+      properties: {
+        buyPrice: { type: 'NUMBER', description: 'Entry / Buy price per coin in USD' },
+        sellPrice: { type: 'NUMBER', description: 'Exit / Sell price per coin in USD' },
+        amount: { type: 'NUMBER', description: 'Number of crypto coins / units (default 1)' },
+        buyFeePercent: { type: 'NUMBER', description: 'Buy exchange fee percentage (default 0.1)' },
+        sellFeePercent: { type: 'NUMBER', description: 'Sell exchange fee percentage (default 0.1)' }
+      },
+      required: ['buyPrice', 'sellPrice']
+    },
+    execute: (args) => calculateCryptoPnl(args)
+  },
+  {
+    name: 'calculatePakistanTax',
+    slug: 'tax-bracket-calc',
+    description: 'Calculate Pakistan income tax, monthly salary tax deduction, and net take-home salary based on official FBR salaried tax slabs.',
+    parameters: {
+      type: 'OBJECT',
+      properties: {
+        monthlySalary: { type: 'NUMBER', description: 'Monthly gross salary in PKR' },
+        annualIncome: { type: 'NUMBER', description: 'Annual gross salary/income in PKR' }
+      }
+    },
+    execute: (args) => calculatePakistanTax(args)
   }
 ]
 

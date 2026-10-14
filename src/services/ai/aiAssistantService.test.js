@@ -320,6 +320,38 @@ describe('AI Assistant Service & Golden Rule Engine', () => {
       expect(out.link).toContain('/tools/pdf-bates-stamper?prefix=PLAINTIFF&totalPages=15&startNum=1')
     })
 
+    it('extracts currency amount and codes and performs currency conversion', () => {
+      const out = extractAndExecuteLocal('convert 100 USD to PKR')
+      expect(out).toBeDefined()
+      expect(out.tool).toBe('convertCurrency')
+      expect(out.result.data.from).toBe('USD')
+      expect(out.result.data.to).toBe('PKR')
+      expect(out.result.data.result).toBe(27850)
+      expect(out.link).toContain('/tools/currency-converter?amount=100&from=USD&to=PKR')
+      expect(out.text).toContain('27,850')
+    })
+
+    it('extracts crypto buy and sell parameters and calculates trade PnL', () => {
+      const out = extractAndExecuteLocal('crypto buy 50000 sell 60000 amount 2')
+      expect(out).toBeDefined()
+      expect(out.tool).toBe('calculateCryptoPnl')
+      expect(out.result.data.initialInvestment).toBe(100000)
+      expect(out.result.data.isProfit).toBe(true)
+      expect(out.link).toContain('/tools/crypto-pnl-calculator?buy=50000&sell=60000&amount=2')
+      expect(out.text).toContain('Profit')
+    })
+
+    it('extracts salary and calculates Pakistan FBR tax deductions', () => {
+      const out = extractAndExecuteLocal('tax on 150000 salary')
+      expect(out).toBeDefined()
+      expect(out.tool).toBe('calculatePakistanTax')
+      expect(out.result.data.monthlySalary).toBe(150000)
+      expect(out.result.data.monthlyTax).toBe(10000)
+      expect(out.result.data.monthlyTakeHome).toBe(140000)
+      expect(out.link).toContain('/tools/tax-bracket-calc?salary=150000&type=monthly')
+      expect(out.text).toContain('10,000')
+    })
+
     it('prompts for missing parameters when intent is detected without numbers', () => {
       const out = extractAndExecuteLocal('How many years to double money?')
       expect(out).toBeDefined()

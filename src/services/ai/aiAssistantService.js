@@ -2,6 +2,7 @@ import { GoogleGenAI } from '@google/genai'
 import { AI_TOOL_DEFINITIONS, executeTool } from './toolRegistry.js'
 import { searchTools } from '../search/searchEngine.js'
 import { normalizeAlgorithm } from '@tool-core/developer/hashGenerator.js'
+import { BASELINE_FOREX_RATES } from '@tool-core/finance/currencyConverter.js'
 
 export const SYSTEM_INSTRUCTION = `You are the official Vimz.ai Intelligent Assistant (Golden Rule Edition).
 Vimz.ai is a suite of 1,000+ deterministic utilities.
@@ -93,7 +94,7 @@ export function extractAndExecuteLocal(prompt) {
   }
 
   // 3. Salary to Hourly Wage
-  if (/salary|hourly|tankhwah|per hour/i.test(p)) {
+  if (!/\btax\b/i.test(p) && /salary|hourly|tankhwah|per hour/i.test(p)) {
     const salaryMatch = p.match(/(\d[\d,]*)/)
     if (salaryMatch) {
       const annualSalary = parseFloat(salaryMatch[1].replace(/,/g, ''))
@@ -807,7 +808,94 @@ export function extractAndExecuteLocal(prompt) {
     }
   }
 
-  // 31. Fallback: Search top matching tool from 1,059 tools index
+  // 31. Universal Currency Converter (Forex)
+  const currencyMatch = p.match(/(?:convert\s+)?(\d+(?:\.\d+)?)\s*([a-zA-Z]{3})\s*(?:to|in|into|me)\s*([a-zA-Z]{3})\b/i)
+  if (currencyMatch && (BASELINE_FOREX_RATES[currencyMatch[2].toUpperCase()] || BASELINE_FOREX_RATES[currencyMatch[3].toUpperCase()])) {
+    const amt = parseFloat(currencyMatch[1])
+    const from = currencyMatch[2].toUpperCase()
+    const to = currencyMatch[3].toUpperCase()
+    const res = executeTool('convertCurrency', { amount: amt, from, to })
+    if (res.success) {
+      return {
+        tool: 'convertCurrency',
+        slug: 'currency-converter',
+        result: res,
+        link: `/tools/currency-converter?amount=${amt}&from=${from}&to=${to}`,
+        text: `**Currency Exchange:**\n**${amt} ${res.data.fromName}** = **${res.data.resultFormatted} ${res.data.to}**\n• Exchange Rate: 1 ${from} = **${res.data.exchangeRate} ${to}**\n• Reciprocal: 1 ${to} = **${res.data.inverseRate} ${from}**`
+      }
+    }
+  }
+  if (/(?:currency\s*converter|convert\s*currency|exchange\s*rate|forex\s*rate|dollar\s*rate)/i.test(p)) {
+    return {
+      tool: 'convertCurrency',
+      slug: 'currency-converter',
+      link: '/tools/currency-converter',
+      text: 'Please specify the amount and currencies (e.g., `convert 100 USD to PKR` or `50 EUR to GBP`).'
+    }
+  }
+
+  // 32. Crypto Profit & Loss Calculator
+  if (/(?:crypto\s*pnl|crypto\s*profit|crypto\s*loss|bitcoin\s*profit|crypto\s*roi)/i.test(p) || (/(?:crypto|coin|btc|eth)/i.test(p) && /(?:buy|bought)/i.test(p) && /(?:sell|sold)/i.test(p))) {
+    const buyMatch = p.match(/(?:buy|bought|entry)[:\s]+(\d+(?:\.\d+)?)/i)
+    const sellMatch = p.match(/(?:sell|sold|exit)[:\s]+(\d+(?:\.\d+)?)/i)
+    const qtyMatch = p.match(/(?:amount|qty|quantity|units)[:\s]+(\d+(?:\.\d+)?)/i) || p.match(/(\d+(?:\.\d+)?)\s*(?:coins?|btc|eth|sol)\b/i)
+
+    const numMatches = p.match(/\b\d+(?:\.\d+)?\b/g)
+    const buyPrice = buyMatch ? parseFloat(buyMatch[1]) : (numMatches ? parseFloat(numMatches[0]) : null)
+    const sellPrice = sellMatch ? parseFloat(sellMatch[1]) : (numMatches && numMatches[1] ? parseFloat(numMatches[1]) : null)
+    const amount = qtyMatch ? parseFloat(qtyMatch[1]) : (numMatches && numMatches[2] ? parseFloat(numMatches[2]) : 1)
+
+    if (buyPrice !== null && sellPrice !== null) {
+      const res = executeTool('calculateCryptoPnl', { buyPrice, sellPrice, amount })
+      if (res.success) {
+        return {
+          tool: 'calculateCryptoPnl',
+          slug: 'crypto-pnl-calculator',
+          result: res,
+          link: `/tools/crypto-pnl-calculator?buy=${buyPrice}&sell=${sellPrice}&amount=${amount}`,
+          text: `**Crypto P&L Result:**\n• **${res.data.statusText}**\n• Total Invested: **$${res.data.totalCost.toLocaleString()}** | Net Proceeds: **$${res.data.netProceeds.toLocaleString()}**\n• Total Fees: **$${res.data.totalFees}** | Break-Even: **$${res.data.breakEvenPrice.toLocaleString()}**`
+        }
+      }
+    }
+    return {
+      tool: 'calculateCryptoPnl',
+      slug: 'crypto-pnl-calculator',
+      link: '/tools/crypto-pnl-calculator',
+      text: 'Please provide buy price, sell price, and quantity (e.g., `crypto buy 50000 sell 65000 amount 1` or `bought btc at 30000 sold at 35000`).'
+    }
+  }
+
+  // 33. Pakistan Income Tax & Salary Deductions
+  if ((/\btax\b/i.test(p) && /(?:salary|income|tankhwah|kamai|earnings|fbr|bracket|deduction|slab)/i.test(p)) || /(?:salary\s*tax|income\s*tax|fbr\s*tax|tax\s*bracket|tax\s*deduction|kitna\s*tax)/i.test(p)) {
+    const numMatch = p.match(/\b\d+(?:\.\d+)?\b/)
+    if (numMatch) {
+      let val = parseFloat(numMatch[0])
+      if (/(?:k\b|thousand)/i.test(p)) val *= 1000
+      else if (/(?:lakh|lac)\b/i.test(p)) val *= 100000
+      else if (/(?:million|m\b)/i.test(p)) val *= 1000000
+
+      const isAnnual = /(?:annual|per\s*year|salana|yearly)/i.test(p)
+      const args = isAnnual ? { annualIncome: val } : { monthlySalary: val }
+      const res = executeTool('calculatePakistanTax', args)
+      if (res.success) {
+        return {
+          tool: 'calculatePakistanTax',
+          slug: 'tax-bracket-calc',
+          result: res,
+          link: `/tools/tax-bracket-calc?salary=${val}&type=${isAnnual ? 'annual' : 'monthly'}`,
+          text: `**Pakistan Income Tax Calculation:**\n• Monthly Tax: **Rs. ${res.data.monthlyTax.toLocaleString()}**\n• Net Monthly Take-Home: **Rs. ${res.data.monthlyTakeHome.toLocaleString()}**\n• Annual Tax: **Rs. ${res.data.annualTax.toLocaleString()}** (${res.data.effectiveTaxRate}% effective rate)\n• *${res.data.taxSlab}*`
+        }
+      }
+    }
+    return {
+      tool: 'calculatePakistanTax',
+      slug: 'tax-bracket-calc',
+      link: '/tools/tax-bracket-calc',
+      text: 'Please specify your monthly salary or annual income (e.g., `tax on 150000 salary` or `annual income 2000000 tax`).'
+    }
+  }
+
+  // 34. Fallback: Search top matching tool from 1,059 tools index
   const matches = searchTools(p, { limit: 3 })
 
 
