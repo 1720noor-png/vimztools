@@ -83,6 +83,44 @@ describe('AI Assistant Service & Golden Rule Engine', () => {
       expect(out.result.data.totalPerPerson).toBe(57.5)
     })
 
+    it('extracts quadratic equation coefficients and solves real roots', () => {
+      const out = extractAndExecuteLocal('Solve quadratic equation with a=1, b=-5, c=6')
+      expect(out).toBeDefined()
+      expect(out.tool).toBe('solveQuadratic')
+      expect(out.result.data.x1).toBe(3)
+      expect(out.result.data.x2).toBe(2)
+      expect(out.text).toContain('x₁ = 3.0000, x₂ = 2.0000')
+    })
+
+    it('extracts numbers and calculates GCD and LCM', () => {
+      const out = extractAndExecuteLocal('Find gcd and lcm of 24 and 36')
+      expect(out).toBeDefined()
+      expect(out.tool).toBe('calculateGcdLcm')
+      expect(out.result.data.gcd).toBe(12)
+      expect(out.result.data.lcm).toBe(72)
+      expect(out.text).toContain('GCD = 12')
+      expect(out.text).toContain('LCM = 72')
+    })
+
+    it('extracts numbers and calculates standard deviation', () => {
+      const out = extractAndExecuteLocal('calculate standard deviation for 10, 20, 30, 40, 50')
+      expect(out).toBeDefined()
+      expect(out.tool).toBe('calculateStandardDeviation')
+      expect(out.result.data.mean).toBe(30)
+      expect(out.result.data.count).toBe(5)
+      expect(out.text).toContain('Mean = 30.00')
+    })
+
+    it('extracts n and r and calculates permutations and combinations', () => {
+      const out = extractAndExecuteLocal('Calculate permutations and combinations for 10 items choose 3')
+      expect(out).toBeDefined()
+      expect(out.tool).toBe('calculatePermutationsCombinations')
+      expect(out.result.data.nPr).toBe(720)
+      expect(out.result.data.nCr).toBe(120)
+      expect(out.text).toContain('Permutations P(10,3) = 720')
+      expect(out.text).toContain('Combinations C(10,3) = 120')
+    })
+
     it('prompts for missing parameters when intent is detected without numbers', () => {
       const out = extractAndExecuteLocal('How many years to double money?')
       expect(out).toBeDefined()

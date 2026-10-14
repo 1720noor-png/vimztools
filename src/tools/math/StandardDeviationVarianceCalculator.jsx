@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Field, Msg, CopyBtn } from '../../components/ui.jsx'
+import { calculateStandardDeviation } from '@tool-core/math/standardDeviation.js'
 
 export default function StandardDeviationVarianceCalculator() {
   const [numbers, setNumbers] = useState('12, 15, 18, 22, 25, 30')
@@ -8,18 +9,9 @@ export default function StandardDeviationVarianceCalculator() {
 
   const calc = () => {
     try {
-      
-      const nums = numbers.split(',').map(n => parseFloat(n.trim())).filter(n => !isNaN(n))
-      if (nums.length < 2) return setErr('Enter at least 2 numbers separated by commas.')
       setErr('')
-      const n = nums.length
-      const mean = nums.reduce((s, v) => s + v, 0) / n
-      const variancePop = nums.reduce((s, v) => s + Math.pow(v - mean, 2), 0) / n
-      const varianceSample = nums.reduce((s, v) => s + Math.pow(v - mean, 2), 0) / (n - 1)
-      const stdDevPop = Math.sqrt(variancePop)
-      const stdDevSample = Math.sqrt(varianceSample)
-      setRes({ val: `Mean: ${mean.toFixed(2)} | Sample Std Dev: ${stdDevSample.toFixed(2)} | Pop. Std Dev: ${stdDevPop.toFixed(2)} | Sample Variance: ${varianceSample.toFixed(2)}`, copyText: `Mean: ${mean.toFixed(2)}, Sample SD: ${stdDevSample.toFixed(2)}, Pop SD: ${stdDevPop.toFixed(2)}` })
-    
+      const result = calculateStandardDeviation({ numbers })
+      setRes(result)
     } catch (e) {
       setErr(e.message || 'Calculation error.')
     }

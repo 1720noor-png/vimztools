@@ -18,6 +18,10 @@ import { calculateGpa } from '@tool-core/student/gpaCalculator.js'
 import { calculateGrade } from '@tool-core/student/gradeCalculator.js'
 import { calculateAttendance } from '@tool-core/student/attendanceCalculator.js'
 import { calculatePercentage } from '@tool-core/student/percentageCalculator.js'
+import { solveQuadratic } from '@tool-core/math/quadraticSolver.js'
+import { calculateGcdLcm } from '@tool-core/math/gcdLcm.js'
+import { calculateStandardDeviation } from '@tool-core/math/standardDeviation.js'
+import { calculatePermutationsCombinations } from '@tool-core/math/permutationsCombinations.js'
 
 /**
  * Tool Registry for AI Assistant
@@ -282,6 +286,62 @@ export const AI_TOOL_DEFINITIONS = [
         rate: args.expectedAnnualReturnPercent ?? args.rate,
         years: args.investmentPeriodYears ?? args.years
       })
+  },
+  {
+    name: 'solveQuadratic',
+    slug: 'quadratic-equation-solver-tool',
+    description: 'Solve quadratic equations (ax² + bx + c = 0) to find real or complex roots and discriminant. Use when user asks to solve quadratic equations or find roots of quadratic formula.',
+    parameters: {
+      type: 'OBJECT',
+      properties: {
+        a: { type: 'NUMBER', description: 'Quadratic coefficient a (a ≠ 0)' },
+        b: { type: 'NUMBER', description: 'Linear coefficient b' },
+        c: { type: 'NUMBER', description: 'Constant term c' }
+      },
+      required: ['a', 'b', 'c']
+    },
+    execute: (args) => solveQuadratic({ a: args.a, b: args.b, c: args.c })
+  },
+  {
+    name: 'calculateGcdLcm',
+    slug: 'gcd-lcm-calculator-tool',
+    description: 'Calculate Greatest Common Divisor (GCD/HCF) and Least Common Multiple (LCM) of two or more numbers. Use when user asks for GCD, HCF, LCM, ad-e-azam, or zuaaf-e-aql.',
+    parameters: {
+      type: 'OBJECT',
+      properties: {
+        a: { type: 'INTEGER', description: 'First number' },
+        b: { type: 'INTEGER', description: 'Second number' }
+      },
+      required: ['a', 'b']
+    },
+    execute: (args) => calculateGcdLcm({ a: args.a, b: args.b })
+  },
+  {
+    name: 'calculateStandardDeviation',
+    slug: 'standard-deviation-variance-calculator',
+    description: 'Calculate Mean, Variance, Sample Standard Deviation, and Population Standard Deviation for a dataset of numbers. Use when user asks for standard deviation, variance, or statistical dispersion.',
+    parameters: {
+      type: 'OBJECT',
+      properties: {
+        numbers: { type: 'STRING', description: 'Dataset of numbers separated by commas or spaces (e.g. "12, 15, 18, 22")' }
+      },
+      required: ['numbers']
+    },
+    execute: (args) => calculateStandardDeviation({ numbers: args.numbers })
+  },
+  {
+    name: 'calculatePermutationsCombinations',
+    slug: 'permutations-combinations-calculator',
+    description: 'Calculate Permutations (nPr - order matters) and Combinations (nCr - order does not matter) for selecting r items from n total items.',
+    parameters: {
+      type: 'OBJECT',
+      properties: {
+        n: { type: 'INTEGER', description: 'Total number of items in the set (n)' },
+        r: { type: 'INTEGER', description: 'Number of items to select/choose (r)' }
+      },
+      required: ['n', 'r']
+    },
+    execute: (args) => calculatePermutationsCombinations({ n: args.n, r: args.r })
   }
 ]
 

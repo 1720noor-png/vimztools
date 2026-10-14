@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Field, Msg, CopyBtn } from '../../components/ui.jsx'
+import { calculateGcdLcm } from '@tool-core/math/gcdLcm.js'
 
 export default function GcdLcmCalculatorTool() {
   const [n1, setN1] = useState('24')
@@ -9,15 +10,9 @@ export default function GcdLcmCalculatorTool() {
 
   const calc = () => {
     try {
-      
-      const a = Math.abs(parseInt(n1, 10)), b = Math.abs(parseInt(n2, 10))
-      if (isNaN(a) || isNaN(b) || a === 0 || b === 0) return setErr('Enter positive integers.')
       setErr('')
-      const getGcd = (x, y) => y === 0 ? x : getGcd(y, x % y)
-      const gcd = getGcd(a, b)
-      const lcm = (a * b) / gcd
-      setRes({ val: `GCD (${a}, ${b}): ${gcd} | LCM (${a}, ${b}): ${lcm}`, copyText: `GCD: ${gcd}, LCM: ${lcm}` })
-    
+      const result = calculateGcdLcm({ a: n1, b: n2 })
+      setRes(result)
     } catch (e) {
       setErr(e.message || 'Calculation error.')
     }

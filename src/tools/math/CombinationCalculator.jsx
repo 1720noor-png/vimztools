@@ -1,5 +1,7 @@
 import { useState } from 'react'
 import { Field, Msg } from '../../components/ui.jsx'
+import { calculatePermutationsCombinations } from '@tool-core/math/permutationsCombinations.js'
+
 export default function CombinationCalculator() {
   const [n, setN] = useState('')
   const [r, setR] = useState('')
@@ -7,10 +9,12 @@ export default function CombinationCalculator() {
   const [err, setErr] = useState('')
   const calculate = () => {
     setErr(''); setResult(null)
-    const ni=parseInt(n),ri=parseInt(r)
-    if(isNaN(ni)||isNaN(ri)||ni<0||ri<0||ri>ni){setErr('Enter valid n ≥ r ≥ 0.');return}
-    let num=1,den=1;for(let i=0;i<ri;i++){num*=(ni-i);den*=(i+1)}
-    setResult({comb:Math.round(num/den),n:ni,r:ri})
+    try {
+      const res = calculatePermutationsCombinations({ n, r })
+      setResult({ comb: res.comb, n: res.n, r: res.r })
+    } catch (e) {
+      setErr(e.message)
+    }
   }
   return (
     <div>
