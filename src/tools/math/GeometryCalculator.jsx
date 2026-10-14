@@ -1,51 +1,46 @@
 import { useState } from 'react'
 import { Field, CopyBtn, download } from '../../components/ui.jsx'
+import { useAutoFillParams } from '@hooks/useAutoFillParams.js'
+import { calculateGeometry } from '@tool-core/math/geometryCalculator.js'
 
 export default function GeometryCalculator() {
-  const [shape, setShape] = useState('circle')
-  const [valA, setValA] = useState(10) // radius, length, etc
-  const [valB, setValB] = useState(5) // width, height, etc
-  const [valC, setValC] = useState(8) // height depth
+  const autoParams = useAutoFillParams({
+    shape: 'circle',
+    a: 10,
+    b: 5,
+    c: 8
+  })
 
-  const a = Number(valA) || 0
-  const b = Number(valB) || 0
-  const c = Number(valC) || 0
+  const [shape, setShape] = useState(autoParams.shape || 'circle')
+  const [valA, setValA] = useState(autoParams.a ?? 10) // radius, length, etc
+  const [valB, setValB] = useState(autoParams.b ?? 5) // width, height, etc
+  const [valC, setValC] = useState(autoParams.c ?? 8) // height depth
 
   let area = 0
   let perimeter = 0
   let volume = 0
   let surfaceArea = 0
   let formulaStr = ''
+  let is3D = false
 
-  if (shape === 'circle') {
-    area = Math.PI * a * a
-    perimeter = 2 * Math.PI * a
-    formulaStr = 'Area = π × r², Circumference = 2 × π × r'
-  } else if (shape === 'rectangle') {
-    area = a * b
-    perimeter = 2 * (a + b)
-    formulaStr = 'Area = length × width, Perimeter = 2 × (length + width)'
-  } else if (shape === 'triangle') {
-    area = 0.5 * a * b
-    perimeter = a + b + Math.sqrt(a * a + b * b) // right triangle approx
-    formulaStr = 'Area = 0.5 × base × height'
-  } else if (shape === 'sphere') {
-    volume = (4 / 3) * Math.PI * Math.pow(a, 3)
-    surfaceArea = 4 * Math.PI * a * a
-    formulaStr = 'Volume = (4/3) × π × r³, Surface Area = 4 × π × r²'
-  } else if (shape === 'cylinder') {
-    volume = Math.PI * a * a * b
-    surfaceArea = 2 * Math.PI * a * b + 2 * Math.PI * a * a
-    formulaStr = 'Volume = π × r² × h, Surface Area = 2πrh + 2πr²'
-  } else if (shape === 'prism') {
-    volume = a * b * c
-    surfaceArea = 2 * (a * b + b * c + a * c)
-    formulaStr = 'Volume = l × w × h, Surface Area = 2(lw + wh + lh)'
+  try {
+    const calc = calculateGeometry({
+      shape,
+      a: valA,
+      b: valB,
+      c: valC
+    })
+    area = calc.area || 0
+    perimeter = calc.perimeter || 0
+    volume = calc.volume || 0
+    surfaceArea = calc.surfaceArea || 0
+    formulaStr = calc.formula
+    is3D = calc.is3D
+  } catch {
+    // fallback defaults
   }
 
   const fmt = (num) => (Number.isInteger(num) ? num.toString() : num.toFixed(4).replace(/\.?0+$/, ''))
-
-  const is3D = ['sphere', 'cylinder', 'prism'].includes(shape)
 
   const reportText = `Geometry Calculation (${shape.toUpperCase()})
 ---------------------------------------------

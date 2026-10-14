@@ -222,11 +222,50 @@ describe('AI Assistant Service & Golden Rule Engine', () => {
       expect(out.link).toContain('/tools/duplicate-line-deduplicator?text=')
     })
 
+    it('extracts temperature values and converts between Celsius, Fahrenheit, and Kelvin', () => {
+      const out = extractAndExecuteLocal('convert 100 C to Fahrenheit')
+      expect(out).toBeDefined()
+      expect(out.tool).toBe('convertTemperature')
+      expect(out.result.data.celsius).toBe(100)
+      expect(out.result.data.fahrenheit).toBe(212)
+      expect(out.result.data.kelvin).toBe(373.15)
+      expect(out.link).toContain('/tools/celsius-fahrenheit-kelvin-converter?val=100&from=c')
+      expect(out.text).toContain('212 °F')
+    })
+
+    it('extracts physical unit conversion parameters and executes convertUnit', () => {
+      const out = extractAndExecuteLocal('convert 10 km to mi')
+      expect(out).toBeDefined()
+      expect(out.tool).toBe('convertUnit')
+      expect(out.result.data.result).toBeCloseTo(6.21371, 4)
+      expect(out.link).toContain('/tools/universal-unit-converter?cat=length&from=km&to=mi&val=10')
+      expect(out.text).toContain('6.213712')
+    })
+
+    it('extracts CSS pixel values and converts to REM with default 16px base', () => {
+      const out = extractAndExecuteLocal('convert 24px to rem')
+      expect(out).toBeDefined()
+      expect(out.tool).toBe('convertPxToUnits')
+      expect(out.result.data.rem).toBe(1.5)
+      expect(out.link).toContain('/tools/px-rem-em-converter?px=24&base=16')
+      expect(out.text).toContain('1.5rem')
+    })
+
+    it('extracts geometric shape dimensions and calculates area and volume', () => {
+      const out = extractAndExecuteLocal('circle radius 10 area')
+      expect(out).toBeDefined()
+      expect(out.tool).toBe('calculateGeometry')
+      expect(out.result.data.area).toBeCloseTo(314.1593, 2)
+      expect(out.link).toContain('/tools/geometry-calculator?shape=circle&a=10')
+      expect(out.text).toContain('314.1593')
+    })
+
     it('prompts for missing parameters when intent is detected without numbers', () => {
       const out = extractAndExecuteLocal('How many years to double money?')
       expect(out).toBeDefined()
       expect(out.text).toContain('expected annual interest rate')
     })
+
   })
 
   describe('sendMessageToAssistant Integration', () => {
