@@ -130,7 +130,95 @@ export function extractAndExecuteLocal(prompt) {
     }
   }
 
-  // 5. Fallback: Search top matching tool from 1,059 tools index
+  // 5. Quadratic Equation Solver
+  if (/quadratic|roots.*equation|muraba.*masawat/i.test(p)) {
+    const coeffMatches = p.match(/-?\b\d+(?:\.\d+)?\b/g)
+    if (coeffMatches && coeffMatches.length >= 3) {
+      const a = parseFloat(coeffMatches[0])
+      const b = parseFloat(coeffMatches[1])
+      const c = parseFloat(coeffMatches[2])
+      if (a !== 0) {
+        const res = executeTool('solveQuadratic', { a, b, c })
+        return {
+          tool: 'solveQuadratic',
+          slug: 'quadratic-equation-solver-tool',
+          result: res,
+          text: `For equation **${a}x² + (${b})x + (${c}) = 0**: ${res.data.val}`
+        }
+      }
+    }
+    return {
+      tool: 'solveQuadratic',
+      slug: 'quadratic-equation-solver-tool',
+      text: 'To solve a quadratic equation (ax² + bx + c = 0), please provide coefficients a, b, and c (where a ≠ 0).'
+    }
+  }
+
+  // 6. GCD & LCM
+  if (/\b(gcd|hcf|lcm|ad-e-azam|zuaaf)\b/i.test(p)) {
+    const nums = p.match(/\b\d+\b/g)
+    if (nums && nums.length >= 2) {
+      const a = parseInt(nums[0], 10)
+      const b = parseInt(nums[1], 10)
+      const res = executeTool('calculateGcdLcm', { a, b })
+      return {
+        tool: 'calculateGcdLcm',
+        slug: 'gcd-lcm-calculator-tool',
+        result: res,
+        text: `For numbers **${a}** and **${b}**: **GCD = ${res.data.gcd}**, **LCM = ${res.data.lcm}**.`
+      }
+    }
+    return {
+      tool: 'calculateGcdLcm',
+      slug: 'gcd-lcm-calculator-tool',
+      text: 'Please provide at least two positive integers to calculate GCD and LCM.'
+    }
+  }
+
+  // 7. Standard Deviation & Variance
+  if (/standard\s*deviation|std\s*dev|variance|meyari.*inhiraf/i.test(p)) {
+    const numbersMatch = p.match(/-?\d+(?:\.\d+)?/g)
+    if (numbersMatch && numbersMatch.length >= 2) {
+      const numbersStr = numbersMatch.join(', ')
+      const res = executeTool('calculateStandardDeviation', { numbers: numbersStr })
+      return {
+        tool: 'calculateStandardDeviation',
+        slug: 'standard-deviation-variance-calculator',
+        result: res,
+        text: `Statistical analysis for dataset: **Mean = ${res.data.mean.toFixed(2)}**, **Sample SD = ${res.data.stdDevSample.toFixed(2)}**, **Pop SD = ${res.data.stdDevPop.toFixed(2)}**, **Sample Variance = ${res.data.varianceSample.toFixed(2)}**.`
+      }
+    }
+    return {
+      tool: 'calculateStandardDeviation',
+      slug: 'standard-deviation-variance-calculator',
+      text: 'Please provide at least two numbers (comma or space separated) to calculate standard deviation and variance.'
+    }
+  }
+
+  // 8. Permutations & Combinations
+  if (/permutation|combination|npr|ncr|tartib/i.test(p)) {
+    const numbers = p.match(/\b\d+\b/g)
+    if (numbers && numbers.length >= 2) {
+      const n = parseInt(numbers[0], 10)
+      const r = parseInt(numbers[1], 10)
+      if (n >= r && r >= 0) {
+        const res = executeTool('calculatePermutationsCombinations', { n, r })
+        return {
+          tool: 'calculatePermutationsCombinations',
+          slug: 'permutations-combinations-calculator',
+          result: res,
+          text: `For set of **n = ${n}** items choosing **r = ${r}**: **Permutations P(${n},${r}) = ${res.data.nPrFormatted}**, **Combinations C(${n},${r}) = ${res.data.nCrFormatted}**.`
+        }
+      }
+    }
+    return {
+      tool: 'calculatePermutationsCombinations',
+      slug: 'permutations-combinations-calculator',
+      text: 'Please provide total items (n) and chosen items (r) where n ≥ r ≥ 0.'
+    }
+  }
+
+  // 9. Fallback: Search top matching tool from 1,059 tools index
   const matches = searchTools(p, { limit: 3 })
   if (matches.length > 0) {
     const top = matches[0]

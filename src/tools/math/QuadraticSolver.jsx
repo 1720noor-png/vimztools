@@ -1,5 +1,7 @@
 import { useState } from 'react'
 import { Field, Msg } from '../../components/ui.jsx'
+import { solveQuadratic } from '@tool-core/math/quadraticSolver.js'
+
 export default function QuadraticSolver() {
   const [a, setA] = useState('')
   const [b, setB] = useState('')
@@ -8,12 +10,19 @@ export default function QuadraticSolver() {
   const [err, setErr] = useState('')
   const calculate = () => {
     setErr(''); setResult(null)
-    const A=parseFloat(a),B=parseFloat(b),C=parseFloat(c)
-    if(!A){setErr('a cannot be zero.');return}
-    const disc=B*B-4*A*C
-    if(disc<0){setResult({roots:'No real roots',disc:disc.toFixed(2)});return}
-    const x1=(-B+Math.sqrt(disc))/(2*A),x2=(-B-Math.sqrt(disc))/(2*A)
-    setResult({x1:x1.toFixed(4),x2:x2.toFixed(4),disc:disc.toFixed(2)})
+    const A = parseFloat(a)
+    if (!A) { setErr('a cannot be zero.'); return }
+    try {
+      const res = solveQuadratic({ a, b, c })
+      setResult({
+        roots: res.type === 'complex' ? 'No real roots' : null,
+        x1: res.x1Formatted,
+        x2: res.x2Formatted,
+        disc: res.disc
+      })
+    } catch (e) {
+      setErr(e.message)
+    }
   }
   return (
     <div>

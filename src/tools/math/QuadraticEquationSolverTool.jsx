@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Field, Msg, CopyBtn } from '../../components/ui.jsx'
+import { solveQuadratic } from '@tool-core/math/quadraticSolver.js'
 
 export default function QuadraticEquationSolverTool() {
   const [a, setA] = useState('1')
@@ -10,24 +11,11 @@ export default function QuadraticEquationSolverTool() {
 
   const calc = () => {
     try {
-      
-      const va = parseFloat(a), vb = parseFloat(b), vc = parseFloat(c)
-      if (isNaN(va) || isNaN(vb) || isNaN(vc) || va === 0) return setErr('Enter valid quadratic coefficients (a ≠ 0).')
+      const va = parseFloat(a)
+      if (isNaN(va) || va === 0) return setErr('Enter valid quadratic coefficients (a ≠ 0).')
       setErr('')
-      const disc = vb * vb - 4 * va * vc
-      if (disc > 0) {
-        const x1 = (-vb + Math.sqrt(disc)) / (2 * va)
-        const x2 = (-vb - Math.sqrt(disc)) / (2 * va)
-        setRes({ val: `x₁ = ${x1.toFixed(4)}, x₂ = ${x2.toFixed(4)} (Discriminant Δ = ${disc})`, copyText: `x1 = ${x1}, x2 = ${x2}` })
-      } else if (disc === 0) {
-        const x = -vb / (2 * va)
-        setRes({ val: `Single Root x = ${x.toFixed(4)} (Discriminant Δ = 0)`, copyText: `x = ${x}` })
-      } else {
-        const real = (-vb / (2 * va)).toFixed(4)
-        const imag = (Math.sqrt(-disc) / (2 * va)).toFixed(4)
-        setRes({ val: `Complex Roots: x₁ = ${real} + ${imag}i, x₂ = ${real} - ${imag}i (Δ = ${disc})`, copyText: `x1 = ${real} + ${imag}i, x2 = ${real} - ${imag}i` })
-      }
-    
+      const result = solveQuadratic({ a, b, c })
+      setRes(result)
     } catch (e) {
       setErr(e.message || 'Calculation error.')
     }

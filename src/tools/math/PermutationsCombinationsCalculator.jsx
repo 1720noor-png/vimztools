@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Field, Msg, CopyBtn } from '../../components/ui.jsx'
+import { calculatePermutationsCombinations } from '@tool-core/math/permutationsCombinations.js'
 
 export default function PermutationsCombinationsCalculator() {
   const [nVal, setNVal] = useState('10')
@@ -9,18 +10,9 @@ export default function PermutationsCombinationsCalculator() {
 
   const calc = () => {
     try {
-      
-      const n = parseInt(nVal, 10), r = parseInt(rVal, 10)
-      if (isNaN(n) || isNaN(r) || n < 0 || r < 0 || r > n) return setErr('Enter valid integers where 0 ≤ r ≤ n.')
       setErr('')
-      const fact = (num) => { let res = 1n; for (let i = 2n; i <= BigInt(num); i++) res *= i; return res }
-      const nFact = fact(n)
-      const rFact = fact(r)
-      const nMinusRFact = fact(n - r)
-      const nPr = nFact / nMinusRFact
-      const nCr = nFact / (rFact * nMinusRFact)
-      setRes({ val: `Combinations nCr (Order doesn't matter): ${nCr.toLocaleString()} | Permutations nPr (Order matters): ${nPr.toLocaleString()}`, copyText: `nCr: ${nCr}, nPr: ${nPr}` })
-    
+      const result = calculatePermutationsCombinations({ n: nVal, r: rVal })
+      setRes(result)
     } catch (e) {
       setErr(e.message || 'Calculation error.')
     }
