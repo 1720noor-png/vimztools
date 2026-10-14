@@ -34,6 +34,7 @@ export function calculateTipSplitter({ bill, tip = 0, people = 1 }) {
     tipAmount,
     total,
     perPerson,
+    totalPerPerson: perPerson,
     formattedTip: tipAmount.toFixed(2),
     formattedTotal: total.toFixed(2),
     formattedPerPerson: perPerson.toFixed(2),

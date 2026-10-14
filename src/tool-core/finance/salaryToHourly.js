@@ -33,6 +33,8 @@ export function calculateSalaryToHourly({ salary, hoursWeek = 40, weeksYear = 52
     daily,
     weekly,
     monthly,
+    hourlyRate: hourly,
+    monthlyRate: monthly,
     formattedHourly: hourly.toFixed(2),
     formattedDaily: daily.toFixed(2),
     formattedWeekly: weekly.toFixed(2),

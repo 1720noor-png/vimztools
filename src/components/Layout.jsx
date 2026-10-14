@@ -4,6 +4,7 @@ import { categories, tools } from '../data/registry.js'
 import { useAuth } from '../context/AuthContext.jsx'
 import VimzLogo from './VimzLogo.jsx'
 import { getCategoryTheme } from '../utils/categoryColors.js'
+import AiChatAssistant from './AiChatAssistant.jsx'
 
 const SearchIcon = () => (
   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -243,6 +244,7 @@ export default function Layout() {
           </div>
         </div>
       </footer>
+      <AiChatAssistant />
     </>
   )
 }
