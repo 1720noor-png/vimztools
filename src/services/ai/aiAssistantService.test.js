@@ -155,6 +155,38 @@ describe('AI Assistant Service & Golden Rule Engine', () => {
       expect(out.result.data.targetDailyCalories).toBe(1400)
     })
 
+    it('extracts JSON and formats it with deep link', () => {
+      const out = extractAndExecuteLocal('format json: {"hello":"world"}')
+      expect(out).toBeDefined()
+      expect(out.tool).toBe('formatJson')
+      expect(out.result.data.formatted).toContain('{\n  "hello": "world"\n}')
+      expect(out.link).toContain('/tools/json-formatter?src=')
+    })
+
+    it('extracts text to encode in Base64 with deep link', () => {
+      const out = extractAndExecuteLocal('base64 encode: "Hello World"')
+      expect(out).toBeDefined()
+      expect(out.tool).toBe('convertBase64')
+      expect(out.result.data.output).toBe('SGVsbG8gV29ybGQ=')
+      expect(out.link).toContain('/tools/base64-encoder-decoder?src=')
+      expect(out.text).toContain('SGVsbG8gV29ybGQ=')
+    })
+
+    it('extracts URL to encode with deep link', () => {
+      const out = extractAndExecuteLocal('url encode: "https://vimz.ai/search?q=test tool"')
+      expect(out).toBeDefined()
+      expect(out.tool).toBe('encodeDecodeUrl')
+      expect(out.result.data.output).toContain('https%3A%2F%2Fvimz.ai')
+      expect(out.link).toContain('/tools/url-encoder-decoder?text=')
+    })
+
+    it('detects hash intent with algorithm and text', () => {
+      const out = extractAndExecuteLocal('sha256 of "hello"')
+      expect(out).toBeDefined()
+      expect(out.tool).toBe('generateCryptoHash')
+      expect(out.link).toContain('/tools/hash-generator?txt=hello&alg=SHA-256')
+    })
+
     it('prompts for missing parameters when intent is detected without numbers', () => {
       const out = extractAndExecuteLocal('How many years to double money?')
       expect(out).toBeDefined()
@@ -168,6 +200,13 @@ describe('AI Assistant Service & Golden Rule Engine', () => {
       expect(res.mode).toBe('zero-llm-deterministic')
       expect(res.reply).toContain('12.0 years')
       expect(res.data.approxYears).toBe(12)
+    })
+
+    it('resolves async hash generation through sendMessageToAssistant', async () => {
+      const res = await sendMessageToAssistant('sha256 of "hello"')
+      expect(res.mode).toBe('zero-llm-deterministic')
+      expect(res.reply).toContain('SHA-256 Hash: 2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824')
+      expect(res.link).toContain('/tools/hash-generator?txt=hello&alg=SHA-256')
     })
 
     it('returns helpful tool suggestions for general queries', async () => {

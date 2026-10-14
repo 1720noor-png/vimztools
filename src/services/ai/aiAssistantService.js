@@ -1,6 +1,7 @@
 import { GoogleGenAI } from '@google/genai'
 import { AI_TOOL_DEFINITIONS, executeTool } from './toolRegistry.js'
 import { searchTools } from '../search/searchEngine.js'
+import { normalizeAlgorithm } from '@tool-core/developer/hashGenerator.js'
 
 export const SYSTEM_INSTRUCTION = `You are the official Vimz.ai Intelligent Assistant (Golden Rule Edition).
 Vimz.ai is a suite of 1,000+ deterministic utilities.
@@ -317,7 +318,132 @@ export function extractAndExecuteLocal(prompt) {
     }
   }
 
-  // 13. Fallback: Search top matching tool from 1,059 tools index
+  // 13. JSON Formatter & Validator
+  if (/(?:json.*(?:format|pretty|beautify|minify|validate|check))|(?:format|pretty|minify|validate).*(?:json)/i.test(p)) {
+    const jsonMatch = p.match(/(\{[\s\S]*\}|\[[\s\S]*\])/)
+    const isMinify = /minify|compact/i.test(p)
+    const isValidateOnly = /validate|check\s*syntax/i.test(p)
+
+    if (jsonMatch) {
+      const rawJson = jsonMatch[0]
+      if (isValidateOnly) {
+        const valRes = executeTool('validateJson', { input: rawJson })
+        return {
+          tool: 'validateJson',
+          slug: 'json-validator',
+          result: valRes,
+          link: `/tools/json-validator?text=${encodeURIComponent(rawJson)}`,
+          text: valRes.data.valid ? `✅ **${valRes.data.summary}**` : `❌ **Syntax Error:** ${valRes.data.error} (${valRes.data.positionDescription || ''})`
+        }
+      }
+
+      const fmtRes = executeTool('formatJson', { input: rawJson, minify: isMinify })
+      if (fmtRes.success) {
+        return {
+          tool: 'formatJson',
+          slug: 'json-formatter',
+          result: fmtRes,
+          link: `/tools/json-formatter?src=${encodeURIComponent(rawJson)}`,
+          text: `Here is your ${isMinify ? 'minified' : 'formatted'} JSON:\n\`\`\`json\n${fmtRes.data.formatted}\n\`\`\``
+        }
+      } else {
+        return {
+          tool: 'formatJson',
+          slug: 'json-formatter',
+          result: fmtRes,
+          link: `/tools/json-formatter?src=${encodeURIComponent(rawJson)}`,
+          text: `Invalid JSON syntax: ${fmtRes.error}.`
+        }
+      }
+    }
+
+    return {
+      tool: 'formatJson',
+      slug: 'json-formatter',
+      link: '/tools/json-formatter',
+      text: 'Please provide the JSON string you want to format, validate, or minify.'
+    }
+  }
+
+  // 14. Base64 Converter
+  if (/base64\s*(?:encode|decode|converter)?/i.test(p)) {
+    const isDecode = /\bdecode\b/i.test(p)
+    const textMatch = p.match(/(?:encode|decode|base64)[:\s]+["']?([^"'\n]+)["']?$/i) || p.match(/["']([^"']+)["']/)
+    if (textMatch) {
+      const text = textMatch[1].trim()
+      const mode = isDecode ? 'decode' : 'encode'
+      const res = executeTool('convertBase64', { text, mode })
+      if (res.success) {
+        return {
+          tool: 'convertBase64',
+          slug: 'base64-encoder-decoder',
+          result: res,
+          link: `/tools/base64-encoder-decoder?src=${encodeURIComponent(text)}&mode=${mode}`,
+          text: mode === 'encode'
+            ? `Base64 Encoded Output:\n\`${res.data.output}\``
+            : `Base64 Decoded UTF-8 Output:\n\`${res.data.output}\``
+        }
+      }
+    }
+    return {
+      tool: 'convertBase64',
+      slug: 'base64-encoder-decoder',
+      link: '/tools/base64-encoder-decoder',
+      text: 'Please provide the text or Base64 string you want to encode or decode (e.g., `base64 encode: Hello World`).'
+    }
+  }
+
+  // 15. URL Encoder/Decoder
+  if (/(?:url|percent)\s*(?:encode|decode)/i.test(p)) {
+    const isDecode = /\bdecode\b/i.test(p)
+    const textMatch = p.match(/(?:encode|decode)[:\s]+["']?([^"'\n]+)["']?$/i) || p.match(/["']([^"']+)["']/)
+    if (textMatch) {
+      const text = textMatch[1].trim()
+      const action = isDecode ? 'decode' : 'encodeText'
+      const res = executeTool('encodeDecodeUrl', { text, action })
+      if (res.success) {
+        return {
+          tool: 'encodeDecodeUrl',
+          slug: 'url-encoder-decoder',
+          result: res,
+          link: `/tools/url-encoder-decoder?text=${encodeURIComponent(text)}`,
+          text: `URL ${isDecode ? 'Decoded' : 'Encoded'} Result:\n\`${res.data.output}\``
+        }
+      }
+    }
+    return {
+      tool: 'encodeDecodeUrl',
+      slug: 'url-encoder-decoder',
+      link: '/tools/url-encoder-decoder',
+      text: 'Please specify the text or URL to encode or decode (e.g., `url encode: hello world?test=1`).'
+    }
+  }
+
+  // 16. Cryptographic Hash Generator
+  if (/\b(sha[-_]?(?:1|256|384|512)|hash\s*(?:generator|of|for)?)\b/i.test(p)) {
+    const algMatch = p.match(/\b(sha[-_]?(?:1|256|384|512))\b/i)
+    const algorithm = algMatch ? normalizeAlgorithm(algMatch[1]) : 'SHA-256'
+    const textMatch = p.match(/(?:of|for|hash)[:\s]+["']?([^"'\n]+)["']?$/i) || p.match(/["']([^"']+)["']/)
+    if (textMatch) {
+      const text = textMatch[1].trim()
+      const resPromise = executeTool('generateCryptoHash', { text, algorithm })
+      return {
+        tool: 'generateCryptoHash',
+        slug: 'hash-generator',
+        result: resPromise,
+        link: `/tools/hash-generator?txt=${encodeURIComponent(text)}&alg=${algorithm}`,
+        text: `Generating **${algorithm}** hash for "${text}"... You can also view it in the Hash Generator tool.`
+      }
+    }
+    return {
+      tool: 'generateCryptoHash',
+      slug: 'hash-generator',
+      link: '/tools/hash-generator',
+      text: 'Please provide the text and optional algorithm (e.g., `sha256 of hello`).'
+    }
+  }
+
+  // 17. Fallback: Search top matching tool from 1,059 tools index
   const matches = searchTools(p, { limit: 3 })
   if (matches.length > 0) {
     const top = matches[0]
@@ -352,8 +478,16 @@ export async function sendMessageToAssistant(userMessage, options = {}) {
 
   // If no Gemini API key is provided, execute via Zero-LLM Deterministic Mode ($0 cost)
   if (!apiKey) {
-    const localResult = extractAndExecuteLocal(userMessage)
+    let localResult = extractAndExecuteLocal(userMessage)
     if (localResult) {
+      if (localResult.result && typeof localResult.result.then === 'function') {
+        const resolved = await localResult.result
+        localResult = {
+          ...localResult,
+          result: resolved,
+          text: resolved.success && resolved.summary ? `**${resolved.summary}**` : localResult.text
+        }
+      }
       return {
         reply: localResult.text,
         toolCall: localResult.tool,
@@ -388,7 +522,10 @@ export async function sendMessageToAssistant(userMessage, options = {}) {
     const functionCalls = response.functionCalls || []
     if (functionCalls.length > 0) {
       const call = functionCalls[0]
-      const toolExecution = executeTool(call.name, call.args)
+      let toolExecution = executeTool(call.name, call.args)
+      if (toolExecution && typeof toolExecution.then === 'function') {
+        toolExecution = await toolExecution
+      }
 
       if (toolExecution.success) {
         return {

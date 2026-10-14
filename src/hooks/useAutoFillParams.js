@@ -24,3 +24,5 @@ export function useAutoFillParams(defaultValues = {}) {
     return defaultValues
   }
 }
+
+export default useAutoFillParams
