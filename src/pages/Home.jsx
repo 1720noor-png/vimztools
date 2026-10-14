@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import { categories, tools, search } from '../data/registry.js'
+import { searchTools } from '@services/search/searchEngine.js'
 import ToolCard from '../components/ToolCard.jsx'
 import CategoryCard from '../components/CategoryCard.jsx'
 import { useFavorites, useRecentTools } from '../utils/userPrefs.js'
@@ -116,7 +117,9 @@ export default function Home() {
   const { favorites } = useFavorites()
   const { recents, clearRecents } = useRecentTools()
 
-  const res = q.trim() || selectedCat ? search(q, selectedCat || undefined) : null
+  const res = q.trim()
+    ? searchTools(q, { category: selectedCat || undefined, limit: 120 })
+    : (selectedCat ? search('', selectedCat) : null)
   const filteredRes = res && selectedSubcat ? res.filter(t => t.subcat === selectedSubcat) : res
 
   useEffect(() => { 
