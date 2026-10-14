@@ -1,24 +1,20 @@
 import { useState } from 'react'
 import { Field, Msg, CopyBtn } from '../../components/ui.jsx'
+import { calculateIdealBodyWeight } from '@tool-core/health/idealBodyWeight.js'
+import { useAutoFillParams } from '@/hooks/useAutoFillParams.js'
 
 export default function IdealBodyWeightCalculator() {
-  const [heightCm, setHeightCm] = useState('175')
-  const [gender, setGender] = useState('male')
+  const params = useAutoFillParams({ height: '175', gender: 'male' })
+  const [heightCm, setHeightCm] = useState(params.height)
+  const [gender, setGender] = useState(params.gender)
   const [res, setRes] = useState(null)
   const [err, setErr] = useState('')
 
   const calc = () => {
     try {
-      
-      const h = parseFloat(heightCm), g = gender
-      if (isNaN(h) || h < 100 || h > 250) return setErr('Enter a valid height between 100cm and 250cm.')
       setErr('')
-      const inchesOver60 = (h / 2.54) - 60
-      const baseDevine = g === 'male' ? 50 : 45.5
-      const devineKg = baseDevine + (2.3 * Math.max(0, inchesOver60))
-      const ibwLbs = devineKg * 2.20462
-      setRes({ val: `Ideal Weight: ${devineKg.toFixed(1)} kg (${ibwLbs.toFixed(1)} lbs) [Devine Formula]`, copyText: `Ideal Body Weight: ${devineKg.toFixed(1)} kg (${ibwLbs.toFixed(1)} lbs)` })
-    
+      const result = calculateIdealBodyWeight({ heightCm, gender })
+      setRes(result)
     } catch (e) {
       setErr(e.message || 'Calculation error.')
     }

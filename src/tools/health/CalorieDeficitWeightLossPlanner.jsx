@@ -1,27 +1,28 @@
 import { useState } from 'react'
 import { Field, Msg, CopyBtn } from '../../components/ui.jsx'
+import { calculateCalorieDeficit } from '@tool-core/health/calorieDeficit.js'
+import { useAutoFillParams } from '@/hooks/useAutoFillParams.js'
 
 export default function CalorieDeficitWeightLossPlanner() {
-  const [currentWt, setCurrentWt] = useState('185')
-  const [targetWt, setTargetWt] = useState('165')
-  const [tdee, setTdee] = useState('2400')
-  const [weeks, setWeeks] = useState('10')
+  const params = useAutoFillParams({ current: '185', target: '165', tdee: '2400', weeks: '10' })
+  const [currentWt, setCurrentWt] = useState(params.current)
+  const [targetWt, setTargetWt] = useState(params.target)
+  const [tdee, setTdee] = useState(params.tdee)
+  const [weeks, setWeeks] = useState(params.weeks)
   const [res, setRes] = useState(null)
   const [err, setErr] = useState('')
 
   const calc = () => {
     try {
-      
-      const cw = parseFloat(currentWt), tw = parseFloat(targetWt), t = parseFloat(tdee), w = parseFloat(weeks)
-      if (isNaN(cw) || isNaN(tw) || isNaN(t) || isNaN(w) || cw <= tw || t <= 0 || w <= 0) return setErr('Enter valid weight and timeline.')
       setErr('')
-      const totalLbsToLose = cw - tw
-      const totalCalorieDeficitNeeded = totalLbsToLose * 3500
-      const dailyDeficit = totalCalorieDeficitNeeded / (w * 7)
-      const targetDailyCalories = t - dailyDeficit
-      const lbsPerWeek = totalLbsToLose / w
-      setRes({ val: `Target Daily Intake: ${Math.round(targetDailyCalories)} kcal/day (${Math.round(dailyDeficit)} kcal deficit/day for ${lbsPerWeek.toFixed(1)} lbs/wk loss)`, copyText: `Eat ${Math.round(targetDailyCalories)} kcal/day to lose ${totalLbsToLose} lbs in ${w} weeks.` })
-    
+      const result = calculateCalorieDeficit({
+        currentWeight: currentWt,
+        targetWeight: targetWt,
+        maintenanceTdee: tdee,
+        timelineWeeks: weeks,
+        unit: 'lbs'
+      })
+      setRes(result)
     } catch (e) {
       setErr(e.message || 'Calculation error.')
     }

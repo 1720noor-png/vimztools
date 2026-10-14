@@ -22,6 +22,10 @@ import { solveQuadratic } from '@tool-core/math/quadraticSolver.js'
 import { calculateGcdLcm } from '@tool-core/math/gcdLcm.js'
 import { calculateStandardDeviation } from '@tool-core/math/standardDeviation.js'
 import { calculatePermutationsCombinations } from '@tool-core/math/permutationsCombinations.js'
+import { calculateIdealBodyWeight } from '@tool-core/health/idealBodyWeight.js'
+import { calculateBmi } from '@tool-core/health/bmiCalculator.js'
+import { calculateBmrTdee } from '@tool-core/health/bmrTdeeCalculator.js'
+import { calculateCalorieDeficit } from '@tool-core/health/calorieDeficit.js'
 
 /**
  * Tool Registry for AI Assistant
@@ -342,6 +346,81 @@ export const AI_TOOL_DEFINITIONS = [
       required: ['n', 'r']
     },
     execute: (args) => calculatePermutationsCombinations({ n: args.n, r: args.r })
+  },
+  {
+    name: 'calculateIdealBodyWeight',
+    slug: 'ideal-body-weight-calculator',
+    description: 'Calculate ideal body weight (IBW) based on height and gender using the clinical Devine Formula.',
+    parameters: {
+      type: 'OBJECT',
+      properties: {
+        heightCm: { type: 'NUMBER', description: 'Height in centimeters (e.g. 175)' },
+        gender: { type: 'STRING', description: 'Gender: "male" or "female"' }
+      },
+      required: ['heightCm']
+    },
+    execute: (args) => calculateIdealBodyWeight({ heightCm: args.heightCm ?? args.height, gender: args.gender })
+  },
+  {
+    name: 'calculateBmi',
+    slug: 'bmi-health-calculator',
+    description: 'Calculate Body Mass Index (BMI), WHO weight category, and healthy weight range for height and weight.',
+    parameters: {
+      type: 'OBJECT',
+      properties: {
+        weight: { type: 'NUMBER', description: 'Weight in kilograms (or lbs if unit is imperial)' },
+        height: { type: 'NUMBER', description: 'Height in centimeters (or inches if unit is imperial)' },
+        unit: { type: 'STRING', description: '"metric" (kg/cm) or "imperial" (lbs/in)' }
+      },
+      required: ['weight', 'height']
+    },
+    execute: (args) => calculateBmi({ weight: args.weight, height: args.height, unit: args.unit })
+  },
+  {
+    name: 'calculateBmrTdee',
+    slug: 'bmr-tdee-calculator',
+    description: 'Calculate Basal Metabolic Rate (BMR) and Total Daily Energy Expenditure (TDEE) maintenance and weight loss targets using Mifflin-St Jeor formula.',
+    parameters: {
+      type: 'OBJECT',
+      properties: {
+        weightKg: { type: 'NUMBER', description: 'Weight in kilograms' },
+        heightCm: { type: 'NUMBER', description: 'Height in centimeters' },
+        age: { type: 'INTEGER', description: 'Age in years' },
+        gender: { type: 'STRING', description: '"male" or "female"' },
+        activity: { type: 'NUMBER', description: 'Activity multiplier (1.2 sedentary to 1.9 heavy athlete)' }
+      },
+      required: ['weightKg', 'heightCm', 'age']
+    },
+    execute: (args) =>
+      calculateBmrTdee({
+        weightKg: args.weightKg ?? args.weight,
+        heightCm: args.heightCm ?? args.height,
+        age: args.age,
+        gender: args.gender,
+        activity: args.activity
+      })
+  },
+  {
+    name: 'calculateCalorieDeficit',
+    slug: 'calorie-deficit-weight-loss-planner',
+    description: 'Calculate daily calorie deficit and target daily caloric intake to achieve a target weight goal over a timeline in weeks.',
+    parameters: {
+      type: 'OBJECT',
+      properties: {
+        currentWeight: { type: 'NUMBER', description: 'Current weight in lbs or kg' },
+        targetWeight: { type: 'NUMBER', description: 'Target goal weight' },
+        maintenanceTdee: { type: 'NUMBER', description: 'Daily maintenance calories (TDEE)' },
+        timelineWeeks: { type: 'NUMBER', description: 'Duration in weeks' }
+      },
+      required: ['currentWeight', 'targetWeight', 'maintenanceTdee', 'timelineWeeks']
+    },
+    execute: (args) =>
+      calculateCalorieDeficit({
+        currentWeight: args.currentWeight,
+        targetWeight: args.targetWeight,
+        maintenanceTdee: args.maintenanceTdee ?? args.tdee,
+        timelineWeeks: args.timelineWeeks ?? args.weeks
+      })
   }
 ]
 

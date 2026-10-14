@@ -121,6 +121,40 @@ describe('AI Assistant Service & Golden Rule Engine', () => {
       expect(out.text).toContain('Combinations C(10,3) = 120')
     })
 
+    it('extracts height and gender to calculate ideal body weight (IBW)', () => {
+      const out = extractAndExecuteLocal('mera ideal body weight kitna hona chahiye for male 175cm?')
+      expect(out).toBeDefined()
+      expect(out.tool).toBe('calculateIdealBodyWeight')
+      expect(out.result.data.devineKgFormatted).toBe('70.5')
+      expect(out.link).toContain('/tools/ideal-body-weight-calculator?height=175&gender=male')
+    })
+
+    it('extracts weight and height to calculate BMI with L1 deep-link', () => {
+      const out = extractAndExecuteLocal('BMI calculate karo 70kg 175cm')
+      expect(out).toBeDefined()
+      expect(out.tool).toBe('calculateBmi')
+      expect(out.result.data.bmi).toBe(22.9)
+      expect(out.link).toContain('/tools/bmi-health-calculator?weight=70&height=175')
+      expect(out.text).toContain('BMI is 22.9')
+    })
+
+    it('extracts weight, height, age to calculate BMR & TDEE', () => {
+      const out = extractAndExecuteLocal('Calculate BMR for male 70kg 175cm age 28')
+      expect(out).toBeDefined()
+      expect(out.tool).toBe('calculateBmrTdee')
+      expect(out.result.data.bmr).toBe(1659)
+      expect(out.result.data.tdee).toBe(2281)
+      expect(out.link).toContain('/tools/bmr-tdee-calculator?')
+    })
+
+    it('extracts parameters to plan calorie deficit weight loss', () => {
+      const out = extractAndExecuteLocal('Calorie deficit to go from 185 to 165 with 2400 maintenance in 10 weeks')
+      expect(out).toBeDefined()
+      expect(out.tool).toBe('calculateCalorieDeficit')
+      expect(out.result.data.dailyDeficit).toBe(1000)
+      expect(out.result.data.targetDailyCalories).toBe(1400)
+    })
+
     it('prompts for missing parameters when intent is detected without numbers', () => {
       const out = extractAndExecuteLocal('How many years to double money?')
       expect(out).toBeDefined()

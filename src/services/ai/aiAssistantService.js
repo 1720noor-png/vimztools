@@ -218,7 +218,106 @@ export function extractAndExecuteLocal(prompt) {
     }
   }
 
-  // 9. Fallback: Search top matching tool from 1,059 tools index
+  // 9. Ideal Body Weight
+  if (/ideal.*weight|ibw|wazan.*kitna/i.test(p)) {
+    const heightMatch = p.match(/(1\d\d|2[0-5]\d)/)
+    const genderMatch = p.match(/\b(male|female|m|f|aurat|mard|larki|larka)\b/i)
+    if (heightMatch) {
+      const height = parseFloat(heightMatch[1])
+      const gender = /f|female|aurat|larki/i.test(genderMatch?.[1] || '') ? 'female' : 'male'
+      const res = executeTool('calculateIdealBodyWeight', { heightCm: height, gender })
+      return {
+        tool: 'calculateIdealBodyWeight',
+        slug: 'ideal-body-weight-calculator',
+        result: res,
+        link: `/tools/ideal-body-weight-calculator?height=${height}&gender=${gender}`,
+        text: `For a **${gender}** of height **${height} cm**, your clinical ideal body weight is **${res.data.devineKgFormatted} kg** (${res.data.ibwLbsFormatted} lbs) according to the Devine Formula.`
+      }
+    }
+    return {
+      tool: 'calculateIdealBodyWeight',
+      slug: 'ideal-body-weight-calculator',
+      text: 'Please specify your height in cm (e.g. 175cm) and biological sex (male/female) to calculate your ideal body weight.'
+    }
+  }
+
+  // 10. BMI Calculator
+  if (/\b(bmi|body.*mass.*index)\b/i.test(p)) {
+    const numbers = p.match(/\d+(?:\.\d+)?/g)
+    if (numbers && numbers.length >= 2) {
+      let weight = parseFloat(numbers[0])
+      let height = parseFloat(numbers[1])
+      if (weight > 100 && height < 100) {
+        const temp = weight
+        weight = height
+        height = temp
+      }
+      const res = executeTool('calculateBmi', { weight, height, unit: 'metric' })
+      return {
+        tool: 'calculateBmi',
+        slug: 'bmi-health-calculator',
+        result: res,
+        link: `/tools/bmi-health-calculator?weight=${weight}&height=${height}`,
+        text: `With weight **${weight} kg** and height **${height} cm**, your **BMI is ${res.data.bmiFormatted}** (${res.data.category}). Healthy weight range for this height is **${res.data.healthyWeightMinKg} - ${res.data.healthyWeightMaxKg} kg**.`
+      }
+    }
+    return {
+      tool: 'calculateBmi',
+      slug: 'bmi-health-calculator',
+      text: 'Please provide your weight in kg and height in cm (e.g. "BMI calculate karo 70kg 175cm").'
+    }
+  }
+
+  // 11. BMR & TDEE
+  if (/\b(bmr|tdee|calories.*burn|maintenance.*calories)\b/i.test(p)) {
+    const numbers = p.match(/\d+(?:\.\d+)?/g)
+    if (numbers && numbers.length >= 3) {
+      const weight = parseFloat(numbers[0])
+      const height = parseFloat(numbers[1])
+      const age = parseInt(numbers[2], 10)
+      const genderMatch = p.match(/\b(male|female|aurat|mard)\b/i)
+      const gender = /female|aurat/i.test(genderMatch?.[1] || '') ? 'female' : 'male'
+      const res = executeTool('calculateBmrTdee', { weightKg: weight, heightCm: height, age, gender })
+      return {
+        tool: 'calculateBmrTdee',
+        slug: 'bmr-tdee-calculator',
+        result: res,
+        link: `/tools/bmr-tdee-calculator?weight=${weight}&height=${height}&age=${age}&gender=${gender}`,
+        text: `At ${age} years old (${gender}, ${weight}kg, ${height}cm): **BMR = ${res.data.bmr} kcal/day**, **Daily Maintenance (TDEE) = ${res.data.tdee} kcal/day**, and **Weight Loss Goal = ${res.data.weightLossCalories} kcal/day**.`
+      }
+    }
+    return {
+      tool: 'calculateBmrTdee',
+      slug: 'bmr-tdee-calculator',
+      text: 'Please provide weight (kg), height (cm), age, and gender to calculate your BMR and TDEE calorie requirements.'
+    }
+  }
+
+  // 12. Calorie Deficit Planner
+  if (/calorie.*deficit|weight.*loss.*plan|wazan.*kam.*karna/i.test(p)) {
+    const numbers = p.match(/\b\d+(?:\.\d+)?\b/g)
+    if (numbers && numbers.length >= 4) {
+      const cw = parseFloat(numbers[0])
+      const tw = parseFloat(numbers[1])
+      const tdee = parseFloat(numbers[2])
+      const weeks = parseFloat(numbers[3])
+      const res = executeTool('calculateCalorieDeficit', { currentWeight: cw, targetWeight: tw, maintenanceTdee: tdee, timelineWeeks: weeks })
+      return {
+        tool: 'calculateCalorieDeficit',
+        slug: 'calorie-deficit-weight-loss-planner',
+        result: res,
+        link: `/tools/calorie-deficit-weight-loss-planner?current=${cw}&target=${tw}&tdee=${tdee}&weeks=${weeks}`,
+        text: `To drop from **${cw} lbs** to **${tw} lbs** in **${weeks} weeks**: Eat **${res.data.targetDailyCalories} kcal/day** (a daily deficit of ${res.data.dailyDeficit} kcal for ${res.data.lossRatePerWeekLbs} lbs/week loss).`
+      }
+    }
+    return {
+      tool: 'calculateCalorieDeficit',
+      slug: 'calorie-deficit-weight-loss-planner',
+      text: 'Please provide your current weight, target goal weight, daily maintenance calories (TDEE), and timeline in weeks.'
+    }
+  }
+
+  // 13. Fallback: Search top matching tool from 1,059 tools index
   const matches = searchTools(p, { limit: 3 })
   if (matches.length > 0) {
     const top = matches[0]
@@ -259,6 +358,7 @@ export async function sendMessageToAssistant(userMessage, options = {}) {
         reply: localResult.text,
         toolCall: localResult.tool,
         toolSlug: localResult.slug,
+        link: localResult.link,
         data: localResult.result?.data || null,
         mode: 'zero-llm-deterministic'
       }

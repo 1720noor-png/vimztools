@@ -1,15 +1,26 @@
 import { useState } from 'react'
 import { Field, CopyBtn, download } from '../../components/ui.jsx'
+import { calculateBmrTdee } from '@tool-core/health/bmrTdeeCalculator.js'
+import { useAutoFillParams } from '@/hooks/useAutoFillParams.js'
 
 export default function BmrTdeeCalculator() {
-  const [unit, setUnit] = useState('metric') // 'metric' or 'imperial'
-  const [gender, setGender] = useState('male')
-  const [age, setAge] = useState(28)
-  const [weight, setWeight] = useState(70) // kg or lbs
-  const [heightCm, setHeightCm] = useState(175)
+  const params = useAutoFillParams({
+    unit: 'metric',
+    gender: 'male',
+    age: '28',
+    weight: '70',
+    height: '175',
+    activity: '1.375'
+  })
+
+  const [unit, setUnit] = useState(params.unit) // 'metric' or 'imperial'
+  const [gender, setGender] = useState(params.gender)
+  const [age, setAge] = useState(params.age)
+  const [weight, setWeight] = useState(params.weight) // kg or lbs
+  const [heightCm, setHeightCm] = useState(params.height)
   const [heightFt, setHeightFt] = useState(5)
   const [heightIn, setHeightIn] = useState(9)
-  const [activity, setActivity] = useState('1.375') // light active
+  const [activity, setActivity] = useState(params.activity) // light active
 
   const a = Number(age) || 0
   let wKg = Number(weight) || 0
@@ -21,19 +32,25 @@ export default function BmrTdeeCalculator() {
   }
 
   let bmr = 0
-  if (wKg > 0 && hCm > 0 && a > 0) {
-    if (gender === 'male') {
-      bmr = 10 * wKg + 6.25 * hCm - 5 * a + 5
-    } else {
-      bmr = 10 * wKg + 6.25 * hCm - 5 * a - 161
-    }
+  let tdee = 0
+  let cutCal = 0
+  let bulkCal = 0
+
+  if (wKg >= 20 && hCm >= 80 && a >= 10) {
+    try {
+      const res = calculateBmrTdee({
+        weightKg: wKg,
+        heightCm: hCm,
+        age: a,
+        gender,
+        activity: Number(activity) || 1.375
+      })
+      bmr = res.bmr
+      tdee = res.tdee
+      cutCal = res.weightLossCalories
+      bulkCal = res.muscleGainCalories
+    } catch {}
   }
-
-  const mult = Number(activity) || 1.2
-  const tdee = bmr * mult
-
-  const cutCal = Math.max(1200, tdee - 500)
-  const bulkCal = tdee + 500
 
   const fmt = (num) => Math.round(num).toLocaleString('en-US') + ' kcal'
 
