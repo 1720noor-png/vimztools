@@ -34,6 +34,11 @@ import { calculateTextStats } from '@tool-core/writing/wordCounter.js'
 import { convertTextCase } from '@tool-core/writing/textCaseConverter.js'
 import { analyzeWordFrequency } from '@tool-core/writing/wordFrequencyDensity.js'
 import { deduplicateLines } from '@tool-core/writing/lineDeduplicator.js'
+import { convertUnit } from '@tool-core/conversion/unitConverter.js'
+import { convertTemperature } from '@tool-core/conversion/temperatureConverter.js'
+import { convertPxToUnits } from '@tool-core/conversion/pxRemConverter.js'
+import { calculateGeometry } from '@tool-core/math/geometryCalculator.js'
+
 
 /**
  * Tool Registry for AI Assistant
@@ -607,8 +612,74 @@ export const AI_TOOL_DEFINITIONS = [
       required: ['text']
     },
     execute: (args) => deduplicateLines(args.text, { sortMode: args.sortMode })
+  },
+  {
+    name: 'convertUnit',
+    slug: 'universal-unit-converter',
+    description: 'Convert physical and scientific units across length, mass/weight, speed, area, and volume (e.g. 10 km to miles, 50 kg to lbs, 100 km/h to mph, 5 acres to sqft).',
+    parameters: {
+      type: 'OBJECT',
+      properties: {
+        value: { type: 'NUMBER', description: 'Numeric value to convert' },
+        fromUnit: { type: 'STRING', description: 'Source unit (e.g. km, mi, kg, lb, kmh, mph, sqm, acre, gal, l)' },
+        toUnit: { type: 'STRING', description: 'Target unit' },
+        category: { type: 'STRING', description: 'Optional measurement category: length, mass, speed, area, or volume' }
+      },
+      required: ['value', 'fromUnit', 'toUnit']
+    },
+    execute: (args) => convertUnit(args)
+  },
+  {
+    name: 'calculateGeometry',
+    slug: 'geometry-calculator',
+    description: 'Calculate area, perimeter, surface area, and volume for 2D shapes (circle, rectangle, triangle) and 3D solids (sphere, cylinder, prism).',
+    parameters: {
+      type: 'OBJECT',
+      properties: {
+        shape: { type: 'STRING', description: 'Geometric shape: circle, rectangle, triangle, sphere, cylinder, or prism' },
+        radius: { type: 'NUMBER', description: 'Radius for circle, sphere, or cylinder' },
+        length: { type: 'NUMBER', description: 'Length for rectangle or rectangular prism' },
+        width: { type: 'NUMBER', description: 'Width for rectangle or rectangular prism' },
+        height: { type: 'NUMBER', description: 'Height for triangle, cylinder, or rectangular prism' },
+        base: { type: 'NUMBER', description: 'Base for triangle' },
+        a: { type: 'NUMBER', description: 'Generic first dimension' },
+        b: { type: 'NUMBER', description: 'Generic second dimension' },
+        c: { type: 'NUMBER', description: 'Generic third dimension' }
+      },
+      required: ['shape']
+    },
+    execute: (args) => calculateGeometry(args)
+  },
+  {
+    name: 'convertTemperature',
+    slug: 'celsius-fahrenheit-kelvin-converter',
+    description: 'Convert temperatures between Celsius (°C), Fahrenheit (°F), and Kelvin (K). Use when user asks about temperature conversion or garmi/sardi degrees.',
+    parameters: {
+      type: 'OBJECT',
+      properties: {
+        value: { type: 'NUMBER', description: 'Numeric temperature value' },
+        fromUnit: { type: 'STRING', description: "Source temperature unit: 'c' (Celsius), 'f' (Fahrenheit), or 'k' (Kelvin)" }
+      },
+      required: ['value']
+    },
+    execute: (args) => convertTemperature({ value: args.value, fromUnit: args.fromUnit })
+  },
+  {
+    name: 'convertPxToUnits',
+    slug: 'px-rem-em-converter',
+    description: 'Convert CSS pixel values (px) to responsive REM, EM, PT, and percentage units based on root base font size.',
+    parameters: {
+      type: 'OBJECT',
+      properties: {
+        px: { type: 'NUMBER', description: 'Target pixel value to convert (e.g. 24)' },
+        basePx: { type: 'NUMBER', description: 'Root base font size in pixels (default 16)' }
+      },
+      required: ['px']
+    },
+    execute: (args) => convertPxToUnits({ px: args.px, basePx: args.basePx })
   }
 ]
+
 
 export const AI_TOOL_MAP = new Map(AI_TOOL_DEFINITIONS.map((t) => [t.name, t]))
 

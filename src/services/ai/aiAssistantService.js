@@ -536,8 +536,129 @@ export function extractAndExecuteLocal(prompt) {
     }
   }
 
-  // 21. Fallback: Search top matching tool from 1,059 tools index
+  // 21. Temperature Converter (Celsius, Fahrenheit, Kelvin)
+  if (/(?:convert\s+)?(-?\d+(?:\.\d+)?)\s*(?:°|deg|degrees)?\s*([cfk]|celsius|centigrade|fahrenheit|kelvin)\b/i.test(p) || /(?:celsius|fahrenheit|kelvin|temperature\s*converter)/i.test(p)) {
+    const tempMatch = p.match(/(-?\d+(?:\.\d+)?)\s*(?:°|deg|degrees)?\s*([cfk]|celsius|centigrade|fahrenheit|kelvin)\b/i)
+    if (tempMatch) {
+      const val = parseFloat(tempMatch[1])
+      const fromUnit = tempMatch[2].toLowerCase()
+      const res = executeTool('convertTemperature', { value: val, fromUnit })
+      if (res.success) {
+        return {
+          tool: 'convertTemperature',
+          slug: 'celsius-fahrenheit-kelvin-converter',
+          result: res,
+          link: `/tools/celsius-fahrenheit-kelvin-converter?val=${val}&from=${res.data.fromUnit}`,
+          text: `**Temperature Conversion:**\n• Celsius: **${res.data.celsius} °C**\n• Fahrenheit: **${res.data.fahrenheit} °F**\n• Kelvin: **${res.data.kelvin} K**`
+        }
+      }
+    }
+    return {
+      tool: 'convertTemperature',
+      slug: 'celsius-fahrenheit-kelvin-converter',
+      link: '/tools/celsius-fahrenheit-kelvin-converter',
+      text: 'Please specify the temperature and unit to convert (e.g., `convert 100 C to Fahrenheit` or `98.6 F to Celsius`).'
+    }
+  }
+
+  // 22. CSS Px to Rem & Em Converter
+  if (/(?:convert\s+)?(\d+(?:\.\d+)?)\s*(?:px|pixels?)\b/i.test(p) || /(?:px\s*to\s*rem|rem\s*to\s*px|px\s*rem\s*em|css\s*unit)/i.test(p)) {
+    const pxMatch = p.match(/(\d+(?:\.\d+)?)\s*(?:px|pixels?)\b/i)
+    const baseMatch = p.match(/(?:base|root)[:\s]+(\d+(?:\.\d+)?)/i)
+    if (pxMatch) {
+      const px = parseFloat(pxMatch[1])
+      const basePx = baseMatch ? parseFloat(baseMatch[1]) : 16
+      const res = executeTool('convertPxToUnits', { px, basePx })
+      if (res.success) {
+        return {
+          tool: 'convertPxToUnits',
+          slug: 'px-rem-em-converter',
+          result: res,
+          link: `/tools/px-rem-em-converter?px=${px}&base=${basePx}&target=${px}`,
+          text: `**CSS Unit Conversion:**\n• **${res.data.formattedRem}** (${res.data.px}px at base ${res.data.basePx}px)\n• EM: **${res.data.formattedEm}** | PT: **${res.data.formattedPt}**\n\`\`\`css\n${res.data.cssSnippet}\n\`\`\``
+        }
+      }
+    }
+    return {
+      tool: 'convertPxToUnits',
+      slug: 'px-rem-em-converter',
+      link: '/tools/px-rem-em-converter',
+      text: 'Please specify the pixel value to convert (e.g., `convert 24px to rem` or `16px to rem with base 10`).'
+    }
+  }
+
+  // 23. Universal Unit Converter (Length, Mass, Speed, Area, Volume)
+  const unitMatch = p.match(/(?:convert\s+)?(\d+(?:\.\d+)?)\s*([a-zA-Z²³\/]+)\s*(?:to|in|into|me)\s*([a-zA-Z²³\/]+)/i)
+  if (unitMatch) {
+    const val = parseFloat(unitMatch[1])
+    const fromUnit = unitMatch[2]
+    const toUnit = unitMatch[3]
+    const res = executeTool('convertUnit', { value: val, fromUnit, toUnit })
+    if (res.success) {
+      return {
+        tool: 'convertUnit',
+        slug: 'universal-unit-converter',
+        result: res,
+        link: `/tools/universal-unit-converter?cat=${res.data.category}&from=${res.data.fromUnit}&to=${res.data.toUnit}&val=${val}`,
+        text: `**Unit Conversion:**\n**${val} ${res.data.fromUnitName}** = **${res.data.resultFormatted} ${res.data.toUnitName}**\n*Formula: ${res.data.formula}*`
+      }
+    }
+  }
+  if (/(?:unit\s*converter|convert\s*units|measurement\s*converter)/i.test(p)) {
+    return {
+      tool: 'convertUnit',
+      slug: 'universal-unit-converter',
+      link: '/tools/universal-unit-converter',
+      text: 'Please specify the value and units to convert (e.g., `convert 10 km to miles`, `50 kg to lbs`, `100 kmh to mph`, `5 acres to sqft`).'
+    }
+  }
+
+  // 24. 2D & 3D Geometry Calculator
+  if (/\b(circle|rectangle|triangle|sphere|cylinder|prism|geometry\s*calculator)\b/i.test(p)) {
+    const shapeMatch = p.match(/\b(circle|rectangle|triangle|sphere|cylinder|prism)\b/i)
+    const shape = shapeMatch ? shapeMatch[1].toLowerCase() : 'circle'
+
+    const rMatch = p.match(/(?:radius|r)[:\s=]+(\d+(?:\.\d+)?)/i)
+    const lMatch = p.match(/(?:length|l)[:\s=]+(\d+(?:\.\d+)?)/i)
+    const wMatch = p.match(/(?:width|w)[:\s=]+(\d+(?:\.\d+)?)/i)
+    const hMatch = p.match(/(?:height|h)[:\s=]+(\d+(?:\.\d+)?)/i)
+    const bMatch = p.match(/(?:base|b)[:\s=]+(\d+(?:\.\d+)?)/i)
+
+    const numMatches = p.match(/\b\d+(?:\.\d+)?\b/g)
+
+    let valA = rMatch ? parseFloat(rMatch[1]) : (lMatch ? parseFloat(lMatch[1]) : (bMatch ? parseFloat(bMatch[1]) : (numMatches ? parseFloat(numMatches[0]) : null)))
+    let valB = wMatch ? parseFloat(wMatch[1]) : (hMatch ? parseFloat(hMatch[1]) : (numMatches && numMatches[1] ? parseFloat(numMatches[1]) : null))
+    let valC = hMatch && shape === 'prism' ? parseFloat(hMatch[1]) : (numMatches && numMatches[2] ? parseFloat(numMatches[2]) : null)
+
+    if (valA !== null) {
+      const res = executeTool('calculateGeometry', {
+        shape,
+        a: valA,
+        b: valB || (shape === 'rectangle' || shape === 'cylinder' || shape === 'triangle' ? 5 : 0),
+        c: valC || (shape === 'prism' ? 8 : 0)
+      })
+      if (res.success) {
+        return {
+          tool: 'calculateGeometry',
+          slug: 'geometry-calculator',
+          result: res,
+          link: `/tools/geometry-calculator?shape=${shape}&a=${valA}&b=${valB || 5}&c=${valC || 8}`,
+          text: `**${shape.toUpperCase()} Geometric Calculation:**\n${res.data.is3D ? `• Volume: **${res.data.volume} unit³**\n• Surface Area: **${res.data.surfaceArea} unit²**` : `• Area: **${res.data.area} unit²**\n• Perimeter: **${res.data.perimeter} units**`}\n*Formula: ${res.data.formula}*`
+        }
+      }
+    }
+
+    return {
+      tool: 'calculateGeometry',
+      slug: 'geometry-calculator',
+      link: '/tools/geometry-calculator',
+      text: `Please provide the dimensions for your ${shape} (e.g., \`${shape} radius 10\` or \`cylinder radius 5 height 10\`).`
+    }
+  }
+
+  // 25. Fallback: Search top matching tool from 1,059 tools index
   const matches = searchTools(p, { limit: 3 })
+
   if (matches.length > 0) {
     const top = matches[0]
     return {
