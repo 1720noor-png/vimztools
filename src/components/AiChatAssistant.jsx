@@ -68,6 +68,7 @@ export default function AiChatAssistant() {
         text: res.reply,
         toolCall: res.toolCall,
         toolSlug: res.toolSlug,
+        link: res.link,
         mode: res.mode,
         data: res.data
       }
@@ -265,9 +266,9 @@ export default function AiChatAssistant() {
                       }}
                     >
                       <span style={{ opacity: 0.85 }}>⚡ Executed: {m.toolCall}</span>
-                      {m.toolSlug && (
+                      {m.link ? (
                         <Link
-                          to={`/tools/${m.toolSlug}`}
+                          to={m.link}
                           onClick={() => setIsOpen(false)}
                           style={{
                             color: isUser ? '#ffffff' : 'var(--accent, #6366f1)',
@@ -275,8 +276,22 @@ export default function AiChatAssistant() {
                             textDecoration: 'underline'
                           }}
                         >
-                          Open Full Tool →
+                          Open Pre-filled Tool →
                         </Link>
+                      ) : (
+                        m.toolSlug && (
+                          <Link
+                            to={`/tools/${m.toolSlug}`}
+                            onClick={() => setIsOpen(false)}
+                            style={{
+                              color: isUser ? '#ffffff' : 'var(--accent, #6366f1)',
+                              fontWeight: 600,
+                              textDecoration: 'underline'
+                            }}
+                          >
+                            Open Full Tool →
+                          </Link>
+                        )
                       )}
                     </div>
                   )}
