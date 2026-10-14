@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Field, CopyBtn, download } from '../../components/ui.jsx'
+import { calculateCompoundInterest } from '@tool-core/finance/compoundInterest.js'
 
 export default function CompoundInterestCalculator() {
   const [initial, setInitial] = useState(5000)
@@ -8,47 +9,21 @@ export default function CompoundInterestCalculator() {
   const [years, setYears] = useState(10)
   const [frequency, setFrequency] = useState(12) // monthly compounding
 
-  const P = Number(initial) || 0
-  const PMT = Number(monthly) || 0
-  const r = (Number(rate) || 0) / 100
-  const t = Number(years) || 0
-  const n = Number(frequency) || 12
-
-  // Calculate annual growth table
-  const yearlyData = []
-  let balance = P
-  let totalDeposited = P
-
-  for (let y = 1; y <= Math.min(t, 50); y++) {
-    for (let m = 1; m <= 12; m++) {
-      balance += PMT
-      totalDeposited += PMT
-      const monthlyInterest = balance * (r / n) * (n / 12)
-      balance += monthlyInterest
-    }
-    yearlyData.push({
-      year: y,
-      deposited: totalDeposited,
-      interest: balance - totalDeposited,
-      balance: balance,
-    })
-  }
-
-  const finalBalance = balance
-  const finalInterest = finalBalance - totalDeposited
+  const {
+    totalDeposited,
+    finalInterest,
+    finalBalance,
+    yearlyData,
+    reportText
+  } = calculateCompoundInterest({
+    initial,
+    monthly,
+    rate,
+    years,
+    frequency
+  })
 
   const fmt = (val) => '$' + Math.round(val).toLocaleString('en-US')
-
-  const reportText = `Compound Interest Growth Report
------------------------------------------
-Initial Investment: ${fmt(P)}
-Monthly Deposit: ${fmt(PMT)}
-Expected Annual Return: ${rate}%
-Investment Horizon: ${years} years
-
-Total Money Deposited: ${fmt(totalDeposited)}
-Total Interest Earned: ${fmt(finalInterest)}
-Future Portfolio Value: ${fmt(finalBalance)}`
 
   return (
     <div className="tool-body">

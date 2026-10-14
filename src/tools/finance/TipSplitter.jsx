@@ -1,18 +1,30 @@
 import { useState } from 'react'
 import { Field, Msg } from '../../components/ui.jsx'
+import { calculateTipSplitter } from '@tool-core/finance/tipSplitter.js'
+
 export default function TipSplitter() {
   const [bill, setBill] = useState('')
   const [tip, setTip] = useState('')
   const [people, setPeople] = useState('')
   const [result, setResult] = useState(null)
   const [err, setErr] = useState('')
+
   const calculate = () => {
-    setErr(''); setResult(null)
-    const b=parseFloat(bill),t=parseFloat(tip),p=parseInt(people)||1
-    if(!b){setErr('Enter bill amount.');return}
-    const tipAmt=b*(t||0)/100,total=b+tipAmt,perPerson=total/p
-    setResult({tip:tipAmt.toFixed(2),total:total.toFixed(2),perPerson:perPerson.toFixed(2),people:p})
+    setErr('')
+    setResult(null)
+    try {
+      const outcome = calculateTipSplitter({ bill, tip, people })
+      setResult({
+        tip: outcome.formattedTip,
+        total: outcome.formattedTotal,
+        perPerson: outcome.formattedPerPerson,
+        people: outcome.people
+      })
+    } catch (e) {
+      setErr(e.message || 'Calculation error.')
+    }
   }
+
   return (
     <div>
       <div className="row">

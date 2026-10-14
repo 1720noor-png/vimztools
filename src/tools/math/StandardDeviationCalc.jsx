@@ -1,5 +1,7 @@
 import { useState } from 'react'
 import { Field, CopyBtn, Msg } from '../../components/ui.jsx'
+import { calculateStandardDeviation } from '@tool-core/math/standardDeviation.js'
+
 export default function StandardDeviationCalc() {
   const [input, setInput] = useState('')
   const [result, setResult] = useState(null)
@@ -7,12 +9,17 @@ export default function StandardDeviationCalc() {
   const process = () => {
     setErr(''); setResult(null)
     if (!input.trim()) { setErr('Please enter text.'); return }
-    const nums=input.split(/[,\s]+/).map(Number).filter(n=>!isNaN(n))
-    if(nums.length<2){setErr('Enter at least 2 numbers.');return}
-    const mean=nums.reduce((a,b)=>a+b,0)/nums.length
-    const variance=nums.reduce((s,n)=>s+Math.pow(n-mean,2),0)/nums.length
-    const sd=Math.sqrt(variance)
-    setResult({mean:mean.toFixed(4),variance:variance.toFixed(4),sd:sd.toFixed(4),count:nums.length})
+    try {
+      const res = calculateStandardDeviation({ numbers: input })
+      setResult({
+        mean: res.meanFormatted,
+        variance: res.variancePopFormatted,
+        sd: res.stdDevPopFormatted,
+        count: res.count
+      })
+    } catch (e) {
+      setErr(e.message)
+    }
   }
   return (
     <div>

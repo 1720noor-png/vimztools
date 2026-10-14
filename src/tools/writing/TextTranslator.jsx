@@ -97,8 +97,8 @@ export default function TextTranslator() {
         </div>
       </div>
 
-      <p className="hint" style={{ fontSize: '0.82rem', marginBottom: '0.8rem' }}>
-        🔒 Privacy notice: Text is translated online via the public MyMemory API. Do not send sensitive secrets or confidential data.
+      <p className="hint" style={{ fontSize: '0.82rem', marginBottom: '0.8rem', background: '#f8fafc', padding: '0.5rem 0.75rem', borderRadius: '0.375rem', border: '1px solid #e2e8f0' }}>
+        ⚠️ <strong>Translation Quota Notice:</strong> Free instant translation is powered by the public MyMemory API with a standard ~5,000 words/day community quota. For lengthy documents, translate in smaller paragraphs.
       </p>
 
       {error && <div className="msg error">{error}</div>}

@@ -1,5 +1,7 @@
 import { useState } from 'react'
 import { Field, Msg } from '../../components/ui.jsx'
+import { calculateGcdLcm } from '@tool-core/math/gcdLcm.js'
+
 export default function GcdLcmCalculator() {
   const [a, setA] = useState('')
   const [b, setB] = useState('')
@@ -7,12 +9,14 @@ export default function GcdLcmCalculator() {
   const [err, setErr] = useState('')
   const calculate = () => {
     setErr(''); setResult(null)
-    const x=parseInt(a),y=parseInt(b)
-    if(!x||!y){setErr('Enter two positive integers.');return}
-    const gcd=(a,b)=>b?gcd(b,a%b):a
-    const g=gcd(Math.abs(x),Math.abs(y))
-    const l=Math.abs(x*y)/g
-    setResult({gcd:g,lcm:l})
+    const x = parseInt(a), y = parseInt(b)
+    if (!x || !y) { setErr('Enter two positive integers.'); return }
+    try {
+      const res = calculateGcdLcm({ a: x, b: y })
+      setResult({ gcd: res.gcd, lcm: res.lcm })
+    } catch (e) {
+      setErr(e.message)
+    }
   }
   return (
     <div>

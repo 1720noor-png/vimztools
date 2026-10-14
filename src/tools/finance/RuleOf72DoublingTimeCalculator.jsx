@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Field, Msg, CopyBtn } from '../../components/ui.jsx'
+import { calculateRuleOf72 } from '@tool-core/finance/ruleOf72.js'
 
 export default function RuleOf72DoublingTimeCalculator() {
   const [rate, setRate] = useState('7.2')
@@ -8,14 +9,9 @@ export default function RuleOf72DoublingTimeCalculator() {
 
   const calc = () => {
     try {
-      
-      const r = parseFloat(rate)
-      if (isNaN(r) || r <= 0) return setErr('Enter a valid positive return rate.')
       setErr('')
-      const approxYears = 72 / r
-      const exactYears = Math.log(2) / Math.log(1 + r / 100)
-      setRes({ val: `Doubles in approx. ${approxYears.toFixed(1)} years (Exact: ${exactYears.toFixed(2)} years)`, copyText: `At ${r}% return, money doubles in approx ${approxYears.toFixed(1)} years.` })
-    
+      const outcome = calculateRuleOf72({ rate })
+      setRes({ val: outcome.summary, copyText: outcome.copyText })
     } catch (e) {
       setErr(e.message || 'Calculation error.')
     }
@@ -26,8 +22,6 @@ export default function RuleOf72DoublingTimeCalculator() {
   return (
     <div>
       <div className="row">
-        
-        
         <Field label="Annual Interest Rate / Return (%)">
           <input type="number" step="0.1" value={rate} onChange={(e) => setRate(e.target.value)} placeholder="" />
         </Field>

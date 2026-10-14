@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Field, Msg, CopyBtn } from '../../components/ui.jsx'
+import { calculateInflationAdjustedReturn } from '@tool-core/finance/inflationAdjustedReturn.js'
 
 export default function InflationAdjustedReturnCalculator() {
   const [nominalReturn, setNominalReturn] = useState('9.5')
@@ -9,13 +10,12 @@ export default function InflationAdjustedReturnCalculator() {
 
   const calc = () => {
     try {
-      
-      const n = parseFloat(nominalReturn) / 100, i = parseFloat(inflationRate) / 100
-      if (isNaN(n) || isNaN(i)) return setErr('Enter valid percentage rates.')
       setErr('')
-      const realReturn = ((1 + n) / (1 + i) - 1) * 100
-      setRes({ val: `Real Purchasing Power Return: ${realReturn.toFixed(2)}%`, copyText: `Nominal: ${nominalReturn}%, Inflation: ${inflationRate}%, Real Return: ${realReturn.toFixed(2)}%` })
-    
+      const outcome = calculateInflationAdjustedReturn({
+        nominalReturn,
+        inflationRate
+      })
+      setRes({ val: outcome.summary, copyText: outcome.copyText })
     } catch (e) {
       setErr(e.message || 'Calculation error.')
     }
@@ -26,8 +26,6 @@ export default function InflationAdjustedReturnCalculator() {
   return (
     <div>
       <div className="row">
-        
-        
         <Field label="Nominal Investment Return (%)">
           <input type="number" step="0.1" value={nominalReturn} onChange={(e) => setNominalReturn(e.target.value)} placeholder="" />
         </Field>

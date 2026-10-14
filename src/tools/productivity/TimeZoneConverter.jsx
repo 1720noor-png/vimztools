@@ -3,13 +3,21 @@ import { useStored, today } from '../../components/hooks.js'
 import { Field, Msg, CopyBtn } from '../../components/ui.jsx'
 import ZoneSelect from '../../components/ZoneSelect.jsx'
 import { localZone, zoneName, zoneOk, zonedToUtc, offsetMs, fmtOffset, fmtZoned, dayDiff, validDay } from '../../utils/time.js'
+import { useAutoFillParams } from '@hooks/useAutoFillParams.js'
 
 const nowTime = () => { const d = new Date(); return `${String(d.getHours()).padStart(2, '0')}:${String(d.getMinutes()).padStart(2, '0')}` }
 export default function TimeZoneConverter() {
-  const [date, setDate] = useState(today())
-  const [time, setTime] = useState('09:00')
-  const [from, setFrom] = useState(localZone())
+  const autoParams = useAutoFillParams({
+    from: '',
+    time: '',
+    date: ''
+  })
+
+  const [date, setDate] = useState(autoParams.date || today())
+  const [time, setTime] = useState(autoParams.time || '09:00')
+  const [from, setFrom] = useState(autoParams.from && zoneOk(autoParams.from) ? autoParams.from : localZone())
   const [targets, setTargets] = useStored('toolhub.tzconv.targets', ['UTC', 'America/New_York', 'Europe/London', 'Asia/Tokyo'])
+
   const [add, setAdd] = useState('Asia/Dubai')
   const [h12, setH12] = useState(false)
   const [err, setErr] = useState('')

@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Field, CopyBtn, download } from '../../components/ui.jsx'
+import { calculateMortgageEmi } from '@tool-core/finance/mortgageEmi.js'
 
 export default function MortgageEmiCalculator() {
   const [amount, setAmount] = useState(250000)
@@ -7,38 +8,23 @@ export default function MortgageEmiCalculator() {
   const [tenureYears, setTenureYears] = useState(30)
   const [extraTax, setExtraTax] = useState(200)
 
-  const P = Number(amount) || 0
-  const r = (Number(rate) || 0) / 12 / 100
-  const n = (Number(tenureYears) || 0) * 12
-  const tax = Number(extraTax) || 0
-
-  let emi = 0
-  if (P > 0 && r > 0 && n > 0) {
-    emi = (P * r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1)
-  } else if (P > 0 && n > 0) {
-    emi = P / n
-  }
-
-  const totalMonthly = emi + tax
-  const totalPayment = emi * n
-  const totalInterest = Math.max(0, totalPayment - P)
-  const totalWithTax = totalPayment + tax * n
+  const {
+    principal: P,
+    extraTax: tax,
+    emi,
+    totalMonthly,
+    totalPayment,
+    totalInterest,
+    totalWithTax,
+    reportText
+  } = calculateMortgageEmi({
+    amount,
+    rate,
+    tenureYears,
+    extraTax
+  })
 
   const fmt = (num) => '$' + Math.round(num).toLocaleString('en-US')
-
-  const reportText = `Mortgage & EMI Report
-----------------------------------------
-Loan Principal: ${fmt(P)}
-Annual Interest Rate: ${rate}%
-Tenure: ${tenureYears} years (${n} months)
-Monthly Property Tax & Insurance: ${fmt(tax)}
-
-Monthly EMI (Principal + Interest): ${fmt(emi)}
-Total Monthly Payment: ${fmt(totalMonthly)}
-
-Total Interest Payable: ${fmt(totalInterest)}
-Total Principal & Interest: ${fmt(totalPayment)}
-Total Amount Payable over Loan: ${fmt(totalWithTax)}`
 
   return (
     <div className="tool-body">

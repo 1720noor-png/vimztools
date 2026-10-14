@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Field, Msg, CopyBtn } from '../../components/ui.jsx'
+import { calculateSimpleInterest } from '@tool-core/finance/simpleInterest.js'
 
 export default function SimpleInterestReturnCalculator() {
   const [principal, setPrincipal] = useState('5000')
@@ -10,14 +11,9 @@ export default function SimpleInterestReturnCalculator() {
 
   const calc = () => {
     try {
-      
-      const p = parseFloat(principal), r = parseFloat(rate), t = parseFloat(years)
-      if (isNaN(p) || isNaN(r) || isNaN(t) || p <= 0 || r < 0 || t <= 0) return setErr('Enter valid positive values.')
       setErr('')
-      const interest = (p * r * t) / 100
-      const total = p + interest
-      setRes({ val: `Total Interest: $${interest.toFixed(2)} | Final Total: $${total.toFixed(2)}`, copyText: `Principal: $${p}, Interest: $${interest.toFixed(2)}, Total: $${total.toFixed(2)}` })
-    
+      const outcome = calculateSimpleInterest({ principal, rate, years })
+      setRes({ val: outcome.summary, copyText: outcome.copyText })
     } catch (e) {
       setErr(e.message || 'Calculation error.')
     }
@@ -28,10 +24,8 @@ export default function SimpleInterestReturnCalculator() {
   return (
     <div>
       <div className="row">
-        
-        
         <Field label="Principal Amount ($)">
-          <input type="number"  value={principal} onChange={(e) => setPrincipal(e.target.value)} placeholder="" />
+          <input type="number" value={principal} onChange={(e) => setPrincipal(e.target.value)} placeholder="" />
         </Field>
         <Field label="Annual Interest Rate (%)">
           <input type="number" step="0.1" value={rate} onChange={(e) => setRate(e.target.value)} placeholder="" />

@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Field, Msg } from '../../components/ui.jsx'
-const G = { 'A': 4, 'A-': 3.7, 'B+': 3.3, 'B': 3, 'B-': 2.7, 'C+': 2.3, 'C': 2, 'C-': 1.7, 'D': 1, 'F': 0 }
+import { calculateGpa, GRADE_POINTS } from '@tool-core/student/gpaCalculator.js'
+
 let n = 0
 const blank = () => ({ id: ++n, name: '', g: 'A', c: '' })
 export default function GpaCalculator() {
@@ -10,17 +11,19 @@ export default function GpaCalculator() {
   const [err, setErr] = useState('')
   const upd = (id, k, v) => setRows((r) => r.map((x) => (x.id === id ? { ...x, [k]: v } : x)))
   const calc = () => {
-    const used = rows.filter((r) => r.c !== '')
-    if (!used.length || used.some((r) => !(Number(r.c) > 0))) { setOut(null); return setErr('Enter credit hours greater than 0 for every course you list.') }
-    const cr = used.reduce((a, r) => a + Number(r.c), 0)
-    const pts = used.reduce((a, r) => a + G[r.g] * Number(r.c), 0)
-    let cgpa = null
-    if (prev.g !== '' || prev.c !== '') {
-      const pg = Number(prev.g), pc = Number(prev.c)
-      if (prev.g === '' || prev.c === '' || !(pg >= 0 && pg <= 4) || !(pc > 0)) { setOut(null); return setErr('For CGPA enter both a previous CGPA (0–4) and previous credit hours above 0, or leave both empty.') }
-      cgpa = ((pg * pc + pts) / (pc + cr)).toFixed(2)
+    try {
+      const courses = rows.map((r) => ({ grade: r.g, credits: r.c, name: r.name }))
+      const res = calculateGpa({
+        courses,
+        previousCgpa: prev.g,
+        previousCredits: prev.c
+      })
+      setErr('')
+      setOut({ gpa: res.formattedGpa, cr: res.semesterCredits, cgpa: res.formattedCgpa })
+    } catch (e) {
+      setOut(null)
+      setErr(e.message)
     }
-    setErr(''); setOut({ gpa: (pts / cr).toFixed(2), cr, cgpa })
   }
   const reset = () => { setRows([blank(), blank(), blank()]); setPrev({ g: '', c: '' }); setOut(null); setErr('') }
   return (
@@ -28,7 +31,7 @@ export default function GpaCalculator() {
       {rows.map((r, i) => (
         <div className="row" key={r.id}>
           <Field label={`Course ${i + 1}`}><input value={r.name} onChange={(e) => upd(r.id, 'name', e.target.value)} placeholder="Optional" /></Field>
-          <Field label="Grade"><select value={r.g} onChange={(e) => upd(r.id, 'g', e.target.value)}>{Object.keys(G).map((g) => <option key={g}>{g}</option>)}</select></Field>
+          <Field label="Grade"><select value={r.g} onChange={(e) => upd(r.id, 'g', e.target.value)}>{Object.keys(GRADE_POINTS).map((g) => <option key={g}>{g}</option>)}</select></Field>
           <Field label="Credit hours"><input type="number" min="0" step="0.5" value={r.c} onChange={(e) => upd(r.id, 'c', e.target.value)} /></Field>
           <button type="button" className="btn ghost" onClick={() => setRows((x) => (x.length > 1 ? x.filter((y) => y.id !== r.id) : x))} aria-label={`Remove course ${i + 1}`}>Remove</button>
         </div>

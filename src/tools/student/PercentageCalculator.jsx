@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Field, Msg, CopyBtn } from '../../components/ui.jsx'
-const modes = { of: ['What is X% of Y?', 'Percent (X)', 'Number (Y)'], is: ['X is what % of Y?', 'X', 'Y'], chg: ['Percent change from X to Y', 'From (X)', 'To (Y)'] }
+import { calculatePercentage, PERCENTAGE_MODES as modes } from '@tool-core/student/percentageCalculator.js'
+
 export default function PercentageCalculator() {
   const [m, setM] = useState('of')
   const [a, setA] = useState('')
@@ -8,12 +9,18 @@ export default function PercentageCalculator() {
   const [out, setOut] = useState('')
   const [err, setErr] = useState('')
   const calc = () => {
-    const x = parseFloat(a), y = parseFloat(b)
-    setOut('')
-    if (Number.isNaN(x) || Number.isNaN(y)) return setErr('Enter both numbers.')
-    if ((m === 'is' && y === 0) || (m === 'chg' && x === 0)) return setErr('That calculation would divide by zero. Change the number.')
-    const r = m === 'of' ? (x / 100) * y : m === 'is' ? (x / y) * 100 : ((y - x) / x) * 100
-    setErr(''); setOut(String(+r.toFixed(4)) + (m === 'of' ? '' : '%'))
+    try {
+      const res = calculatePercentage({
+        mode: m,
+        a,
+        b
+      })
+      setErr('')
+      setOut(res.formatted)
+    } catch (e) {
+      setOut('')
+      setErr(e.message)
+    }
   }
   const reset = () => { setA(''); setB(''); setOut(''); setErr('') }
   return (

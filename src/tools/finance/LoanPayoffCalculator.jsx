@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Field, CopyBtn, download } from '../../components/ui.jsx'
+import { calculateLoanPayoff } from '@tool-core/finance/loanPayoff.js'
 
 export default function LoanPayoffCalculator() {
   const [balance, setBalance] = useState(20000)
@@ -7,36 +8,18 @@ export default function LoanPayoffCalculator() {
   const [monthlyPayment, setMonthlyPayment] = useState(450)
   const [extraPayment, setExtraPayment] = useState(100)
 
-  const B = Number(balance) || 0
-  const r = (Number(rate) || 0) / 12 / 100
-  const P = Number(monthlyPayment) || 0
-  const E = Number(extraPayment) || 0
-
-  function calcPayoff(extraP) {
-    if (B <= 0 || r < 0 || (P + extraP) <= B * r) {
-      return { months: Infinity, totalInterest: Infinity }
-    }
-    let cur = B
-    let months = 0
-    let totalInt = 0
-    const totalMonthly = P + extraP
-
-    while (cur > 0 && months < 600) {
-      const interest = cur * r
-      totalInt += interest
-      const principal = totalMonthly - interest
-      cur -= principal
-      months++
-    }
-    return { months, totalInterest: totalInt }
+  let outcome = null
+  let errorMsg = ''
+  try {
+    outcome = calculateLoanPayoff({
+      balance,
+      rate,
+      monthlyPayment,
+      extraPayment
+    })
+  } catch (e) {
+    errorMsg = e.message
   }
-
-  const standard = calcPayoff(0)
-  const accelerated = calcPayoff(E)
-
-  const isInvalid = accelerated.months === Infinity
-  const monthsSaved = !isInvalid && standard.months !== Infinity ? Math.max(0, standard.months - accelerated.months) : 0
-  const interestSaved = !isInvalid && standard.totalInterest !== Infinity ? Math.max(0, standard.totalInterest - accelerated.totalInterest) : 0
 
   const fmt = (n) => '$' + Math.round(n).toLocaleString('en-US')
   const fmtMonths = (m) => {
@@ -46,18 +29,8 @@ export default function LoanPayoffCalculator() {
     return `${m} months (${y} yrs ${rem} mos)`
   }
 
-  const reportText = `Loan Payoff & Extra Payment Analysis
-------------------------------------------------
-Current Loan Balance: ${fmt(B)}
-Interest Rate: ${rate}%
-Standard Monthly Payment: ${fmt(P)}
-Extra Monthly Payment: ${fmt(E)}
-
-Standard Payoff: ${fmtMonths(standard.months)}
-Accelerated Payoff: ${fmtMonths(accelerated.months)}
-
-Time Saved: ${monthsSaved} months (${(monthsSaved / 12).toFixed(1)} years)
-Interest Saved: ${fmt(interestSaved)}`
+  const P = Number(monthlyPayment) || 0
+  const E = Number(extraPayment) || 0
 
   return (
     <div className="tool-body">
@@ -76,16 +49,16 @@ Interest Saved: ${fmt(interestSaved)}`
         </Field>
       </div>
 
-      {isInvalid ? (
+      {!outcome ? (
         <div className="msg error">
-          Monthly payment must be greater than monthly interest charges ({fmt(B * r)}/mo).
+          {errorMsg || 'Invalid loan parameters.'}
         </div>
       ) : (
         <>
           <div className="out">
-            <div>Accelerated Payoff Time: <strong>{fmtMonths(accelerated.months)}</strong></div>
+            <div>Accelerated Payoff Time: <strong>{fmtMonths(outcome.accelerated.months)}</strong></div>
             <div className="good" style={{ fontWeight: 600, marginTop: '0.4rem' }}>
-              🎉 Time Saved: {monthsSaved} months ({(monthsSaved / 12).toFixed(1)} yrs) | Interest Saved: {fmt(interestSaved)}
+              🎉 Time Saved: {outcome.monthsSaved} months ({(outcome.monthsSaved / 12).toFixed(1)} yrs) | Interest Saved: {fmt(outcome.interestSaved)}
             </div>
           </div>
 
@@ -103,22 +76,22 @@ Interest Saved: ${fmt(interestSaved)}`
                 <tr>
                   <td>Standard Plan</td>
                   <td>{fmt(P)}</td>
-                  <td>{fmtMonths(standard.months)}</td>
-                  <td>{fmt(standard.totalInterest)}</td>
+                  <td>{fmtMonths(outcome.standard.months)}</td>
+                  <td>{fmt(outcome.standard.totalInterest)}</td>
                 </tr>
                 <tr className="best">
                   <td>With Extra Payment</td>
                   <td>{fmt(P + E)}</td>
-                  <td>{fmtMonths(accelerated.months)}</td>
-                  <td>{fmt(accelerated.totalInterest)}</td>
+                  <td>{fmtMonths(outcome.accelerated.months)}</td>
+                  <td>{fmt(outcome.accelerated.totalInterest)}</td>
                 </tr>
               </tbody>
             </table>
           </div>
 
           <div className="actions">
-            <CopyBtn text={reportText} label="Copy Payoff Summary" />
-            <button type="button" className="btn ghost" onClick={() => download('loan-payoff-report.txt', reportText)}>
+            <CopyBtn text={outcome.reportText} label="Copy Payoff Summary" />
+            <button type="button" className="btn ghost" onClick={() => download('loan-payoff-report.txt', outcome.reportText)}>
               Download Report (.txt)
             </button>
           </div>

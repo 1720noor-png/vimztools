@@ -1,6 +1,7 @@
 import { useEffect, useState, useMemo } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import { categories, tools, search } from '../data/registry.js'
+import { searchTools } from '@services/search/searchEngine.js'
 import ToolCard from '../components/ToolCard.jsx'
 
 export default function AllTools() {
@@ -24,7 +25,9 @@ export default function AllTools() {
   }, [q, cat, popularOnly, sortBy])
 
   let list = useMemo(() => {
-    let result = search(q, cat || undefined)
+    let result = q.trim()
+      ? searchTools(q, { category: cat || undefined, limit: 1060 })
+      : search('', cat || undefined)
     if (popularOnly && !q) result = result.filter((t) => t.popular)
 
     if (sortBy === 'name') {

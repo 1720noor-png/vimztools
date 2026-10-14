@@ -117,8 +117,8 @@ export default function PdfTranslator() {
         </select>
       </div>
 
-      <p className="hint" style={{ fontSize: '0.82rem', marginBottom: '0.8rem' }}>
-        🔒 Privacy notice: Text chunks are processed via MyMemory Translation API. Avoid uploading sensitive personal identifiers.
+      <p className="hint" style={{ fontSize: '0.82rem', marginBottom: '0.8rem', background: '#f8fafc', padding: '0.5rem 0.75rem', borderRadius: '0.375rem', border: '1px solid #e2e8f0' }}>
+        ⚠️ <strong>Free Quota Notice:</strong> Document translation utilizes the public MyMemory Translation API (free daily allowance of ~5,000 words). Large multi-page PDF files should be translated in sections to avoid provider rate limits.
       </p>
 
       {error && <div className="msg error">{error}</div>}

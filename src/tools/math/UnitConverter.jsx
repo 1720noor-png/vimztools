@@ -1,79 +1,47 @@
 import { useState } from 'react'
 import { Field, CopyBtn, download } from '../../components/ui.jsx'
-
-const CONVERSIONS = {
-  length: {
-    name: 'Length',
-    base: 'm',
-    units: {
-      m: { name: 'Meters (m)', factor: 1 },
-      km: { name: 'Kilometers (km)', factor: 1000 },
-      cm: { name: 'Centimeters (cm)', factor: 0.01 },
-      mm: { name: 'Millimeters (mm)', factor: 0.001 },
-      mi: { name: 'Miles (mi)', factor: 1609.344 },
-      yd: { name: 'Yards (yd)', factor: 0.9144 },
-      ft: { name: 'Feet (ft)', factor: 0.3048 },
-      in: { name: 'Inches (in)', factor: 0.0254 },
-    },
-  },
-  mass: {
-    name: 'Mass & Weight',
-    base: 'kg',
-    units: {
-      kg: { name: 'Kilograms (kg)', factor: 1 },
-      g: { name: 'Grams (g)', factor: 0.001 },
-      mg: { name: 'Milligrams (mg)', factor: 0.000001 },
-      lb: { name: 'Pounds (lb)', factor: 0.45359237 },
-      oz: { name: 'Ounces (oz)', factor: 0.028349523125 },
-      ton: { name: 'Metric Tons (t)', factor: 1000 },
-    },
-  },
-  speed: {
-    name: 'Speed',
-    base: 'kmh',
-    units: {
-      kmh: { name: 'km/h', factor: 1 },
-      mph: { name: 'Miles per hour (mph)', factor: 1.609344 },
-      ms: { name: 'Meters per second (m/s)', factor: 3.6 },
-      knot: { name: 'Knots (kts)', factor: 1.852 },
-    },
-  },
-  area: {
-    name: 'Area',
-    base: 'sqm',
-    units: {
-      sqm: { name: 'Square Meters (m²)', factor: 1 },
-      sqkm: { name: 'Square Kilometers (km²)', factor: 1000000 },
-      sqft: { name: 'Square Feet (ft²)', factor: 0.09290304 },
-      acre: { name: 'Acres', factor: 4046.8564224 },
-      ha: { name: 'Hectares (ha)', factor: 10000 },
-    },
-  },
-}
+import { useAutoFillParams } from '@hooks/useAutoFillParams.js'
+import { convertUnit, UNIT_CATEGORIES } from '@tool-core/conversion/unitConverter.js'
 
 export default function UnitConverter() {
-  const [catKey, setCatKey] = useState('length')
-  const [fromUnit, setFromUnit] = useState('km')
-  const [toUnit, setToUnit] = useState('mi')
-  const [val, setVal] = useState('10')
+  const autoParams = useAutoFillParams({
+    cat: 'length',
+    from: 'km',
+    to: 'mi',
+    val: '10'
+  })
 
-  const category = CONVERSIONS[catKey] || CONVERSIONS.length
+  const [catKey, setCatKey] = useState(autoParams.cat && UNIT_CATEGORIES[autoParams.cat] ? autoParams.cat : 'length')
+  const [fromUnit, setFromUnit] = useState(autoParams.from || 'km')
+  const [toUnit, setToUnit] = useState(autoParams.to || 'mi')
+  const [val, setVal] = useState(autoParams.val || '10')
+
+  const category = UNIT_CATEGORIES[catKey] || UNIT_CATEGORIES.length
   const units = category.units
 
   const handleCategoryChange = (key) => {
     setCatKey(key)
-    const uKeys = Object.keys(CONVERSIONS[key].units)
+    const uKeys = Object.keys(UNIT_CATEGORIES[key].units)
     setFromUnit(uKeys[0])
     setToUnit(uKeys[1] || uKeys[0])
   }
 
   const numVal = Number(val) || 0
-  const fromFactor = units[fromUnit]?.factor || 1
-  const toFactor = units[toUnit]?.factor || 1
 
-  // Convert to base unit then to target unit
-  const result = (numVal * fromFactor) / toFactor
-  const resultStr = Number.isInteger(result) ? result.toString() : result.toFixed(6).replace(/\.?0+$/, '')
+  let resultStr = '0'
+  let formulaStr = ''
+  try {
+    const calc = convertUnit({
+      category: catKey,
+      value: numVal,
+      fromUnit,
+      toUnit
+    })
+    resultStr = calc.resultFormatted
+    formulaStr = calc.formula
+  } catch {
+    resultStr = '0'
+  }
 
   const swap = () => {
     const tmp = fromUnit
@@ -81,23 +49,26 @@ export default function UnitConverter() {
     setToUnit(tmp)
   }
 
+  const targetUnitName = units[toUnit]?.name || toUnit
+  const sourceUnitName = units[fromUnit]?.name || fromUnit
+
   const reportText = `Unit Conversion Result
 -----------------------------------------
 Category: ${category.name}
-Input Value: ${val} ${units[fromUnit]?.name}
-Converted Output: ${resultStr} ${units[toUnit]?.name}`
+Input Value: ${val} ${sourceUnitName}
+Converted Output: ${resultStr} ${targetUnitName}`
 
   return (
     <div className="tool-body">
       <div className="actions" style={{ marginBottom: '1.2rem' }}>
-        {Object.keys(CONVERSIONS).map((key) => (
+        {Object.keys(UNIT_CATEGORIES).map((key) => (
           <button
             key={key}
             type="button"
             className={`btn ${catKey === key ? '' : 'ghost'}`}
             onClick={() => handleCategoryChange(key)}
           >
-            {CONVERSIONS[key].name}
+            {UNIT_CATEGORIES[key].name}
           </button>
         ))}
       </div>
@@ -133,10 +104,12 @@ Converted Output: ${resultStr} ${units[toUnit]?.name}`
       </div>
 
       <div className="out">
-        <div>Converted Result: <strong>{resultStr} {units[toUnit]?.name}</strong></div>
-        <div className="hint" style={{ marginTop: '0.4rem' }}>
-          Formula: {val} {units[fromUnit]?.name} × ({fromFactor} / {toFactor}) = {resultStr} {units[toUnit]?.name}
-        </div>
+        <div>Converted Result: <strong>{resultStr} {targetUnitName}</strong></div>
+        {formulaStr && (
+          <div className="hint" style={{ marginTop: '0.4rem' }}>
+            Formula: {formulaStr}
+          </div>
+        )}
       </div>
 
       <div className="actions" style={{ marginTop: '1rem' }}>

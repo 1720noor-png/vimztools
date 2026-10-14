@@ -93,6 +93,10 @@ export default function WordToPdf() {
         <input type="file" accept=".doc,.docx,.txt,.md" onChange={handleFileChange} />
       </div>
 
+      <p className="hint" style={{ fontSize: '0.82rem', marginBottom: '0.8rem', background: '#f8fafc', padding: '0.5rem 0.75rem', borderRadius: '0.375rem', border: '1px solid #e2e8f0' }}>
+        ℹ️ <strong>In-Browser PDF Generator:</strong> Text and notes are styled into standard PDF page layouts using client-side vector fonts and pdf-lib directly in your browser with zero server uploads.
+      </p>
+
       <div className="field">
         <span>Or paste document text directly:</span>
         <textarea
