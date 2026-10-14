@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Field, Msg } from '../../components/ui.jsx'
-const SCALE = [[90, 'A'], [80, 'B'], [70, 'C'], [60, 'D'], [0, 'F']]
+import { calculateGrade, GRADE_SCALE as SCALE } from '@tool-core/student/gradeCalculator.js'
+
 let n = 0
 const blank = () => ({ id: ++n, name: '', m: '', t: '' })
 export default function GradeCalculator() {
@@ -9,16 +10,15 @@ export default function GradeCalculator() {
   const [err, setErr] = useState('')
   const upd = (id, k, v) => setRows((r) => r.map((x) => (x.id === id ? { ...x, [k]: v } : x)))
   const calc = () => {
-    setOut(null)
-    const used = rows.filter((r) => r.m !== '' || r.t !== '')
-    if (!used.length) return setErr('Enter marks and total marks for at least one assessment.')
-    for (const r of used) {
-      const m = Number(r.m), t = Number(r.t)
-      if (r.m === '' || r.t === '' || !(t > 0) || !(m >= 0) || m > t) return setErr(`Check “${r.name || 'assessment'}”: total must be above 0 and marks must be between 0 and the total.`)
+    try {
+      const assessments = rows.map((r) => ({ name: r.name, marks: r.m, total: r.t }))
+      const res = calculateGrade({ assessments })
+      setErr('')
+      setOut({ m: res.totalMarksObtained, t: res.totalMarksPossible, pct: res.formattedPercentage, grade: res.grade })
+    } catch (e) {
+      setOut(null)
+      setErr(e.message)
     }
-    const m = used.reduce((a, r) => a + Number(r.m), 0), t = used.reduce((a, r) => a + Number(r.t), 0)
-    const pct = (m / t) * 100
-    setErr(''); setOut({ m, t, pct: pct.toFixed(2), grade: SCALE.find(([min]) => pct >= min)[1] })
   }
   const reset = () => { setRows([blank(), blank()]); setOut(null); setErr('') }
   return (
