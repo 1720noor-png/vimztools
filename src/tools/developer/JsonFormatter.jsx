@@ -1,21 +1,34 @@
 import { useState } from 'react'
 import { Field, Msg, CopyBtn, download } from '../../components/ui.jsx'
+import { formatJson, minifyJson } from '@tool-core/developer/jsonFormatter.js'
+import useAutoFillParams from '@hooks/useAutoFillParams.js'
+
 export default function JsonFormatter() {
-  const [src, setSrc] = useState('')
-  const [ind, setInd] = useState('2')
+  const params = useAutoFillParams({ src: '', json: '', ind: '2' })
+  const [src, setSrc] = useState(params.src || params.json || '')
+  const [ind, setInd] = useState(params.ind || '2')
   const [out, setOut] = useState('')
   const [ok, setOk] = useState('')
   const [err, setErr] = useState('')
+
   const run = (min) => {
     setOut(''); setOk('')
     if (!src.trim()) return setErr('Paste some JSON first.')
     try {
-      const v = JSON.parse(src)
-      setOut(JSON.stringify(v, null, min ? 0 : ind === 'tab' ? '\t' : Number(ind)))
-      setErr(''); setOk('Valid JSON')
-    } catch (e) { setErr('Invalid JSON: ' + e.message) }
+      if (min) {
+        setOut(minifyJson(src))
+        setErr(''); setOk('Minified JSON')
+      } else {
+        setOut(formatJson(src, ind))
+        setErr(''); setOk('Valid JSON')
+      }
+    } catch (e) {
+      setErr(e.message)
+    }
   }
+
   const reset = () => { setSrc(''); setOut(''); setOk(''); setErr('') }
+
   return (
     <div>
       <Field label="JSON input"><textarea rows="8" value={src} onChange={(e) => setSrc(e.target.value)} spellCheck="false" placeholder='{"name":"ToolHub"}' /></Field>

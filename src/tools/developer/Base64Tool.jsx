@@ -1,25 +1,33 @@
 import { useState } from 'react'
 import { Field, Msg, CopyBtn } from '../../components/ui.jsx'
+import { encodeBase64, decodeBase64 } from '@tool-core/developer/base64Converter.js'
+import useAutoFillParams from '@hooks/useAutoFillParams.js'
+
 export default function Base64Tool() {
-  const [mode, setMode] = useState('encode')
-  const [src, setSrc] = useState('')
+  const params = useAutoFillParams({ src: '', text: '', input: '', mode: 'encode' })
+  const initialMode = params.mode && params.mode.toLowerCase() === 'decode' ? 'decode' : 'encode'
+  const [mode, setMode] = useState(initialMode)
+  const [src, setSrc] = useState(params.src || params.text || params.input || '')
   const [out, setOut] = useState('')
   const [err, setErr] = useState('')
+
   const run = () => {
     setOut('')
     if (!src) return setErr('Enter some text first.')
     try {
       if (mode === 'encode') {
-        const bytes = new TextEncoder().encode(src)
-        setOut(btoa(Array.from(bytes, (b) => String.fromCharCode(b)).join('')))
+        setOut(encodeBase64(src))
       } else {
-        const bin = atob(src.trim().replace(/-/g, '+').replace(/_/g, '/'))
-        setOut(new TextDecoder('utf-8', { fatal: true }).decode(Uint8Array.from(bin, (c) => c.charCodeAt(0))))
+        setOut(decodeBase64(src))
       }
       setErr('')
-    } catch { setErr(mode === 'decode' ? 'This is not valid Base64 text (or it does not contain UTF-8 text).' : 'Could not encode this text.') }
+    } catch {
+      setErr(mode === 'decode' ? 'This is not valid Base64 text (or it does not contain UTF-8 text).' : 'Could not encode this text.')
+    }
   }
+
   const reset = () => { setSrc(''); setOut(''); setErr('') }
+
   return (
     <div>
       <Field label="Mode"><select value={mode} onChange={(e) => { setMode(e.target.value); setOut(''); setErr('') }}><option value="encode">Encode text to Base64</option><option value="decode">Decode Base64 to text</option></select></Field>

@@ -26,6 +26,10 @@ import { calculateIdealBodyWeight } from '@tool-core/health/idealBodyWeight.js'
 import { calculateBmi } from '@tool-core/health/bmiCalculator.js'
 import { calculateBmrTdee } from '@tool-core/health/bmrTdeeCalculator.js'
 import { calculateCalorieDeficit } from '@tool-core/health/calorieDeficit.js'
+import { formatJson, minifyJson, validateJson } from '@tool-core/developer/jsonFormatter.js'
+import { encodeBase64, decodeBase64 } from '@tool-core/developer/base64Converter.js'
+import { encodeUrlText, encodeFullUrl, decodeUrl } from '@tool-core/developer/urlEncoderDecoder.js'
+import { generateHash, normalizeAlgorithm } from '@tool-core/developer/hashGenerator.js'
 
 /**
  * Tool Registry for AI Assistant
@@ -421,6 +425,129 @@ export const AI_TOOL_DEFINITIONS = [
         maintenanceTdee: args.maintenanceTdee ?? args.tdee,
         timelineWeeks: args.timelineWeeks ?? args.weeks
       })
+  },
+  {
+    name: 'formatJson',
+    slug: 'json-formatter',
+    description: 'Format, pretty-print, or minify a JSON string with indentation (2 spaces, 4 spaces, or tab).',
+    parameters: {
+      type: 'OBJECT',
+      properties: {
+        input: { type: 'STRING', description: 'JSON string to format or minify' },
+        indent: { type: 'STRING', description: 'Indentation spaces (2, 4, or tab)' },
+        minify: { type: 'BOOLEAN', description: 'Set to true to minify the JSON' }
+      },
+      required: ['input']
+    },
+    execute: (args) => {
+      if (args.minify) {
+        const minified = minifyJson(args.input)
+        return {
+          formatted: minified,
+          summary: `Minified JSON (${minified.length} chars)`
+        }
+      }
+      const formatted = formatJson(args.input, args.indent ?? 2)
+      return {
+        formatted,
+        summary: `Formatted JSON (${formatted.split('\n').length} lines)`
+      }
+    }
+  },
+  {
+    name: 'validateJson',
+    slug: 'json-validator',
+    description: 'Validate a JSON string, report syntax errors, and show error line and column position.',
+    parameters: {
+      type: 'OBJECT',
+      properties: {
+        input: { type: 'STRING', description: 'JSON string to validate' }
+      },
+      required: ['input']
+    },
+    execute: (args) => validateJson(args.input)
+  },
+  {
+    name: 'convertBase64',
+    slug: 'base64-encoder-decoder',
+    description: 'Encode text to Base64 or decode Base64 back to plain UTF-8 text with optional URL-safe format.',
+    parameters: {
+      type: 'OBJECT',
+      properties: {
+        text: { type: 'STRING', description: 'Text to encode or Base64 string to decode' },
+        mode: { type: 'STRING', description: "'encode' to convert to Base64, or 'decode' to convert back to text" },
+        urlSafe: { type: 'BOOLEAN', description: 'Use URL-safe Base64 without + or / and no padding' }
+      },
+      required: ['text']
+    },
+    execute: (args) => {
+      const mode = (args.mode || 'encode').toLowerCase()
+      if (mode === 'decode') {
+        const decoded = decodeBase64(args.text)
+        return {
+          mode: 'decode',
+          output: decoded,
+          summary: `Decoded Base64: ${decoded}`
+        }
+      }
+      const encoded = encodeBase64(args.text, { urlSafe: Boolean(args.urlSafe) })
+      return {
+        mode: 'encode',
+        output: encoded,
+        summary: `Base64 Encoded: ${encoded}`
+      }
+    }
+  },
+  {
+    name: 'encodeDecodeUrl',
+    slug: 'url-encoder-decoder',
+    description: 'Percent-encode or decode a URL or text string, or encode a full URL preserving structure.',
+    parameters: {
+      type: 'OBJECT',
+      properties: {
+        text: { type: 'STRING', description: 'URL or text to encode or decode' },
+        action: { type: 'STRING', description: "'encodeText', 'encodeFullUrl', or 'decode'" }
+      },
+      required: ['text']
+    },
+    execute: (args) => {
+      const act = args.action || 'encodeText'
+      let output = ''
+      if (act === 'decode') {
+        output = decodeUrl(args.text)
+      } else if (act === 'encodeFullUrl') {
+        output = encodeFullUrl(args.text)
+      } else {
+        output = encodeUrlText(args.text)
+      }
+      return {
+        action: act,
+        output,
+        summary: `URL ${act}: ${output}`
+      }
+    }
+  },
+  {
+    name: 'generateCryptoHash',
+    slug: 'hash-generator',
+    description: 'Generate cryptographic hash digests (SHA-1, SHA-256, SHA-384, SHA-512) for text using Web Crypto.',
+    parameters: {
+      type: 'OBJECT',
+      properties: {
+        text: { type: 'STRING', description: 'Input text to hash' },
+        algorithm: { type: 'STRING', description: "Algorithm: 'SHA-1', 'SHA-256', 'SHA-384', or 'SHA-512'" }
+      },
+      required: ['text']
+    },
+    execute: async (args) => {
+      const alg = normalizeAlgorithm(args.algorithm || 'SHA-256')
+      const hash = await generateHash(args.text, alg)
+      return {
+        algorithm: alg,
+        hash,
+        summary: `${alg} Hash: ${hash}`
+      }
+    }
   }
 ]
 
@@ -428,10 +555,11 @@ export const AI_TOOL_MAP = new Map(AI_TOOL_DEFINITIONS.map((t) => [t.name, t]))
 
 /**
  * Execute a registered tool call by name with validated parameters.
+ * Supports both synchronous and asynchronous (Promise) tool executions.
  *
  * @param {string} name - Tool function name
  * @param {Object} args - Arguments extracted by AI
- * @returns {Object} Execution result conforming to Golden Rule
+ * @returns {Object|Promise<Object>} Execution result conforming to Golden Rule
  */
 export function executeTool(name, args) {
   const tool = AI_TOOL_MAP.get(name)
@@ -441,13 +569,32 @@ export function executeTool(name, args) {
 
   try {
     const calculation = tool.execute(args)
+    if (calculation && typeof calculation.then === 'function') {
+      return calculation
+        .then((res) => ({
+          success: true,
+          toolName: tool.name,
+          slug: tool.slug,
+          args,
+          data: res,
+          summary: res?.summary || res?.message || JSON.stringify(res)
+        }))
+        .catch((err) => ({
+          success: false,
+          toolName: tool.name,
+          slug: tool.slug,
+          args,
+          error: err.message
+        }))
+    }
+
     return {
       success: true,
       toolName: tool.name,
       slug: tool.slug,
       args,
       data: calculation,
-      summary: calculation.summary || calculation.message || JSON.stringify(calculation)
+      summary: calculation?.summary || calculation?.message || JSON.stringify(calculation)
     }
   } catch (err) {
     return {
