@@ -1,40 +1,109 @@
 import { useState } from 'react'
 import { Field, Msg, CopyBtn } from '../../components/ui.jsx'
-const SETS = { lower: 'abcdefghijklmnopqrstuvwxyz', upper: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', digits: '0123456789', symbols: '!@#$%^&*()-_=+[]{};:,.?' }
-const rnd = (n) => {
-  const lim = Math.floor(2 ** 32 / n) * n
-  const a = new Uint32Array(1)
-  do crypto.getRandomValues(a); while (a[0] >= lim)
-  return a[0] % n
-}
+import { useAutoFillParams } from '@hooks/useAutoFillParams.js'
+import { generatePassword, CHAR_SETS } from '@tool-core/security/passwordGenerator.js'
+
 export default function PasswordGenerator() {
-  const [len, setLen] = useState(16)
+  const autoParams = useAutoFillParams({
+    len: '16'
+  })
+
+  const [len, setLen] = useState(Number(autoParams.len) || 16)
   const [on, setOn] = useState({ lower: true, upper: true, digits: true, symbols: true })
+  const [avoidAmbiguous, setAvoidAmbiguous] = useState(false)
   const [pw, setPw] = useState('')
   const [bits, setBits] = useState(0)
+  const [rating, setRating] = useState('')
+  const [crackTime, setCrackTime] = useState('')
   const [err, setErr] = useState('')
+
   const gen = () => {
-    const keys = Object.keys(on).filter((k) => on[k])
-    const L = Number(len)
-    if (!keys.length) return setErr('Select at least one character type.')
-    if (!Number.isInteger(L) || L < 8 || L > 128) return setErr('Length must be a whole number from 8 to 128.')
-    if (!window.crypto?.getRandomValues) return setErr('Secure random numbers are not available in this browser.')
-    const pool = keys.map((k) => SETS[k]).join('')
-    let s
-    do s = Array.from({ length: L }, () => pool[rnd(pool.length)]).join('')
-    while (!keys.every((k) => [...s].some((c) => SETS[k].includes(c))))
-    setErr(''); setPw(s); setBits(Math.round(L * Math.log2(pool.length)))
+    try {
+      setErr('')
+      const res = generatePassword({
+        length: Number(len),
+        lower: on.lower,
+        upper: on.upper,
+        digits: on.digits,
+        symbols: on.symbols,
+        avoidAmbiguous
+      })
+      setPw(res.password)
+      setBits(res.entropy)
+      setRating(res.strength)
+      setCrackTime(res.crackTime)
+    } catch (e) {
+      setErr(e.message || 'Error generating password.')
+    }
   }
-  const reset = () => { setLen(16); setOn({ lower: true, upper: true, digits: true, symbols: true }); setPw(''); setErr('') }
-  const label = bits < 60 ? 'Fair' : bits < 100 ? 'Strong' : 'Very strong'
+
+  const reset = () => {
+    setLen(16)
+    setOn({ lower: true, upper: true, digits: true, symbols: true })
+    setAvoidAmbiguous(false)
+    setPw('')
+    setBits(0)
+    setRating('')
+    setErr('')
+  }
+
   return (
     <div>
-      <Field label={`Length: ${len}`}><input type="range" min="8" max="128" value={len} onChange={(e) => setLen(e.target.value)} /></Field>
-      <div className="checks">{Object.keys(SETS).map((k) => <label className="check" key={k}><input type="checkbox" checked={on[k]} onChange={(e) => setOn({ ...on, [k]: e.target.checked })} /> {k}</label>)}</div>
-      <div className="actions"><button className="btn" onClick={gen}>Generate</button><button className="btn ghost" onClick={reset}>Reset</button></div>
+      <Field label={`Length: ${len}`}>
+        <input
+          type="range"
+          min="8"
+          max="128"
+          value={len}
+          onChange={(e) => setLen(e.target.value)}
+        />
+      </Field>
+
+      <div className="checks">
+        {Object.keys(CHAR_SETS).map((k) => (
+          <label className="check" key={k}>
+            <input
+              type="checkbox"
+              checked={on[k]}
+              onChange={(e) => setOn({ ...on, [k]: e.target.checked })}
+            />{' '}
+            {k}
+          </label>
+        ))}
+        <label className="check">
+          <input
+            type="checkbox"
+            checked={avoidAmbiguous}
+            onChange={(e) => setAvoidAmbiguous(e.target.checked)}
+          />{' '}
+          Avoid lookalikes (0, O, 1, l, I)
+        </label>
+      </div>
+
+      <div className="actions" style={{ marginTop: '1rem' }}>
+        <button className="btn" onClick={gen}>Generate Password</button>
+        <button className="btn ghost" onClick={reset}>Reset</button>
+      </div>
+
       <Msg>{err}</Msg>
-      {pw && <div className="out" role="status"><code>{pw}</code><CopyBtn text={pw} /><p><small>{bits} bits of entropy · {label}</small></p></div>}
-      <p className="hint">Generated locally with your browser’s secure random generator. Nothing is sent or stored.</p>
+
+      {pw && (
+        <div className="out" role="status" style={{ marginTop: '1rem' }}>
+          <code style={{ fontSize: '1.1rem', wordBreak: 'break-all' }}>{pw}</code>
+          <div style={{ marginTop: '0.8rem' }}>
+            <CopyBtn text={pw} label="Copy Password" />
+          </div>
+          <p style={{ marginTop: '0.6rem' }}>
+            <small>
+              <strong>{bits} bits of entropy</strong> · Strength: <strong>{rating}</strong> · Estimated crack time: {crackTime}
+            </small>
+          </p>
+        </div>
+      )}
+
+      <p className="hint" style={{ marginTop: '1rem' }}>
+        Generated locally using cryptographic randomness. Never transmitted over the internet or stored anywhere.
+      </p>
     </div>
   )
 }

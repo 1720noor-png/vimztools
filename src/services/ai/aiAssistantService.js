@@ -656,8 +656,107 @@ export function extractAndExecuteLocal(prompt) {
     }
   }
 
-  // 25. Fallback: Search top matching tool from 1,059 tools index
+  // 25. Age & Date of Birth Calculator
+  if (/(?:age|umar|date\s*of\s*birth|dob|birthday)/i.test(p)) {
+    const dateMatch = p.match(/\b(\d{4}[-/]\d{1,2}[-/]\d{1,2}|\d{1,2}[-/]\d{1,2}[-/]\d{4})\b/)
+    if (dateMatch) {
+      const birthDate = dateMatch[1]
+      const res = executeTool('calculateAge', { birthDate })
+      if (res.success) {
+        return {
+          tool: 'calculateAge',
+          slug: 'age-calculator',
+          result: res,
+          link: `/tools/age-calculator?dob=${encodeURIComponent(birthDate)}`,
+          text: `**Age Calculation:**\n• **${res.data.years} Years, ${res.data.months} Months, ${res.data.days} Days old**\n• Total Days: **${res.data.totalDays.toLocaleString()} days**\n• Next Birthday: **${res.data.nextBirthday.date}** (${res.data.nextBirthday.daysUntil} days left, ${res.data.nextBirthday.dayOfWeek})\n• Zodiac: **${res.data.zodiac}**`
+        }
+      }
+    }
+    return {
+      tool: 'calculateAge',
+      slug: 'age-calculator',
+      link: '/tools/age-calculator',
+      text: 'Please provide your date of birth in YYYY-MM-DD format (e.g., `calculate age for 1995-04-10` or `meri umar 2000-01-15`).'
+    }
+  }
+
+  // 26. Time Zone Converter
+  const tzMatch = p.match(/(\d{1,2}:\d{2})\s*([a-zA-Z]+)\s*(?:to|in|into)\s*([a-zA-Z/_]+)/i)
+  if (tzMatch) {
+    const time = tzMatch[1]
+    const fromZone = tzMatch[2]
+    const toZone = tzMatch[3]
+    const res = executeTool('convertTimeZone', { time, fromZone, toZone })
+    if (res.success) {
+      return {
+        tool: 'convertTimeZone',
+        slug: 'time-zone-converter',
+        result: res,
+        link: `/tools/time-zone-converter?time=${time}&from=${encodeURIComponent(fromZone)}&to=${encodeURIComponent(toZone)}`,
+        text: `**Time Zone Conversion:**\n• **${res.data.inputTime} ${fromZone.toUpperCase()}** = **${res.data.convertedTime} ${toZone.toUpperCase()}** (${res.data.dayDiffLabel})\n• Local Date: ${res.data.convertedDate}`
+      }
+    }
+  }
+  if (/(?:time\s*zone|timezone|convert\s*time|what\s*time\s*is\s*it\s*in)/i.test(p)) {
+    return {
+      tool: 'convertTimeZone',
+      slug: 'time-zone-converter',
+      link: '/tools/time-zone-converter',
+      text: 'Please specify the time and timezones to convert (e.g., `convert 14:00 UTC to PKT` or `09:00 EST to GMT`).'
+    }
+  }
+
+  // 27. Cryptographic Password Generator
+  if (/(?:generate\s*password|create\s*password|password\s*generator|strong\s*password|nayi\s*password)/i.test(p)) {
+    const lenMatch = p.match(/\b(\d{1,3})\s*(?:char|characters|chars|length)/i) || p.match(/\b(?:length|of)\s*(\d{1,3})\b/i)
+    const length = lenMatch ? parseInt(lenMatch[1], 10) : 16
+    const validLength = Math.min(Math.max(length, 8), 128)
+    const res = executeTool('generatePassword', { length: validLength })
+    if (res.success) {
+      return {
+        tool: 'generatePassword',
+        slug: 'password-generator',
+        result: res,
+        link: `/tools/password-generator?len=${validLength}`,
+        text: `**Generated Secure Password (${validLength} chars):**\n\`${res.data.password}\`\n\n• Entropy: **${res.data.entropy} bits** (${res.data.strength})\n• Estimated crack time: ${res.data.crackTime}`
+      }
+    }
+    return {
+      tool: 'generatePassword',
+      slug: 'password-generator',
+      link: '/tools/password-generator',
+      text: 'Click below to open the secure local Password Generator.'
+    }
+  }
+
+  // 28. IPv4 CIDR Subnet Calculator
+  const cidrMatch = p.match(/\b(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})(?:\/(\d{1,2}))?\b/)
+  if (cidrMatch && (/(?:subnet|cidr|netmask|\bmask\b|\bip\b)/i.test(p) || cidrMatch[2])) {
+    const ip = cidrMatch[1]
+    const cidr = cidrMatch[2] ? parseInt(cidrMatch[2], 10) : 24
+    const res = executeTool('calculateSubnet', { ip, cidr })
+    if (res.success) {
+      return {
+        tool: 'calculateSubnet',
+        slug: 'subnet-calculator',
+        result: res,
+        link: `/tools/subnet-calculator?ip=${ip}&cidr=${cidr}`,
+        text: `**IPv4 Subnet Calculation:**\n• Network: **${res.data.networkAddress}/${res.data.cidr}**\n• Subnet Mask: **${res.data.netmask}**\n• Usable Host Range: **${res.data.firstUsableIp} – ${res.data.lastUsableIp}**\n• Total Usable Hosts: **${res.data.usableHosts.toLocaleString()}** (Class ${res.data.ipClass})`
+      }
+    }
+  }
+  if (/(?:subnet\s*calculator|calculate\s*subnet|cidr\s*calculator)/i.test(p)) {
+    return {
+      tool: 'calculateSubnet',
+      slug: 'subnet-calculator',
+      link: '/tools/subnet-calculator',
+      text: 'Please provide an IP and CIDR prefix (e.g., `calculate subnet for 192.168.1.0/24` or `10.0.0.1/16`).'
+    }
+  }
+
+  // 29. Fallback: Search top matching tool from 1,059 tools index
   const matches = searchTools(p, { limit: 3 })
+
 
   if (matches.length > 0) {
     const top = matches[0]
