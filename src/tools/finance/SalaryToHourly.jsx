@@ -1,18 +1,30 @@
 import { useState } from 'react'
 import { Field, Msg } from '../../components/ui.jsx'
+import { calculateSalaryToHourly } from '@tool-core/finance/salaryToHourly.js'
+
 export default function SalaryToHourly() {
   const [salary, setSalary] = useState('')
   const [hoursWeek, setHoursWeek] = useState('')
   const [weeksYear, setWeeksYear] = useState('')
   const [result, setResult] = useState(null)
   const [err, setErr] = useState('')
+
   const calculate = () => {
-    setErr(''); setResult(null)
-    const s=parseFloat(salary),h=parseFloat(hoursWeek)||40,w=parseFloat(weeksYear)||52
-    if(!s){setErr('Enter salary.');return}
-    const hourly=s/(h*w),daily=hourly*h/5,monthly=s/12
-    setResult({hourly:hourly.toFixed(2),daily:daily.toFixed(2),weekly:(hourly*h).toFixed(2),monthly:monthly.toFixed(2)})
+    setErr('')
+    setResult(null)
+    try {
+      const outcome = calculateSalaryToHourly({ salary, hoursWeek, weeksYear })
+      setResult({
+        hourly: outcome.formattedHourly,
+        daily: outcome.formattedDaily,
+        weekly: outcome.formattedWeekly,
+        monthly: outcome.formattedMonthly
+      })
+    } catch (e) {
+      setErr(e.message || 'Calculation error.')
+    }
   }
+
   return (
     <div>
       <div className="row">
