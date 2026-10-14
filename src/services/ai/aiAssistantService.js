@@ -443,7 +443,100 @@ export function extractAndExecuteLocal(prompt) {
     }
   }
 
-  // 17. Fallback: Search top matching tool from 1,059 tools index
+  // 17. Word Counter & Text Statistics
+  if (/\b(word\s*count|character\s*count|text\s*stats|reading\s*time|lafz\s*count)\b/i.test(p)) {
+    const textMatch = p.match(/(?:count|for|text|stats)[:\s]+["']?([^"'\n]+)["']?$/i) || p.match(/["']([^"']+)["']/)
+    if (textMatch) {
+      const text = textMatch[1].trim()
+      const res = executeTool('calculateTextStats', { text })
+      return {
+        tool: 'calculateTextStats',
+        slug: 'word-counter-text-stats',
+        result: res,
+        link: `/tools/word-counter-text-stats?text=${encodeURIComponent(text)}`,
+        text: `**Text Statistics:**\n- Words: **${res.data.words}**\n- Characters: **${res.data.chars}** (${res.data.charsNoSpace} without spaces)\n- Reading time: **${res.data.readingTimeFormatted}** · Speaking time: **${res.data.speakingTimeFormatted}**`
+      }
+    }
+    return {
+      tool: 'calculateTextStats',
+      slug: 'word-counter-text-stats',
+      link: '/tools/word-counter-text-stats',
+      text: 'Please provide the text you would like to count and analyze.'
+    }
+  }
+
+  // 18. Text Case Converter
+  if (/(?:convert.*case|uppercase|lowercase|camelcase|snake_case|kebab-case|title\s*case|sentence\s*case)/i.test(p)) {
+    const modeMatch = p.match(/\b(upper|lower|title|sentence|camel|pascal|snake|kebab)(?:case)?\b/i)
+    const mode = modeMatch ? modeMatch[1].toLowerCase() : 'upper'
+    const textMatch = p.match(/(?:to\s+\w+\s*:?|case\s*:?|text\s*:?)\s*["']?([^"'\n]+)["']?$/i) || p.match(/["']([^"']+)["']/)
+    if (textMatch) {
+      const text = textMatch[1].trim()
+      const res = executeTool('convertTextCase', { text, mode })
+      return {
+        tool: 'convertTextCase',
+        slug: 'text-case-converter-tool',
+        result: res,
+        link: `/tools/text-case-converter-tool?text=${encodeURIComponent(text)}&mode=${mode}`,
+        text: `**${res.data.mode.toUpperCase()} Case:**\n\`${res.data.val}\``
+      }
+    }
+    return {
+      tool: 'convertTextCase',
+      slug: 'text-case-converter-tool',
+      link: '/tools/text-case-converter-tool',
+      text: 'Please provide the text and target case format (e.g., `convert to camelcase: hello world`).'
+    }
+  }
+
+  // 19. Word Frequency & Density Analyzer
+  if (/(?:word\s*frequency|keyword\s*density|density\s*analyzer)/i.test(p)) {
+    const textMatch = p.match(/(?:for|analyze|text)[:\s]+["']?([^"'\n]+)["']?$/i) || p.match(/["']([^"']+)["']/)
+    if (textMatch) {
+      const text = textMatch[1].trim()
+      const res = executeTool('analyzeWordFrequency', { text })
+      return {
+        tool: 'analyzeWordFrequency',
+        slug: 'word-frequency-density-analyzer',
+        result: res,
+        link: `/tools/word-frequency-density-analyzer?text=${encodeURIComponent(text)}`,
+        text: `**Keyword Density Analysis:**\n${res.data.val}`
+      }
+    }
+    return {
+      tool: 'analyzeWordFrequency',
+      slug: 'word-frequency-density-analyzer',
+      link: '/tools/word-frequency-density-analyzer',
+      text: 'Please paste the text content you want to analyze for word frequency and keyword density.'
+    }
+  }
+
+  // 20. Duplicate Line Deduplicator
+  if (/(?:duplicate\s*line|deduplicate|remove\s*duplicates)/i.test(p)) {
+    const isSortAsc = /\b(sort|alphabetical|a to z)\b/i.test(p)
+    const isSortDesc = /\b(z to a|reverse)\b/i.test(p)
+    const sortMode = isSortDesc ? 'desc' : (isSortAsc ? 'asc' : 'none')
+    const textMatch = p.match(/(?:remove\s*duplicates\s*(?:from)?|deduplicate\s*(?:lines)?|from)[:\s]+([\s\S]+)$/i) || p.match(/["']([^"']+)["']/)
+    if (textMatch) {
+      const text = textMatch[1].trim()
+      const res = executeTool('deduplicateLines', { text, sortMode })
+      return {
+        tool: 'deduplicateLines',
+        slug: 'duplicate-line-deduplicator',
+        result: res,
+        link: `/tools/duplicate-line-deduplicator?text=${encodeURIComponent(text)}&sort=${sortMode}`,
+        text: `**Deduplication Result:**\n${res.data.val}`
+      }
+    }
+    return {
+      tool: 'deduplicateLines',
+      slug: 'duplicate-line-deduplicator',
+      link: '/tools/duplicate-line-deduplicator',
+      text: 'Please provide the multiline list from which you want to remove duplicate entries.'
+    }
+  }
+
+  // 21. Fallback: Search top matching tool from 1,059 tools index
   const matches = searchTools(p, { limit: 3 })
   if (matches.length > 0) {
     const top = matches[0]

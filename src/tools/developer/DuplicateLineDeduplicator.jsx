@@ -1,35 +1,32 @@
 import { useState } from 'react'
 import { Field, Msg, CopyBtn } from '../../components/ui.jsx'
+import { deduplicateLines } from '@tool-core/writing/lineDeduplicator.js'
+import useAutoFillParams from '@hooks/useAutoFillParams.js'
 
 export default function DuplicateLineDeduplicator() {
-  const [text, setText] = useState('apple\nbanana\napple\norange\nbanana')
-  const [sortMode, setSortMode] = useState('none')
+  const defaultText = 'apple\nbanana\napple\norange\nbanana'
+  const params = useAutoFillParams({ text: defaultText, input: '', src: '', sort: 'none', sortMode: 'none' })
+  const [text, setText] = useState(params.text || params.input || params.src || defaultText)
+  const [sortMode, setSortMode] = useState(params.sort || params.sortMode || 'none')
   const [res, setRes] = useState(null)
   const [err, setErr] = useState('')
 
   const calc = () => {
     try {
-      
       if (!text.trim()) return setErr('Paste text lines.')
       setErr('')
-      const lines = text.split('\n').map(l => l.trim()).filter(Boolean)
-      let unique = [...new Set(lines)]
-      if (sortMode === 'asc') unique.sort()
-      else if (sortMode === 'desc') unique.sort().reverse()
-      const out = unique.join('\n')
-      setRes({ val: `Removed ${lines.length - unique.length} duplicates. Remaining: ${unique.length} unique lines.\n\n${out}`, copyText: out })
-    
+      const outcome = deduplicateLines(text, { sortMode })
+      setRes({ val: outcome.val, copyText: outcome.output })
     } catch (e) {
       setErr(e.message || 'Calculation error.')
     }
   }
 
-  const reset = () => { setText('apple\nbanana\napple\norange\nbanana'); setSortMode('none'); setRes(null); setErr('') }
+  const reset = () => { setText(defaultText); setSortMode('none'); setRes(null); setErr('') }
 
   return (
     <div>
       <div className="row">
-        
         <Field label="Sort Order">
           <select value={sortMode} onChange={(e) => setSortMode(e.target.value)}>
             <option value="none">Keep Original Order</option>
@@ -37,9 +34,8 @@ export default function DuplicateLineDeduplicator() {
             <option value="desc">Sort Z to A</option>
           </select>
         </Field>
-        
         <Field label="List Items (One per line)">
-          <input type="text"  value={text} onChange={(e) => setText(e.target.value)} placeholder="" />
+          <input type="text" value={text} onChange={(e) => setText(e.target.value)} placeholder="" />
         </Field>
       </div>
       <div className="actions" style={{ marginTop: '1rem' }}>
