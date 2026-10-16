@@ -501,6 +501,202 @@ select:focus {
 }
 
 /* ==========================================================================
+   Platform Dashboards Menu & Quick Header Button
+   ========================================================================== */
+.dash-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: var(--neu-bg);
+  color: var(--neu-fg);
+  font-weight: 700;
+  font-size: 0.92rem;
+  border-radius: var(--neu-r-btn);
+  padding: 0.48rem 0.85rem;
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.dash-btn-icon {
+  font-size: 1.05rem;
+  filter: drop-shadow(0 2px 4px rgba(108, 76, 241, 0.25));
+}
+
+.dash-btn:hover {
+  box-shadow: var(--neu-extruded-sm);
+  color: var(--brand);
+  transform: translateY(-1px);
+}
+
+.dash-btn.active,
+.dash-btn[aria-expanded="true"] {
+  box-shadow: var(--neu-inset-sm);
+  color: var(--brand);
+}
+
+.dash-panel {
+  width: min(480px, 94vw) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0.85rem !important;
+  padding: 1.25rem !important;
+  z-index: 90 !important;
+  animation: neu-modal-3d-enter 0.26s cubic-bezier(0.16, 1, 0.3, 1);
+  transform-origin: top center;
+}
+
+.dash-panel-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid rgba(108, 76, 241, 0.1);
+}
+
+.dash-panel-title {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--neu-fg);
+  letter-spacing: -0.01em;
+}
+
+.dash-panel-sub {
+  font-size: 0.78rem;
+  color: var(--neu-muted);
+}
+
+.dash-panel-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.dash-portal-card {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  padding: 0.85rem 1rem;
+  border-radius: 16px;
+  background: var(--neu-bg);
+  box-shadow: var(--neu-extruded-sm);
+  text-decoration: none;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.dash-portal-card:hover {
+  box-shadow: var(--neu-extruded);
+  transform: translateY(-2px) scale(1.01);
+}
+
+.dash-portal-card.user-portal:hover {
+  border-left: 3px solid #6C4CF1;
+}
+
+.dash-portal-card.admin-portal:hover {
+  border-left: 3px solid #059669;
+}
+
+.dash-portal-ico {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: inline-grid;
+  place-items: center;
+  font-size: 1.4rem;
+  background: var(--neu-bg);
+  box-shadow: var(--neu-inset-sm);
+  flex-shrink: 0;
+}
+
+.dash-portal-meta {
+  flex: 1;
+}
+
+.dash-portal-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.2rem;
+}
+
+.dash-portal-head strong {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--neu-fg);
+}
+
+.dash-portal-meta p {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--neu-muted);
+  line-height: 1.35;
+}
+
+.dash-tag {
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 0.15rem 0.5rem;
+  border-radius: var(--neu-r-pill);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.dash-tag.user {
+  background: rgba(108, 76, 241, 0.14);
+  color: #6C4CF1;
+  border: 1px solid rgba(108, 76, 241, 0.25);
+}
+
+.dash-tag.admin {
+  background: rgba(5, 150, 105, 0.14);
+  color: #059669;
+  border: 1px solid rgba(5, 150, 105, 0.25);
+}
+
+.dash-panel-footer {
+  padding-top: 0.5rem;
+  border-top: 1px solid rgba(108, 76, 241, 0.08);
+  font-size: 0.75rem;
+  color: var(--neu-muted-light);
+  text-align: center;
+}
+
+/* Quick Action Header Button */
+.dash-action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.44rem 0.85rem;
+  border-radius: var(--neu-r-btn);
+  background: var(--neu-bg);
+  color: var(--brand);
+  font-weight: 700;
+  font-size: 0.84rem;
+  text-decoration: none;
+  box-shadow: var(--neu-extruded-sm);
+  border: 1px solid rgba(108, 76, 241, 0.2);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  white-space: nowrap;
+}
+
+.dash-action-btn:hover {
+  box-shadow: var(--neu-accent-hover);
+  transform: translateY(-1px);
+  background: var(--brand);
+  color: #ffffff;
+}
+
+.dash-action-btn:active {
+  box-shadow: var(--neu-inset-sm);
+  transform: translateY(0);
+}
+
+.dash-action-ico {
+  font-size: 0.95rem;
+}
+
+/* ==========================================================================
    Modals & 3D Flip Transitions
    ========================================================================== */
 .modal-content,
