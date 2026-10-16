@@ -3,6 +3,7 @@ import { categories } from '../data/registry.js'
 import { useFavorites } from '../utils/userPrefs.js'
 import { getCategoryTheme } from '../utils/categoryColors.js'
 import { isAdvancedTool, getToolMonetization } from '../data/monetizationCatalog.js'
+import { downloadToolOfflineFile } from '../services/offline/offlineExportService.js'
 
 export const PAID_TOOL_SLUGS = new Set([])
 
@@ -89,6 +90,22 @@ export default function ToolCard({ t, variant = 'default', onFavoriteChange }) {
           <span className="tool-card-cta">
             Launch tool <span className="arrow-icon">→</span>
           </span>
+          <button
+            type="button"
+            className="tool-card-dl-btn"
+            title={!isPaidExport ? `Download ${t.name} offline (.html)` : `Unlock & Download ${t.name}`}
+            onClick={(e) => {
+              e.preventDefault()
+              e.stopPropagation()
+              if (!isPaidExport) {
+                downloadToolOfflineFile(t, false)
+              } else {
+                window.location.href = `/${t.cat}/${t.slug}?unlock=1`
+              }
+            }}
+          >
+            📥 {!isPaidExport ? 'Free .html' : 'Pro .html'}
+          </button>
         </div>
       </Link>
     </div>

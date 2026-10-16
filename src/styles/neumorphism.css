@@ -748,3 +748,61 @@ select:focus {
   transform: rotate(180deg) scale(1.05);
   box-shadow: var(--neu-inset-deep);
 }
+
+/* ==========================================================================
+   Tool Card & Tool Page Direct Download Buttons
+   ========================================================================== */
+.tool-card-dl-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: var(--neu-bg);
+  border: 1px solid rgba(16, 185, 129, 0.35);
+  color: #059669;
+  font-size: 0.76rem;
+  font-weight: 700;
+  padding: 0.28rem 0.65rem;
+  border-radius: var(--neu-r-pill);
+  box-shadow: var(--neu-extruded-sm);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.tool-card-dl-btn:hover {
+  background: #10B981;
+  color: #FFF;
+  border-color: #10B981;
+  box-shadow: var(--neu-accent-hover);
+  transform: translateY(-1px);
+}
+
+.tool-card-dl-btn:active {
+  box-shadow: var(--neu-inset-sm);
+  transform: translateY(0);
+}
+
+.download-tool-header-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  font-weight: 700 !important;
+  font-size: 0.88rem !important;
+  padding: 0.5rem 1rem !important;
+  border-radius: 12px !important;
+  box-shadow: var(--neu-extruded-sm) !important;
+  transition: all 0.2s ease !important;
+}
+
+.download-tool-header-btn:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: var(--neu-extruded) !important;
+}
+
+.tool-offline-panel {
+  box-shadow: var(--neu-extruded-sm);
+  transition: all 0.2s ease;
+}
+
+.tool-offline-panel:hover {
+  box-shadow: var(--neu-extruded);
+}
