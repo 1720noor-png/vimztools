@@ -25,19 +25,22 @@ export default function BuyNoticeModal({ isOpen, onClose, toolName, plannedPrice
       zIndex: 9999,
       padding: '1rem'
     }}>
-      <div style={{
-        backgroundColor: '#FFFFFF',
-        color: '#1E293B',
-        borderRadius: '12px',
-        maxWidth: '480px',
-        width: '100%',
-        padding: '1.75rem',
-        boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.2), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
-        border: '1px solid #E2E8F0',
-        animation: 'fadeIn 0.2s ease-out'
-      }}>
+      <div 
+        className="buy-notice-modal-box"
+        style={{
+          backgroundColor: 'var(--neu-bg, #E8EAF2)',
+          color: 'var(--neu-fg, #20213A)',
+          borderRadius: '28px',
+          maxWidth: '480px',
+          width: '100%',
+          padding: '2rem',
+          boxShadow: 'var(--neu-extruded-lg)',
+          border: 'none',
+          animation: 'neu-modal-3d-enter 0.35s cubic-bezier(0.16, 1, 0.3, 1)'
+        }}
+      >
         {/* Header Badge */}
-        <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', background: '#FEF3C7', color: '#92400E', padding: '0.25rem 0.65rem', borderRadius: '9999px', fontSize: '0.75rem', fontWeight: 700, marginBottom: '0.75rem' }}>
+        <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', background: 'var(--neu-bg, #E8EAF2)', boxShadow: 'var(--neu-inset-sm)', color: '#B45309', padding: '0.35rem 0.85rem', borderRadius: '9999px', fontSize: '0.75rem', fontWeight: 800, marginBottom: '0.9rem' }}>
           <span>ℹ️</span> PAYMENTS NOT CONNECTED
         </div>
 
@@ -63,14 +66,10 @@ export default function BuyNoticeModal({ isOpen, onClose, toolName, plannedPrice
               onClose();
               navigate('/tools');
             }}
+            className="btn sub"
             style={{
-              padding: '0.6rem 1rem',
-              borderRadius: '6px',
-              border: '1px solid #CBD5E1',
-              background: '#F8FAFC',
-              color: '#334155',
-              fontWeight: 600,
-              fontSize: '0.88rem',
+              padding: '0.65rem 1.25rem',
+              fontSize: '0.9rem',
               cursor: 'pointer'
             }}
           >
@@ -79,14 +78,10 @@ export default function BuyNoticeModal({ isOpen, onClose, toolName, plannedPrice
 
           <button
             onClick={onClose}
+            className="btn primary"
             style={{
-              padding: '0.6rem 1.25rem',
-              borderRadius: '6px',
-              border: 'none',
-              background: '#1F9D6B',
-              color: '#FFFFFF',
-              fontWeight: 600,
-              fontSize: '0.88rem',
+              padding: '0.65rem 1.45rem',
+              fontSize: '0.9rem',
               cursor: 'pointer'
             }}
           >

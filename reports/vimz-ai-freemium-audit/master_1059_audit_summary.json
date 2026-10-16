@@ -1,0 +1,12 @@
+{
+  "summaryCounts": {
+    "totalTools": 1059,
+    "freeBasic": 1029,
+    "freeWithOptionalPremium": 30,
+    "paidAdvancedFeature": 29,
+    "proSubscriptionEligible": 29,
+    "chromeExtensionCandidate": 19,
+    "needsReview": 1
+  },
+  "categoriesCount": 74
+}

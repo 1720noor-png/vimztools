@@ -181,6 +181,49 @@ export default function Home() {
             Browse Categories
           </Link>
         </div>
+
+        {/* Neumorphic 3D Interactive Feature Box */}
+        <div className="hero-neu-showcase" style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: '2rem',
+          marginTop: '2.5rem',
+          padding: '1.75rem 2rem',
+          borderRadius: '32px',
+          background: 'var(--neu-bg)',
+          boxShadow: 'var(--neu-extruded)',
+          flexWrap: 'wrap',
+          maxWidth: '850px',
+          transformStyle: 'preserve-3d',
+          transition: 'all 0.3s ease'
+        }}>
+          {/* Concentric 3D Depth Rings */}
+          <div className="neu-concentric-container">
+            <div className="neu-circle-outer" title="Hover to rotate 3D concentric ring">
+              <div className="neu-circle-inner">
+                <span>💎</span>
+              </div>
+            </div>
+          </div>
+
+          <div style={{ flex: 1, minWidth: '260px' }}>
+            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', padding: '0.25rem 0.75rem', borderRadius: '9999px', background: 'var(--neu-bg)', boxShadow: 'var(--neu-inset-sm)', fontSize: '0.78rem', fontWeight: 700, color: 'var(--brand)', marginBottom: '0.5rem' }}>
+              <span>⚡</span> TACTILE SOFT UI ENGINE
+            </div>
+            <h3 style={{ margin: '0 0 0.4rem 0', fontSize: '1.25rem', fontWeight: 800 }}>
+              Physical 3D Depth. Instant In-Browser Precision.
+            </h3>
+            <p style={{ margin: 0, fontSize: '0.9rem', color: 'var(--neu-muted)', lineHeight: 1.5 }}>
+              Molded from continuous clay surfaces with dual opposing light physics. Zero clunky external frameworks.
+            </p>
+
+            <div style={{ display: 'flex', gap: '8px', marginTop: '1rem', flexWrap: 'wrap' }}>
+              <span className="chip" style={{ fontSize: '0.78rem', padding: '0.35rem 0.75rem' }}>🎯 100% In-Browser</span>
+              <span className="chip" style={{ fontSize: '0.78rem', padding: '0.35rem 0.75rem' }}>🛡️ Zero Server Uploads</span>
+              <span className="chip" style={{ fontSize: '0.78rem', padding: '0.35rem 0.75rem' }}>⚡ 408 Passed Tests</span>
+            </div>
+          </div>
+        </div>
       </section>
 
       {/* SEARCH / FILTER RESULTS VIEW */}

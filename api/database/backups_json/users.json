@@ -1,0 +1,62 @@
+[
+    {
+        "id": 1,
+        "name": "VimzTools Admin",
+        "email": "admin@vimztools.com",
+        "email_verified_at": null,
+        "password": "$2y$12$X/AOzF4eXpacwmKji8NzlemrerYlEarLEKaaVmcHeCRU.fDTiTXy.",
+        "remember_token": null,
+        "created_at": "2026-10-13 05:52:22",
+        "updated_at": "2026-10-13 05:52:22",
+        "role": "admin",
+        "lemonsqueezy_customer_id": null,
+        "subscription_tier": "free",
+        "subscription_status": "none",
+        "subscription_ends_at": null
+    },
+    {
+        "id": 2,
+        "name": "Demo Professional",
+        "email": "user@vimztools.com",
+        "email_verified_at": null,
+        "password": "$2y$12$YZmahlNKILrEp.glwY7piO0N9IPujDMCYrw60gl3s6kvCNDhYQxg.",
+        "remember_token": null,
+        "created_at": "2026-10-13 05:52:22",
+        "updated_at": "2026-10-13 05:52:22",
+        "role": "user",
+        "lemonsqueezy_customer_id": null,
+        "subscription_tier": "free",
+        "subscription_status": "none",
+        "subscription_ends_at": null
+    },
+    {
+        "id": 3,
+        "name": "Vimz Production QA",
+        "email": "prod_qa_1791870798953@vimz.ai",
+        "email_verified_at": null,
+        "password": "$2y$12$x7kmF45j4r9LoVfXN9nktOd2trADyzu.zrGRV3ZB/tMIEMud0AfOu",
+        "remember_token": null,
+        "created_at": "2026-10-13 05:53:19",
+        "updated_at": "2026-10-13 05:53:19",
+        "role": "user",
+        "lemonsqueezy_customer_id": null,
+        "subscription_tier": "free",
+        "subscription_status": "none",
+        "subscription_ends_at": null
+    },
+    {
+        "id": 4,
+        "name": "E2E Live Tester",
+        "email": "e2e_verify_1791871517393@vimz.ai",
+        "email_verified_at": null,
+        "password": "$2y$12$WigSZbVVRSAkdUVEgd8E9OSb2MGRhyV3xGkyPyYddWe2xqk2dhLrK",
+        "remember_token": null,
+        "created_at": "2026-10-13 06:05:18",
+        "updated_at": "2026-10-13 06:05:18",
+        "role": "user",
+        "lemonsqueezy_customer_id": null,
+        "subscription_tier": "free",
+        "subscription_status": "none",
+        "subscription_ends_at": null
+    }
+]

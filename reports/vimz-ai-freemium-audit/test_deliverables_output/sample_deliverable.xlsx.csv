@@ -1,0 +1,5 @@
+﻿"Financial Metric","Projection Value","Currency","Notes"
+"Enterprise Value","14250000","USD","DCF 5-year model"
+"Discount Rate (WACC)","8.5%","%","Blended cost of capital"
+"Terminal Growth Rate","2.5%","%","Perpetual growth"
+"Net Present Value","6854095","USD","Sum of discounted flows"

@@ -1,0 +1,174 @@
+{
+  "timestamp": "2026-10-12T18:42:20.819Z",
+  "frontend": {
+    "totalFiles": 1107,
+    "toolFiles": 1060,
+    "totalLines": 68120,
+    "largeComponentsCount": 37,
+    "topLargeComponents": [
+      {
+        "file": "src/data/registry.js",
+        "lines": 3741
+      },
+      {
+        "file": "src/data/monetizationCatalog.js",
+        "lines": 1178
+      },
+      {
+        "file": "src/tools/social/InstagramGridCarouselSplitter.jsx",
+        "lines": 750
+      },
+      {
+        "file": "src/styles/main.css",
+        "lines": 697
+      },
+      {
+        "file": "src/pages/UserDashboard.jsx",
+        "lines": 451
+      },
+      {
+        "file": "src/pages/PricingPage.jsx",
+        "lines": 435
+      },
+      {
+        "file": "src/tools/socialmedia/AbTestCalculator.jsx",
+        "lines": 433
+      },
+      {
+        "file": "src/styles/saas.css",
+        "lines": 429
+      },
+      {
+        "file": "src/pages/ToolPage.jsx",
+        "lines": 397
+      },
+      {
+        "file": "src/tools/business/B2bLeadScoringMatrix.jsx",
+        "lines": 393
+      },
+      {
+        "file": "src/pages/Home.jsx",
+        "lines": 384
+      },
+      {
+        "file": "src/pages/AdminDashboard.jsx",
+        "lines": 366
+      },
+      {
+        "file": "src/tools/productivity/SwotAnalyzer.jsx",
+        "lines": 358
+      },
+      {
+        "file": "src/tools/marketing/EmailDeliverabilityHealthChecker.jsx",
+        "lines": 324
+      },
+      {
+        "file": "src/pages/CheckoutPage.jsx",
+        "lines": 316
+      }
+    ],
+    "inlineStylesCount": 2142,
+    "toolsWithCalc": 545,
+    "toolsWithReset": 125,
+    "toolsWithTryCatch": 134,
+    "toolsWithLoading": 17,
+    "toolsWithValidation": 781,
+    "toolsWithAlert": 1
+  },
+  "dependencies": {
+    "declared": [
+      "jszip",
+      "pdf-lib",
+      "qrcode",
+      "react",
+      "react-dom",
+      "react-router-dom",
+      "tesseract.js"
+    ],
+    "usage": {
+      "jszip": 3,
+      "pdf-lib": 3,
+      "qrcode": 1,
+      "react": 1082,
+      "react-dom": 1,
+      "react-router-dom": 23,
+      "tesseract.js": 1
+    }
+  },
+  "security": [
+    {
+      "type": "dangerouslySetInnerHTML",
+      "file": "src/tools/developer/MarkdownPreview.jsx",
+      "severity": "HIGH"
+    },
+    {
+      "type": "eval usage",
+      "file": "src/tools/math/DataConverter.jsx",
+      "severity": "CRITICAL"
+    },
+    {
+      "type": "dangerouslySetInnerHTML",
+      "file": "src/tools/office/EmailSignature.jsx",
+      "severity": "HIGH"
+    },
+    {
+      "type": "dangerouslySetInnerHTML",
+      "file": "src/tools/office/ExpenseReport.jsx",
+      "severity": "HIGH"
+    },
+    {
+      "type": "dangerouslySetInnerHTML",
+      "file": "src/tools/office/InvoiceGenerator.jsx",
+      "severity": "HIGH"
+    },
+    {
+      "type": "dangerouslySetInnerHTML",
+      "file": "src/tools/student/CitationGenerator.jsx",
+      "severity": "HIGH"
+    }
+  ],
+  "testing": {
+    "repoTestFiles": [
+      "src/tools/design/AspectRatioCalculator.jsx",
+      "src/tools/social/SocialMediaMediaInspector.jsx",
+      "api/database/test_pgsql_migration_plan.php",
+      "api/database/test_restore_sqlite.php",
+      "api/database/test_staging_pgsql_application_flows.php",
+      "api/database/test_staging_pgsql_connection.php",
+      "api/tests/Feature/EntitlementsAndWebhooksTest.php",
+      "api/tests/Feature/ExampleTest.php",
+      "api/tests/TestCase.php",
+      "api/tests/Unit/ExampleTest.php"
+    ],
+    "scriptTests": [
+      "test_all_16_new_tools.cjs",
+      "test_all_new_and_upgraded_tools.cjs",
+      "test_browser_console.cjs",
+      "test_deliverable_formats.cjs",
+      "test_dist_routes.cjs",
+      "test_instagram_splitter.cjs",
+      "test_live_api.cjs",
+      "test_live_api.js",
+      "test_live_netlify.cjs",
+      "test_local_preview.cjs",
+      "test_routes_headless.cjs",
+      "test_scoring.cjs",
+      "test_stair_logic.cjs",
+      "test_tool_lookup.cjs",
+      "verify_candidate_uniqueness.js",
+      "verify_catalog_alignment.cjs",
+      "verify_deep_25_oracles.cjs",
+      "verify_extension_zip.cjs",
+      "verify_integrity.js",
+      "verify_inventory.cjs",
+      "verify_live_deep.cjs",
+      "verify_live_production.cjs",
+      "verify_mapping.js",
+      "verify_monetization_e2e.cjs",
+      "verify_proposed_slugs.cjs",
+      "verify_registry_state.cjs",
+      "verify_tool_accuracy_batches.cjs",
+      "verify_tool_robustness.cjs"
+    ]
+  }
+}

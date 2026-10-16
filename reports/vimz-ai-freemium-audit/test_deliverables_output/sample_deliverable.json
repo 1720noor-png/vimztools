@@ -1,0 +1,21 @@
+{
+  "tool": "DCF Enterprise Valuation Modeler",
+  "slug": "dcf-valuation-calc",
+  "category": "finance-tools",
+  "timestamp": "2026-10-13T05:44:13.459Z",
+  "license": "VIMZ_PRO_UNBRANDED_COMMERCIAL",
+  "watermark_free": true,
+  "exported_by": "Vimz Pro Verified Subscriber",
+  "computations": {
+    "enterprise_value": 14250000,
+    "wacc": 0.085,
+    "terminal_growth": 0.025,
+    "cash_flows_y1_y5": [
+      1200000,
+      1450000,
+      1800000,
+      2150000,
+      2340000
+    ]
+  }
+}
