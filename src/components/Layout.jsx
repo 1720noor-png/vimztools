@@ -36,24 +36,40 @@ function useTheme() {
 export default function Layout() {
   const [open, setOpen] = useState(false)
   const [mega, setMega] = useState(false)
+  const [dashboardsOpen, setDashboardsOpen] = useState(false)
   const { pathname } = useLocation()
   const nav = useNavigate()
   const searchRef = useRef(null)
   const megaRef = useRef(null)
+  const dashRef = useRef(null)
   const [effectiveTheme, toggleTheme] = useTheme()
   const { user, isLoggedIn, isAdmin, logout } = useAuth()
 
-  useEffect(() => { setOpen(false); setMega(false); window.scrollTo(0, 0) }, [pathname])
+  useEffect(() => { 
+    setOpen(false)
+    setMega(false)
+    setDashboardsOpen(false)
+    window.scrollTo(0, 0) 
+  }, [pathname])
 
   useEffect(() => {
     const onKey = (e) => {
       if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') { e.preventDefault(); searchRef.current?.focus() }
-      if (e.key === 'Escape') setMega(false)
+      if (e.key === 'Escape') {
+        setMega(false)
+        setDashboardsOpen(false)
+      }
     }
-    const onClick = (e) => { if (megaRef.current && !megaRef.current.contains(e.target)) setMega(false) }
+    const onClick = (e) => { 
+      if (megaRef.current && !megaRef.current.contains(e.target)) setMega(false)
+      if (dashRef.current && !dashRef.current.contains(e.target)) setDashboardsOpen(false)
+    }
     window.addEventListener('keydown', onKey)
     window.addEventListener('mousedown', onClick)
-    return () => { window.removeEventListener('keydown', onKey); window.removeEventListener('mousedown', onClick) }
+    return () => { 
+      window.removeEventListener('keydown', onKey)
+      window.removeEventListener('mousedown', onClick) 
+    }
   }, [])
 
   const submit = (e) => {
