@@ -1,0 +1,155 @@
+{
+  "timestamp": "2026-10-13T05:44:12.623Z",
+  "results": [
+    {
+      "name": "Compound Interest",
+      "domain": "Finance",
+      "status": "PASS",
+      "details": "A=$16470.09 (exp $16,470.09)"
+    },
+    {
+      "name": "Mortgage Loan EMI",
+      "domain": "Finance",
+      "status": "PASS",
+      "details": "EMI=$1798.65 (exp $1,798.65)"
+    },
+    {
+      "name": "DCF Valuation",
+      "domain": "Finance",
+      "status": "PASS",
+      "details": "EV=$2043781.16 (exp $2,043,781.06)"
+    },
+    {
+      "name": "Rule of 72 Doubling Time",
+      "domain": "Finance",
+      "status": "PASS",
+      "details": "Doubling Time=9 yrs at 8% (exp 9 yrs)"
+    },
+    {
+      "name": "Simple Interest",
+      "domain": "Finance",
+      "status": "PASS",
+      "details": "Interest=$600, Total=$5600 (exp $600 / $5600)"
+    },
+    {
+      "name": "CAGR Calculation",
+      "domain": "Finance",
+      "status": "PASS",
+      "details": "CAGR=20.11% (exp 20.11%)"
+    },
+    {
+      "name": "Break-Even Quantity",
+      "domain": "Business",
+      "status": "PASS",
+      "details": "Break-even units=1250 (exp 1,250 units)"
+    },
+    {
+      "name": "RICE Product Score",
+      "domain": "Business",
+      "status": "PASS",
+      "details": "Score=2000 (exp 2,000)"
+    },
+    {
+      "name": "CKD-EPI eGFR (Race-Free)",
+      "domain": "Healthcare",
+      "status": "PASS",
+      "details": "eGFR=51.82 mL/min/1.73m2"
+    },
+    {
+      "name": "BMI Calculator",
+      "domain": "Healthcare",
+      "status": "PASS",
+      "details": "BMI=22.86 (exp 22.86 Normal)"
+    },
+    {
+      "name": "Mean Arterial Pressure (MAP)",
+      "domain": "Healthcare",
+      "status": "PASS",
+      "details": "MAP=93.33 mmHg (exp 93.33)"
+    },
+    {
+      "name": "Karvonen Target Heart Rate",
+      "domain": "Healthcare",
+      "status": "PASS",
+      "details": "THR=151 bpm at 70% intensity (exp 151 bpm)"
+    },
+    {
+      "name": "A/B Test Z-Test Sample",
+      "domain": "Marketing",
+      "status": "PASS",
+      "details": "n=8158 users/variant (exp 8,158)"
+    },
+    {
+      "name": "Aviation Density Altitude",
+      "domain": "Engineering",
+      "status": "PASS",
+      "details": "DA=7611 ft (exp 7611 ft)"
+    },
+    {
+      "name": "Beam Deflection (Uniform)",
+      "domain": "Engineering",
+      "status": "PASS",
+      "details": "Deflection=4.88 mm (exp 4.88 mm)"
+    },
+    {
+      "name": "Ohm's Law (V=IR, P=VI)",
+      "domain": "Engineering",
+      "status": "PASS",
+      "details": "Current=8A, Power=960W (exp 8A, 960W)"
+    },
+    {
+      "name": "Kinetic Energy (0.5 * m * v^2)",
+      "domain": "Physics",
+      "status": "PASS",
+      "details": "KE=375000 Joules (exp 375,000 J / 375 kJ)"
+    },
+    {
+      "name": "Thermal Linear Expansion",
+      "domain": "Physics",
+      "status": "PASS",
+      "details": "Delta L=6.0 mm (exp 6.0 mm)"
+    },
+    {
+      "name": "Percentage Calculations",
+      "domain": "Mathematics",
+      "status": "PASS",
+      "details": "15% of 80 = 12, +50% growth = 50%"
+    },
+    {
+      "name": "GPA Weighted Scale",
+      "domain": "Student",
+      "status": "PASS",
+      "details": "GPA=3.499 (exp 3.499)"
+    },
+    {
+      "name": "Base64 UTF-8 Preserving",
+      "domain": "Developer",
+      "status": "PASS",
+      "details": "Decoded matches original string length 45"
+    },
+    {
+      "name": "Cryptographic SHA-256",
+      "domain": "Security",
+      "status": "PASS",
+      "details": "Hash=00f9e142489bfa50... (64 hex chars)"
+    },
+    {
+      "name": "JSON Validator / Formatter",
+      "domain": "Developer",
+      "status": "PASS",
+      "details": "Formatted successfully & caught malformed syntax"
+    },
+    {
+      "name": "Text Line Deduplication",
+      "domain": "Content",
+      "status": "PASS",
+      "details": "Reduced 6 lines to 3 unique lines: alpha, beta, gamma"
+    },
+    {
+      "name": "PII Text Redaction",
+      "domain": "Security",
+      "status": "PASS",
+      "details": "Redacted string: \"Contact [REDACTED_EMAIL] at [REDACTED_PHONE] or SSN [REDACTED_SSN]\""
+    }
+  ]
+}

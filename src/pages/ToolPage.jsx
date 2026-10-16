@@ -8,6 +8,7 @@ import { toolsApi } from '../api/client.js'
 import { getCategoryTheme } from '../utils/categoryColors.js'
 import { isAdvancedTool, getToolMonetization } from '../data/monetizationCatalog.js'
 import { download } from '../components/ui.jsx'
+import BuyNoticeModal from '../components/BuyNoticeModal.jsx'
 
 export default function ToolPage() {
   const { cat, tool } = useParams()
@@ -39,6 +40,8 @@ export default function ToolPage() {
   const [purchasing, setPurchasing] = useState(false)
   const [guestEmail, setGuestEmail] = useState('')
   const [purchaseSuccess, setPurchaseSuccess] = useState(null)
+  const [showBuyNotice, setShowBuyNotice] = useState(false)
+  const [noticePrice, setNoticePrice] = useState('$19.00')
 
   const favored = t ? isFavorite(t.slug) : false
 
@@ -164,7 +167,8 @@ export default function ToolPage() {
   const handleExportDeliverable = async (format, unbranded = false) => {
     const isEntitled = Boolean(user?.is_pro || user?.role === 'admin' || isPurchased)
     if (unbranded && !isEntitled) {
-      alert('Unbranded white-label export packages and payments are coming soon while payment infrastructure is prepared. All interactive calculations and free exports with attribution remain 100% free!')
+      setNoticePrice('$9.00/mo (Vimz Pro) or $19.00')
+      setShowBuyNotice(true)
       return
     }
 
@@ -330,20 +334,28 @@ export default function ToolPage() {
                 >
                   📥 Free Export
                 </button>
-                <Link
-                  to={`/checkout?tier=single_tool&slug=${t.slug}`}
+                <button
+                  type="button"
+                  onClick={() => {
+                    setNoticePrice('$19.00 (Single-Tool License)')
+                    setShowBuyNotice(true)
+                  }}
                   className="btn ghost sm"
-                  style={{ whiteSpace: 'nowrap', borderColor: '#a855f7', color: '#9333ea', fontWeight: 600, fontSize: '0.85rem', padding: '0.45rem 0.85rem' }}
+                  style={{ whiteSpace: 'nowrap', borderColor: '#a855f7', color: '#9333ea', fontWeight: 600, fontSize: '0.85rem', padding: '0.45rem 0.85rem', cursor: 'pointer', background: 'transparent' }}
                 >
                   Buy Single (Coming Soon)
-                </Link>
-                <Link
-                  to="/pricing"
+                </button>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setNoticePrice('$9.00/mo (Vimz Pro)')
+                    setShowBuyNotice(true)
+                  }}
                   className="btn primary sm"
-                  style={{ whiteSpace: 'nowrap', background: 'linear-gradient(135deg, #6366f1, #9333ea)', border: 'none', fontWeight: 600, fontSize: '0.85rem', padding: '0.45rem 0.85rem' }}
+                  style={{ whiteSpace: 'nowrap', background: 'linear-gradient(135deg, #6366f1, #9333ea)', border: 'none', color: '#fff', fontWeight: 600, fontSize: '0.85rem', padding: '0.45rem 0.85rem', cursor: 'pointer' }}
                 >
                   Upgrade Pro (Coming Soon)
-                </Link>
+                </button>
               </div>
             )}
           </div>
@@ -391,6 +403,13 @@ export default function ToolPage() {
       <p className="back">
         <Link to={'/' + c.slug}>← Back to {c.name}</Link> · <Link to="/">Return to Home</Link> · <Link to="/tools">Browse All 1,000+ Tools</Link>
       </p>
+
+      <BuyNoticeModal
+        isOpen={showBuyNotice}
+        onClose={() => setShowBuyNotice(false)}
+        toolName={t.name}
+        plannedPrice={noticePrice}
+      />
     </div>
   )
 }

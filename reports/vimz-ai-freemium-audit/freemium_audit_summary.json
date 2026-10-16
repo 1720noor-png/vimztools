@@ -1,0 +1,528 @@
+{
+  "counts": {
+    "total": 1059,
+    "free": 1023,
+    "premiumCandidate": 35,
+    "needsReview": 1
+  },
+  "catSummary": {
+    "student-tools": {
+      "name": "Student Tools",
+      "total": 27,
+      "free": 27,
+      "premium": 0,
+      "review": 0
+    },
+    "developer-tools": {
+      "name": "Developer Tools",
+      "total": 55,
+      "free": 55,
+      "premium": 0,
+      "review": 0
+    },
+    "office-tools": {
+      "name": "Office Tools",
+      "total": 26,
+      "free": 25,
+      "premium": 1,
+      "review": 0
+    },
+    "marketing-tools": {
+      "name": "Marketing Tools",
+      "total": 37,
+      "free": 27,
+      "premium": 10,
+      "review": 0
+    },
+    "productivity-tools": {
+      "name": "Productivity Tools",
+      "total": 30,
+      "free": 29,
+      "premium": 1,
+      "review": 0
+    },
+    "shopping-tools": {
+      "name": "Shopping Tools",
+      "total": 19,
+      "free": 19,
+      "premium": 0,
+      "review": 0
+    },
+    "security-tools": {
+      "name": "Security & Privacy Tools",
+      "total": 11,
+      "free": 11,
+      "premium": 0,
+      "review": 0
+    },
+    "finance-tools": {
+      "name": "Finance & Investment Tools",
+      "total": 39,
+      "free": 37,
+      "premium": 2,
+      "review": 0
+    },
+    "fitness-tools": {
+      "name": "Fitness & Personal Health Tools",
+      "total": 13,
+      "free": 13,
+      "premium": 0,
+      "review": 0
+    },
+    "design-tools": {
+      "name": "Design & Typography Tools",
+      "total": 19,
+      "free": 19,
+      "premium": 0,
+      "review": 0
+    },
+    "math-unit-tools": {
+      "name": "Math & Unit Conversion Tools",
+      "total": 31,
+      "free": 31,
+      "premium": 0,
+      "review": 0
+    },
+    "lifestyle-travel-tools": {
+      "name": "Lifestyle & Travel Tools",
+      "total": 18,
+      "free": 18,
+      "premium": 0,
+      "review": 0
+    },
+    "communication-tools": {
+      "name": "Communication Tools",
+      "total": 10,
+      "free": 10,
+      "premium": 0,
+      "review": 0
+    },
+    "audio-sound-tools": {
+      "name": "Audio & Sound Tools",
+      "total": 9,
+      "free": 9,
+      "premium": 0,
+      "review": 0
+    },
+    "music-tools": {
+      "name": "Music Tools",
+      "total": 10,
+      "free": 10,
+      "premium": 0,
+      "review": 0
+    },
+    "pet-care-tools": {
+      "name": "Pet Care Tools",
+      "total": 9,
+      "free": 9,
+      "premium": 0,
+      "review": 0
+    },
+    "automotive-tools": {
+      "name": "Automotive Tools",
+      "total": 9,
+      "free": 9,
+      "premium": 0,
+      "review": 0
+    },
+    "accessibility-tools": {
+      "name": "Accessibility Tools",
+      "total": 10,
+      "free": 10,
+      "premium": 0,
+      "review": 0
+    },
+    "science-measurement-tools": {
+      "name": "Science & Measurement Tools",
+      "total": 17,
+      "free": 17,
+      "premium": 0,
+      "review": 0
+    },
+    "astronomy-space-tools": {
+      "name": "Astronomy & Space Tools",
+      "total": 8,
+      "free": 8,
+      "premium": 0,
+      "review": 0
+    },
+    "privacy-safety-tools": {
+      "name": "Privacy & Digital Safety Tools",
+      "total": 4,
+      "free": 4,
+      "premium": 0,
+      "review": 0
+    },
+    "geography-maps-tools": {
+      "name": "Geography & Maps Tools",
+      "total": 7,
+      "free": 7,
+      "premium": 0,
+      "review": 0
+    },
+    "gardening-tools": {
+      "name": "Gardening Tools",
+      "total": 8,
+      "free": 8,
+      "premium": 0,
+      "review": 0
+    },
+    "photography-tools": {
+      "name": "Photography Tools",
+      "total": 11,
+      "free": 11,
+      "premium": 0,
+      "review": 0
+    },
+    "home-maintenance-tools": {
+      "name": "Home Maintenance Tools",
+      "total": 8,
+      "free": 8,
+      "premium": 0,
+      "review": 0
+    },
+    "electronics-tools": {
+      "name": "Electronics Tools",
+      "total": 9,
+      "free": 9,
+      "premium": 0,
+      "review": 0
+    },
+    "parenting-tools": {
+      "name": "Parenting Tools",
+      "total": 8,
+      "free": 8,
+      "premium": 0,
+      "review": 0
+    },
+    "events-tools": {
+      "name": "Event Planning Tools",
+      "total": 10,
+      "free": 10,
+      "premium": 0,
+      "review": 0
+    },
+    "sewing-crafts-tools": {
+      "name": "Sewing & Crafts Tools",
+      "total": 7,
+      "free": 7,
+      "premium": 0,
+      "review": 0
+    },
+    "sports-tools": {
+      "name": "Sports Tools",
+      "total": 14,
+      "free": 14,
+      "premium": 0,
+      "review": 0
+    },
+    "weather-tools": {
+      "name": "Weather Tools",
+      "total": 8,
+      "free": 8,
+      "premium": 0,
+      "review": 0
+    },
+    "construction-tools": {
+      "name": "Construction Tools",
+      "total": 11,
+      "free": 11,
+      "premium": 0,
+      "review": 0
+    },
+    "interior-design-tools": {
+      "name": "Interior Design Tools",
+      "total": 7,
+      "free": 7,
+      "premium": 0,
+      "review": 0
+    },
+    "business-tools": {
+      "name": "Business Operations Tools",
+      "total": 38,
+      "free": 28,
+      "premium": 10,
+      "review": 0
+    },
+    "organization-tools": {
+      "name": "Personal Organization Tools",
+      "total": 6,
+      "free": 6,
+      "premium": 0,
+      "review": 0
+    },
+    "household-tools": {
+      "name": "Household Utilities Tools",
+      "total": 9,
+      "free": 9,
+      "premium": 0,
+      "review": 0
+    },
+    "language-tools": {
+      "name": "Language Learning Tools",
+      "total": 11,
+      "free": 11,
+      "premium": 0,
+      "review": 0
+    },
+    "outdoor-tools": {
+      "name": "Outdoor & Camping Tools",
+      "total": 7,
+      "free": 7,
+      "premium": 0,
+      "review": 0
+    },
+    "real-estate-tools": {
+      "name": "Real Estate Investment Tools",
+      "total": 18,
+      "free": 17,
+      "premium": 1,
+      "review": 0
+    },
+    "insurance-tools": {
+      "name": "Insurance Tools",
+      "total": 14,
+      "free": 14,
+      "premium": 0,
+      "review": 0
+    },
+    "retirement-planning-tools": {
+      "name": "Retirement Planning Tools",
+      "total": 15,
+      "free": 15,
+      "premium": 0,
+      "review": 0
+    },
+    "career-tools": {
+      "name": "Career & Resume Tools",
+      "total": 8,
+      "free": 8,
+      "premium": 0,
+      "review": 0
+    },
+    "food-nutrition-tools": {
+      "name": "Food & Culinary Tools",
+      "total": 14,
+      "free": 14,
+      "premium": 0,
+      "review": 0
+    },
+    "image-tools": {
+      "name": "Image Processing Tools",
+      "total": 9,
+      "free": 8,
+      "premium": 0,
+      "review": 1
+    },
+    "media-tools": {
+      "name": "Audio & Speech Media Tools",
+      "total": 2,
+      "free": 2,
+      "premium": 0,
+      "review": 0
+    },
+    "pdf-tools": {
+      "name": "PDF Document Tools",
+      "total": 9,
+      "free": 9,
+      "premium": 0,
+      "review": 0
+    },
+    "health-wellness-tools": {
+      "name": "Health & Wellness Tools",
+      "total": 23,
+      "free": 23,
+      "premium": 0,
+      "review": 0
+    },
+    "writing-tools": {
+      "name": "Writing & Content Tools",
+      "total": 27,
+      "free": 27,
+      "premium": 0,
+      "review": 0
+    },
+    "education-tools": {
+      "name": "Education & Teaching Tools",
+      "total": 18,
+      "free": 18,
+      "premium": 0,
+      "review": 0
+    },
+    "legal-tools": {
+      "name": "Legal & Compliance Tools",
+      "total": 15,
+      "free": 12,
+      "premium": 3,
+      "review": 0
+    },
+    "freelance-tools": {
+      "name": "Freelance & Gig Tools",
+      "total": 23,
+      "free": 17,
+      "premium": 6,
+      "review": 0
+    },
+    "social-media-tools": {
+      "name": "Social Media Tools",
+      "total": 25,
+      "free": 24,
+      "premium": 1,
+      "review": 0
+    },
+    "data-tools": {
+      "name": "Data & Analytics Tools",
+      "total": 17,
+      "free": 17,
+      "premium": 0,
+      "review": 0
+    },
+    "ecommerce-tools": {
+      "name": "E-Commerce Tools",
+      "total": 18,
+      "free": 18,
+      "premium": 0,
+      "review": 0
+    },
+    "sustainability-tools": {
+      "name": "Sustainability & Eco Tools",
+      "total": 17,
+      "free": 17,
+      "premium": 0,
+      "review": 0
+    },
+    "presentation-tools": {
+      "name": "Presentation Tools",
+      "total": 12,
+      "free": 12,
+      "premium": 0,
+      "review": 0
+    },
+    "networking-tools": {
+      "name": "IT & Networking Tools",
+      "total": 16,
+      "free": 16,
+      "premium": 0,
+      "review": 0
+    },
+    "typography-tools": {
+      "name": "Typography & Font Tools",
+      "total": 10,
+      "free": 10,
+      "premium": 0,
+      "review": 0
+    },
+    "baking-tools": {
+      "name": "Baking & Pastry Tools",
+      "total": 12,
+      "free": 12,
+      "premium": 0,
+      "review": 0
+    },
+    "mental-health-tools": {
+      "name": "Mental Health & Wellness Tools",
+      "total": 10,
+      "free": 10,
+      "premium": 0,
+      "review": 0
+    },
+    "wedding-tools": {
+      "name": "Wedding Planning Tools",
+      "total": 10,
+      "free": 10,
+      "premium": 0,
+      "review": 0
+    },
+    "gaming-tools": {
+      "name": "Gaming & Tabletop Tools",
+      "total": 12,
+      "free": 12,
+      "premium": 0,
+      "review": 0
+    },
+    "travel-planning-tools": {
+      "name": "Travel Planning Tools",
+      "total": 12,
+      "free": 12,
+      "premium": 0,
+      "review": 0
+    },
+    "chemistry-tools": {
+      "name": "Chemistry Tools",
+      "total": 12,
+      "free": 12,
+      "premium": 0,
+      "review": 0
+    },
+    "hr-tools": {
+      "name": "Human Resources Tools",
+      "total": 12,
+      "free": 12,
+      "premium": 0,
+      "review": 0
+    },
+    "crypto-blockchain-tools": {
+      "name": "Crypto & Blockchain Tools",
+      "total": 10,
+      "free": 10,
+      "premium": 0,
+      "review": 0
+    },
+    "agriculture-tools": {
+      "name": "Agriculture & Farming Tools",
+      "total": 10,
+      "free": 10,
+      "premium": 0,
+      "review": 0
+    },
+    "printing-tools": {
+      "name": "Printing & Publishing Tools",
+      "total": 10,
+      "free": 10,
+      "premium": 0,
+      "review": 0
+    },
+    "elderly-care-tools": {
+      "name": "Elderly Care Tools",
+      "total": 10,
+      "free": 10,
+      "premium": 0,
+      "review": 0
+    },
+    "volunteer-tools": {
+      "name": "Volunteering & Nonprofit Tools",
+      "total": 9,
+      "free": 9,
+      "premium": 0,
+      "review": 0
+    },
+    "diy-tools": {
+      "name": "DIY & Maker Tools",
+      "total": 10,
+      "free": 10,
+      "premium": 0,
+      "review": 0
+    },
+    "moving-relocation-tools": {
+      "name": "Moving & Relocation Tools",
+      "total": 10,
+      "free": 10,
+      "premium": 0,
+      "review": 0
+    },
+    "privacy-tools": {
+      "name": "Privacy & Digital Safety",
+      "total": 5,
+      "free": 5,
+      "premium": 0,
+      "review": 0
+    },
+    "women-tools": {
+      "name": "Women Care & Health",
+      "total": 5,
+      "free": 5,
+      "premium": 0,
+      "review": 0
+    }
+  }
+}

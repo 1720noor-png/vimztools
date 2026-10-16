@@ -1,0 +1,20 @@
+[
+    {
+        "id": 1,
+        "user_id": 2,
+        "guest_email": null,
+        "tool_slug": "invoice-generator",
+        "transaction_id": "TXN_DEMO_SAMPLE01",
+        "amount": 4.99,
+        "currency": "USD",
+        "payment_gateway": "sandbox",
+        "status": "completed",
+        "download_token": "DL_ai6vXFKfxAwxSPEMYK3q5aR6viWmL7AG3gJM9xdp",
+        "download_limit": 20,
+        "download_count": 1,
+        "expires_at": "2027-10-13 05:52:22",
+        "metadata": "{\"tool_name\":\"Professional Invoice Generator\"}",
+        "created_at": "2026-10-13 05:52:22",
+        "updated_at": "2026-10-13 05:52:22"
+    }
+]

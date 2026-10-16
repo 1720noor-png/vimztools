@@ -1,0 +1,47 @@
+{
+  "TXT": {
+    "verified": true,
+    "size": 584,
+    "details": "Valid UTF-8 plain text deliverable with executive parameter breakdown"
+  },
+  "JSON": {
+    "verified": true,
+    "size": 489,
+    "details": "Valid structured JSON with full computational payload and license tag"
+  },
+  "CSV": {
+    "verified": true,
+    "size": 376,
+    "details": "Valid RFC 4180 CSV dataset with headers and 5 projection rows"
+  },
+  "Excel (XLSX Workbook)": {
+    "verified": true,
+    "size": 2075,
+    "details": "Genuine OpenXML .xlsx workbook container with xl/workbook.xml, sheet1.xml, and cell values"
+  },
+  "ZIP": {
+    "verified": true,
+    "size": 443,
+    "details": "Valid PKZIP archive containing 3 deflate-compressed deliverable files"
+  },
+  "PDF": {
+    "verified": true,
+    "size": 1117,
+    "details": "Valid binary PDF-1.7 document created via pdf-lib with embedded Helvetica fonts"
+  },
+  "PNG": {
+    "verified": true,
+    "size": 4027,
+    "details": "Valid binary PNG image with standard 8-byte PNG chunk signature"
+  },
+  "JPG": {
+    "verified": true,
+    "size": 148,
+    "details": "Valid JPEG image with SOI (0xFFD8) and EOI (0xFFD9) JFIF markers"
+  },
+  "DOCX": {
+    "verified": true,
+    "size": 1208,
+    "details": "Valid Microsoft Word DOCX OpenXML package with verified body paragraphs and text runs"
+  }
+}

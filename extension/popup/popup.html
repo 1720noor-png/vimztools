@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vimz.ai Extension</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="header">
+    <div class="brand">
+      <div class="logo-mark">V</div>
+      <div class="brand-text">
+        <span class="brand-name">Vimz.ai</span>
+        <span class="brand-sub">Smart Utilities</span>
+      </div>
+    </div>
+    <div id="pro-badge-header" class="badge-free">FREE</div>
+  </div>
+
+  <nav class="nav-tabs">
+    <button class="tab-btn active" data-tab="inspector">Inspector</button>
+    <button class="tab-btn" data-tab="tools">Quick Tools</button>
+    <button class="tab-btn" data-tab="search">Search 1,059</button>
+    <button class="tab-btn" data-tab="account">Account</button>
+  </nav>
+
+  <main class="content">
+    <!-- TAB 1: SEO & Page Inspector -->
+    <section id="tab-inspector" class="tab-pane active">
+      <div class="card">
+        <div class="card-header">
+          <h3>Active Page SEO Audit</h3>
+          <button id="btn-inspect-page" class="btn btn-sm btn-primary">Analyze Tab</button>
+        </div>
+        <div id="inspector-loading" class="hidden status-msg">Analyzing active tab...</div>
+        <div id="inspector-results" class="inspector-details">
+          <p class="hint-text">Click "Analyze Tab" to inspect the current webpage's SEO meta tags, OpenGraph previews, and heading structure.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 2: Quick Tools -->
+    <section id="tab-tools" class="tab-pane">
+      <div class="tool-subnav">
+        <button class="subtool-btn active" data-tool="wordcount">Word Count</button>
+        <button class="subtool-btn" data-tool="caseconv">Case</button>
+        <button class="subtool-btn" data-tool="jsonfmt">JSON</button>
+        <button class="subtool-btn" data-tool="percent">Percent</button>
+      </div>
+
+      <!-- Word Count Subtool -->
+      <div id="tool-wordcount" class="subtool-pane active">
+        <div class="form-group">
+          <label for="wc-input">Enter or paste text:</label>
+          <textarea id="wc-input" rows="4" placeholder="Type or paste text to count words, characters, and reading time..."></textarea>
+        </div>
+        <div class="metrics-grid">
+          <div class="metric-box"><span id="wc-words">0</span><small>Words</small></div>
+          <div class="metric-box"><span id="wc-chars">0</span><small>Characters</small></div>
+          <div class="metric-box"><span id="wc-sentences">0</span><small>Sentences</small></div>
+          <div class="metric-box"><span id="wc-time">0m</span><small>Read Time</small></div>
+        </div>
+      </div>
+
+      <!-- Case Converter Subtool -->
+      <div id="tool-caseconv" class="subtool-pane">
+        <div class="form-group">
+          <textarea id="case-input" rows="3" placeholder="Enter text to convert case..."></textarea>
+        </div>
+        <div class="btn-grid">
+          <button id="btn-upper" class="btn btn-outline btn-sm">UPPERCASE</button>
+          <button id="btn-lower" class="btn btn-outline btn-sm">lowercase</button>
+          <button id="btn-title" class="btn btn-outline btn-sm">Title Case</button>
+          <button id="btn-camel" class="btn btn-outline btn-sm">camelCase</button>
+          <button id="btn-kebab" class="btn btn-outline btn-sm">kebab-case</button>
+          <button id="btn-snake" class="btn btn-outline btn-sm">snake_case</button>
+        </div>
+      </div>
+
+      <!-- JSON Formatter Subtool -->
+      <div id="tool-jsonfmt" class="subtool-pane">
+        <div class="form-group">
+          <textarea id="json-input" rows="4" placeholder='{"paste": "json here"}'></textarea>
+        </div>
+        <div class="btn-row">
+          <button id="btn-format-json" class="btn btn-sm btn-primary">Prettify JSON</button>
+          <button id="btn-minify-json" class="btn btn-sm btn-outline">Minify</button>
+          <button id="btn-copy-json" class="btn btn-sm btn-outline">Copy</button>
+        </div>
+        <div id="json-status" class="status-msg"></div>
+      </div>
+
+      <!-- Percentage Calculator Subtool -->
+      <div id="tool-percent" class="subtool-pane">
+        <div class="calc-row">
+          <span>What is</span>
+          <input type="number" id="pct-x" class="num-input" placeholder="15" value="15">
+          <span>% of</span>
+          <input type="number" id="pct-y" class="num-input" placeholder="200" value="200">
+          <span>?</span>
+        </div>
+        <div class="calc-result">
+          Result: <strong id="pct-result">30</strong>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 3: Search 1,059 Tools -->
+    <section id="tab-search" class="tab-pane">
+      <div class="search-box">
+        <input type="text" id="omni-search-input" placeholder="Search across all 1,059 tools (e.g., invoice, seo, dcf)...">
+      </div>
+      <div id="search-results-list" class="results-list">
+        <!-- Rendered dynamically -->
+      </div>
+    </section>
+
+    <!-- TAB 4: Account & Pro Status -->
+    <section id="tab-account" class="tab-pane">
+      <div id="account-logged-in" class="hidden">
+        <div class="user-card">
+          <div class="user-avatar" id="user-initial">U</div>
+          <div class="user-info">
+            <h4 id="user-display-name">User Name</h4>
+            <span id="user-display-email" class="muted">user@example.com</span>
+            <div id="user-plan-badge" class="badge-pro">Pro Member</div>
+          </div>
+        </div>
+        <div class="actions-group">
+          <a href="https://vimztools-app.netlify.app" target="_blank" class="btn btn-primary btn-block">Open Web Dashboard</a>
+          <button id="btn-logout" class="btn btn-outline btn-block">Log Out</button>
+        </div>
+      </div>
+
+      <div id="account-logged-out">
+        <div class="card">
+          <h3>Sign In with Vimz.ai</h3>
+          <p class="hint-text">Connect your Vimz.ai account to sync Pro entitlements and saved projects across devices.</p>
+          <div class="form-group">
+            <label for="login-email">Email Address</label>
+            <input type="email" id="login-email" placeholder="you@example.com">
+          </div>
+          <div class="form-group">
+            <label for="login-password">Password</label>
+            <input type="password" id="login-password" placeholder="••••••••">
+          </div>
+          <button id="btn-submit-login" class="btn btn-primary btn-block">Sign In</button>
+          <div id="login-error" class="error-msg"></div>
+          <p class="center-text muted">Don't have an account? <a href="https://vimztools-app.netlify.app" target="_blank">Sign up free</a></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span>1,059 Free AI & Web Tools</span>
+    <a href="https://vimztools-app.netlify.app" target="_blank" class="footer-link">Visit Vimz.ai &rarr;</a>
+  </footer>
+
+  <script type="module" src="popup.js"></script>
+</body>
+</html>

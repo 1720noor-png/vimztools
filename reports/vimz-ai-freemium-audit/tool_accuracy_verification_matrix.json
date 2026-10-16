@@ -1,0 +1,192 @@
+{
+  "timestamp": "2026-10-12T18:26:35.365Z",
+  "totalRegisteredTools": 1059,
+  "totalFilesOnDisk": 1059,
+  "staticInspection": {
+    "total": 1059,
+    "hasInteractiveInputs": 1049,
+    "hasFormulasOrTransforms": 1059,
+    "hasResultDisplay": 1053,
+    "hasExportOrDownload": 1059,
+    "hasErrorHandling": 330,
+    "hasDivisionByZeroProtection": 265,
+    "hasStateHooks": 1049,
+    "categories": {
+      "student-tools": 27,
+      "developer-tools": 55,
+      "office-tools": 26,
+      "marketing-tools": 37,
+      "productivity-tools": 30,
+      "shopping-tools": 19,
+      "security-tools": 11,
+      "finance-tools": 39,
+      "fitness-tools": 13,
+      "design-tools": 19,
+      "math-unit-tools": 31,
+      "lifestyle-travel-tools": 18,
+      "communication-tools": 10,
+      "audio-sound-tools": 9,
+      "music-tools": 10,
+      "pet-care-tools": 9,
+      "automotive-tools": 9,
+      "accessibility-tools": 10,
+      "science-measurement-tools": 17,
+      "astronomy-space-tools": 8,
+      "privacy-safety-tools": 4,
+      "geography-maps-tools": 7,
+      "gardening-tools": 8,
+      "photography-tools": 11,
+      "home-maintenance-tools": 8,
+      "electronics-tools": 9,
+      "parenting-tools": 8,
+      "events-tools": 10,
+      "sewing-crafts-tools": 7,
+      "sports-tools": 14,
+      "weather-tools": 8,
+      "construction-tools": 11,
+      "interior-design-tools": 7,
+      "business-tools": 38,
+      "organization-tools": 6,
+      "household-tools": 9,
+      "language-tools": 11,
+      "outdoor-tools": 7,
+      "real-estate-tools": 18,
+      "insurance-tools": 14,
+      "retirement-planning-tools": 15,
+      "career-tools": 8,
+      "food-nutrition-tools": 14,
+      "image-tools": 9,
+      "media-tools": 2,
+      "pdf-tools": 9,
+      "health-wellness-tools": 23,
+      "writing-tools": 27,
+      "education-tools": 18,
+      "legal-tools": 15,
+      "freelance-tools": 23,
+      "social-media-tools": 25,
+      "data-tools": 17,
+      "ecommerce-tools": 18,
+      "sustainability-tools": 17,
+      "presentation-tools": 12,
+      "networking-tools": 16,
+      "typography-tools": 10,
+      "baking-tools": 12,
+      "mental-health-tools": 10,
+      "wedding-tools": 10,
+      "gaming-tools": 12,
+      "travel-planning-tools": 12,
+      "chemistry-tools": 12,
+      "hr-tools": 12,
+      "crypto-blockchain-tools": 10,
+      "agriculture-tools": 10,
+      "printing-tools": 10,
+      "elderly-care-tools": 10,
+      "volunteer-tools": 9,
+      "diy-tools": 10,
+      "moving-relocation-tools": 10,
+      "privacy-tools": 5,
+      "women-tools": 5
+    }
+  },
+  "oracleVerification": {
+    "totalOracleTests": 12,
+    "passed": 12,
+    "failed": 0,
+    "tests": [
+      {
+        "name": "Compound Interest (Annually, Semi, Quarterly, Monthly)",
+        "domain": "Finance",
+        "status": "PASS",
+        "details": "Calculated A=$16470.09, Expected=$16470.09, diff=0.000000"
+      },
+      {
+        "name": "Mortgage / Loan EMI Formula",
+        "domain": "Finance",
+        "status": "PASS",
+        "details": "Calculated EMI=$1798.65, Expected=$1798.65, diff=0.000005"
+      },
+      {
+        "name": "DCF Enterprise Valuation with Terminal Value (Gordon Growth)",
+        "domain": "Finance",
+        "status": "PASS",
+        "details": "Calculated EV=$2043781.16, Expected=$2043781.06, diff=0.10"
+      },
+      {
+        "name": "CKD-EPI 2021 Race-Free eGFR Equation",
+        "domain": "Healthcare",
+        "status": "PASS",
+        "details": "Calculated eGFR=51.82, Expected=52.02, diff=0.199"
+      },
+      {
+        "name": "A/B Test Minimum Sample Size (Two-proportion z-test)",
+        "domain": "Marketing",
+        "status": "PASS",
+        "details": "Calculated n=8158 users/variant (exact match to textbook closed-form 8,158)"
+      },
+      {
+        "name": "Aviation Density Altitude (Pressure Altitude + ISA Temp Deviation)",
+        "domain": "Engineering",
+        "status": "PASS",
+        "details": "Calculated DA=7611 ft, Expected=7611 ft, diff=0.16"
+      },
+      {
+        "name": "Simply Supported Beam Center Deflection (Uniform Distributed Load)",
+        "domain": "Engineering",
+        "status": "PASS",
+        "details": "Calculated Deflection=4.88 mm, Expected=4.88 mm, diff=0.0000 mm"
+      },
+      {
+        "name": "UTF-8 Safe Base64 Encoding and Round-Trip Decoding",
+        "domain": "Developer",
+        "status": "PASS",
+        "details": "Round-trip preserved exact UTF-8 string including emoji and Arabic/Urdu scripts"
+      },
+      {
+        "name": "Cryptographic SHA-256 Digest",
+        "domain": "Security",
+        "status": "PASS",
+        "details": "Verified 256-bit hexadecimal digest format: e14048c2de740fc5..."
+      },
+      {
+        "name": "Percentage Calculations (X% of Y, % Increase, % Change)",
+        "domain": "Mathematics",
+        "status": "PASS",
+        "details": "P1=12 (exp 12), P2=50% (exp 50%), P3=20% (exp 20%)"
+      },
+      {
+        "name": "GPA / CGPA Weighted Grade Point Average",
+        "domain": "Student",
+        "status": "PASS",
+        "details": "Calculated GPA=3.499, Expected=3.499"
+      },
+      {
+        "name": "RICE Prioritization Score ((Reach * Impact * Confidence) / Effort)",
+        "domain": "Business",
+        "status": "PASS",
+        "details": "Calculated RICE=2000, Expected=2000"
+      }
+    ]
+  },
+  "edgeCaseVerification": [
+    {
+      "name": "Loan EMI with 0% interest",
+      "isSafe": true,
+      "result": 833.3333333333334
+    },
+    {
+      "name": "Percentage Change with old=0",
+      "isSafe": true,
+      "result": 100
+    },
+    {
+      "name": "RICE Score with 0 effort",
+      "isSafe": true,
+      "result": 0
+    },
+    {
+      "name": "DCF Terminal Value with WACC <= g",
+      "isSafe": true,
+      "result": 0
+    }
+  ]
+}
