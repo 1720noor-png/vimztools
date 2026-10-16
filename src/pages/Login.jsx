@@ -71,9 +71,35 @@ export default function Login() {
         </form>
 
         <div className="auth-demo-hint">
-          <strong>Demo Credentials:</strong>
-          <div>User: <code>user@vimztools.com</code> / <code>DemoUser2026!</code></div>
-          <div>Admin: <code>admin@vimztools.com</code> / <code>AdminVimz2026!</code></div>
+          <strong>Demo Access:</strong>
+          <div style={{ display: 'flex', gap: '8px', margin: '8px 0', flexWrap: 'wrap' }}>
+            <button
+              type="button"
+              className="btn sub sm"
+              style={{ fontSize: '0.78rem', padding: '0.35rem 0.65rem' }}
+              onClick={() => {
+                setEmail('user@vimztools.com')
+                setPassword('DemoUser2026!')
+              }}
+            >
+              👤 Fill Demo User
+            </button>
+            <button
+              type="button"
+              className="btn sub sm"
+              style={{ fontSize: '0.78rem', padding: '0.35rem 0.65rem' }}
+              onClick={() => {
+                setEmail('admin@vimztools.com')
+                setPassword('AdminVimz2026!')
+              }}
+            >
+              ⚡ Fill Demo Admin
+            </button>
+          </div>
+          <div style={{ fontSize: '0.8rem', opacity: 0.85 }}>
+            <div>User: <code>user@vimztools.com</code> / <code>DemoUser2026!</code></div>
+            <div>Admin: <code>admin@vimztools.com</code> / <code>AdminVimz2026!</code></div>
+          </div>
         </div>
 
         <div className="auth-footer">

@@ -191,14 +191,15 @@ export default function AiChatAssistant() {
           role="dialog"
           aria-modal="true"
           aria-labelledby="ai-chat-title"
+          className="ai-modal-content"
           style={{
             width: 'min(420px, calc(100vw - 32px))',
             height: 'min(620px, calc(100vh - 48px))',
-            background: 'var(--bg-panel, #ffffff)',
-            color: 'var(--text-main, #0f172a)',
-            borderRadius: '16px',
-            border: '1px solid var(--border-color, #e2e8f0)',
-            boxShadow: '0 20px 48px rgba(0, 0, 0, 0.18)',
+            background: 'var(--neu-bg, #E8EAF2)',
+            color: 'var(--neu-fg, #20213A)',
+            borderRadius: '28px',
+            border: 'none',
+            boxShadow: 'var(--neu-extruded-lg)',
             display: 'flex',
             flexDirection: 'column',
             overflow: 'hidden'
@@ -208,11 +209,12 @@ export default function AiChatAssistant() {
           <div
             style={{
               padding: '14px 18px',
-              borderBottom: '1px solid var(--border-color, #e2e8f0)',
+              borderBottom: 'none',
+              boxShadow: 'var(--neu-extruded-sm)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'space-between',
-              background: 'var(--bg-header, #f8fafc)'
+              background: 'var(--neu-bg, #E8EAF2)'
             }}
           >
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
@@ -297,6 +299,8 @@ export default function AiChatAssistant() {
               flex: 1,
               padding: '16px',
               overflowY: 'auto',
+              background: 'var(--neu-bg, #E8EAF2)',
+              boxShadow: 'var(--neu-inset-sm)',
               display: 'flex',
               flexDirection: 'column',
               gap: '12px'
@@ -316,11 +320,12 @@ export default function AiChatAssistant() {
                   <div
                     style={{
                       maxWidth: '85%',
-                      padding: '10px 14px',
-                      borderRadius: isUser ? '14px 14px 2px 14px' : '14px 14px 14px 2px',
-                      background: isUser ? 'var(--color-primary, #4f46e5)' : 'var(--bg-card, #f8fafc)',
-                      color: isUser ? '#ffffff' : 'inherit',
-                      border: isUser ? 'none' : '1px solid var(--border-color, #e2e8f0)',
+                      padding: '12px 16px',
+                      borderRadius: isUser ? '20px 20px 4px 20px' : '20px 20px 20px 4px',
+                      background: isUser ? 'var(--brand)' : 'var(--neu-bg, #E8EAF2)',
+                      color: isUser ? '#ffffff' : 'var(--neu-fg, #20213A)',
+                      border: 'none',
+                      boxShadow: isUser ? 'var(--neu-accent-extruded)' : 'var(--neu-extruded-sm)',
                       fontSize: '0.88rem',
                       lineHeight: 1.45,
                       whiteSpace: 'pre-wrap',
@@ -390,11 +395,12 @@ export default function AiChatAssistant() {
           {/* Chat Input Bar */}
           <div
             style={{
-              padding: '12px 16px',
-              borderTop: '1px solid var(--border-color, #e2e8f0)',
-              background: 'var(--bg-panel, #ffffff)',
+              padding: '14px 18px',
+              borderTop: 'none',
+              boxShadow: '0 -4px 16px var(--neu-shadow-dark)',
+              background: 'var(--neu-bg, #E8EAF2)',
               display: 'flex',
-              gap: '8px'
+              gap: '10px'
             }}
           >
             <input
@@ -407,9 +413,12 @@ export default function AiChatAssistant() {
               disabled={loading}
               style={{
                 flex: 1,
-                padding: '10px 14px',
-                borderRadius: '8px',
-                border: '1px solid var(--border-color, #cbd5e1)',
+                padding: '11px 16px',
+                borderRadius: '16px',
+                border: 'none',
+                background: 'var(--neu-bg, #E8EAF2)',
+                boxShadow: 'var(--neu-inset)',
+                color: 'var(--neu-fg, #20213A)',
                 fontSize: '0.88rem'
               }}
             />
@@ -418,7 +427,7 @@ export default function AiChatAssistant() {
               onClick={() => handleSend()}
               disabled={!input.trim() || loading}
               className="btn primary"
-              style={{ padding: '10px 16px', fontSize: '0.88rem' }}
+              style={{ padding: '10px 18px', fontSize: '0.88rem' }}
             >
               Send
             </button>

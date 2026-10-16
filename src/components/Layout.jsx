@@ -36,24 +36,40 @@ function useTheme() {
 export default function Layout() {
   const [open, setOpen] = useState(false)
   const [mega, setMega] = useState(false)
+  const [dashboardsOpen, setDashboardsOpen] = useState(false)
   const { pathname } = useLocation()
   const nav = useNavigate()
   const searchRef = useRef(null)
   const megaRef = useRef(null)
+  const dashRef = useRef(null)
   const [effectiveTheme, toggleTheme] = useTheme()
   const { user, isLoggedIn, isAdmin, logout } = useAuth()
 
-  useEffect(() => { setOpen(false); setMega(false); window.scrollTo(0, 0) }, [pathname])
+  useEffect(() => { 
+    setOpen(false)
+    setMega(false)
+    setDashboardsOpen(false)
+    window.scrollTo(0, 0) 
+  }, [pathname])
 
   useEffect(() => {
     const onKey = (e) => {
       if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') { e.preventDefault(); searchRef.current?.focus() }
-      if (e.key === 'Escape') setMega(false)
+      if (e.key === 'Escape') {
+        setMega(false)
+        setDashboardsOpen(false)
+      }
     }
-    const onClick = (e) => { if (megaRef.current && !megaRef.current.contains(e.target)) setMega(false) }
+    const onClick = (e) => { 
+      if (megaRef.current && !megaRef.current.contains(e.target)) setMega(false)
+      if (dashRef.current && !dashRef.current.contains(e.target)) setDashboardsOpen(false)
+    }
     window.addEventListener('keydown', onKey)
     window.addEventListener('mousedown', onClick)
-    return () => { window.removeEventListener('keydown', onKey); window.removeEventListener('mousedown', onClick) }
+    return () => { 
+      window.removeEventListener('keydown', onKey)
+      window.removeEventListener('mousedown', onClick) 
+    }
   }, [])
 
   const submit = (e) => {
@@ -68,6 +84,14 @@ export default function Layout() {
   return (
     <>
       <a className="skip" href="#main">Skip to content</a>
+      
+      {/* Neumorphic 3D Ambient Floating Geometry */}
+      <div className="neu-bg-container" aria-hidden="true">
+        <div className="neu-bg-orb neu-bg-orb-1" />
+        <div className="neu-bg-orb neu-bg-orb-2" />
+        <div className="neu-bg-orb neu-bg-orb-3" />
+      </div>
+
       <header className="top">
         <div className="wrap bar">
           <Link to="/" className="brand" aria-label="Vimz.ai Homepage" style={{ textDecoration: 'none' }}>
@@ -122,6 +146,66 @@ export default function Layout() {
             <NavLink to="/tools?popular=1">Popular</NavLink>
             <NavLink to="/pricing">Pricing</NavLink>
 
+            {/* Platform Dashboards Menu */}
+            <div className="mega-wrap dash-wrap" ref={dashRef}>
+              <button 
+                type="button" 
+                className={`mega-btn dash-btn ${dashboardsOpen ? 'active' : ''}`} 
+                aria-expanded={dashboardsOpen} 
+                aria-haspopup="true" 
+                onClick={() => setDashboardsOpen(!dashboardsOpen)}
+                id="dashboards-menu-button"
+              >
+                <span className="dash-btn-icon" aria-hidden="true">📊</span>
+                <span>Dashboards</span>
+                <span className="chev" aria-hidden="true">▾</span>
+              </button>
+              {dashboardsOpen && (
+                <div className="mega-panel dash-panel" role="menu" aria-labelledby="dashboards-menu-button">
+                  <div className="dash-panel-header">
+                    <span className="dash-panel-title">Platform Dashboards</span>
+                    <span className="dash-panel-sub">Offline Tool Manager & Admin Governance</span>
+                  </div>
+                  <div className="dash-panel-grid">
+                    <Link 
+                      to="/dashboard" 
+                      className="dash-portal-card user-portal" 
+                      role="menuitem"
+                      onClick={() => setDashboardsOpen(false)}
+                    >
+                      <div className="dash-portal-ico">👤</div>
+                      <div className="dash-portal-meta">
+                        <div className="dash-portal-head">
+                          <strong>User Dashboard</strong>
+                          <span className="dash-tag user">Offline & PWA</span>
+                        </div>
+                        <p>Download tools, offline packs, run history, and saved favorites</p>
+                      </div>
+                    </Link>
+
+                    <Link 
+                      to="/admin" 
+                      className="dash-portal-card admin-portal" 
+                      role="menuitem"
+                      onClick={() => setDashboardsOpen(false)}
+                    >
+                      <div className="dash-portal-ico">⚡</div>
+                      <div className="dash-portal-meta">
+                        <div className="dash-portal-head">
+                          <strong>Admin Dashboard</strong>
+                          <span className="dash-tag admin">Emerald Prestige</span>
+                        </div>
+                        <p>11-Screen control console, catalog audit, monetization & logs</p>
+                      </div>
+                    </Link>
+                  </div>
+                  <div className="dash-panel-footer">
+                    <span>✨ 359 basic tools 100% free forever & ready for offline download</span>
+                  </div>
+                </div>
+              )}
+            </div>
+
             {isLoggedIn ? (
               <>
                 <NavLink to="/dashboard" className="nav-highlight">
@@ -139,6 +223,16 @@ export default function Layout() {
           </nav>
 
           <div className="navbar-actions">
+            <Link 
+              to="/dashboard" 
+              className="dash-action-btn" 
+              title="Open User & Offline Tools Dashboard"
+              aria-label="Dashboards"
+            >
+              <span className="dash-action-ico" aria-hidden="true">📊</span>
+              <span className="dash-action-label">Dashboards</span>
+            </Link>
+
             {isLoggedIn ? (
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                 <Link to="/dashboard" className="btn sub sm" style={{ padding: '0.45rem 0.85rem', fontSize: '0.85rem', display: 'inline-flex', alignItems: 'center', gap: '6px' }}>

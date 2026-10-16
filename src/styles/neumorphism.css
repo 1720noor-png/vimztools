@@ -1,0 +1,750 @@
+/* ==========================================================================
+   Vimz.ai — Neumorphism (Soft UI) & 3D Interactive Design System
+   Dual opposing RGBA shadows, molded tactile surfaces, and 3D microphysics.
+   ========================================================================== */
+
+:root {
+  /* Surface: Vimz Lavender-Clay (#E8EAF2) */
+  --neu-bg: #E8EAF2;
+  --neu-bg-rgb: 232, 234, 242;
+  --neu-fg: #20213A;
+  --neu-muted: #5B6178;
+  --neu-muted-light: #7E859E;
+
+  /* Dual opposing shadows (Light Mode) */
+  --neu-shadow-light: rgba(255, 255, 255, 0.85);
+  --neu-shadow-dark: rgba(182, 188, 204, 0.65);
+
+  /* Extruded (Convex / Raised) */
+  --neu-extruded: 9px 9px 18px var(--neu-shadow-dark), -9px -9px 18px var(--neu-shadow-light);
+  --neu-extruded-hover: 14px 14px 26px var(--neu-shadow-dark), -14px -14px 26px var(--neu-shadow-light);
+  --neu-extruded-sm: 5px 5px 10px var(--neu-shadow-dark), -5px -5px 10px var(--neu-shadow-light);
+  --neu-extruded-lg: 16px 16px 32px var(--neu-shadow-dark), -16px -16px 32px var(--neu-shadow-light);
+
+  /* Inset (Concave / Pressed Wells) */
+  --neu-inset: inset 6px 6px 12px var(--neu-shadow-dark), inset -6px -6px 12px var(--neu-shadow-light);
+  --neu-inset-deep: inset 10px 10px 20px var(--neu-shadow-dark), inset -10px -10px 20px var(--neu-shadow-light);
+  --neu-inset-sm: inset 3px 3px 6px var(--neu-shadow-dark), inset -3px -3px 6px var(--neu-shadow-light);
+
+  /* Interactive Accent Shadows (Violet #6C4CF1) */
+  --neu-accent-extruded: 6px 6px 16px rgba(108, 76, 241, 0.42), -6px -6px 16px rgba(152, 119, 255, 0.32);
+  --neu-accent-hover: 9px 9px 22px rgba(108, 76, 241, 0.52), -9px -9px 22px rgba(152, 119, 255, 0.42);
+  --neu-accent-inset: inset 4px 4px 8px rgba(50, 28, 140, 0.6), inset -4px -4px 8px rgba(180, 155, 255, 0.35);
+
+  /* Hyper-Rounded Radii */
+  --neu-r-card: 28px;
+  --neu-r-btn: 16px;
+  --neu-r-well: 20px;
+  --neu-r-sm: 12px;
+  --neu-r-pill: 9999px;
+
+  /* Typography */
+  --font-display: "Plus Jakarta Sans", "Lexend", -apple-system, sans-serif;
+  --font-body: "DM Sans", "Inter", system-ui, -apple-system, sans-serif;
+}
+
+/* ---------------- Dark Mode Neumorphism ---------------- */
+@media(prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --neu-bg: #121524;
+    --neu-bg-rgb: 18, 21, 36;
+    --neu-fg: #F1F4FA;
+    --neu-muted: #959BB4;
+    --neu-muted-light: #6E7590;
+
+    --neu-shadow-light: rgba(35, 41, 68, 0.55);
+    --neu-shadow-dark: rgba(7, 8, 15, 0.82);
+
+    --neu-extruded: 8px 8px 18px var(--neu-shadow-dark), -8px -8px 18px var(--neu-shadow-light);
+    --neu-extruded-hover: 12px 12px 24px var(--neu-shadow-dark), -12px -12px 24px var(--neu-shadow-light);
+    --neu-extruded-sm: 4px 4px 10px var(--neu-shadow-dark), -4px -4px 10px var(--neu-shadow-light);
+    --neu-extruded-lg: 16px 16px 36px var(--neu-shadow-dark), -16px -16px 36px var(--neu-shadow-light);
+
+    --neu-inset: inset 5px 5px 12px var(--neu-shadow-dark), inset -5px -5px 12px var(--neu-shadow-light);
+    --neu-inset-deep: inset 9px 9px 20px var(--neu-shadow-dark), inset -9px -9px 20px var(--neu-shadow-light);
+    --neu-inset-sm: inset 3px 3px 6px var(--neu-shadow-dark), inset -3px -3px 6px var(--neu-shadow-light);
+
+    --neu-accent-extruded: 6px 6px 16px rgba(155, 131, 255, 0.28), -6px -6px 16px rgba(18, 21, 36, 0.6);
+    --neu-accent-hover: 9px 9px 22px rgba(155, 131, 255, 0.38), -9px -9px 22px rgba(18, 21, 36, 0.7);
+    --neu-accent-inset: inset 4px 4px 8px rgba(0, 0, 0, 0.7), inset -4px -4px 8px rgba(155, 131, 255, 0.2);
+  }
+}
+
+:root[data-theme="dark"] {
+  --neu-bg: #121524;
+  --neu-bg-rgb: 18, 21, 36;
+  --neu-fg: #F1F4FA;
+  --neu-muted: #959BB4;
+  --neu-muted-light: #6E7590;
+
+  --neu-shadow-light: rgba(35, 41, 68, 0.55);
+  --neu-shadow-dark: rgba(7, 8, 15, 0.82);
+
+  --neu-extruded: 8px 8px 18px var(--neu-shadow-dark), -8px -8px 18px var(--neu-shadow-light);
+  --neu-extruded-hover: 12px 12px 24px var(--neu-shadow-dark), -12px -12px 24px var(--neu-shadow-light);
+  --neu-extruded-sm: 4px 4px 10px var(--neu-shadow-dark), -4px -4px 10px var(--neu-shadow-light);
+  --neu-extruded-lg: 16px 16px 36px var(--neu-shadow-dark), -16px -16px 36px var(--neu-shadow-light);
+
+  --neu-inset: inset 5px 5px 12px var(--neu-shadow-dark), inset -5px -5px 12px var(--neu-shadow-light);
+  --neu-inset-deep: inset 9px 9px 20px var(--neu-shadow-dark), inset -9px -9px 20px var(--neu-shadow-light);
+  --neu-inset-sm: inset 3px 3px 6px var(--neu-shadow-dark), inset -3px -3px 6px var(--neu-shadow-light);
+
+  --neu-accent-extruded: 6px 6px 16px rgba(155, 131, 255, 0.28), -6px -6px 16px rgba(18, 21, 36, 0.6);
+  --neu-accent-hover: 9px 9px 22px rgba(155, 131, 255, 0.38), -9px -9px 22px rgba(18, 21, 36, 0.7);
+  --neu-accent-inset: inset 4px 4px 8px rgba(0, 0, 0, 0.7), inset -4px -4px 8px rgba(155, 131, 255, 0.2);
+}
+
+/* ==========================================================================
+   Global Base & Typography
+   ========================================================================== */
+body {
+  background-color: var(--neu-bg) !important;
+  color: var(--neu-fg);
+  font-family: var(--font-body);
+  transition: background-color 0.3s ease, color 0.3s ease;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  letter-spacing: -0.02em;
+}
+
+/* ==========================================================================
+   3D Ambient Keyframes & Visual Physics
+   ========================================================================== */
+@keyframes neu-float-3d {
+  0% {
+    transform: translateY(0px) rotate(0deg) translateZ(0);
+  }
+  50% {
+    transform: translateY(-14px) rotate(3deg) translateZ(20px);
+  }
+  100% {
+    transform: translateY(0px) rotate(0deg) translateZ(0);
+  }
+}
+
+@keyframes neu-float-slow {
+  0% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(-2deg);
+  }
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+}
+
+@keyframes neu-modal-3d-enter {
+  0% {
+    opacity: 0;
+    transform: perspective(1200px) rotateX(-8deg) translateY(30px) scale(0.94);
+  }
+  100% {
+    opacity: 1;
+    transform: perspective(1200px) rotateX(0deg) translateY(0) scale(1);
+  }
+}
+
+@keyframes neu-pulse-glow {
+  0%, 100% {
+    box-shadow: var(--neu-extruded);
+  }
+  50% {
+    box-shadow: var(--neu-extruded-hover);
+  }
+}
+
+/* Ambient 3D floating background orbs */
+.neu-bg-container {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.neu-bg-orb {
+  position: absolute;
+  border-radius: 50%;
+  background: var(--neu-bg);
+  box-shadow: var(--neu-extruded-lg);
+  opacity: 0.75;
+  animation: neu-float-3d 8s ease-in-out infinite;
+}
+
+.neu-bg-orb-1 {
+  width: 280px;
+  height: 280px;
+  top: -80px;
+  right: -60px;
+  animation-duration: 9s;
+}
+
+.neu-bg-orb-2 {
+  width: 180px;
+  height: 180px;
+  bottom: 120px;
+  left: -50px;
+  animation-duration: 11s;
+  animation-delay: -3s;
+}
+
+.neu-bg-orb-3 {
+  width: 120px;
+  height: 120px;
+  top: 40%;
+  right: 5%;
+  animation-duration: 7s;
+  animation-delay: -1.5s;
+}
+
+/* ==========================================================================
+   Neumorphic Cards & 3D Interactive Tilt
+   ========================================================================== */
+.neu-card,
+.card,
+.tool-card-premium,
+.category-card-premium,
+.panel {
+  background: var(--neu-bg) !important;
+  border: none !important;
+  border-radius: var(--neu-r-card) !important;
+  box-shadow: var(--neu-extruded) !important;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  transform-style: preserve-3d;
+  position: relative;
+}
+
+.neu-card:hover,
+.card:hover,
+.tool-card-premium:hover,
+.category-card-premium:hover {
+  transform: perspective(1000px) translateY(-5px) rotateX(2deg) rotateY(-1.5deg) !important;
+  box-shadow: var(--neu-extruded-hover) !important;
+}
+
+/* Tool card icon wells (Carved Inset Physics) */
+.tool-card-icon-container,
+.category-card-icon,
+.neu-well {
+  background: var(--neu-bg) !important;
+  border: none !important;
+  border-radius: var(--neu-r-well) !important;
+  box-shadow: var(--neu-inset) !important;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+.tool-card-premium:hover .tool-card-icon-container,
+.category-card-premium:hover .category-card-icon {
+  box-shadow: var(--neu-inset-deep) !important;
+  transform: scale(1.05);
+}
+
+/* Tool Card & Category Badges */
+.tool-badge,
+.category-card-count {
+  background: var(--neu-bg) !important;
+  border: none !important;
+  border-radius: var(--neu-r-pill) !important;
+  box-shadow: var(--neu-extruded-sm) !important;
+  padding: 0.25rem 0.65rem !important;
+  font-size: 0.75rem !important;
+  font-weight: 700 !important;
+}
+
+.tool-badge.badge-pro {
+  color: var(--brand) !important;
+  box-shadow: var(--neu-inset-sm) !important;
+}
+
+.tool-badge.badge-free {
+  color: #10B981 !important;
+}
+
+.tool-badge.badge-popular {
+  color: #F59E0B !important;
+}
+
+/* ==========================================================================
+   Hero Search & Tactile Chips
+   ========================================================================== */
+.hero-search input.big {
+  background: var(--neu-bg) !important;
+  border: none !important;
+  border-radius: var(--neu-r-card) !important;
+  box-shadow: var(--neu-inset-deep) !important;
+  padding: 1.15rem 1.25rem 1.15rem 3.25rem !important;
+  color: var(--neu-fg) !important;
+  font-size: 1.05rem !important;
+  transition: box-shadow 0.25s ease !important;
+}
+
+.hero-search input.big:focus {
+  box-shadow: var(--neu-inset-deep), 0 0 0 3px var(--brand) !important;
+}
+
+.chip {
+  background: var(--neu-bg) !important;
+  border: none !important;
+  border-radius: var(--neu-r-pill) !important;
+  box-shadow: var(--neu-extruded-sm) !important;
+  color: var(--neu-muted) !important;
+  font-weight: 500 !important;
+  padding: 0.45rem 1.05rem !important;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  cursor: pointer !important;
+}
+
+.chip:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: var(--neu-extruded) !important;
+  color: var(--brand) !important;
+}
+
+.chip:active,
+.chip.active-chip {
+  transform: translateY(1px) !important;
+  box-shadow: var(--neu-inset-sm) !important;
+  color: var(--brand) !important;
+  font-weight: 700 !important;
+}
+
+.eyebrow {
+  background: var(--neu-bg) !important;
+  box-shadow: var(--neu-extruded-sm) !important;
+  border: none !important;
+  border-radius: var(--neu-r-pill) !important;
+  padding: 0.4rem 1.1rem !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 0.5rem !important;
+}
+
+/* ==========================================================================
+   Neumorphic Buttons & Tactile Physics
+   ========================================================================== */
+.neu-btn,
+.btn {
+  font-family: var(--font-body);
+  font-weight: 600;
+  border: none !important;
+  border-radius: var(--neu-r-btn) !important;
+  background: var(--neu-bg) !important;
+  color: var(--neu-fg) !important;
+  box-shadow: var(--neu-extruded-sm) !important;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.4rem;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1), background 0.2s ease !important;
+  user-select: none;
+}
+
+.neu-btn:hover,
+.btn:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: var(--neu-extruded) !important;
+}
+
+.neu-btn:active,
+.btn:active {
+  transform: translateY(1.5px) scale(0.98) !important;
+  box-shadow: var(--neu-inset-sm) !important;
+}
+
+/* Primary Accent Button (Violet Glow) */
+.neu-btn-primary,
+.btn.primary {
+  background: var(--brand) !important;
+  color: #FFFFFF !important;
+  box-shadow: var(--neu-accent-extruded) !important;
+}
+
+.neu-btn-primary:hover,
+.btn.primary:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: var(--neu-accent-hover) !important;
+}
+
+.neu-btn-primary:active,
+.btn.primary:active {
+  transform: translateY(1px) scale(0.98) !important;
+  box-shadow: var(--neu-accent-inset) !important;
+}
+
+/* Secondary Button */
+.btn.sub {
+  background: var(--neu-bg) !important;
+  color: var(--neu-fg) !important;
+  box-shadow: var(--neu-extruded-sm) !important;
+}
+
+.btn.sub:hover {
+  box-shadow: var(--neu-extruded) !important;
+}
+
+.btn.sub:active {
+  box-shadow: var(--neu-inset-sm) !important;
+}
+
+/* Ghost Button (Pressed Inset Track) */
+.btn.ghost {
+  background: var(--neu-bg) !important;
+  box-shadow: var(--neu-inset-sm) !important;
+  color: var(--neu-muted) !important;
+}
+
+.btn.ghost:hover {
+  color: var(--brand) !important;
+  box-shadow: var(--neu-extruded-sm) !important;
+}
+
+/* Favorite Star Pill Button */
+.fav-btn {
+  background: var(--neu-bg) !important;
+  border: none !important;
+  border-radius: var(--neu-r-pill) !important;
+  box-shadow: var(--neu-extruded-sm) !important;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  cursor: pointer;
+}
+
+.fav-btn:hover {
+  transform: scale(1.08) !important;
+  box-shadow: var(--neu-extruded) !important;
+}
+
+.fav-btn.active,
+.fav-btn:active {
+  box-shadow: var(--neu-inset-sm) !important;
+  color: #F59E0B !important;
+}
+
+/* ==========================================================================
+   Neumorphic Inputs (Deep Carved Wells)
+   ========================================================================== */
+.neu-input,
+input[type="text"],
+input[type="search"],
+input[type="number"],
+input[type="email"],
+input[type="password"],
+textarea,
+select {
+  background: var(--neu-bg) !important;
+  color: var(--neu-fg) !important;
+  border: none !important;
+  border-radius: var(--neu-r-btn) !important;
+  box-shadow: var(--neu-inset) !important;
+  padding: 0.75rem 1.15rem;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  transition: box-shadow 0.25s ease, transform 0.25s ease !important;
+  outline: none !important;
+}
+
+.neu-input:focus,
+input[type="text"]:focus,
+input[type="search"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+textarea:focus,
+select:focus {
+  box-shadow: var(--neu-inset-deep), 0 0 0 2px var(--brand) !important;
+}
+
+/* ==========================================================================
+   Header & Top Navigation (Soft Molded Surface)
+   ========================================================================== */
+.top-nav,
+.header,
+.top {
+  background: rgba(var(--neu-bg-rgb), 0.88) !important;
+  backdrop-filter: blur(14px) !important;
+  -webkit-backdrop-filter: blur(14px) !important;
+  border-bottom: none !important;
+  box-shadow: 0 8px 24px -4px var(--neu-shadow-dark) !important;
+}
+
+.nav-link,
+.top-nav a,
+.mega-btn {
+  border-radius: var(--neu-r-sm);
+  transition: all 0.2s ease;
+}
+
+.nav-link:hover,
+.top-nav a:hover,
+.mega-btn:hover {
+  box-shadow: var(--neu-extruded-sm);
+}
+
+.mega-panel {
+  background: var(--neu-bg) !important;
+  border: none !important;
+  border-radius: 24px !important;
+  box-shadow: var(--neu-extruded-lg) !important;
+}
+
+/* ==========================================================================
+   Platform Dashboards Menu & Quick Header Button
+   ========================================================================== */
+.dash-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: var(--neu-bg);
+  color: var(--neu-fg);
+  font-weight: 700;
+  font-size: 0.92rem;
+  border-radius: var(--neu-r-btn);
+  padding: 0.48rem 0.85rem;
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.dash-btn-icon {
+  font-size: 1.05rem;
+  filter: drop-shadow(0 2px 4px rgba(108, 76, 241, 0.25));
+}
+
+.dash-btn:hover {
+  box-shadow: var(--neu-extruded-sm);
+  color: var(--brand);
+  transform: translateY(-1px);
+}
+
+.dash-btn.active,
+.dash-btn[aria-expanded="true"] {
+  box-shadow: var(--neu-inset-sm);
+  color: var(--brand);
+}
+
+.dash-panel {
+  width: min(480px, 94vw) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0.85rem !important;
+  padding: 1.25rem !important;
+  z-index: 90 !important;
+  animation: neu-modal-3d-enter 0.26s cubic-bezier(0.16, 1, 0.3, 1);
+  transform-origin: top center;
+}
+
+.dash-panel-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid rgba(108, 76, 241, 0.1);
+}
+
+.dash-panel-title {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--neu-fg);
+  letter-spacing: -0.01em;
+}
+
+.dash-panel-sub {
+  font-size: 0.78rem;
+  color: var(--neu-muted);
+}
+
+.dash-panel-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.dash-portal-card {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  padding: 0.85rem 1rem;
+  border-radius: 16px;
+  background: var(--neu-bg);
+  box-shadow: var(--neu-extruded-sm);
+  text-decoration: none;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.dash-portal-card:hover {
+  box-shadow: var(--neu-extruded);
+  transform: translateY(-2px) scale(1.01);
+}
+
+.dash-portal-card.user-portal:hover {
+  border-left: 3px solid #6C4CF1;
+}
+
+.dash-portal-card.admin-portal:hover {
+  border-left: 3px solid #059669;
+}
+
+.dash-portal-ico {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: inline-grid;
+  place-items: center;
+  font-size: 1.4rem;
+  background: var(--neu-bg);
+  box-shadow: var(--neu-inset-sm);
+  flex-shrink: 0;
+}
+
+.dash-portal-meta {
+  flex: 1;
+}
+
+.dash-portal-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.2rem;
+}
+
+.dash-portal-head strong {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--neu-fg);
+}
+
+.dash-portal-meta p {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--neu-muted);
+  line-height: 1.35;
+}
+
+.dash-tag {
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 0.15rem 0.5rem;
+  border-radius: var(--neu-r-pill);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.dash-tag.user {
+  background: rgba(108, 76, 241, 0.14);
+  color: #6C4CF1;
+  border: 1px solid rgba(108, 76, 241, 0.25);
+}
+
+.dash-tag.admin {
+  background: rgba(5, 150, 105, 0.14);
+  color: #059669;
+  border: 1px solid rgba(5, 150, 105, 0.25);
+}
+
+.dash-panel-footer {
+  padding-top: 0.5rem;
+  border-top: 1px solid rgba(108, 76, 241, 0.08);
+  font-size: 0.75rem;
+  color: var(--neu-muted-light);
+  text-align: center;
+}
+
+/* Quick Action Header Button */
+.dash-action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.44rem 0.85rem;
+  border-radius: var(--neu-r-btn);
+  background: var(--neu-bg);
+  color: var(--brand);
+  font-weight: 700;
+  font-size: 0.84rem;
+  text-decoration: none;
+  box-shadow: var(--neu-extruded-sm);
+  border: 1px solid rgba(108, 76, 241, 0.2);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  white-space: nowrap;
+}
+
+.dash-action-btn:hover {
+  box-shadow: var(--neu-accent-hover);
+  transform: translateY(-1px);
+  background: var(--brand);
+  color: #ffffff;
+}
+
+.dash-action-btn:active {
+  box-shadow: var(--neu-inset-sm);
+  transform: translateY(0);
+}
+
+.dash-action-ico {
+  font-size: 0.95rem;
+}
+
+/* ==========================================================================
+   Modals & 3D Flip Transitions
+   ========================================================================== */
+.modal-content,
+.search-modal-content,
+.ai-modal-content,
+.buy-notice-modal-box {
+  background: var(--neu-bg) !important;
+  border: none !important;
+  border-radius: 32px !important;
+  box-shadow: 20px 20px 48px var(--neu-shadow-dark), -20px -20px 48px var(--neu-shadow-light) !important;
+  animation: neu-modal-3d-enter 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  transform-origin: center top;
+}
+
+/* Concentric Depth Circles for Hero & Visual Features */
+.neu-concentric-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.neu-circle-outer {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  background: var(--neu-bg);
+  box-shadow: var(--neu-extruded);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: neu-float-slow 6s ease-in-out infinite;
+}
+
+.neu-circle-inner {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: var(--neu-bg);
+  box-shadow: var(--neu-inset);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.2rem;
+  transition: transform 0.4s ease;
+}
+
+.neu-circle-outer:hover .neu-circle-inner {
+  transform: rotate(180deg) scale(1.05);
+  box-shadow: var(--neu-inset-deep);
+}
