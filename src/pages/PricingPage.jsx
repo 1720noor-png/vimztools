@@ -1,11 +1,14 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext.jsx'
+import BuyNoticeModal from '../components/BuyNoticeModal.jsx'
 
 export default function PricingPage() {
   const { isLoggedIn, isPro, user } = useAuth()
   const [billingCycle, setBillingCycle] = useState('monthly') // 'monthly' | 'annual'
   const [faqOpen, setFaqOpen] = useState({ 0: true })
+  const [showBuyNotice, setShowBuyNotice] = useState(false)
+  const [noticePlan, setNoticePlan] = useState('Vimz Pro')
 
   useEffect(() => {
     document.title = 'Pricing & Plans – Vimz.ai'
@@ -226,8 +229,12 @@ export default function PricingPage() {
           </div>
 
           <div style={{ marginTop: '2rem' }}>
-            <Link
-              to={`/checkout?tier=${billingCycle === 'monthly' ? 'pro_monthly' : 'pro_annual'}`}
+            <button
+              type="button"
+              onClick={() => {
+                setNoticePlan(billingCycle === 'monthly' ? 'Vimz Pro ($9.00/mo)' : 'Vimz Pro ($89.00/yr)')
+                setShowBuyNotice(true)
+              }}
               className="btn primary"
               style={{
                 width: '100%',
@@ -236,12 +243,14 @@ export default function PricingPage() {
                 padding: '0.85rem',
                 background: 'linear-gradient(135deg, #6366f1, #9333ea)',
                 border: 'none',
+                color: '#fff',
                 fontWeight: 700,
-                fontSize: '0.95rem'
+                fontSize: '0.95rem',
+                cursor: 'pointer'
               }}
             >
-              {billingCycle === 'monthly' ? 'Payments Coming Soon — View Details' : 'Payments Coming Soon — View Details'}
-            </Link>
+              Payments Coming Soon — View Notice
+            </button>
           </div>
         </div>
 
@@ -421,14 +430,25 @@ export default function PricingPage() {
         <p style={{ color: 'var(--muted)', maxWidth: '580px', margin: '0 auto 1.5rem auto', fontSize: '0.95rem', lineHeight: 1.6 }}>
           Try Vimz Pro risk-free. If you are not completely satisfied with our exports and productivity tools within 14 days, contact our team for a prompt, hassle-free refund.
         </p>
-        <Link
-          to={`/checkout?tier=${billingCycle === 'monthly' ? 'pro_monthly' : 'pro_annual'}`}
+        <button
+          type="button"
+          onClick={() => {
+            setNoticePlan(billingCycle === 'monthly' ? 'Vimz Pro ($9.00/mo)' : 'Vimz Pro ($89.00/yr)')
+            setShowBuyNotice(true)
+          }}
           className="btn primary"
-          style={{ padding: '0.8rem 2rem', fontWeight: 600 }}
+          style={{ padding: '0.8rem 2rem', fontWeight: 600, border: 'none', cursor: 'pointer', background: 'var(--brand)', color: '#fff' }}
         >
-          Get Started with Vimz Pro →
-        </Link>
+          Payments Coming Soon — View Notice →
+        </button>
       </div>
+
+      <BuyNoticeModal
+        isOpen={showBuyNotice}
+        onClose={() => setShowBuyNotice(false)}
+        toolName={noticePlan}
+        plannedPrice={billingCycle === 'monthly' ? '$9.00/mo' : '$89.00/yr'}
+      />
     </div>
   )
 }

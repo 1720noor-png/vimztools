@@ -3,7 +3,10 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext.jsx'
 import { userApi } from '../api/client.js'
 import { tools } from '../data/registry.js'
+import toolIndex from '../data/tool-index.json'
 import { useRecentTools } from '../utils/userPrefs.js'
+import { downloadToolOfflineFile, isBasicFreeTool } from '../services/offline/offlineExportService.js'
+
 
 export default function UserDashboard() {
   const { user, isLoggedIn, loading: authLoading, logout, isPro } = useAuth()
@@ -13,8 +16,12 @@ export default function UserDashboard() {
   const [savedResults, setSavedResults] = useState([])
   const [activeTab, setActiveTab] = useState('subscription')
   const [loading, setLoading] = useState(true)
+  const [offlineSearch, setOfflineSearch] = useState('')
+  const [offlineFilter, setOfflineFilter] = useState('all')
+  const [downloadNotice, setDownloadNotice] = useState(null)
   const { recents } = useRecentTools()
   const nav = useNavigate()
+
 
   useEffect(() => {
     document.title = 'My Workspace – Vimz.ai'
@@ -203,6 +210,12 @@ export default function UserDashboard() {
           onClick={() => setActiveTab('saved')}
         >
           💾 Saved Computations ({savedResults.length})
+        </button>
+        <button
+          className={`dash-tab ${activeTab === 'offline' ? 'active' : ''}`}
+          onClick={() => setActiveTab('offline')}
+        >
+          ⚡ Offline Tools & PWA
         </button>
       </div>
 
@@ -443,8 +456,163 @@ export default function UserDashboard() {
               )}
             </div>
           )}
+
+          {activeTab === 'offline' && (
+            <div className="dash-section">
+              {/* PWA & Offline Engine Info Card */}
+              <div style={{
+                background: 'linear-gradient(135deg, rgba(31, 157, 107, 0.1), rgba(15, 23, 42, 0.8))',
+                border: '1px solid #1F9D6B',
+                borderRadius: '14px',
+                padding: '1.5rem',
+                marginBottom: '1.5rem'
+              }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '1rem' }}>
+                  <div>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '0.35rem' }}>
+                      <span style={{ fontSize: '1.4rem' }}>⚡</span>
+                      <h3 style={{ margin: 0, color: '#34D399' }}>Zero-Internet Offline Tools Engine</h3>
+                    </div>
+                    <p style={{ margin: 0, fontSize: '0.9rem', color: 'var(--muted)', maxWidth: '700px' }}>
+                      Download any tool as a standalone <strong>.html</strong> file and run it forever on your computer, USB drive, or phone without internet. Or install Vimz.ai as a <strong>Progressive Web App (PWA)</strong> directly to your home screen!
+                    </p>
+                  </div>
+                  <div>
+                    <span className="badge" style={{ background: '#1F9D6B', color: '#FFF', padding: '0.4rem 0.8rem', fontWeight: 600 }}>
+                      ✓ PWA Service Worker Ready
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Download Alert Notice */}
+              {downloadNotice && (
+                <div style={{
+                  background: downloadNotice.type === 'success' ? 'rgba(34,197,94,0.12)' : 'rgba(239,68,68,0.12)',
+                  border: downloadNotice.type === 'success' ? '1px solid rgba(34,197,94,0.3)' : '1px solid rgba(239,68,68,0.3)',
+                  color: downloadNotice.type === 'success' ? '#16a34a' : '#ef4444',
+                  borderRadius: '10px',
+                  padding: '1rem',
+                  marginBottom: '1.5rem',
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center'
+                }}>
+                  <div>{downloadNotice.message}</div>
+                  <button onClick={() => setDownloadNotice(null)} style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'inherit', fontWeight: 'bold' }}>✕</button>
+                </div>
+              )}
+
+              {/* Filter Controls & Search */}
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem', marginBottom: '1.5rem' }}>
+                <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
+                  <button
+                    className={`btn sm ${offlineFilter === 'all' ? 'primary' : 'sub'}`}
+                    onClick={() => setOfflineFilter('all')}
+                  >
+                    All Tools ({toolIndex.length})
+                  </button>
+                  <button
+                    className={`btn sm ${offlineFilter === 'basic' ? 'primary' : 'sub'}`}
+                    onClick={() => setOfflineFilter('basic')}
+                  >
+                    Free Forever Tools (359)
+                  </button>
+                  <button
+                    className={`btn sm ${offlineFilter === 'advanced' ? 'primary' : 'sub'}`}
+                    onClick={() => setOfflineFilter('advanced')}
+                  >
+                    Advanced Tools (700)
+                  </button>
+                </div>
+                <div style={{ minWidth: '260px' }}>
+                  <input
+                    type="text"
+                    placeholder="Search offline tools..."
+                    value={offlineSearch}
+                    onChange={(e) => setOfflineSearch(e.target.value)}
+                    style={{
+                      width: '100%',
+                      padding: '0.55rem 0.9rem',
+                      background: 'var(--card)',
+                      border: '1px solid var(--line)',
+                      borderRadius: '8px',
+                      color: 'var(--text)',
+                      fontSize: '0.9rem'
+                    }}
+                  />
+                </div>
+              </div>
+
+              {/* Offline Tools Grid */}
+              <div className="grid">
+                {toolIndex
+                  .filter((t) => {
+                    const matchesSearch = !offlineSearch || t.name.toLowerCase().includes(offlineSearch.toLowerCase()) || t.slug.toLowerCase().includes(offlineSearch.toLowerCase());
+                    const isAdvanced = t.is_advanced || t.level === 'L3' || t.level === 'L2';
+                    if (offlineFilter === 'basic') return matchesSearch && !isAdvanced;
+                    if (offlineFilter === 'advanced') return matchesSearch && isAdvanced;
+                    return matchesSearch;
+                  })
+                  .slice(0, 24)
+                  .map((t) => {
+                    const isAdvanced = t.is_advanced || t.level === 'L3';
+                    const canDownload = !isAdvanced || userIsPro;
+
+                    return (
+                      <div key={t.slug} className="tool-card-saas" style={{ display: 'flex', flexDirection: 'column' }}>
+                        <div className="card-top">
+                          <span className="tool-ico">{t.icon || '🛠️'}</span>
+                          <span className="badge sub">{t.cat || 'Utility'}</span>
+                        </div>
+                        <h4 style={{ margin: '0.5rem 0 0.25rem 0' }}>{t.name}</h4>
+                        <p style={{ fontSize: '0.85rem', color: 'var(--muted)', flex: 1, margin: 0 }}>{t.desc}</p>
+                        
+                        <div style={{ marginTop: '1rem', paddingTop: '0.75rem', borderTop: '1px solid var(--line)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                          <span style={{ fontSize: '0.75rem', color: isAdvanced ? '#B8975A' : '#10B981', fontWeight: 600 }}>
+                            {isAdvanced ? '⭐ Pro Tool' : '⚡ 100% Free'}
+                          </span>
+
+                          <button
+                            className="btn primary sm"
+                            style={{
+                              background: canDownload ? '#1F9D6B' : 'rgba(184, 151, 90, 0.2)',
+                              color: canDownload ? '#FFF' : '#B8975A',
+                              border: canDownload ? 'none' : '1px solid #B8975A'
+                            }}
+                            onClick={() => {
+                              if (!canDownload) {
+                                setDownloadNotice({
+                                  type: 'error',
+                                  message: `"${t.name}" is an Advanced tool. Upgrade to Pro ($9/mo) or get a 30-day Tool Pass to download offline unbranded files.`
+                                });
+                                return;
+                              }
+                              downloadToolOfflineFile(t, userIsPro);
+                              setDownloadNotice({
+                                type: 'success',
+                                message: `Downloaded offline standalone file for "${t.name}". You can now run it without internet!`
+                              });
+                            }}
+                          >
+                            {canDownload ? '📥 Download .html' : '🔒 Pro Tool'}
+                          </button>
+                        </div>
+                      </div>
+                    );
+                  })}
+              </div>
+
+              {toolIndex.length > 24 && !offlineSearch && (
+                <div style={{ marginTop: '1.5rem', textAlign: 'center', color: 'var(--muted)', fontSize: '0.85rem' }}>
+                  Showing top 24 tools. Use the search bar above to find and download any of the 1,059 tools offline.
+                </div>
+              )}
+            </div>
+          )}
         </div>
       )}
     </div>
   )
 }
+
