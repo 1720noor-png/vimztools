@@ -1,0 +1,346 @@
+/* ==========================================================================
+   Vimz.ai — Emerald Prestige Admin Dashboard Styles
+   Palette:
+     Charcoal:   #232826 (Sidebar, headers, dark text)
+     Forest:     #1F3D2F (Surfaces, cards, container headers)
+     Emerald:    #1F9D6B (Primary actions, active states, success)
+     Muted Gold: #B8975A (Premium indicators, pass badges)
+     Ivory:      #F7F3E8 (Page background, canvas backdrop)
+     Sage:       #DDE5D8 (Panels, subtle borders, table stripes)
+   ========================================================================== */
+
+:root {
+  --ep-charcoal: #232826;
+  --ep-forest: #1F3D2F;
+  --ep-emerald: #1F9D6B;
+  --ep-emerald-dark: #168055;
+  --ep-gold: #B8975A;
+  --ep-ivory: #F7F3E8;
+  --ep-sage: #DDE5D8;
+  --ep-sage-light: #EEF3EB;
+  --ep-muted-text: #667085;
+  --ep-border: #D0D7CE;
+}
+
+.emerald-admin {
+  display: flex;
+  min-height: 100vh;
+  background-color: var(--ep-ivory);
+  color: var(--ep-charcoal);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+/* Sidebar */
+.emerald-sidebar {
+  width: 270px;
+  background-color: var(--ep-charcoal);
+  color: #FFF;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.emerald-sidebar-brand {
+  padding: 1.5rem 1.25rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.emerald-sidebar-brand h2 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin: 0;
+  color: #FFF;
+  letter-spacing: -0.02em;
+}
+
+.emerald-sidebar-brand .tag {
+  font-size: 0.7rem;
+  background: var(--ep-forest);
+  color: var(--ep-emerald);
+  border: 1px solid var(--ep-emerald);
+  padding: 0.15rem 0.45rem;
+  border-radius: 4px;
+  font-weight: 600;
+}
+
+.emerald-sidebar-nav {
+  padding: 1rem 0.75rem;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.emerald-nav-group-title {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.45);
+  font-weight: 700;
+  margin: 1.25rem 0.5rem 0.5rem 0.5rem;
+}
+
+.emerald-nav-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.6rem 0.75rem;
+  border-radius: 6px;
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.88rem;
+  font-weight: 500;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.15s ease-in-out;
+}
+
+.emerald-nav-btn:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: #FFF;
+}
+
+.emerald-nav-btn.active {
+  background: var(--ep-forest);
+  color: #FFF;
+  border-left: 3px solid var(--ep-emerald);
+  font-weight: 600;
+}
+
+.emerald-nav-btn .icon {
+  font-size: 1.05rem;
+  width: 20px;
+  text-align: center;
+}
+
+/* Main Area */
+.emerald-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+/* Topbar */
+.emerald-topbar {
+  background: #FFF;
+  border-bottom: 1px solid var(--ep-border);
+  padding: 0.85rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+}
+
+.emerald-topbar-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.emerald-topbar-left h1 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin: 0;
+  color: var(--ep-charcoal);
+}
+
+.emerald-badge-payments {
+  background: #FFF4E5;
+  border: 1px solid #FFD8A8;
+  color: #D9480F;
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 0.25rem 0.65rem;
+  border-radius: 9999px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.emerald-topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.emerald-user-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.88rem;
+}
+
+.emerald-role-pill {
+  background: var(--ep-sage);
+  color: var(--ep-charcoal);
+  padding: 0.2rem 0.55rem;
+  border-radius: 4px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+/* Content */
+.emerald-content {
+  padding: 2rem;
+  flex: 1;
+  overflow-y: auto;
+}
+
+/* Metric Cards */
+.emerald-kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+.emerald-kpi-card {
+  background: #FFF;
+  border: 1px solid var(--ep-border);
+  border-radius: 8px;
+  padding: 1.25rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+}
+
+.emerald-kpi-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--ep-muted-text);
+  margin-bottom: 0.4rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.emerald-kpi-val {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--ep-charcoal);
+  margin-bottom: 0.25rem;
+}
+
+.emerald-kpi-sub {
+  font-size: 0.8rem;
+  color: var(--ep-muted-text);
+}
+
+/* Tables */
+.emerald-table-container {
+  background: #FFF;
+  border: 1px solid var(--ep-border);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+}
+
+.emerald-table-header {
+  padding: 1rem 1.25rem;
+  background: var(--ep-sage-light);
+  border-bottom: 1px solid var(--ep-border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.emerald-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+  text-align: left;
+}
+
+.emerald-table th {
+  background: #F9FAF8;
+  color: var(--ep-charcoal);
+  font-weight: 600;
+  padding: 0.8rem 1rem;
+  border-bottom: 1px solid var(--ep-border);
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+}
+
+.emerald-table td {
+  padding: 0.85rem 1rem;
+  border-bottom: 1px solid #EBEFEA;
+  color: var(--ep-charcoal);
+}
+
+.emerald-table tr:hover {
+  background-color: #F8FBF7;
+}
+
+/* Badges */
+.badge-emerald {
+  background: rgba(31, 157, 107, 0.12);
+  color: var(--ep-emerald-dark);
+  font-weight: 600;
+  padding: 0.2rem 0.55rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+}
+
+.badge-gold {
+  background: rgba(184, 151, 90, 0.15);
+  color: #8C6D32;
+  font-weight: 600;
+  padding: 0.2rem 0.55rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+}
+
+.badge-unavailable {
+  background: #E5E7EB;
+  color: #6B7280;
+  font-weight: 600;
+  padding: 0.2rem 0.55rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  cursor: help;
+}
+
+/* Buttons */
+.emerald-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.15s ease-in-out;
+}
+
+.emerald-btn-primary {
+  background: var(--ep-emerald);
+  color: #FFF;
+}
+
+.emerald-btn-primary:hover {
+  background: var(--ep-emerald-dark);
+}
+
+.emerald-btn-sub {
+  background: #FFF;
+  border: 1px solid var(--ep-border);
+  color: var(--ep-charcoal);
+}
+
+.emerald-btn-sub:hover {
+  background: var(--ep-sage-light);
+}
+
+.emerald-btn-sm {
+  padding: 0.35rem 0.65rem;
+  font-size: 0.8rem;
+}
