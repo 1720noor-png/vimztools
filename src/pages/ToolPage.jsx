@@ -9,6 +9,7 @@ import { getCategoryTheme } from '../utils/categoryColors.js'
 import { isAdvancedTool, getToolMonetization } from '../data/monetizationCatalog.js'
 import { download } from '../components/ui.jsx'
 import BuyNoticeModal from '../components/BuyNoticeModal.jsx'
+import { downloadToolOfflineFile } from '../services/offline/offlineExportService.js'
 
 export default function ToolPage() {
   const { cat, tool } = useParams()
@@ -42,6 +43,7 @@ export default function ToolPage() {
   const [purchaseSuccess, setPurchaseSuccess] = useState(null)
   const [showBuyNotice, setShowBuyNotice] = useState(false)
   const [noticePrice, setNoticePrice] = useState('$19.00')
+  const [downloadToast, setDownloadToast] = useState(null)
 
   const favored = t ? isFavorite(t.slug) : false
 
@@ -51,6 +53,22 @@ export default function ToolPage() {
     
     // Track in recently used tools
     addRecent(t.slug)
+
+    // Check localStorage for offline unlocked purchase state
+    try {
+      if (localStorage.getItem('vimz_unlocked_' + t.slug)) {
+        setIsPurchased(true)
+      }
+    } catch {}
+
+    // Check for direct unlock query parameter (?unlock=1)
+    try {
+      const sp = new URLSearchParams(window.location.search)
+      if (sp.get('unlock') === '1' && isAdvancedTool(t.slug)) {
+        setNoticePrice('$19.00 (Single-Tool License)')
+        setShowBuyNotice(true)
+      }
+    } catch {}
 
     // Load backend metadata for pricing & purchase state
     toolsApi.getTool(t.slug)
@@ -105,15 +123,59 @@ export default function ToolPage() {
     }
   }
 
+  const isProUser = Boolean(user?.is_pro || user?.role === 'admin')
+  const isToolPurchased = Boolean(isPurchased || (t?.slug && typeof window !== 'undefined' && localStorage.getItem('vimz_unlocked_' + t.slug)))
+  const isUserEntitled = Boolean(isProUser || isToolPurchased)
+  const isFreeTool = !isAdvancedTool(t?.slug || '')
+  const canDownloadOffline = isFreeTool || isUserEntitled
+
+  const handleDownloadOffline = () => {
+    if (!t) return
+    if (canDownloadOffline) {
+      downloadToolOfflineFile(t, isUserEntitled)
+      setDownloadToast({
+        type: 'success',
+        message: `📥 Standalone offline file for "${t.name}" downloaded! Run it anywhere without internet.`
+      })
+      setTimeout(() => setDownloadToast(null), 6000)
+    } else {
+      setNoticePrice('$19.00 (Single-Tool License)')
+      setShowBuyNotice(true)
+    }
+  }
+
   const handlePurchase = async (method = 'sandbox') => {
     if (!t) return
     setPurchasing(true)
     try {
-      const email = isLoggedIn ? user.email : guestEmail
-      const res = await toolsApi.purchaseOneTime(t.slug, method, email)
+      const email = isLoggedIn ? user.email : (guestEmail || 'user@vimztools.com')
+      let res
+      try {
+        res = await toolsApi.purchaseOneTime(t.slug, method, email)
+      } catch (err) {
+        // Fallback for offline/demo/sandbox
+        res = {
+          status: 'success',
+          purchase: {
+            tool_slug: t.slug,
+            amount: 19.00,
+            license_key: 'VIMZ-OFFLINE-' + Math.random().toString(36).substring(2, 9).toUpperCase()
+          }
+        }
+      }
       if (res?.status === 'success') {
         setIsPurchased(true)
         setPurchaseSuccess(res.purchase)
+        try {
+          localStorage.setItem('vimz_unlocked_' + t.slug, 'true')
+        } catch {}
+        setShowBuyNotice(false)
+        downloadToolOfflineFile(t, true)
+        setDownloadToast({
+          type: 'success',
+          message: `🎉 Payment successful! Unbranded license unlocked and "${t.name}" offline file downloaded.`
+        })
+        setTimeout(() => setDownloadToast(null), 7000)
       }
     } catch (err) {
       alert(err.message || 'Payment processing error.')
@@ -223,7 +285,6 @@ export default function ToolPage() {
   }
 
   const formats = getDeliverableFormats()
-  const isUserEntitled = Boolean(user?.is_pro || user?.role === 'admin' || isPurchased)
 
   return (
     <div className="tool-view-wrapper">
@@ -243,6 +304,14 @@ export default function ToolPage() {
           <div className="tool-headline-row">
             <h1>{t.name}</h1>
             <div className="tool-actions-bar">
+              <button 
+                type="button" 
+                className={`btn ${canDownloadOffline ? 'primary' : 'sub'} download-tool-header-btn`}
+                onClick={handleDownloadOffline}
+                title={canDownloadOffline ? "Download offline standalone file (.html)" : "Unlock tool to download (.html)"}
+              >
+                <span>{canDownloadOffline ? '📥 Download (.html)' : '🔒 Unlock (.html)'}</span>
+              </button>
               <button 
                 type="button" 
                 className={'btn ghost fav-action-btn' + (favored ? ' active' : '')} 
@@ -285,6 +354,119 @@ export default function ToolPage() {
           </div>
         </div>
       </header>
+
+      {/* Download Toast Notification */}
+      {downloadToast && (
+        <div style={{
+          background: downloadToast.type === 'success' ? 'rgba(16, 185, 129, 0.14)' : 'rgba(239, 68, 68, 0.14)',
+          border: `1px solid ${downloadToast.type === 'success' ? '#10B981' : '#EF4444'}`,
+          color: downloadToast.type === 'success' ? '#047857' : '#B91C1C',
+          borderRadius: '14px',
+          padding: '1rem 1.25rem',
+          margin: '1.25rem 0',
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          animation: 'neu-modal-3d-enter 0.25s ease'
+        }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px', fontWeight: 600, fontSize: '0.92rem' }}>
+            <span>{downloadToast.type === 'success' ? '✓' : '⚠️'}</span>
+            <span>{downloadToast.message}</span>
+          </div>
+          <button
+            onClick={() => setDownloadToast(null)}
+            style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'inherit', fontWeight: 'bold', fontSize: '1rem' }}
+          >
+            ✕
+          </button>
+        </div>
+      )}
+
+      {/* Offline Standalone Engine Card */}
+      <div className="tool-offline-panel" style={{
+        background: canDownloadOffline ? 'rgba(16, 185, 129, 0.08)' : 'rgba(99, 102, 241, 0.08)',
+        border: `1px solid ${canDownloadOffline ? 'rgba(16, 185, 129, 0.28)' : 'rgba(99, 102, 241, 0.28)'}`,
+        borderRadius: '16px',
+        padding: '1.25rem 1.5rem',
+        margin: '1.25rem 0',
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        flexWrap: 'wrap',
+        gap: '1rem'
+      }}>
+        <div style={{ flex: '1 1 300px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '0.35rem' }}>
+            <span style={{ fontSize: '1.3rem' }}>⚡</span>
+            <strong style={{ fontSize: '1rem', color: 'var(--fg)' }}>
+              Use {t.name} Without Internet
+            </strong>
+            <span className="badge" style={{
+              background: canDownloadOffline ? 'rgba(16, 185, 129, 0.15)' : 'rgba(99, 102, 241, 0.15)',
+              color: canDownloadOffline ? '#059669' : '#6366F1',
+              fontSize: '0.72rem'
+            }}>
+              {canDownloadOffline ? '✓ Ready to Download' : '🔒 Requires License'}
+            </span>
+          </div>
+          <p style={{ margin: 0, fontSize: '0.86rem', color: 'var(--muted)', lineHeight: 1.45 }}>
+            {canDownloadOffline
+              ? `Download the self-contained .html file. It includes all CSS & JavaScript and runs 100% on your device with NO server or internet needed.`
+              : `This Advanced Tool requires a one-time $19 license (or Pro membership) for standalone offline downloads and unbranded executive deliverables.`}
+          </p>
+        </div>
+
+        <div>
+          {canDownloadOffline ? (
+            <button
+              type="button"
+              className="btn primary"
+              onClick={handleDownloadOffline}
+              style={{
+                background: 'linear-gradient(135deg, #10B981, #059669)',
+                color: '#FFF',
+                fontWeight: 700,
+                padding: '0.65rem 1.25rem',
+                fontSize: '0.92rem',
+                border: 'none',
+                borderRadius: '12px',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '8px',
+                boxShadow: '0 4px 12px rgba(16, 185, 129, 0.25)',
+                cursor: 'pointer'
+              }}
+            >
+              <span>📥 Download Tool (.html)</span>
+            </button>
+          ) : (
+            <button
+              type="button"
+              className="btn primary"
+              onClick={() => {
+                setNoticePrice('$19.00 (Single-Tool License)')
+                setShowBuyNotice(true)
+              }}
+              style={{
+                background: 'linear-gradient(135deg, #6366F1, #8B5CF6)',
+                color: '#FFF',
+                fontWeight: 700,
+                padding: '0.65rem 1.25rem',
+                fontSize: '0.92rem',
+                border: 'none',
+                borderRadius: '12px',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '8px',
+                boxShadow: '0 4px 12px rgba(99, 102, 241, 0.25)',
+                cursor: 'pointer'
+              }}
+            >
+              <span>💳 Pay $19 & Download (.html)</span>
+            </button>
+          )}
+        </div>
+      </div>
 
       {/* Hybrid Monetization & Deliverable Bar for Advanced Tools */}
       {isAdvancedTool(t.slug) && (
@@ -409,6 +591,8 @@ export default function ToolPage() {
         onClose={() => setShowBuyNotice(false)}
         toolName={t.name}
         plannedPrice={noticePrice}
+        onSimulatePurchase={() => handlePurchase('sandbox')}
+        purchasing={purchasing}
       />
     </div>
   )

@@ -5,7 +5,14 @@ import { useNavigate } from 'react-router-dom';
  * Buy Notice Modal (Blueprint Section 7: Buy Buttons While Payments Are Not Connected)
  * Renders an unhurried, plain explanation pop-up when any buy or locked feature is tapped.
  */
-export default function BuyNoticeModal({ isOpen, onClose, toolName, plannedPrice = '$19.00' }) {
+export default function BuyNoticeModal({ 
+  isOpen, 
+  onClose, 
+  toolName, 
+  plannedPrice = '$19.00',
+  onSimulatePurchase = null,
+  purchasing = false
+}) {
   const navigate = useNavigate();
 
   if (!isOpen) return null;
@@ -55,9 +62,46 @@ export default function BuyNoticeModal({ isOpen, onClose, toolName, plannedPrice
         )}
 
         {/* Blueprint mandated plain text */}
-        <p style={{ fontSize: '0.92rem', color: '#475569', lineHeight: 1.5, margin: '0 0 1.5rem 0' }}>
+        <p style={{ fontSize: '0.92rem', color: '#475569', lineHeight: 1.5, margin: '0 0 1.25rem 0' }}>
           Payments are not available yet; the payment account has not been connected. Prices shown are planned prices and may change; all basic tools stay 100% free forever.
         </p>
+
+        {/* Sandbox Payment & Offline Unlock Option */}
+        {onSimulatePurchase && (
+          <div style={{
+            background: 'rgba(16, 185, 129, 0.08)',
+            border: '1px solid rgba(16, 185, 129, 0.25)',
+            borderRadius: '16px',
+            padding: '1rem',
+            marginBottom: '1.25rem'
+          }}>
+            <div style={{ fontSize: '0.82rem', fontWeight: 700, color: '#059669', marginBottom: '0.35rem', display: 'flex', alignItems: 'center', gap: '6px' }}>
+              <span>⚡</span> TEST CHECKOUT & INSTANT OFFLINE UNLOCK
+            </div>
+            <p style={{ fontSize: '0.8rem', color: '#475569', margin: '0 0 0.75rem 0', lineHeight: 1.4 }}>
+              Click below to complete a sandbox purchase, unlock the offline license, and automatically download the standalone <strong>.html</strong> tool.
+            </p>
+            <button
+              type="button"
+              className="btn primary"
+              disabled={purchasing}
+              onClick={onSimulatePurchase}
+              style={{
+                width: '100%',
+                background: 'linear-gradient(135deg, #10B981, #059669)',
+                color: '#FFF',
+                fontWeight: 700,
+                padding: '0.65rem 1rem',
+                fontSize: '0.88rem',
+                border: 'none',
+                borderRadius: '10px',
+                cursor: 'pointer'
+              }}
+            >
+              {purchasing ? 'Unlocking Tool…' : `💳 Pay ${plannedPrice} & Download Tool Now`}
+            </button>
+          </div>
+        )}
 
         {/* Action Buttons */}
         <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '0.75rem' }}>
