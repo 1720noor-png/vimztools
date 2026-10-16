@@ -1,19 +1,21 @@
+@import './neumorphism.css';
+
 /* ==========================================================================
-   Vimz.ai — Premium Design System & Color Palette
-   Violet + White visual identity with soft pastel surfaces & dark mode
+   Vimz.ai — Neumorphic Soft UI Design System & Color Palette
+   Vimz Lavender-Clay (#E8EAF2) with Violet (#6C4CF1) & Teal (#18B6A4) accents
    ========================================================================== */
 
 :root {
-  /* Neutral surfaces (Light Mode) */
-  --bg: #F7F7FC;
-  --bg-soft: #EEF0F8;
-  --card: #FFFFFF;
-  --card-2: #FAFBFD;
+  /* Neutral surfaces (Vimz Lavender-Clay) */
+  --bg: #E8EAF2;
+  --bg-soft: #DFE3EE;
+  --card: #E8EAF2;
+  --card-2: #E8EAF2;
   --fg: #20213A;
-  --muted: #77748B;
-  --muted-2: #9B98AE;
-  --line: #E9E7F2;
-  --line-strong: #D5D2E4;
+  --muted: #5B6178;
+  --muted-2: #7E859E;
+  --line: rgba(182, 188, 204, 0.4);
+  --line-strong: rgba(182, 188, 204, 0.7);
 
   /* Brand identity: Violet + White + Teal */
   --brand: #6C4CF1;
@@ -58,10 +60,10 @@
 /* ---------------- Dark Mode ---------------- */
 @media(prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: #101426;
-    --bg-soft: #171C34;
-    --card: #1D2340;
-    --card-2: #27213F;
+    --bg: #121524;
+    --bg-soft: #181C30;
+    --card: #121524;
+    --card-2: #121524;
     --fg: #F8FAFC;
     --muted: #C5C9D8;
     --muted-2: #8F95AD;
@@ -93,10 +95,10 @@
 }
 
 :root[data-theme="dark"] {
-  --bg: #101426;
-  --bg-soft: #171C34;
-  --card: #1D2340;
-  --card-2: #27213F;
+  --bg: #121524;
+  --bg-soft: #181C30;
+  --card: #121524;
+  --card-2: #121524;
   --fg: #F8FAFC;
   --muted: #C5C9D8;
   --muted-2: #8F95AD;

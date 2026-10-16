@@ -68,6 +68,14 @@ export default function Layout() {
   return (
     <>
       <a className="skip" href="#main">Skip to content</a>
+      
+      {/* Neumorphic 3D Ambient Floating Geometry */}
+      <div className="neu-bg-container" aria-hidden="true">
+        <div className="neu-bg-orb neu-bg-orb-1" />
+        <div className="neu-bg-orb neu-bg-orb-2" />
+        <div className="neu-bg-orb neu-bg-orb-3" />
+      </div>
+
       <header className="top">
         <div className="wrap bar">
           <Link to="/" className="brand" aria-label="Vimz.ai Homepage" style={{ textDecoration: 'none' }}>
