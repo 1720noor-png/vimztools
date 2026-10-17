@@ -1,0 +1,18 @@
+import { qualityParam, n, sel, tool } from '../engine/factories.ts'
+import { imageInfoReport, metadataReport } from '../engine/analysis.ts'
+import { stripMetadataRun } from '../engine/runners.ts'
+import type { ImageToolSpec } from '../engine/types.ts'
+
+const SUB = 'metadata-info' as const
+
+export const METADATA_SPECS: ImageToolSpec[] = [
+  tool({ id: 'image-metadata-viewer', name: 'Image Metadata Viewer', sub: SUB, icon: 'Eye', blurb: 'Read every EXIF field stored inside an image.', tip: 'Phone photos often carry GPS coordinates. Check before you post a photo taken at home.', params: [], kind: 'json', custom: metadataReport }),
+  tool({ id: 'exif-data-reader', name: 'EXIF Data Reader', sub: SUB, icon: 'Camera', blurb: 'Read camera, lens, exposure and GPS EXIF data.', tip: 'EXIF survives most "Save As" operations. Only re-encoding to a canvas truly removes it.', params: [], kind: 'json', custom: metadataReport }),
+  tool({ id: 'gps-location-viewer', name: 'GPS Location Viewer', sub: SUB, icon: 'MapPin', blurb: 'Show whether an image carries GPS coordinates.', tip: 'If this reports coordinates, anyone who downloads the photo learns where you were.', params: [], kind: 'json', custom: metadataReport }),
+  tool({ id: 'photo-exif-remover', name: 'Photo EXIF Remover', sub: SUB, icon: 'ShieldOff', blurb: 'Re-encode an image to strip all EXIF, GPS and thumbnail data.', tip: 'This is real anonymisation: the output is a fresh pixel canvas with no metadata at all.', params: [sel('format', 'Output format', ['image/png', 'image/jpeg', 'image/webp'], 'image/png'), qualityParam(0.92)], outGroup: 'png', custom: stripMetadataRun }),
+  tool({ id: 'metadata-cleaner', name: 'Metadata Cleaner', sub: SUB, icon: 'Eraser', blurb: 'Clean hidden metadata from a batch of images at once.', tip: 'Clean a whole folder before sharing it publicly. It takes seconds and prevents most privacy leaks.', params: [sel('format', 'Output format', ['image/png', 'image/jpeg', 'image/webp'], 'image/png'), qualityParam(0.92)], outGroup: 'png', multiple: 50, custom: stripMetadataRun }),
+  tool({ id: 'image-info-checker', name: 'Image Info Checker', sub: SUB, icon: 'Info', blurb: 'Full report: type, size, dimensions, ratio and print size.', tip: 'Check the ratio too — a mislabelled extension is a common cause of a photo displaying sideways.', params: [], kind: 'json', custom: imageInfoReport }),
+  tool({ id: 'file-size-analyzer', name: 'File Size Analyzer', sub: SUB, icon: 'HardDrive', blurb: 'Compare file size with pixel count to spot badly compressed images.', tip: 'A 12MP JPG under 300KB has been compressed hard. Expect visible artefacts when you enlarge it.', params: [n('referenceDpi', 'Compare against', 150, 72, 600, 1, 'dpi')], kind: 'json', custom: imageInfoReport }),
+  tool({ id: 'image-dpi-viewer', name: 'Image DPI Viewer', sub: SUB, icon: 'Ruler', blurb: 'See the DPI an image will print at a given physical size.', tip: '150 DPI suits screen and web. 300 DPI is the print standard. Above 400 gains nothing visible.', params: [n('widthMm', 'Print width (mm)', 210, 20, 2000, 1, 'mm'), n('dpi', 'Required DPI', 300, 36, 1200, 1, 'dpi')], kind: 'json', custom: imageInfoReport }),
+  tool({ id: 'image-dpi-changer', name: 'Image DPI Changer', sub: SUB, icon: 'Settings', blurb: 'Set the print resolution metadata for an image.', tip: 'Changing the DPI tag does not add pixels. Resize the image if you need real detail.', params: [n('dpi', 'Print resolution', 300, 36, 1200, 1, 'dpi'), sel('format', 'Output format', ['image/png', 'image/jpeg'], 'image/png'), qualityParam(0.95)], outGroup: 'png', custom: stripMetadataRun }),
+]
