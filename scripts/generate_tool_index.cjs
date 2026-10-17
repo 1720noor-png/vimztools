@@ -17,7 +17,7 @@ if (startIdx === -1 || endIdx === -1) {
 }
 
 const rawTools = content.substring(startIdx + 'export const tools = ['.length, endIdx).trim();
-const cleanTools = rawTools.replace(/\]\s*$/, '');
+const cleanTools = rawTools.replace(/\];?\s*$/, '');
 const safeJs = cleanTools.replace(/["']?Component["']?\s*:\s*([A-Za-z0-9_]+)/g, '"Component": "$1"');
 
 const rawToolList = new Function('return [' + safeJs + ']')().filter(Boolean);
