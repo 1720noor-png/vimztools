@@ -1,0 +1,2162 @@
+[
+  {
+    "No.": 697,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Assignment Planner",
+    "Purpose": "Simple tool for assignment planner",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 698,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Budget Assignment Planner",
+    "Purpose": "Budget-focused version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 699,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Budget CGPA Calculator",
+    "Purpose": "Budget-focused version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 700,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Budget Citation Checklist",
+    "Purpose": "Budget-focused version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 701,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Budget Class Timetable",
+    "Purpose": "Budget-focused version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 702,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Budget Course Planner",
+    "Purpose": "Budget-focused version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 703,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Budget Essay Word Counter",
+    "Purpose": "Budget-focused version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 704,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Budget Exam Countdown",
+    "Purpose": "Budget-focused version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 705,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Budget Flashcard Maker",
+    "Purpose": "Budget-focused version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 706,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Budget GPA Calculator",
+    "Purpose": "Budget-focused version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 707,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Budget Grade Calculator",
+    "Purpose": "Budget-focused version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 708,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Budget Homework Tracker",
+    "Purpose": "Budget-focused version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 709,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Budget Percentage Calculator",
+    "Purpose": "Budget-focused version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 710,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Budget Pomodoro Timer",
+    "Purpose": "Budget-focused version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 711,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Budget Presentation Planner",
+    "Purpose": "Budget-focused version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 712,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Budget Quiz Maker",
+    "Purpose": "Budget-focused version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 713,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Budget Reading Timer",
+    "Purpose": "Budget-focused version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 714,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Budget Revision Planner",
+    "Purpose": "Budget-focused version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 715,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Budget Scholarship Checklist",
+    "Purpose": "Budget-focused version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 716,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Budget Study Hours Tracker",
+    "Purpose": "Budget-focused version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 717,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Budget Study Planner",
+    "Purpose": "Budget-focused version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 718,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "CGPA Calculator",
+    "Purpose": "Simple tool for cgpa calculator",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 719,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Calculator Assignment Planner",
+    "Purpose": "Calculation-focused version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 720,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Calculator CGPA Calculator",
+    "Purpose": "Calculation-focused version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 721,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Calculator Citation Checklist",
+    "Purpose": "Calculation-focused version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 722,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Calculator Class Timetable",
+    "Purpose": "Calculation-focused version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 723,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Calculator Course Planner",
+    "Purpose": "Calculation-focused version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 724,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Calculator Essay Word Counter",
+    "Purpose": "Calculation-focused version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 725,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Calculator Exam Countdown",
+    "Purpose": "Calculation-focused version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 726,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Calculator Flashcard Maker",
+    "Purpose": "Calculation-focused version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 727,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Calculator GPA Calculator",
+    "Purpose": "Calculation-focused version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 728,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Calculator Grade Calculator",
+    "Purpose": "Calculation-focused version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 729,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Calculator Homework Tracker",
+    "Purpose": "Calculation-focused version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 730,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Calculator Percentage Calculator",
+    "Purpose": "Calculation-focused version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 731,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Calculator Pomodoro Timer",
+    "Purpose": "Calculation-focused version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 732,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Calculator Presentation Planner",
+    "Purpose": "Calculation-focused version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 733,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Calculator Quiz Maker",
+    "Purpose": "Calculation-focused version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 734,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Calculator Reading Timer",
+    "Purpose": "Calculation-focused version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 735,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Calculator Revision Planner",
+    "Purpose": "Calculation-focused version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 736,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Calculator Scholarship Checklist",
+    "Purpose": "Calculation-focused version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 737,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Calculator Study Hours Tracker",
+    "Purpose": "Calculation-focused version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 738,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Calculator Study Planner",
+    "Purpose": "Calculation-focused version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 739,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Checklist Assignment Planner",
+    "Purpose": "Checklist-based version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 740,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Checklist CGPA Calculator",
+    "Purpose": "Checklist-based version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 741,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Checklist Citation Checklist",
+    "Purpose": "Checklist-based version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 742,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Checklist Class Timetable",
+    "Purpose": "Checklist-based version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 743,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Checklist Course Planner",
+    "Purpose": "Checklist-based version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 744,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Checklist Essay Word Counter",
+    "Purpose": "Checklist-based version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 745,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Checklist Exam Countdown",
+    "Purpose": "Checklist-based version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 746,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Checklist Flashcard Maker",
+    "Purpose": "Checklist-based version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 747,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Checklist GPA Calculator",
+    "Purpose": "Checklist-based version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 748,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Checklist Grade Calculator",
+    "Purpose": "Checklist-based version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 749,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Checklist Homework Tracker",
+    "Purpose": "Checklist-based version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 750,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Checklist Percentage Calculator",
+    "Purpose": "Checklist-based version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 751,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Checklist Pomodoro Timer",
+    "Purpose": "Checklist-based version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 752,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Checklist Presentation Planner",
+    "Purpose": "Checklist-based version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 753,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Checklist Quiz Maker",
+    "Purpose": "Checklist-based version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 754,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Checklist Reading Timer",
+    "Purpose": "Checklist-based version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 755,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Checklist Revision Planner",
+    "Purpose": "Checklist-based version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 756,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Checklist Scholarship Checklist",
+    "Purpose": "Checklist-based version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 757,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Checklist Study Hours Tracker",
+    "Purpose": "Checklist-based version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 758,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Checklist Study Planner",
+    "Purpose": "Checklist-based version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 759,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Citation Checklist",
+    "Purpose": "Simple tool for citation checklist",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 760,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Class Timetable",
+    "Purpose": "Simple tool for class timetable",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 761,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Course Planner",
+    "Purpose": "Simple tool for course planner",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 762,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Daily Assignment Planner",
+    "Purpose": "Daily-use version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 763,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Daily CGPA Calculator",
+    "Purpose": "Daily-use version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 764,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Daily Citation Checklist",
+    "Purpose": "Daily-use version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 765,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Daily Class Timetable",
+    "Purpose": "Daily-use version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 766,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Daily Course Planner",
+    "Purpose": "Daily-use version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 767,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Daily Essay Word Counter",
+    "Purpose": "Daily-use version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 768,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Daily Exam Countdown",
+    "Purpose": "Daily-use version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 769,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Daily Flashcard Maker",
+    "Purpose": "Daily-use version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 770,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Daily GPA Calculator",
+    "Purpose": "Daily-use version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 771,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Daily Grade Calculator",
+    "Purpose": "Daily-use version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 772,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Daily Homework Tracker",
+    "Purpose": "Daily-use version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 773,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Daily Percentage Calculator",
+    "Purpose": "Daily-use version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 774,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Daily Pomodoro Timer",
+    "Purpose": "Daily-use version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 775,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Daily Presentation Planner",
+    "Purpose": "Daily-use version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 776,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Daily Quiz Maker",
+    "Purpose": "Daily-use version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 777,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Daily Reading Timer",
+    "Purpose": "Daily-use version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 778,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Daily Revision Planner",
+    "Purpose": "Daily-use version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 779,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Daily Scholarship Checklist",
+    "Purpose": "Daily-use version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 780,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Daily Study Hours Tracker",
+    "Purpose": "Daily-use version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 781,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Daily Study Planner",
+    "Purpose": "Daily-use version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 782,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Essay Word Counter",
+    "Purpose": "Simple tool for essay word counter",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 783,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Exam Countdown",
+    "Purpose": "Simple tool for exam countdown",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 784,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Flashcard Maker",
+    "Purpose": "Simple tool for flashcard maker",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 785,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "GPA Calculator",
+    "Purpose": "Simple tool for gpa calculator",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 786,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Grade Calculator",
+    "Purpose": "Simple tool for grade calculator",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 787,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Homework Tracker",
+    "Purpose": "Simple tool for homework tracker",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 788,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Log Assignment Planner",
+    "Purpose": "Simple record-keeping version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 789,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Log CGPA Calculator",
+    "Purpose": "Simple record-keeping version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 790,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Log Citation Checklist",
+    "Purpose": "Simple record-keeping version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 791,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Log Class Timetable",
+    "Purpose": "Simple record-keeping version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 792,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Log Course Planner",
+    "Purpose": "Simple record-keeping version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 793,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Log Essay Word Counter",
+    "Purpose": "Simple record-keeping version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 794,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Log Exam Countdown",
+    "Purpose": "Simple record-keeping version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 795,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Log Flashcard Maker",
+    "Purpose": "Simple record-keeping version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 796,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Log GPA Calculator",
+    "Purpose": "Simple record-keeping version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 797,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Log Grade Calculator",
+    "Purpose": "Simple record-keeping version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 798,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Log Homework Tracker",
+    "Purpose": "Simple record-keeping version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 799,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Log Percentage Calculator",
+    "Purpose": "Simple record-keeping version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 800,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Log Pomodoro Timer",
+    "Purpose": "Simple record-keeping version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 801,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Log Presentation Planner",
+    "Purpose": "Simple record-keeping version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 802,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Log Quiz Maker",
+    "Purpose": "Simple record-keeping version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 803,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Log Reading Timer",
+    "Purpose": "Simple record-keeping version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 804,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Log Revision Planner",
+    "Purpose": "Simple record-keeping version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 805,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Log Scholarship Checklist",
+    "Purpose": "Simple record-keeping version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 806,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Log Study Hours Tracker",
+    "Purpose": "Simple record-keeping version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 807,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Log Study Planner",
+    "Purpose": "Simple record-keeping version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 808,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Monthly Assignment Planner",
+    "Purpose": "Monthly planning version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 809,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Monthly CGPA Calculator",
+    "Purpose": "Monthly planning version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 810,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Monthly Citation Checklist",
+    "Purpose": "Monthly planning version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 811,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Monthly Class Timetable",
+    "Purpose": "Monthly planning version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 812,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Monthly Course Planner",
+    "Purpose": "Monthly planning version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 813,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Monthly Essay Word Counter",
+    "Purpose": "Monthly planning version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 814,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Monthly Exam Countdown",
+    "Purpose": "Monthly planning version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 815,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Monthly Flashcard Maker",
+    "Purpose": "Monthly planning version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 816,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Monthly GPA Calculator",
+    "Purpose": "Monthly planning version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 817,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Monthly Grade Calculator",
+    "Purpose": "Monthly planning version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 818,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Monthly Homework Tracker",
+    "Purpose": "Monthly planning version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 819,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Monthly Percentage Calculator",
+    "Purpose": "Monthly planning version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 820,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Monthly Pomodoro Timer",
+    "Purpose": "Monthly planning version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 821,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Monthly Presentation Planner",
+    "Purpose": "Monthly planning version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 822,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Monthly Quiz Maker",
+    "Purpose": "Monthly planning version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 823,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Monthly Reading Timer",
+    "Purpose": "Monthly planning version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 824,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Monthly Revision Planner",
+    "Purpose": "Monthly planning version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 825,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Monthly Scholarship Checklist",
+    "Purpose": "Monthly planning version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 826,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Monthly Study Hours Tracker",
+    "Purpose": "Monthly planning version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 827,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Monthly Study Planner",
+    "Purpose": "Monthly planning version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 828,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Percentage Calculator",
+    "Purpose": "Simple tool for percentage calculator",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 829,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Planner Assignment Planner",
+    "Purpose": "Planning-focused version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 830,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Planner CGPA Calculator",
+    "Purpose": "Planning-focused version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 831,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Planner Citation Checklist",
+    "Purpose": "Planning-focused version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 832,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Planner Class Timetable",
+    "Purpose": "Planning-focused version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 833,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Planner Course Planner",
+    "Purpose": "Planning-focused version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 834,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Planner Essay Word Counter",
+    "Purpose": "Planning-focused version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 835,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Planner Exam Countdown",
+    "Purpose": "Planning-focused version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 836,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Planner Flashcard Maker",
+    "Purpose": "Planning-focused version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 837,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Planner GPA Calculator",
+    "Purpose": "Planning-focused version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 838,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Planner Grade Calculator",
+    "Purpose": "Planning-focused version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 839,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Planner Homework Tracker",
+    "Purpose": "Planning-focused version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 840,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Planner Percentage Calculator",
+    "Purpose": "Planning-focused version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 841,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Planner Pomodoro Timer",
+    "Purpose": "Planning-focused version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 842,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Planner Presentation Planner",
+    "Purpose": "Planning-focused version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 843,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Planner Quiz Maker",
+    "Purpose": "Planning-focused version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 844,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Planner Reading Timer",
+    "Purpose": "Planning-focused version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 845,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Planner Revision Planner",
+    "Purpose": "Planning-focused version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 846,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Planner Scholarship Checklist",
+    "Purpose": "Planning-focused version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 847,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Planner Study Hours Tracker",
+    "Purpose": "Planning-focused version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 848,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Planner Study Planner",
+    "Purpose": "Planning-focused version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 849,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Pomodoro Timer",
+    "Purpose": "Simple tool for pomodoro timer",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 850,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Presentation Planner",
+    "Purpose": "Simple tool for presentation planner",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 851,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Quick Assignment Planner",
+    "Purpose": "Fast version of the tool",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 852,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Quick CGPA Calculator",
+    "Purpose": "Fast version of the tool",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 853,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Quick Citation Checklist",
+    "Purpose": "Fast version of the tool",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 854,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Quick Class Timetable",
+    "Purpose": "Fast version of the tool",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 855,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Quick Course Planner",
+    "Purpose": "Fast version of the tool",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 856,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Quick Essay Word Counter",
+    "Purpose": "Fast version of the tool",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 857,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Quick Exam Countdown",
+    "Purpose": "Fast version of the tool",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 858,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Quick Flashcard Maker",
+    "Purpose": "Fast version of the tool",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 859,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Quick GPA Calculator",
+    "Purpose": "Fast version of the tool",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 860,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Quick Grade Calculator",
+    "Purpose": "Fast version of the tool",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 861,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Quick Homework Tracker",
+    "Purpose": "Fast version of the tool",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 862,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Quick Percentage Calculator",
+    "Purpose": "Fast version of the tool",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 863,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Quick Pomodoro Timer",
+    "Purpose": "Fast version of the tool",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 864,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Quick Presentation Planner",
+    "Purpose": "Fast version of the tool",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 865,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Quick Quiz Maker",
+    "Purpose": "Fast version of the tool",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 866,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Quick Reading Timer",
+    "Purpose": "Fast version of the tool",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 867,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Quick Revision Planner",
+    "Purpose": "Fast version of the tool",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 868,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Quick Scholarship Checklist",
+    "Purpose": "Fast version of the tool",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 869,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Quick Study Hours Tracker",
+    "Purpose": "Fast version of the tool",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 870,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Quick Study Planner",
+    "Purpose": "Fast version of the tool",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 871,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Quiz Maker",
+    "Purpose": "Simple tool for quiz maker",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 872,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Reading Timer",
+    "Purpose": "Simple tool for reading timer",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 873,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Reminder Assignment Planner",
+    "Purpose": "Reminder-focused version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 874,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Reminder CGPA Calculator",
+    "Purpose": "Reminder-focused version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 875,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Reminder Citation Checklist",
+    "Purpose": "Reminder-focused version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 876,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Reminder Class Timetable",
+    "Purpose": "Reminder-focused version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 877,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Reminder Course Planner",
+    "Purpose": "Reminder-focused version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 878,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Reminder Essay Word Counter",
+    "Purpose": "Reminder-focused version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 879,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Reminder Exam Countdown",
+    "Purpose": "Reminder-focused version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 880,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Reminder Flashcard Maker",
+    "Purpose": "Reminder-focused version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 881,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Reminder GPA Calculator",
+    "Purpose": "Reminder-focused version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 882,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Reminder Grade Calculator",
+    "Purpose": "Reminder-focused version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 883,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Reminder Homework Tracker",
+    "Purpose": "Reminder-focused version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 884,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Reminder Percentage Calculator",
+    "Purpose": "Reminder-focused version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 885,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Reminder Pomodoro Timer",
+    "Purpose": "Reminder-focused version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 886,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Reminder Presentation Planner",
+    "Purpose": "Reminder-focused version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 887,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Reminder Quiz Maker",
+    "Purpose": "Reminder-focused version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 888,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Reminder Reading Timer",
+    "Purpose": "Reminder-focused version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 889,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Reminder Revision Planner",
+    "Purpose": "Reminder-focused version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 890,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Reminder Scholarship Checklist",
+    "Purpose": "Reminder-focused version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 891,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Reminder Study Hours Tracker",
+    "Purpose": "Reminder-focused version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 892,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Reminder Study Planner",
+    "Purpose": "Reminder-focused version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 893,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Revision Planner",
+    "Purpose": "Simple tool for revision planner",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 894,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Scholarship Checklist",
+    "Purpose": "Simple tool for scholarship checklist",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 895,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Study Hours Tracker",
+    "Purpose": "Simple tool for study hours tracker",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 896,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Study Planner",
+    "Purpose": "Simple tool for study planner",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 897,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Tracker Assignment Planner",
+    "Purpose": "Progress tracking version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 898,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Tracker CGPA Calculator",
+    "Purpose": "Progress tracking version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 899,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Tracker Citation Checklist",
+    "Purpose": "Progress tracking version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 900,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Tracker Class Timetable",
+    "Purpose": "Progress tracking version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 901,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Tracker Course Planner",
+    "Purpose": "Progress tracking version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 902,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Tracker Essay Word Counter",
+    "Purpose": "Progress tracking version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 903,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Tracker Exam Countdown",
+    "Purpose": "Progress tracking version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 904,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Tracker Flashcard Maker",
+    "Purpose": "Progress tracking version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 905,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Tracker GPA Calculator",
+    "Purpose": "Progress tracking version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 906,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Tracker Grade Calculator",
+    "Purpose": "Progress tracking version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 907,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Tracker Homework Tracker",
+    "Purpose": "Progress tracking version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 908,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Tracker Percentage Calculator",
+    "Purpose": "Progress tracking version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 909,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Tracker Pomodoro Timer",
+    "Purpose": "Progress tracking version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 910,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Tracker Presentation Planner",
+    "Purpose": "Progress tracking version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 911,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Tracker Quiz Maker",
+    "Purpose": "Progress tracking version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 912,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Tracker Reading Timer",
+    "Purpose": "Progress tracking version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 913,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Tracker Revision Planner",
+    "Purpose": "Progress tracking version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 914,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Tracker Scholarship Checklist",
+    "Purpose": "Progress tracking version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 915,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Tracker Study Hours Tracker",
+    "Purpose": "Progress tracking version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 916,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Tracker Study Planner",
+    "Purpose": "Progress tracking version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 917,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Weekly Assignment Planner",
+    "Purpose": "Weekly planning version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 918,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Weekly CGPA Calculator",
+    "Purpose": "Weekly planning version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 919,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Weekly Citation Checklist",
+    "Purpose": "Weekly planning version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 920,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Weekly Class Timetable",
+    "Purpose": "Weekly planning version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 921,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Weekly Course Planner",
+    "Purpose": "Weekly planning version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 922,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Weekly Essay Word Counter",
+    "Purpose": "Weekly planning version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 923,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Weekly Exam Countdown",
+    "Purpose": "Weekly planning version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 924,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Weekly Flashcard Maker",
+    "Purpose": "Weekly planning version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 925,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Weekly GPA Calculator",
+    "Purpose": "Weekly planning version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 926,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Weekly Grade Calculator",
+    "Purpose": "Weekly planning version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 927,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Weekly Homework Tracker",
+    "Purpose": "Weekly planning version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 928,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Weekly Percentage Calculator",
+    "Purpose": "Weekly planning version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 929,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Weekly Pomodoro Timer",
+    "Purpose": "Weekly planning version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 930,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Weekly Presentation Planner",
+    "Purpose": "Weekly planning version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 931,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Weekly Quiz Maker",
+    "Purpose": "Weekly planning version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 932,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Weekly Reading Timer",
+    "Purpose": "Weekly planning version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 933,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Weekly Revision Planner",
+    "Purpose": "Weekly planning version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 934,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Weekly Scholarship Checklist",
+    "Purpose": "Weekly planning version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 935,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Weekly Study Hours Tracker",
+    "Purpose": "Weekly planning version",
+    "Priority": "Extra"
+  },
+  {
+    "No.": 936,
+    "Target User": "Students",
+    "Life Stage / Need": "Study",
+    "Category": "Study & Education",
+    "Tool Name": "Weekly Study Planner",
+    "Purpose": "Weekly planning version",
+    "Priority": "Extra"
+  }
+]

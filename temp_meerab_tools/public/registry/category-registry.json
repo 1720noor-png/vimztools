@@ -1,0 +1,32 @@
+[
+  {
+    "category": "Money & Budget",
+    "subcategory": "General",
+    "toolCount": 240,
+    "dataFile": "Money_&_Budget/General/General.json"
+  },
+  {
+    "category": "Home & Household",
+    "subcategory": "General",
+    "toolCount": 240,
+    "dataFile": "Home_&_Household/General/General.json"
+  },
+  {
+    "category": "Cooking & Kitchen",
+    "subcategory": "General",
+    "toolCount": 240,
+    "dataFile": "Cooking_&_Kitchen/General/General.json"
+  },
+  {
+    "category": "Study & Education",
+    "subcategory": "General",
+    "toolCount": 240,
+    "dataFile": "Study_&_Education/General/General.json"
+  },
+  {
+    "category": "Career & Work",
+    "subcategory": "General",
+    "toolCount": 240,
+    "dataFile": "Career_&_Work/General/General.json"
+  }
+]
