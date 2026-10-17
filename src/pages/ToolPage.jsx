@@ -10,14 +10,27 @@ import { isAdvancedTool, getToolMonetization } from '../data/monetizationCatalog
 import { download } from '../components/ui.jsx'
 import BuyNoticeModal from '../components/BuyNoticeModal.jsx'
 import { downloadToolOfflineFile } from '../services/offline/offlineExportService.js'
+import { staticImplementations } from './DynamicToolPage.tsx'
 
 export default function ToolPage() {
   const { cat, tool } = useParams()
   
+  const candidateSlug = tool || cat
+  const staticComp = staticImplementations[candidateSlug] || staticImplementations[tool] || staticImplementations[cat]
+
   // Resilient tool lookup by slug
   const t = tools.find((x) => x?.slug === tool) ||
             tools.find((x) => x?.cat === cat && x?.slug === tool) ||
-            tools.find((x) => x?.slug === cat)
+            tools.find((x) => x?.slug === cat) ||
+            (staticComp ? {
+              id: candidateSlug,
+              slug: candidateSlug,
+              name: candidateSlug.split('-').map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join(' '),
+              cat: cat || 'tools',
+              desc: `Interactive ${candidateSlug.replace(/-/g, ' ')} utility running 100% client-side in your browser.`,
+              Component: staticComp,
+              icon: '🛠️'
+            } : null)
 
   // Safe category lookup with fallback
   const toolCatSlug = t?.cat || cat || 'tools'
@@ -201,7 +214,7 @@ export default function ToolPage() {
     )
   }
 
-  const Tool = t.Component || (() => (
+  const Tool = t.Component || staticComp || staticImplementations[t?.slug] || (() => (
     <div style={{ padding: '2rem', textAlign: 'center', color: 'var(--muted)' }}>
       Interactive tool preview loading…
     </div>

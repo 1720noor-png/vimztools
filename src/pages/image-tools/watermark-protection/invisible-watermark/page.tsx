@@ -1,0 +1,5 @@
+import ImageToolPage from '../../../tools/image/ImageToolPage'
+
+export default function Page() {
+  return <ImageToolPage subcategory="watermark-protection" tool="invisible-watermark" />
+}

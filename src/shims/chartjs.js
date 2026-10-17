@@ -1,0 +1,12 @@
+export const Chart = { register: () => {} };
+export const registerables = [];
+export const CategoryScale = class {};
+export const LinearScale = class {};
+export const PointElement = class {};
+export const LineElement = class {};
+export const Title = class {};
+export const Tooltip = class {};
+export const Legend = class {};
+export const ArcElement = class {};
+export const BarElement = class {};
+export default Chart;

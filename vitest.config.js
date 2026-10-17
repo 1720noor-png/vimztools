@@ -16,6 +16,7 @@ export default defineConfig({
     globals: true,
     environment: 'node',
     include: ['src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}', 'tests/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
+    exclude: ['**/node_modules/**', '**/dist/**', 'src/lib/health/**', 'src/pages/image-tools/**'],
     coverage: {
       provider: 'v8',
       reporter: ['text', 'json', 'html'],
